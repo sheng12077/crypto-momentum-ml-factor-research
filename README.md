@@ -13,5 +13,7 @@ This repository begins a new experiment sequence. Its first strategy experiment
 will be Experiment 001 and must be preregistered on `main` before implementation
 or performance inspection.
 
-Datasets and generated backtest artifacts are excluded from Git. In the local
-umbrella workspace, `data` is an ignored symbolic link to `../../data`.
+Datasets and generated backtest artifacts are excluded from Git. The local
+`data/raw`, `data/canonical`, and `data/catalog` paths link to the shared,
+strategy-neutral market-data lake. Momentum-specific features and backtest
+outputs belong in ignored `data/interim` and `data/processed` directories.
