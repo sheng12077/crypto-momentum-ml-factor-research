@@ -1,0 +1,29 @@
+name: time-series-momentum
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.13
+  - pip
+  - setuptools>=77
+  - wheel
+  - polars
+  - duckdb
+  - pyarrow
+  - numpy
+  - scipy
+  - pandas
+  - statsmodels
+  - pydantic
+  - httpx
+  - tenacity
+  - jupyterlab
+  - ipykernel
+  - matplotlib
+  - plotly
+  - pytest
+  - pytest-cov
+  - ruff
+  - mypy
+  - pre-commit
