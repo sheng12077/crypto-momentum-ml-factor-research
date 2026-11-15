@@ -17,3 +17,8 @@ Datasets and generated backtest artifacts are excluded from Git. The local
 `data/raw`, `data/canonical`, and `data/catalog` paths link to the shared,
 strategy-neutral market-data lake. Momentum-specific features and backtest
 outputs belong in ignored `data/interim` and `data/processed` directories.
+
+## Current research notes
+
+- [Momentum and trend-following research landscape](docs/momentum_research_landscape.md)
+- [Candidate strategy families before Experiment 001](docs/candidate_strategy_families.md)
