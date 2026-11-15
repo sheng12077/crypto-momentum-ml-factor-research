@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Editors and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Shared local data and generated artifacts
+/data
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.csv
+*.zip
+reports/figures/
+reports/tables/
