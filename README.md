@@ -25,3 +25,4 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Project status and handoff](docs/PROJECT_STATUS.md)
 - [Historical universe feasibility](docs/historical_universe_feasibility.md)
 - [WSL raw-data acquisition commands](docs/USDM_ACQUISITION.md)
+- [Post-acquisition quality audit](docs/POST_ACQUISITION_AUDIT.md)
