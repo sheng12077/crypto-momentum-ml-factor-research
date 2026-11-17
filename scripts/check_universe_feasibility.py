@@ -88,10 +88,12 @@ class Discovery:
         (output / "responses").mkdir(parents=True, exist_ok=False)
         self.manifest: list[dict] = []
 
-    def get(self, label: str, url: str) -> bytes:
+    def get(self, label: str, url: str, max_bytes: int = 8 * 1024 * 1024) -> bytes:
         request = urllib.request.Request(url, headers={"User-Agent": "universe-feasibility/0.1"})
         with urllib.request.urlopen(request, timeout=40) as response:
-            body = response.read()
+            body = response.read(max_bytes + 1)
+            if len(body) > max_bytes:
+                raise ValueError(f"response exceeds {max_bytes}-byte limit")
             status = response.status
         relative = f"responses/{label}.raw"
         (self.output / relative).write_bytes(body)
