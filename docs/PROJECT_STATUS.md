@@ -4,6 +4,24 @@ Updated: 2026-11-17.
 
 ## Current conclusion
 
+- Latest segment: bounded mark-gap reconciliation, preregistered `7d4f078`,
+  topic `infra/mark-gap-reconciliation` targets main by no-ff merge.
+- All 13 fixed official API probes returned full windows and exact monthly boundary
+  OHLC matches. Reused saved responses for offline corrections; no extra API calls.
+- Existing backfills: 210 raw rows verify; nine Parquets (183 rows) match raw.
+  One older duplicate BTC run lacks its Parquet, so the all-existing-runs gate
+  remains FALSE. Its 27 source URL/hash/size records match a verified later run.
+- Existing sources cover 153 audited missing keys; combined verified candidates
+  cover 534 unique keys, with no conflicts. 32,706 mark symbol-hours remain without
+  a verified candidate in this bounded check. No overlay has been integrated.
+- WAVES API returns marks after its known settlement: 24 staged rows are labeled
+  post-lifecycle context and must NOT restore trading eligibility.
+- Latest evidence: `data/interim/usdm_universe/mark_reconciliation_20261117_final/`;
+  original 13 API responses remain under `mark_reconciliation_20261117/`.
+- Full source report: `docs/MARK_GAP_RECONCILIATION.md`; 30 tests and Ruff pass.
+
+## Prior completed source audit
+
 - Full RAW download completed by the user: 66,893 files, 1,035,606,342 compressed
   bytes; no acquisition errors. No factor backtest or fitting has started.
 - Post-acquisition protocol registered on main: `9245a0a`; current audit segment
@@ -41,11 +59,12 @@ Updated: 2026-11-17.
 
 ## Next bounded task
 
-Prepare normalized research tables with explicit quality masks. Reconcile common
-mark gaps against existing provenance-preserving sibling backfills and test a
-small official repair if needed. Source lifecycle/identity facts for the 54
-funding-after-activity cases and four funding-gap identities before causal
-eligibility/accounting rules. No source repair was performed in this segment.
+Prepare a resumable missing-key-only mark recovery plan with source evidence,
+boundary checks, explicit conflicts and unresolved keys. Integrate a versioned
+research overlay only after validation, preserving existing raw/canonical data.
+Source lifecycle/identity facts for the 54 funding-after-activity cases and four
+funding-gap identities before causal eligibility/accounting rules. No bulk
+backfill, canonical integration or strategy performance work was performed here.
 
 ## Research and prior evidence
 
