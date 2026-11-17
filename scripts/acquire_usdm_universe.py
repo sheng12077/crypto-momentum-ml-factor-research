@@ -5,13 +5,13 @@ from __future__ import annotations
 import argparse
 import calendar
 import csv
-import fcntl
 import hashlib
 import io
 import json
 import math
 import shutil
 import sys
+import threading
 import urllib.parse
 import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -25,14 +25,63 @@ from check_universe_feasibility import ROOTS, Discovery, summarize_files
 KINDS = ("trade", "mark", "funding")
 SCHEMA = 1
 
+try:
+    import fcntl
+except ImportError:
+    fcntl = None
+
+_WINDOWS_MUTEXES = set()
+_WINDOWS_MUTEX_GUARD = threading.Lock()
+
+
+@contextmanager
+def windows_mutex(path: Path):
+    import ctypes
+
+    name = (
+        "Local\\quant_research_"
+        + hashlib.sha256(str(path.resolve()).casefold().encode()).hexdigest()
+    )
+    with _WINDOWS_MUTEX_GUARD:
+        if name in _WINDOWS_MUTEXES:
+            raise ValueError(f"another acquisition process holds {path}")
+        _WINDOWS_MUTEXES.add(name)
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel.CreateMutexW.argtypes = [ctypes.c_void_p, ctypes.c_bool, ctypes.c_wchar_p]
+    kernel.CreateMutexW.restype = ctypes.c_void_p
+    kernel.WaitForSingleObject.argtypes = [ctypes.c_void_p, ctypes.c_uint32]
+    kernel.ReleaseMutex.argtypes = [ctypes.c_void_p]
+    kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+    handle, acquired = None, False
+    try:
+        handle = kernel.CreateMutexW(None, False, name)
+        if not handle:
+            raise ctypes.WinError(ctypes.get_last_error())
+        acquired = kernel.WaitForSingleObject(handle, 0) in (0, 0x80)
+        if not acquired:
+            raise ValueError(f"another acquisition process holds {path}")
+        yield
+    finally:
+        if handle:
+            if acquired:
+                kernel.ReleaseMutex(handle)
+            kernel.CloseHandle(handle)
+        with _WINDOWS_MUTEX_GUARD:
+            _WINDOWS_MUTEXES.discard(name)
+
 
 @contextmanager
 def exclusive_run(path: Path):
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a") as handle:
+    if fcntl is None:
+        # Byte-range file locking is unsupported on some WSL UNC shares.
+        with windows_mutex(path):
+            yield
+        return
+    with path.open("a+b") as handle:
         try:
             fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError as exc:
+        except OSError as exc:
             raise ValueError(f"another acquisition process holds {path}") from exc
         try:
             yield
@@ -58,12 +107,16 @@ def digest(body: bytes) -> str:
 def write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".part")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+    temporary.write_text(
+        json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     temporary.replace(path)
 
 
 def read_json(path: Path) -> dict:
-    return json.loads(path.read_text())
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def bind_run(output: Path, config: dict) -> None:

@@ -2,78 +2,56 @@
 
 Updated: 2026-11-17.
 
-## Current conclusion
+## Latest result
 
-- Latest segment: bounded mark-gap reconciliation, preregistered `7d4f078`,
-  topic `infra/mark-gap-reconciliation` targets main by no-ff merge.
-- All 13 fixed official API probes returned full windows and exact monthly boundary
-  OHLC matches. Reused saved responses for offline corrections; no extra API calls.
-- Existing backfills: 210 raw rows verify; nine Parquets (183 rows) match raw.
-  One older duplicate BTC run lacks its Parquet, so the all-existing-runs gate
-  remains FALSE. Its 27 source URL/hash/size records match a verified later run.
-- Existing sources cover 153 audited missing keys; combined verified candidates
-  cover 534 unique keys, with no conflicts. 32,706 mark symbol-hours remain without
-  a verified candidate in this bounded check. No overlay has been integrated.
-- WAVES API returns marks after its known settlement: 24 staged rows are labeled
-  post-lifecycle context and must NOT restore trading eligibility.
-- Latest evidence: `data/interim/usdm_universe/mark_reconciliation_20261117_final/`;
-  original 13 API responses remain under `mark_reconciliation_20261117/`.
-- Full source report: `docs/MARK_GAP_RECONCILIATION.md`; 30 tests and Ruff pass.
+- Mark recovery protocols: primary `b8991bb`, daily fallback `e1439b8`.
+  Completed segment `infra/mark-gap-recovery` targets main via no-ff merge;
+  inspect Git for the final merge hash. Report: docs/MARK_GAP_RECOVERY.md.
+- Recovered 33,168 of 33,240 exact mark keys, zero source conflicts. All four
+  common gaps are covered: 33,096 symbol-hours, zero remaining common-gap keys.
+- Full-recovery gate remains FALSE: 72 hours remain (AERGO 11, CTK 11, CVC 9,
+  CVX 9, LIT 16, PUMP 7, SLP 9). Official API/daily sources are incomplete there;
+  70 hours also lack trade bars. Never interpolate or fill these with zero.
+- NEW shared version: data/canonical/binance_um_mark_recovery/v20261117_001_partial/
+  contains Parquet, export manifest and quality_mask.json. All rows, exact raw
+  prices, timestamps, provenance and recovered/missing target partition verified.
+  Existing raw/canonical sources were not overwritten or silently merged.
+- Primary API: 1,155 calls, 32,808 rows. Daily fallback: 53 verified ZIPs/checksums,
+  40,972 ZIP bytes, 360 additional rows. Cache resume: zero requests and identical
+  JSONL digest. All overlay rows remain historical_strategy_eligible=false.
+- Context flags: 24 recovered hours after known WAVES closure; 3,192 after the
+  last observed positive-volume trade. These are ex-post diagnostics only.
+- Evidence under data/interim/usdm_universe: mark_recovery_plan_20261117.json,
+  mark_recovery_full_20261117/, mark_recovery_daily_20261117/ (final_validation.json).
+- 44 tests, Ruff 0.17.5 and exact-row Parquet validation pass. Primary ran in WSL;
+  subsequent WSL launches timed out. Native Python 3.11/PyArrow completed fallback
+  and export. No services restarted or system packages changed. Workspace-only
+  Ruff lives in ignored data/interim/tooling/ruff_windows. Do not run Windows and
+  WSL writers concurrently; their mutex/flock locks are runtime-local.
 
-## Prior completed source audit
+## Prior evidence and limitations
 
-- Full RAW download completed by the user: 66,893 files, 1,035,606,342 compressed
-  bytes; no acquisition errors. No factor backtest or fitting has started.
-- Post-acquisition protocol registered on main: `9245a0a`; current audit segment
-  `infra/post-acquisition-audit` targets main via no-ff merge. Inspect Git for its
-  final merge hash. Raw/canonical datasets were not modified by this audit.
-- All 66,893 raw archives independently checksum/size/provenance verified. Exact
-  plan/report reconciliation, zero missing/unplanned files, zero integrity errors.
-- Missing hourly files: 1,793 boundary-only, 1,180 with interior gaps. Interior gaps
-  affect 13 trade files (424 hours) and 1,167 mark files (33,240 hours).
-- Four shared mark-gap patterns account for 33,096 symbol-hours. These need source
-  reconciliation/backfill, not another full download or blind forward filling.
-- 1,913 constant zero-volume trade files across 149 identifiers. Funding files
-  start after last observed positive trade activity for 54 identifiers. These are
-  ex-post review flags, not inferred delisting dates or causal eligibility rules.
-- Interior whole funding-month gaps: BNT (27), BTCST (1), LIT (5), MDT (15).
-- Raw superset: 655 current-COIN annotations, 239 current-nonCOIN, 30 absent from
-  the current snapshot. Historical product identity remains unresolved in general.
-- Official WAVES futures settlement at 2024-06-11 09:00 UTC agrees with the last
-  positive-volume bar at 08:00 UTC; later archive rows do not extend tradability.
-- Historical eligible universe remains FALSE. 23 tests, Ruff and shell syntax
-  checks pass. Full report: `docs/POST_ACQUISITION_AUDIT.md`.
-
-## Relevant artifacts and commands
-
-- Census: `data/interim/usdm_universe/census_full_20261117/`.
-- Acquisition: `data/interim/usdm_universe/download_full_20261117/`.
-- Audit: `data/interim/usdm_universe/audit_20261117/`; summary, symbol quality,
-  exact interior gaps, review rollup, series time bounds and empty integrity errors.
-- WSL: `bash scripts/run_usdm_acquisition.sh summary` for compact results;
-  `bash scripts/run_usdm_acquisition.sh audit` to reproduce the read-only source audit.
-- Reusable audit script: `scripts/audit_usdm_acquisition.py`.
-- Shared data lake resides two levels above this repository. WSL execution requires
-  escalation in this desktop session; Windows UNC reads work. Python 3.12 stdlib
-  tooling works; sibling funding-carry .venv provides Python 3.13 and Ruff.
+- Download: 66,893 raw ZIPs, 1,035,606,342 bytes, no errors. Source audit `c31e167`
+  verifies all checksums/provenance, exact plan reconciliation, zero corrupt sources.
+- Raw superset: 924 identifiers; 655 current-COIN, 239 current-nonCOIN, 30 without
+  current metadata. Historical identity is NOT established by this snapshot.
+- Trade gaps: 13 files/424 hours remain separate work. Whole funding-month gaps:
+  BNT 27, BTCST 1, LIT 5, MDT 15. 54 funding-after-activity identities need review.
+- Source reconciliation `589db70`: nine Parquets/183 rows verify; one legacy
+  duplicate BTC run lacks Parquet and its original all-runs gate remains failed.
+- Original metadata lifecycle gate and exact-12-file pilot also remain failed;
+  see docs/historical_universe_feasibility.md and docs/USDM_ACQUISITION.md.
+- Strategy direction is a candidate raw/residual momentum comparison. Strategy
+  Experiment 001 remains unregistered. No fitting, returns, backtests or orders.
 
 ## Next bounded task
 
-Prepare a resumable missing-key-only mark recovery plan with source evidence,
-boundary checks, explicit conflicts and unresolved keys. Integrate a versioned
-research overlay only after validation, preserving existing raw/canonical data.
-Source lifecycle/identity facts for the 54 funding-after-activity cases and four
-funding-gap identities before causal eligibility/accounting rules. No bulk
-backfill, canonical integration or strategy performance work was performed here.
+Normalize base archives plus this explicit overlay into new versioned research
+inputs, preserving the 72-key mask and inactive-data flags. Source lifecycle facts
+for the seven remaining-gap identities, funding-month gaps and funding-after-
+activity cases before causal eligibility/accounting. Do not revive delisted assets
+or use full-history activity endpoints as causal signals.
 
-## Research and prior evidence
-
-Raw versus residual crypto momentum is a candidate, not a frozen or validated
-strategy. Strategy Experiment 001 remains unregistered. The original metadata
-lifecycle gate failed and is preserved; the later exact-12-file acquisition pilot
-contained only 11 available files and did not satisfy its original count. See
-`docs/historical_universe_feasibility.md` and `docs/USDM_ACQUISITION.md` for those
-limitations. Acquisition tooling merged at `926ab39` after protocol `6aa2634`.
-
-No push, history rewrite, credentials, real orders, profitability claims,
-strategy performance inspection or data deletion.
+Reusable tools: scripts/recover_mark_gaps.py, recover_mark_daily.py,
+validate_mark_overlay.py; reproducible commands and paths in MARK_GAP_RECOVERY.md.
+The WSL wrapper summary now includes primary and daily recovery summaries.
