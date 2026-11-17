@@ -22,3 +22,6 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 
 - [Momentum and trend-following research landscape](docs/momentum_research_landscape.md)
 - [Candidate strategy families before Experiment 001](docs/candidate_strategy_families.md)
+- [Project status and handoff](docs/PROJECT_STATUS.md)
+- [Historical universe feasibility](docs/historical_universe_feasibility.md)
+- [WSL raw-data acquisition commands](docs/USDM_ACQUISITION.md)

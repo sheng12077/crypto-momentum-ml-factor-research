@@ -23,9 +23,25 @@ Updated: 2026-11-17.
 - Reusable scripts: `scripts/check_universe_feasibility.py` and
   `scripts/check_lifecycle_rows.py`; nine focused tests, Ruff and formatting pass.
   No bulk acquisition or returns computed. Full-download readiness is false.
-- Next: all-symbol metadata census and sourced lifecycle/identity ledger; then a
-  bounded acquisition batch and quality report. Exact total download size/runtime
-  are not yet measured. Do not infer trading eligibility from filenames or funding.
+- Acquisition protocol on main: `6aa2634`; current segment `infra/universe-acquisition`
+  targets main via no-ff merge. Check Git for its final merge hash.
+- Full metadata census completed: 924 USDT identifiers, 2,772 jobs, no errors;
+  66,893 checksum-bearing ZIPs, 1,035,606,342 compressed bytes (0.9645 GiB).
+  Current metadata labels 239 non-COIN products; 30 lack a current record.
+  These are annotations of a RAW superset, not a crypto eligibility screen.
+- Full census: `data/interim/usdm_universe/census_full_20261117/`; `identity_ledger.json`
+  preserves unknown lifecycle facts and current snapshot provenance. Only a sourced
+  WAVES event is currently recorded; no complete historical lifecycle ledger yet.
+- Small census/acquisition/resume verified. Registered 12-file sample premise was
+  incorrect: WAVES funding 2026-10 is missing, leaving 11 files. Exact-count gate
+  remains unsatisfied. All available files verified; second run was 11 cache hits,
+  zero downloads. Do not fabricate missing funding or claim exact protocol pass.
+- 18 tests, Ruff and shell syntax validation; no strategy performance inspected.
+- USER HANDOFF: full ZIP download has NOT started. Copy-ready command, measured
+  budget, output/log paths and success criteria: `docs/USDM_ACQUISITION.md`.
+  Run `USDM_MAX_GIB=1.1 bash scripts/run_usdm_acquisition.sh download` in WSL.
+- Next after download: inspect summary, resolve historical identity/lifecycle and
+  normalize/audit canonical data before defining strategy eligibility or returns.
 - Full findings and acquisition plan: `docs/historical_universe_feasibility.md`.
 
 ## Infrastructure
