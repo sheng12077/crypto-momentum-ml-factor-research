@@ -7,6 +7,9 @@ task_data_root="$(cd ../.. && pwd)/data"
 task_census_dir="data/interim/usdm_universe/census_full_20261117"
 task_download_dir="data/interim/usdm_universe/download_full_20261117"
 task_audit_dir="data/interim/usdm_universe/audit_20261117"
+task_mark_plan="data/interim/usdm_universe/mark_recovery_plan_20261117.json"
+task_mark_primary="data/interim/usdm_universe/mark_recovery_full_20261117"
+task_mark_daily="data/interim/usdm_universe/mark_recovery_daily_20261117"
 mkdir -p reports/acquisition
 
 case "${1:-}" in
@@ -36,8 +39,20 @@ case "${1:-}" in
       --workers "${USDM_WORKERS:-4}" \
       2>&1 | tee -a reports/acquisition/audit_20261117.log
     ;;
+  mark-recover)
+    python3 scripts/recover_mark_gaps.py run \
+      --plan "$task_mark_plan" --output-dir "$task_mark_primary" \
+      --workers "${MARK_RECOVERY_WORKERS:-2}" \
+      2>&1 | tee -a reports/acquisition/mark_recovery_20261117.log
+    ;;
+  mark-daily)
+    python3 scripts/recover_mark_daily.py \
+      --plan "$task_mark_plan" --primary-dir "$task_mark_primary" \
+      --output-dir "$task_mark_daily" \
+      2>&1 | tee -a reports/acquisition/mark_recovery_daily_resume_20261117.log
+    ;;
   summary)
-    python3 - "$task_census_dir/summary.json" "$task_download_dir/summary.json" "$task_audit_dir/summary.json" <<'PY'
+    python3 - "$task_census_dir/summary.json" "$task_download_dir/summary.json" "$task_audit_dir/summary.json" "$task_mark_primary/summary.json" "$task_mark_daily/summary.json" <<'PY'
 import json
 import pathlib
 import sys
@@ -55,7 +70,7 @@ for value in sys.argv[1:]:
 PY
     ;;
   *)
-    echo 'Usage: bash scripts/run_usdm_acquisition.sh {census|download|audit|summary}' >&2
+    echo 'Usage: bash scripts/run_usdm_acquisition.sh {census|download|audit|mark-recover|mark-daily|summary}' >&2
     exit 2
     ;;
 esac

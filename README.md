@@ -27,3 +27,4 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [WSL raw-data acquisition commands](docs/USDM_ACQUISITION.md)
 - [Post-acquisition quality audit](docs/POST_ACQUISITION_AUDIT.md)
 - [Mark-gap source reconciliation](docs/MARK_GAP_RECONCILIATION.md)
+- [Mark-gap recovery and versioned partial overlay](docs/MARK_GAP_RECOVERY.md)
