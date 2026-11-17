@@ -28,3 +28,6 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Post-acquisition quality audit](docs/POST_ACQUISITION_AUDIT.md)
 - [Mark-gap source reconciliation](docs/MARK_GAP_RECONCILIATION.md)
 - [Mark-gap recovery and versioned partial overlay](docs/MARK_GAP_RECOVERY.md)
+
+- [Research data layer and full-conversion command](docs/RESEARCH_DATA_LAYER.md)
+- [Partial lifecycle evidence and remaining gates](docs/LIFECYCLE_REVIEW.md)
