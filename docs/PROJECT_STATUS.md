@@ -2,54 +2,59 @@
 
 Updated: 2026-11-17.
 
-## Scope and evidence
+## Current conclusion
 
-- Strategy direction under discussion: raw versus residual crypto momentum;
-  not frozen, implemented, or performance-tested. Existing BTC/ETH trend drafts
-  remain background; strategy Experiment 001 is unregistered.
-- Data-only protocol on main: `752b8c1`; metadata tooling commit `761d545`.
-- Row-pilot protocol on main: `96ed53b`.
-- Completed work targets main via `infra/lifecycle-row-pilot` merge; inspect Git
-  for the final merge hash. Metadata and bounded row feasibility are concluded.
-- Root discovery and controls pass. Lifecycle gate fails (1 archived-ended pilot
-  versus 2 required). No complete historical universe or bulk-download readiness.
-- Critical finding: post-delisting archive filenames can persist. Lifecycle
-  announcements and row-level evidence must take precedence over directory bounds.
-- Evidence: ignored `data/interim/universe_feasibility/20261117_metadata_pilot`.
-- Follow-up evidence: ignored `data/interim/universe_feasibility/20261117_lifecycle_rows`.
-  All 12 tiny ZIPs checksum-verified (123,510 bytes). Late WAVES/FTT trade samples
-  contain only zero-volume constant-price rows; nonzero late funding still exists.
-  Row transport/parsing and sample artifact tests pass. Original metadata gate fails.
-- Reusable scripts: `scripts/check_universe_feasibility.py` and
-  `scripts/check_lifecycle_rows.py`; nine focused tests, Ruff and formatting pass.
-  No bulk acquisition or returns computed. Full-download readiness is false.
-- Acquisition protocol on main: `6aa2634`; current segment `infra/universe-acquisition`
-  targets main via no-ff merge. Check Git for its final merge hash.
-- Full metadata census completed: 924 USDT identifiers, 2,772 jobs, no errors;
-  66,893 checksum-bearing ZIPs, 1,035,606,342 compressed bytes (0.9645 GiB).
-  Current metadata labels 239 non-COIN products; 30 lack a current record.
-  These are annotations of a RAW superset, not a crypto eligibility screen.
-- Full census: `data/interim/usdm_universe/census_full_20261117/`; `identity_ledger.json`
-  preserves unknown lifecycle facts and current snapshot provenance. Only a sourced
-  WAVES event is currently recorded; no complete historical lifecycle ledger yet.
-- Small census/acquisition/resume verified. Registered 12-file sample premise was
-  incorrect: WAVES funding 2026-10 is missing, leaving 11 files. Exact-count gate
-  remains unsatisfied. All available files verified; second run was 11 cache hits,
-  zero downloads. Do not fabricate missing funding or claim exact protocol pass.
-- 18 tests, Ruff and shell syntax validation; no strategy performance inspected.
-- USER HANDOFF: full ZIP download has NOT started. Copy-ready command, measured
-  budget, output/log paths and success criteria: `docs/USDM_ACQUISITION.md`.
-  Run `USDM_MAX_GIB=1.1 bash scripts/run_usdm_acquisition.sh download` in WSL.
-- Next after download: inspect summary, resolve historical identity/lifecycle and
-  normalize/audit canonical data before defining strategy eligibility or returns.
-- Full findings and acquisition plan: `docs/historical_universe_feasibility.md`.
+- Full RAW download completed by the user: 66,893 files, 1,035,606,342 compressed
+  bytes; no acquisition errors. No factor backtest or fitting has started.
+- Post-acquisition protocol registered on main: `9245a0a`; current audit segment
+  `infra/post-acquisition-audit` targets main via no-ff merge. Inspect Git for its
+  final merge hash. Raw/canonical datasets were not modified by this audit.
+- All 66,893 raw archives independently checksum/size/provenance verified. Exact
+  plan/report reconciliation, zero missing/unplanned files, zero integrity errors.
+- Missing hourly files: 1,793 boundary-only, 1,180 with interior gaps. Interior gaps
+  affect 13 trade files (424 hours) and 1,167 mark files (33,240 hours).
+- Four shared mark-gap patterns account for 33,096 symbol-hours. These need source
+  reconciliation/backfill, not another full download or blind forward filling.
+- 1,913 constant zero-volume trade files across 149 identifiers. Funding files
+  start after last observed positive trade activity for 54 identifiers. These are
+  ex-post review flags, not inferred delisting dates or causal eligibility rules.
+- Interior whole funding-month gaps: BNT (27), BTCST (1), LIT (5), MDT (15).
+- Raw superset: 655 current-COIN annotations, 239 current-nonCOIN, 30 absent from
+  the current snapshot. Historical product identity remains unresolved in general.
+- Official WAVES futures settlement at 2024-06-11 09:00 UTC agrees with the last
+  positive-volume bar at 08:00 UTC; later archive rows do not extend tradability.
+- Historical eligible universe remains FALSE. 23 tests, Ruff and shell syntax
+  checks pass. Full report: `docs/POST_ACQUISITION_AUDIT.md`.
 
-## Infrastructure
+## Relevant artifacts and commands
 
-Shared raw/canonical/catalog data lake; sibling funding-carry acquisition, audit,
-accounting and paper-journal components. Current inventory is a snapshot, not a
-historical universe. Momentum src remains empty. Real-order transport absent.
-WSL commands require escalation in this desktop session; Windows UNC file reads
-work. Existing funding-carry `.venv/bin/ruff` is available in WSL.
+- Census: `data/interim/usdm_universe/census_full_20261117/`.
+- Acquisition: `data/interim/usdm_universe/download_full_20261117/`.
+- Audit: `data/interim/usdm_universe/audit_20261117/`; summary, symbol quality,
+  exact interior gaps, review rollup, series time bounds and empty integrity errors.
+- WSL: `bash scripts/run_usdm_acquisition.sh summary` for compact results;
+  `bash scripts/run_usdm_acquisition.sh audit` to reproduce the read-only source audit.
+- Reusable audit script: `scripts/audit_usdm_acquisition.py`.
+- Shared data lake resides two levels above this repository. WSL execution requires
+  escalation in this desktop session; Windows UNC reads work. Python 3.12 stdlib
+  tooling works; sibling funding-carry .venv provides Python 3.13 and Ruff.
 
-No push, history rewrite, real orders, credentials, or strategy backtests.
+## Next bounded task
+
+Prepare normalized research tables with explicit quality masks. Reconcile common
+mark gaps against existing provenance-preserving sibling backfills and test a
+small official repair if needed. Source lifecycle/identity facts for the 54
+funding-after-activity cases and four funding-gap identities before causal
+eligibility/accounting rules. No source repair was performed in this segment.
+
+## Research and prior evidence
+
+Raw versus residual crypto momentum is a candidate, not a frozen or validated
+strategy. Strategy Experiment 001 remains unregistered. The original metadata
+lifecycle gate failed and is preserved; the later exact-12-file acquisition pilot
+contained only 11 available files and did not satisfy its original count. See
+`docs/historical_universe_feasibility.md` and `docs/USDM_ACQUISITION.md` for those
+limitations. Acquisition tooling merged at `926ab39` after protocol `6aa2634`.
+
+No push, history rewrite, credentials, real orders, profitability claims,
+strategy performance inspection or data deletion.

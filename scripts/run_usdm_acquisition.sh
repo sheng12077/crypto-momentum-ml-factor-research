@@ -6,6 +6,7 @@ cd "$task_repo_root"
 task_data_root="$(cd ../.. && pwd)/data"
 task_census_dir="data/interim/usdm_universe/census_full_20261117"
 task_download_dir="data/interim/usdm_universe/download_full_20261117"
+task_audit_dir="data/interim/usdm_universe/audit_20261117"
 mkdir -p reports/acquisition
 
 case "${1:-}" in
@@ -26,8 +27,17 @@ case "${1:-}" in
       --workers "${USDM_WORKERS:-4}" \
       2>&1 | tee -a reports/acquisition/download_20261117.log
     ;;
+  audit)
+    python3 scripts/audit_usdm_acquisition.py \
+      --census-dir "$task_census_dir" \
+      --download-dir "$task_download_dir" \
+      --data-root "$task_data_root" \
+      --output-dir "$task_audit_dir" \
+      --workers "${USDM_WORKERS:-4}" \
+      2>&1 | tee -a reports/acquisition/audit_20261117.log
+    ;;
   summary)
-    python3 - "$task_census_dir/summary.json" "$task_download_dir/summary.json" <<'PY'
+    python3 - "$task_census_dir/summary.json" "$task_download_dir/summary.json" "$task_audit_dir/summary.json" <<'PY'
 import json
 import pathlib
 import sys
@@ -45,7 +55,7 @@ for value in sys.argv[1:]:
 PY
     ;;
   *)
-    echo 'Usage: bash scripts/run_usdm_acquisition.sh {census|download|summary}' >&2
+    echo 'Usage: bash scripts/run_usdm_acquisition.sh {census|download|audit|summary}' >&2
     exit 2
     ;;
 esac
