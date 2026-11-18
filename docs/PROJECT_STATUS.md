@@ -1,13 +1,13 @@
 # Project status
 
 Updated: 2026-11-18. Engineering merged at 6730302; protocol f622b1b.
-Current documentation segment: docs/liu-2021-research-review, based on d771ea2;
+Current segment: infra/research-input-readiness, protocol b863dc2 on main;
 targets main via no-ff merge. No remote push or history rewrite.
 
 ## Latest bounded result
 
-- Data stages 1/2 completed to the partial-evidence scope below. User now
-  authorizes stage-3 DISCUSSION and paper review, not strategy implementation.
+- User authorizes research-input readiness work (step1), plus design discussion.
+  Scope ends at historical simulation and OOS review; paper/live deferred.
   Exact OOS dates, labels, costs and selection rules are NOT frozen.
 - Implemented scripts/build_research_data.py, review_usdm_lifecycle.py,
   run_research_data.py, src/momentum_data reader and curated official facts.
@@ -24,7 +24,7 @@ targets main via no-ff merge. No remote push or history rewrite.
   and input hashes; it did not reread every partition or rerun the conversion.
   Full-cache resume has not been run. Release normalization gate passes; historical
   eligible-universe gate remains FALSE. See RESEARCH_DATA_LAYER.md.
-- Lifecycle ledger covers all 924 identifiers, with 21 captured official CMS
+- The FROZEN release embeds the earlier ledger for924 IDs, with21 official CMS
   sources and 47 curated events for 25 identifiers. Priority union 61; 23 have
   partial event evidence, 38 have none yet. ZERO complete lifecycles verified.
   Outputs: data/interim/usdm_universe/lifecycle_review_20261117/.
@@ -59,6 +59,37 @@ targets main via no-ff merge. No remote push or history rewrite.
   1-week holding; calendar/weights/selection/cost details need its appendix.
   Seven-day forecast/holding is a justified candidate, not an optimal/frozen rule.
 
+## Research-input readiness audit (2026-11-18)
+
+- Protocol b863dc2. Report docs/RESEARCH_INPUT_READINESS.md. Diagnostic checks
+  pass; complete research inputs and historical eligible universe remain NOT READY.
+- CMC public snapshot pilot20210103/20240107:200 each/400 rows, no login/key.
+  Coin Metrics Community:135 daily-cap vendor IDs;32/32 BTC/ETH pilot rows.
+  Current-issued-supply cap differs from circulating/free-float cap. Historical
+  publication versions/latency unknown. Do NOT splice definitions or buy data yet.
+- All924 have mapping review entries. Lexical leads only: CMC187 across TWO dates,
+  Coin Metrics63; ZERO approved historical mappings. Not full-history coverage.
+- NEW config/lifecycle_facts_20261118.json; NEW lifecycle_review_20261118 audit:
+  52 sources,91 events,64 identifiers with events;61/61 priority IDs now have
+  partial evidence (previously23/61). ZERO full lifecycles; ex-post only.
+- PUMP legacy closed2025-06-13 09UTC, relisted PUMPBTCUSDT10UTC; July PUMP is
+  Pump.fun. OMG final postponed close2025-01-31 09UTC. DOTECO is a composite
+  index, not a separate token; official launch/close sourced. No free rolls.
+- Funding11 partitions/969 rows hash/count verify. Twelve BTC/ETH API2021 events
+  exactly match archive times/rates; associated markPrice empty. Max interval-
+  boundary offset20ms preserved.106 rows after captured closure are ex-post
+  flags only, not proven invalid/paid. Cashflow/settlement-price gates remain false.
+- scripts/check_research_inputs.py produces readiness/coverage/provenance and
+  compact summary under data/interim/research_input_readiness/20261118/.
+  Final resume9 HTTP cache hits/zero fetches.61 tests (10 new), Ruff pass.
+- Original full observation release and embedded OLD lifecycle snapshot unchanged.
+  New supplement is not silently used by ResearchData; future engine inputs must
+  explicitly bind reviewed metadata. No factors/labels/PnL/OOS performance computed.
+- User has CG/CMC accounts but uncertain about paid plans; no credentials/purchases.
+  Next: full-calendar CMC weekly coverage plan and episode-ID review, then assess
+  remaining daily history needs. Register settlement-price approximations, if any,
+  separately from factual data validation. No full cap history acquired this turn.
+
 ## Preserved prior evidence
 
 - Prior main merge cd9f09d: mark recovery. Protocols b8991bb / e1439b8.
@@ -82,9 +113,10 @@ targets main via no-ff merge. No remote push or history rewrite.
 1. Full conversion gate passed. Shared observation release exists at
    canonical/binance_um_research/v20261117_001/. No further full conversion
    is required for this stage; strategy eligibility is still unverified.
-2. Continue lifecycle evidence for the 38 unsourced priority IDs and timing
-   conflicts; terminal prices/cashflows and historical content availability remain
-   unresolved even for sourced IDs. See LIFECYCLE_REVIEW.md.
+2. First-step audit completed to bounded pilot scope. Expand cap calendar/ID
+   coverage, resolve selected contract episodes/specifications and terminal prices.
+   All61 priority IDs have partial sources; actual causal/cashflow readiness is
+   unresolved. See RESEARCH_INPUT_READINESS.md.
 3. Discuss and preregister the concrete strategy and precise chronological OOS/fit
    protocol BEFORE implementing factors, performance analysis or fitting.
 

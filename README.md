@@ -31,3 +31,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 
 - [Research data layer and full-conversion command](docs/RESEARCH_DATA_LAYER.md)
 - [Partial lifecycle evidence and remaining gates](docs/LIFECYCLE_REVIEW.md)
+
+- [Research-input readiness and public cap pilots](docs/RESEARCH_INPUT_READINESS.md)
