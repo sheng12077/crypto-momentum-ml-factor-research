@@ -1,10 +1,20 @@
 # Project status
 
-Updated2026-11-18. Current segment infra/contract-identity-evidence, registered on main
-at ef41192; based on audit merge70e06ef. Targets main via no-ff merge; inspect Git for final
+Updated2026-11-18. Current segment docs/unresolved-identity-exclusions, based on
+evidence review merge048e962 (protocol ef41192). Documentation-only user decision;
+no new experiment or source acquisition. Targets main via no-ff merge; inspect Git for final
 merge hash. No push/history rewrite. Scope ends at simulation/OOS; paper/live deferred.
 
 ## Current contract identity evidence review
+
+- User allows excluding cases still unverifiable after reasonable official-source
+  checks. Prefer affected episodes; if boundaries cannot be established, withhold
+  the identifier from automatic joins. Preserve raw data and record reasons,
+  intervals, sources, decision time and historical availability basis.
+  Missing Size alone is a separate data gate, not proof an asset is untradable.
+  No new named exclusions or final universe applied in this docs-only update.
+  Ex-post subset selection must be disclosed; pre-OOS freezing alone does not
+  eliminate selection bias. Details in CONTRACT_IDENTITY_EVIDENCE.md.
 
 - User authorized evidence review, not a strategy experiment. All27 priority IDs
   reviewed against39 captured official Binance notices (30 new requests,9 seed
