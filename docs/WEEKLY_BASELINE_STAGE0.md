@@ -51,8 +51,21 @@ permissions, not209 valid return samples per asset.
 - Real BTC/BNX/SUN pilot passed15.422s;verified resume13.125s/3 hits.
   All924 source indices are bound even for the pilot. Pilot assumed-Size weekly
   counts:min0,median1,max2;do not extrapolate to the full universe.
-- Full924-name weekly coverage NOT run. Runtime unknown;pilot timing includes
-  shared metadata verification and is not a linear full-run estimate.
+- Full924-name weekly coverage subsequently completed by the user in WSL:
+  7.979s,zero errors,209 decisions. Local weekly/yearly count artifacts inspected;
+  no prices,returns,label values,model fit or OOS performance inspected.
+- Assumed-Size weekly candidate counts:min0,median102,max142;192/209 weeks
+  (91.866%) have at least20 names. The17 below20 dates are2021-01-04 through
+  2021-04-26,all with zero price/funding candidates as well,consistent with the
+  required120-day history warm-up from the2021 data start. First passing week
+  2021-05-03 has68 assumed-Size candidates. Retain the warm-up denominator.
+- Annual assumed-Size min/median/max:2021=0/78/95,2022=29/92.5/104,
+  2023=99/120/131,2024=112/133/142. Beyond warm-up,the only week below50 is
+  2022-08-01 (29 assumed-Size,44 price/funding candidates);cause not diagnosed.
+  Do not attribute this to market liquidity or Size alone without checking.
+- Coverage supports proceeding to portfolio/model specification under the stated
+  assumptions;it is not proof of tradability,payable funding or profitability.
+  Strict eligibility/Size vintage remain unproven. Holdings not yet selected.
 
 ## Full development coverage in WSL
 

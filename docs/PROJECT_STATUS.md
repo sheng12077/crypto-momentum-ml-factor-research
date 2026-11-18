@@ -1,10 +1,22 @@
 # Project status
 
-Updated 2026-11-18. Current segment: infra/weekly-baseline-contract, registered
-on main atee792fa. Inspect Git for the completed no-ff merge hash.
+Updated 2026-11-18. Current segment: docs/weekly-coverage-results, based on2f71b5b.
+Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed full weekly coverage
+
+- User WSL full scan succeeds7.979s,924 IDs/209 dates/errors[];local count artifacts
+  checked. Assumed-Size candidates0/102/142 min/median/max;192/209 weeks>=20.
+- All17 below20 are2021-01-04..2021-04-26 with zero price/funding candidates,
+  consistent with120-day warm-up. First passing2021-05-03:68 assumed-Size.
+  2023 min99/median120/max131;2024 min112/median133/max142.
+- 2022-08-01 is the only post-warm-up week below50:29 assumed-Size,44 price/
+  funding;cause unresolved. Do not infer liquidity or Size-only explanation.
+- No returns/labels/fits/PnL/OOS performance inspected;strict eligibility false.
+  Next specify holdings/exposures,features/model/refit,cost/funding/terminal gates.
 
 ## Latest weekly baseline stage 0 and coverage handoff
 
@@ -19,8 +31,8 @@ paper/live explicitly deferred until after OOS review.
   train155/validation52;one boundary purge per period. No2025+ projected rows,
   no prices/returns/PnL/modelfit;strict Size/readiness remainfalse.
 - BTC/BNX/SUN pilot passes15.422s,resume13.125s/3hits;assumed-Size counts
-  min0,median1,max2 in this subset only. Full924 weekly coverage NOT run;
-  handoff WSL:python scripts/check_weekly_baseline.py full;then summary.
+  min0,median1,max2 in this subset only. Full924 scan subsequently completed
+  by user;results above. No rerun required for this result review.
 - 121 tests pass (10 new);changed-file Ruff lint/format pass. Native3.11/Arrow11.
   Holdings/models/refit/costs/funding/terminal and performance gates pending.
 
@@ -196,8 +208,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. User runs full weekly development coverage from WEEKLY_BASELINE_STAGE0.md;
-   inspect calendar/counts,then specify holdings/model/cost/accounting gates.
+1. Weekly development coverage complete;specify holdings/exposures,features/
+   model/refit and cost/accounting gates before performance experiments.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -205,6 +217,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-Daily build complete;weekly coverage full scan handed off. Never run Windows and
+Daily build and weekly coverage complete. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
