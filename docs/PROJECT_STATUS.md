@@ -1,20 +1,39 @@
 # Project status
 
-Updated 2026-11-18. Current segment: docs/weekly-research-sequence, based on419bbd0.
+Updated 2026-11-18. Current segment: infra/weekly-baseline-contract, registered
+on main atee792fa. Inspect Git for the completed no-ff merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Latest weekly baseline stage 0 and coverage handoff
+
+- Registered experiments/001_weekly_baseline_stage0.md + machine-readable
+  config/weekly_baseline_v1.json before implementation. Tools weekly_contract.py
+  and check_weekly_baseline.py;docs/WEEKLY_BASELINE_STAGE0.md has full command.
+- Research assumptions:Monday00UTC cutoff,01decision,01--02hour VWAP entry/
+  next-week exit,exit-end+1h assumed label availability. Label later is simple
+  seven-day proxy return before costs/funding. No values computed. These are
+  not verified exchange publication latency or actual fills.
+- 209 development dates;round1 train103/validation51 time-only usable,round2
+  train155/validation52;one boundary purge per period. No2025+ projected rows,
+  no prices/returns/PnL/modelfit;strict Size/readiness remainfalse.
+- BTC/BNX/SUN pilot passes15.422s,resume13.125s/3hits;assumed-Size counts
+  min0,median1,max2 in this subset only. Full924 weekly coverage NOT run;
+  handoff WSL:python scripts/check_weekly_baseline.py full;then summary.
+- 121 tests pass (10 new);changed-file Ruff lint/format pass. Native3.11/Arrow11.
+  Holdings/models/refit/costs/funding/terminal and performance gates pending.
 
 ## Approved weekly research sequence
 
 - User approved docs/WEEKLY_RESEARCH_SEQUENCE.md:one-week prediction/weekly
   portfolio baseline,independent rank-buffer experiment,then position adjustment.
-  Exact label/clock remains pending;20/60/120 staged sizing is still a candidate.
+  Stage0 fixes target/clock assumptions;20/60/120 sizing remains a candidate.
 - Isolate buffer on the same schedule;daily monitoring is a separate frequency
   comparison. Separate resizing turnover from membership changes. Later sizing
   needs comparable exposure/risk;do not credit lower exposure as signal quality.
 - Literature anchors recorded with version limits. No performance/fit/OOS run.
-  This direction record is not the complete preregistration;fees,universe,label,
+  This direction record is not the complete preregistration;fees,universe,
   holdings,models,refit and numerical acceptance thresholds remain to resolve.
 
 ## Approved split and user-reported full build
@@ -27,8 +46,8 @@ paper/live explicitly deferred until after OOS review.
   66893 source partitions/244 legacy BNX hours. Ever-passing diagnostics787
   price/funding,338 assumed-Size four-factor,338 class-review-clear,0 strict.
   Not simultaneous tradable counts;readiness/strict Size vintage remainfalse.
-- No strategy performance/OOS inspection. Weekly baseline direction approved;
-  exact target/clock,refit and complete protocol remain pending.
+- No strategy performance/OOS inspection. Weekly target/clock fixed for stage0;
+  refit and complete trading protocol remain pending.
 
 ## Latest daily-input implementation and handoff
 
@@ -169,7 +188,7 @@ paper/live explicitly deferred until after OOS review.
 
 - Candidates:momentum20/60/120,Size,funding,taker imbalance. Rank buffer accepted;
   SHAP required. Equal composite baseline/LightGBM challenger discussed; NLP later.
-- Weekly baseline horizon/schedule approved;exact labels/clock,holdings,buffer,
+- Weekly baseline target/clock assumptions registered;holdings,buffer,
   costs,refit and acceptance gates NOT frozen. Nautilus proposed,not installed.
 - User reports no2025-26 performance tuning. Final OOS2025-01..2026-10 calendar
   approved and sealed;full protocol not frozen. Liu/Tsyvinski2021 note docs/literature/liu_tsyvinski_2021.md;
@@ -177,8 +196,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Discuss exact weekly target/clock and boundary-label handling against the approved
-   split. Inspect daily coverage only as needed;no strategy/OOS performance.
+1. User runs full weekly development coverage from WEEKLY_BASELINE_STAGE0.md;
+   inspect calendar/counts,then specify holdings/model/cost/accounting gates.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -186,6 +205,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-User full build complete;no rerun needed for this agreement. Never run Windows and
+Daily build complete;weekly coverage full scan handed off. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
