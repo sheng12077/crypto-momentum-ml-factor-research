@@ -97,6 +97,28 @@ No price-bundle multiplier is applied to an asset's total USD market cap.
 
 ## Reproduce and remaining gates
 
+User decision 2026-11-18: after reasonable official-source checks, unresolved
+identity, necessary unit conventions or transition boundaries may justify
+excluding the affected contract episode. No need to force every identifier into
+the research pool. This authorizes conservative exclusion, not automatic approval
+of other identifiers and not deletion of raw observations.
+
+Apply the narrowest defensible interval; if the uncertain interval cannot be
+bounded, keep the whole identifier outside automatic joins pending evidence.
+Record instrument/episode, excluded interval (or unknown), reason, sources checked,
+unresolved fields, decision time and historical availability basis. Identity
+exclusion and missing Size are separate reasons; missing first-page cap alone
+does not prove nontradability or justify dropping an otherwise valid asset from
+every strategy. Fix the rule and version the decisions before viewing performance.
+
+Do not use current COIN status, later delisting, future cap coverage or strategy
+results as retrospective eligibility filters. If an exclusion can only be made
+using ex-post knowledge, disclose the resulting auditable-subset selection and
+its limitation; freezing that subset before OOS does not itself remove selection
+bias. No final strategy universe or additional named exclusions were applied in
+this documentation update; the existing proposed/rejected identity associations
+remain unchanged.
+
 ```bash
 conda activate funding-strategy
 python scripts/review_contract_identity.py build
