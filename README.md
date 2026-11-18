@@ -33,3 +33,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Partial lifecycle evidence and remaining gates](docs/LIFECYCLE_REVIEW.md)
 
 - [Research-input readiness and public cap pilots](docs/RESEARCH_INPUT_READINESS.md)
+
+- [Weekly market-cap coverage acquisition](docs/CMC_WEEKLY_COVERAGE.md)
