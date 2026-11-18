@@ -37,3 +37,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Weekly market-cap coverage acquisition](docs/CMC_WEEKLY_COVERAGE.md)
 
 - [Weekly cap identity and coverage audit](docs/CMC_IDENTITY_AUDIT.md)
+
+- [Contract identity evidence and proposed episodes](docs/CONTRACT_IDENTITY_EVIDENCE.md)

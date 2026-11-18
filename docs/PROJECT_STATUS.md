@@ -1,10 +1,38 @@
 # Project status
 
-Updated2026-11-18. Current segment infra/cmc-identity-audit, registered on main
-at b9771a3; based on acquisition merge73e149d. Targets main via no-ff merge; inspect Git for final
+Updated2026-11-18. Current segment infra/contract-identity-evidence, registered on main
+at ef41192; based on audit merge70e06ef. Targets main via no-ff merge; inspect Git for final
 merge hash. No push/history rewrite. Scope ends at simulation/OOS; paper/live deferred.
 
-## Current identity/coverage audit
+## Current contract identity evidence review
+
+- User authorized evidence review, not a strategy experiment. All27 priority IDs
+  reviewed against39 captured official Binance notices (30 new requests,9 seed
+  reuses;2,365,948 raw bytes). No payment, keys or OOS performance inspection.
+- NEW config/contract_identity_evidence_20261118.json and reusable
+  scripts/review_contract_identity.py; findings docs/CONTRACT_IDENTITY_EVIDENCE.md.
+  41 source-term assertions,35 proposed episodes,25 with proposed vendor IDs.
+  No historical joins approved; partial evidence does not certify vendor-chain
+  identity, complete lifecycle, units or original publication/content vintage.
+- Ignored evidence data/interim/contract_identity_review_20261118/;
+  final review_002/ contains mapping proposals, source manifests,506-ID triage
+  and summary. Initial review/ retained before strengthened validation/CMS fields.
+- BNX old/new split:2023-02-11 04UTC settlement;2023-02-22 14:45UTC relaunch;
+  old route BNXUSDTSETTLED. New episode closes2025-03-17 09UTC; archive span
+  extends beyond closure and remains unreconciled. No new legacy download yet.
+- Reject Strike8911 for Starknet STRKUSDT, and newTerra20314 as continuation of
+  old LUNAUSDT. LIT/PUMP pre-market modes explicitly retained; no switch to
+  regular assumed. Later MDT is Medtronic equity, not the earlier crypto token.
+- SHIB launch explicitly defines1000 underlying tokens per price unit. SATS spot
+  bundle corroborates1000 units but CMC28194/28683 identity/denomination unresolved.
+  Other label-derived scales remain unverified specs; no USD cap multiplication.
+- 506 absent-candidate IDs:251 have some triage lead,255 none; all absence reasons
+  unresolved.236 current noncoin annotations and15 scaled flags overlap priority
+  leads; none is a causal exclusion rule or proof of a below-top-200 absence.
+- 84 tests pass (7 new); new script/tests Ruff pass. Native Python3.11; configured
+  runtime3.13. Unchanged full-tree native import-order lint remains below.
+
+## Completed identity/coverage audit
 
 - User authorized data preparation; no strategy experiment is registered.
 - scripts/collect_cmc_weekly.py; docs/CMC_WEEKLY_COVERAGE.md.
@@ -97,8 +125,11 @@ merge hash. No push/history rewrite. Scope ends at simulation/OOS; paper/live de
 ## Next bounded work
 
 1. Acquisition completed; derived audit/queue in CMC_IDENTITY_AUDIT.md.
-2. Review episode-specific vendor IDs and actual missing Size coverage, publication
-   lag/revisions; decide whether paid data addresses a measured deficit. Do not
+2. First27-ID evidence review completed (CONTRACT_IDENTITY_EVIDENCE.md). Next
+   resolve vendor chain/contract/denomination, BNX legacy routing, futures KNC/SUN/
+   DYDX transitions, pre-market modes and unexplained post-closure observations.
+   Then measure usable Size coverage and publication/vintage deficits; decide
+   whether paid data addresses a measured deficit. Do not
    require every924 ID verified if research universe is declared causally, but do
    not pick a universe by future availability or observed performance.
 3. Finish selected lifecycle/specifications/funding/terminal accounting, freeze
