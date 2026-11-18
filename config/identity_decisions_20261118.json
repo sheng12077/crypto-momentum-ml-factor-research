@@ -1,0 +1,268 @@
+{
+  "schema": 1,
+  "decision_date": "2026-11-18",
+  "scope": "27_priority_identifiers_only",
+  "research_window_from": "2021-01-01T00:00:00+00:00",
+  "research_window_to": "2026-11-01T00:00:00+00:00",
+  "interpretation": "Ex-post data-join decisions, not a causal historical trading universe; retained proposals are not approved joins.",
+  "whole_identifier_exclusions": [
+    {
+      "instrument_id": "KNCUSDT",
+      "scopes": [
+        "size_join"
+      ],
+      "reason": "futures_legacy_v2_transition_not_established",
+      "sources_checked": [
+        "46398ed8e121442a8f7502369540c0fe",
+        "cmc_knc"
+      ],
+      "readmit_if": "Establish futures-specific underlying/index transition and vendor identity per episode."
+    },
+    {
+      "instrument_id": "DYDXUSDT",
+      "scopes": [
+        "size_join"
+      ],
+      "reason": "futures_eth_native_transition_not_established",
+      "sources_checked": [
+        "e90bc8a7484f4467812a0f71f34b53ca",
+        "5e2f6ff0dc0548669e51abcef524f5ad",
+        "cmc_dydx_erc20",
+        "cmc_dydx_native"
+      ],
+      "readmit_if": "Establish futures underlying/index and supply identity across the bridge; deposits alone insufficient."
+    },
+    {
+      "instrument_id": "MDTUSDT",
+      "scopes": [
+        "size_join"
+      ],
+      "reason": "legacy_crypto_mapping_unverified_and_later_equity_not_crypto_Size",
+      "sources_checked": [
+        "cb525a5fbb954935afc77630fc5bd0cc",
+        "29e4e52d711946c88762f0ba2259de2e"
+      ],
+      "readmit_if": "Verify legacy crypto episode separately; later Medtronic requires a different asset-class research design."
+    }
+  ],
+  "interval_exclusions": [
+    {
+      "instrument_id": "BNXUSDT",
+      "from_utc": "2023-02-01T00:00:00+00:00",
+      "to_utc": "2023-02-11T04:00:00+00:00",
+      "reason": "verified_legacy_hours_not_integrated_into_existing_release",
+      "scopes": [
+        "size_join",
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "bnx_legacy_feb_zip",
+        "bnx_legacy_feb_checksum"
+      ],
+      "readmit_if": "Publish episode-aware raw/normalized reconciliation before consuming recovered hours."
+    },
+    {
+      "instrument_id": "BNXUSDT",
+      "from_utc": "2025-03-17T09:00:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "captured_settlement_no_verified_later_episode",
+      "scopes": [
+        "size_join",
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "2f963977c7274e0583f16f2e26987b61"
+      ],
+      "readmit_if": "Verify a separate later launch; zero-volume archives are insufficient."
+    },
+    {
+      "instrument_id": "BTCSTUSDT",
+      "from_utc": "2021-03-12T02:00:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "captured_settlement_no_verified_relisting",
+      "scopes": [
+        "size_join",
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "2c08ba9e1a1b409fb6a4a2cb2f5ed58b"
+      ],
+      "readmit_if": "Verify futures relisting and correct vendor generation."
+    },
+    {
+      "instrument_id": "BTTUSDT",
+      "from_utc": "2022-01-14T02:00:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "old_contract_settled_new_BTTC_is_separate",
+      "scopes": [
+        "size_join",
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "2722e6da4f5141dd9b2fb07b5b1f3f75"
+      ],
+      "readmit_if": "Verify a separate BTTUSDT episode; never copy 1000BTTC history."
+    },
+    {
+      "instrument_id": "LUNAUSDT",
+      "from_utc": "2022-05-12T15:30:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "old_contract_settled_LUNA2_is_separate",
+      "scopes": [
+        "size_join",
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "ef3ce76d5c2d45ee9b6dc3f281cde744",
+        "3b7184c80d544586993045a0e6e36e57"
+      ],
+      "readmit_if": "Review LUNA2USDT independently; no newTerra splice."
+    },
+    {
+      "instrument_id": "LITUSDT",
+      "from_utc": "2025-12-23T17:30:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "pre_market_to_regular_transition_not_verified",
+      "scopes": [
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "6a33be00231c4539b3a4a625538e4d1e"
+      ],
+      "readmit_if": "Verify regular-mode transition and historical funding/mark methodology."
+    },
+    {
+      "instrument_id": "PUMPUSDT",
+      "from_utc": "2025-07-10T07:30:00+00:00",
+      "to_utc": "2026-11-01T00:00:00+00:00",
+      "reason": "pre_market_to_regular_transition_not_verified",
+      "scopes": [
+        "regular_execution"
+      ],
+      "sources_checked": [
+        "4bc8b483d10d4619babb2015066b2d89"
+      ],
+      "readmit_if": "Verify regular-mode transition and historical funding/mark methodology."
+    },
+    {
+      "instrument_id": "PUMPUSDT",
+      "from_utc": "2025-04-12T14:30:00+00:00",
+      "to_utc": "2025-06-13T09:00:00+00:00",
+      "reason": "PumpBTC_Size_vendor_mapping_or_history_unavailable",
+      "scopes": [
+        "size_join"
+      ],
+      "sources_checked": [
+        "4a4bb43f865a4348828de4facfc9eee4",
+        "38a74ee47cdc43ebbc672e1dc6968358"
+      ],
+      "readmit_if": "Establish PumpBTC-specific ID/history; do not use Pump.fun Size."
+    }
+  ],
+  "vendor_updates": [
+    {
+      "instrument_id": "SUNUSDT",
+      "proposed_vendor_asset_id": 10529,
+      "source_id": "cmc_sun",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1MBABYDOGEUSDT",
+      "proposed_vendor_asset_id": 10407,
+      "source_id": "cmc_babydoge",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1000000BOBUSDT",
+      "proposed_vendor_asset_id": 34422,
+      "source_id": "cmc_bob",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1000CATUSDT",
+      "proposed_vendor_asset_id": 32724,
+      "source_id": "cmc_cat",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1000RATSUSDT",
+      "proposed_vendor_asset_id": 28452,
+      "source_id": "cmc_rats",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1000WHYUSDT",
+      "proposed_vendor_asset_id": 30867,
+      "source_id": "cmc_why",
+      "automatic_join_approved": false
+    },
+    {
+      "instrument_id": "1000XUSDT",
+      "proposed_vendor_asset_id": 33108,
+      "source_id": "cmc_x",
+      "automatic_join_approved": false
+    }
+  ],
+  "sats": {
+    "instrument_id": "1000SATSUSDT",
+    "primary_historical_vendor_asset_id": 28683,
+    "alternate_vendor_asset_id": 28194,
+    "same_asset_different_denomination": true,
+    "automatic_cross_ID_splicing": false,
+    "cap_multiplier": 1,
+    "evidence_file": "rendered_sats_excerpt.json",
+    "rationale": "Primary matches the historical futures bundle denomination; no future coverage/performance optimization."
+  },
+  "feature_state_resets": [
+    {
+      "instrument_id": "BNXUSDT",
+      "at_utc": "2023-02-22T14:45:00+00:00",
+      "reason": "new_contract_or_distinct_underlying_requires_new_warmup"
+    },
+    {
+      "instrument_id": "LITUSDT",
+      "at_utc": "2025-12-23T17:30:00+00:00",
+      "reason": "new_contract_or_distinct_underlying_requires_new_warmup"
+    },
+    {
+      "instrument_id": "PUMPUSDT",
+      "at_utc": "2025-07-10T07:30:00+00:00",
+      "reason": "new_contract_or_distinct_underlying_requires_new_warmup"
+    },
+    {
+      "instrument_id": "MDTUSDT",
+      "at_utc": "2026-10-21T09:20:00+00:00",
+      "reason": "new_contract_or_distinct_underlying_requires_new_warmup"
+    }
+  ],
+  "rejected_vendor_associations": [
+    {
+      "instrument_id": "SUNUSDT",
+      "vendor_asset_id": 6990,
+      "reason": "legacy_SUN_predates_this_2024_contract_launch"
+    },
+    {
+      "instrument_id": "STRKUSDT",
+      "vendor_asset_id": 8911,
+      "reason": "Strike_is_not_Starknet"
+    },
+    {
+      "instrument_id": "LUNAUSDT",
+      "vendor_asset_id": 20314,
+      "reason": "new_Terra_not_original_LUNAUSDT"
+    },
+    {
+      "instrument_id": "BTTUSDT",
+      "vendor_asset_id": 16086,
+      "reason": "new_BitTorrent_under_1000BTTC_not_old_BTTUSDT"
+    }
+  ],
+  "later_SUN_launch": {
+    "at_utc": "2024-08-22T13:05:00+00:00",
+    "source_id": "sun_launch",
+    "vendor_asset_id": 10529
+  },
+  "historical_joins_approved": 0,
+  "point_in_time_ready": false,
+  "OOS_performance_inspected": false
+}

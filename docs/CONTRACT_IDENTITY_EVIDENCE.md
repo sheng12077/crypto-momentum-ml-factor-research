@@ -1,5 +1,11 @@
 # Contract identity evidence review
 
+Follow-up completed: see [IDENTITY_FOLLOWUP_DECISIONS.md](IDENTITY_FOLLOWUP_DECISIONS.md).
+It corrects the SUN futures-launch assumption and the case-sensitive Baby Doge
+lookup, resolves SATS denomination identity, verifies a small BNX legacy archive,
+and records named temporary exclusions. The initial review below is preserved;
+its unresolved proposals are not the final decision registry.
+
 Review date: 2026-11-18. Preregistered on main at ef41192, based on70e06ef.
 Scope:27 priority identifiers (nine multi-ID, three reused,16 scaled flags with
 overlap). All27 now have curated evidence assertions and proposed episode records.
