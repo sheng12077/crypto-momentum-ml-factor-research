@@ -1,11 +1,42 @@
 # Project status
 
-Updated 2026-11-18. Current segment: infra/identity-exclusion-decisions, registered
-on main at3a68e44; based ond504659. Target main via no-ff merge; inspect Git for
+Updated 2026-11-18. Current segment: infra/full-universe-retention-screen, registered
+on main at9226252; based ondde16bb. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
-## Latest completed follow-up
+## Latest completed full-universe retention screen
+
+- User clarified: retain as many usable assets as possible, not maximize exclusions.
+  All924 IDs screened;923 have some files,922 positive-volume trade observations.
+  GAIB has mark/funding but no trade;LEND has no files. No whole-history deletion
+  for a local gap/stub/current classification;all raw/research releases unchanged.
+- docs/FULL_UNIVERSE_RETENTION_SCREEN.md; tools scripts/screen_full_universe.py
+  and scripts/export_screen_candidates.py. Full22635 trade acquisition reports
+  validated in91.391s;zero errors. Trusts prior raw checksum audit,not fresh ZIP
+  or every-Parquet/hourly-close verification. No downloads/OOS performance viewed.
+- 426 Size-history ID leads after component blocks;405 have potential overlap
+  with an active month. These are contract identifiers,not necessarily distinct
+  crypto coins,simultaneous holdings,valid daily joins or a final universe.
+  789 have possible120-day elapsed span only;episode resets/gap-free closes not
+  validated. None of these cohorts necessarily has the same membership.
+- 149 identifiers with stub months retained in other months. KNC/DYDX/MDT still
+  Size-blocked,8 scoped restrictions attached for later row-level application.
+  Current239noncoin/30missing metadata not automatic historical exclusions.
+  405 Size-month leads include22 missing-current-metadata names;NUUSDT is the one
+  current-noncoin annotation requiring identity/episode review within this cohort.
+- Ignored data/interim/full_universe_screen_20261118/: quick/review_queue.json;
+  full/checkpoints,indexes,yearly_instrument_month_counts,summary;exports/ named
+  candidate_lists.json and enriched review_queue.json. All924 checkpoint hashes
+  and cohort/report counts reconciled by exporter. No user command needed.
+- Five-asset pilot248 reports1.016s;resume5 checkpoint hits0.421s. Full run executed
+  because pilot was fast;no remaining full metadata scan handoff. Initial loader
+  ledger/file-population assumptions fixed;failed logs preserved,final full passes.
+- 99 tests pass (6 new);new scanner/exporter/tests Ruff lint/format pass. Native
+  Python3.11;configured runtime3.13. Existing unrelated native import-order lint
+  unchanged. Formal eligibility/automatic joins remain false;no factors or PnL.
+
+## Previous completed identity follow-up
 
 - User authorized checking and conservative exclusions where identity/specification
   evidence cannot be established. Exclusions are ex-post data-join restrictions,
@@ -100,8 +131,9 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Bind reviewed episodes/exclusions into a NEW research-input version; reconcile
-   recovered BNX legacy hours there without overwriting existing releases.
+1. Use the full924 review queue/named405 Size-month leads to build row-level,
+   episode-aware inputs/daily qualification. Bind reviewed exclusions into a NEW
+   version;reconcile BNX legacy hours there without overwriting old releases.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
