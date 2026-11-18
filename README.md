@@ -49,3 +49,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Approved chronological research split](docs/RESEARCH_SPLIT.md)
 
 - [Approved weekly baseline, buffer and sizing research sequence](docs/WEEKLY_RESEARCH_SEQUENCE.md)
+
+- [Weekly baseline timing, boundary checks and coverage command](docs/WEEKLY_BASELINE_STAGE0.md)

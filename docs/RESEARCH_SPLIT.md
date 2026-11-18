@@ -24,7 +24,9 @@ Preprocessing and model fitting must respect each training boundary.
 
 Weekly horizon and weekly baseline schedule subsequently approved in
 [WEEKLY_RESEARCH_SEQUENCE.md](WEEKLY_RESEARCH_SEQUENCE.md).
-Still undecided: exact target/execution clock, holdings, buffer thresholds,
+Stage0 subsequently fixes target/clock assumptions in
+[WEEKLY_BASELINE_STAGE0.md](WEEKLY_BASELINE_STAGE0.md).
+Still undecided: holdings, buffer thresholds,
 model selection, refit schedule (including within final OOS), costs and acceptance
 criteria. The windows do not authorize a particular OOS refit policy. Freeze the
 complete protocol and preregister experiment expectations/thresholds before

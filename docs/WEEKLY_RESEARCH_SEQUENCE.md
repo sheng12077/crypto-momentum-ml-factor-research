@@ -8,8 +8,8 @@ The approved windows in [RESEARCH_SPLIT.md](RESEARCH_SPLIT.md) remain unchanged.
 ## Layer 1: weekly baseline
 
 Use a one-week forward-return prediction horizon and weekly scheduled portfolio
-reconstruction as the baseline. Exact target (raw, cross-sectionally relative or
-risk-adjusted), execution timestamps and prices remain to be specified. Features
+reconstruction as the baseline. Stage0 subsequently fixes a raw proxy-return
+target and hourly VWAP clock in [WEEKLY_BASELINE_STAGE0.md](WEEKLY_BASELINE_STAGE0.md). Features
 may include 20/60/120-day momentum components, Size, observed funding and taker
 imbalance; final transformations and model specification are not frozen.
 
