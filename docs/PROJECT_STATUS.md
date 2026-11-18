@@ -1,32 +1,44 @@
 # Project status
 
-Updated2026-11-18. Current segment infra/cmc-weekly-coverage, registered on main
-at d65d49b; based on ee9f94d. Targets main via no-ff merge; inspect Git for final
+Updated2026-11-18. Current segment infra/cmc-identity-audit, registered on main
+at b9771a3; based on acquisition merge73e149d. Targets main via no-ff merge; inspect Git for final
 merge hash. No push/history rewrite. Scope ends at simulation/OOS; paper/live deferred.
 
-## Current acquisition handoff
+## Current identity/coverage audit
 
 - User authorized data preparation; no strategy experiment is registered.
-- NEW scripts/collect_cmc_weekly.py; docs/CMC_WEEKLY_COVERAGE.md.
+- scripts/collect_cmc_weekly.py; docs/CMC_WEEKLY_COVERAGE.md.
 - Frozen official calendar:305 requested dates, all listed;304 Sundays in
   2021-01-01..2026-10-31 plus2020-12-27 carry-in. Plan SHA
   8dd8dd5bde3736138e1efb29ab3915222266cc5d9cd418700ed99cc3d6e6cb46.
-- Pilot4 dates/800 rows/387 vendor IDs;2 HTTP requests+2 verified seed reuses.
-  Cache resume4 hits/zero HTTP. Raw2,210,747 bytes. No own returns/factors viewed.
-- Mapping review924 instruments,259 lexical candidates across FOUR sampled dates;
-  ZERO approved histories. BTT and LUNA have multiple vendor-ID candidates. No
+- User completed FULL305-date acquisition:61,000 rows/662 vendor IDs,301 HTTP,
+  4 cache hits,151,839,940 raw bytes,zero errors;all dates200 rows.
+- Mapping review924 instruments,418 lexical candidates across full calendar;
+  ZERO approved histories. Nine IDs have multiple vendor-ID candidates. No
   unit conversion, identity joining, eligibility or factor ranking is inferred.
-- FULL305-date download NOT RUN. User command in WSL existing environment:
-  python scripts/collect_cmc_weekly.py download --max-mib 256
-  Then summary --max-mib 256. Root data/interim/cmc_weekly_20261118/;
-  log reports/acquisition/cmc_weekly_download_20261118.log. About10min pacing
-  plus network/storage; roughly150MiB raw estimate,256MiB hard raw budget.
+- Source root data/interim/cmc_weekly_20261118/; original acquisition unchanged.
+  No repeat download needed. Pilot cache resume previously4 hits/zero HTTP.
 - Sequential >=2sec requests; bounded retries; stops on access/parse/integrity
   errors. Successful hashes resume. No credentials, subscriptions or purchases.
--71 tests (10 collector) pass; collector Ruff passes. Existing full-tree lint flags
+- NEW offline scripts/audit_cmc_identity.py and docs/CMC_IDENTITY_AUDIT.md.
+  Derived version data/interim/cmc_identity_audit_002_20261118/; no HTTP.
+  Initial attempt verified all source/parsed inputs, then failed on null trade
+  archive month bounds in aggregation. Preserved initial output/config; fixed
+  unknown-bound handling and added regression coverage before version002.
+- Version002 SUCCESS:305 source/raw/parsed dates,61,000 rows/662 vendor IDs,
+  zero errors. Queue:506 without literal candidates,9 multi-ID histories,
+  3 known reuse,16 possible scaled,23 vendor IDs with raw symbol variants;
+  flags overlap. GAIBUSDT/LENDUSDT missing trade bounds explicitly retained.
+  All61,000 row availability/vintage unproven;zero mappings approved.
+  Annual archive-month-span lexical proxy80.1% in2021,48.6% in2024,20.7%
+  in2026 Jan-Oct; includes noncrypto/scaling/label issues, NOT approved coverage
+  or a paid-data requirement. Full counts/limitations in CMC_IDENTITY_AUDIT.md.
+- 77 tests pass; six new audit tests include offline resume, corruption, independent raw reparsing,
+  same-date-only lexical counts, null archive bounds and no mapping approval.
+  New code Ruff passes. Existing full-tree lint flags
   test_research_data.py import ordering on this native invocation (unchanged).
   Native Python3.11; configured runtime3.13.
-  Synthetic one-date full-mode test passes, not evidence real full run completed.
+  Native validation details/results in CMC_IDENTITY_AUDIT.md.
 
 ## Existing data and readiness
 
@@ -84,7 +96,7 @@ merge hash. No push/history rewrite. Scope ends at simulation/OOS; paper/live de
 
 ## Next bounded work
 
-1. User completes305-date source download; reconcile final JSON/counts/errors.
+1. Acquisition completed; derived audit/queue in CMC_IDENTITY_AUDIT.md.
 2. Review episode-specific vendor IDs and actual missing Size coverage, publication
    lag/revisions; decide whether paid data addresses a measured deficit. Do not
    require every924 ID verified if research universe is declared causally, but do
