@@ -41,3 +41,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Contract identity evidence and proposed episodes](docs/CONTRACT_IDENTITY_EVIDENCE.md)
 
 - [Identity follow-up and named exclusion decisions](docs/IDENTITY_FOLLOWUP_DECISIONS.md)
+
+- [Full-universe retention screen and candidate lists](docs/FULL_UNIVERSE_RETENTION_SCREEN.md)
