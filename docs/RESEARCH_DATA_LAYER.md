@@ -1,9 +1,10 @@
 # Research input layer: implementation and execution handoff
 
-Status: engineering pilot validated; FULL normalization has NOT been run.
+Status (2026-11-18): pilot and FULL normalization gates passed. Historical
+trading-universe eligibility remains unverified.
 Protocol registered on main at f622b1b. Stages 1 and 2 only; strategy/OOS deferred.
 
-## Run the long job
+## Reproduce or resume the completed conversion
 
 From the repository in a WSL terminal with PyArrow available:
 
@@ -85,7 +86,18 @@ reject every row after a terminal event or identify every partial launch hour.
 Even a complete hourly grid can contain inactive artifacts. Funding returns only
 observed events, without assuming a regular schedule or forecast availability.
 
-## Completed validation
+## Full release validation (2026-11-18)
+
+User completed the full conversion in WSL using the funding-strategy Conda
+environment. Saved manifest and returned summary agree: success/full_scope=true,
+66893/66893 partitions, errors=[], cache_hits=0, overlay expected/integrated=33168.
+Rows: trade 16217181, mark 16418784, funding 2811083; total 35447048.
+Follow-up independently matched current builder SHA and copied lifecycle event/
+ledger hashes to the release manifest. Per-partition validation is the completed
+builder run evidence; this follow-up did not rescan all partitions. Full-cache
+resume is untested and is not required to accept the fresh build result.
+
+## Completed pilot validation
 
 Final pilot `normalization_pilot_004_20261117`: BTC/LIT/WAVES, four sampled months,
 34 available partitions, 8,767 trade + 8,768 mark + 960 funding rows, 72 overlay rows.
@@ -98,7 +110,8 @@ Arrow read-handle closure fixed it; pilot 002 passed. Final 004 additionally bin
 and includes lifecycle evidence. Failed evidence is retained, not relabeled.
 51 unit tests and Ruff pass using native Python 3.11.5/PyArrow 11.0.0. Project
 runtime remains Python 3.13; WSL process launches timed out during this session,
-so full native-WSL execution and mypy were not exercised. No services restarted.
+so agent-run WSL tests and mypy were not exercised. The user subsequently
+completed full WSL normalization as recorded above. No services restarted.
 
 See LIFECYCLE_REVIEW.md for sourced findings and unresolved gates. Full data
 conversion and the outstanding lifecycle research are separate from strategy/OOS

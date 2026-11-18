@@ -1,8 +1,8 @@
 # Project status
 
-Updated: 2026-11-17. Current segment: infra/research-data-layer, registered on main
-at f622b1b. Engineering work targets main via no-ff merge; inspect Git for the
-final segment/merge hash. No remote push or history rewrite.
+Updated: 2026-11-18. Engineering merged at 6730302; protocol f622b1b.
+Current documentation segment: docs/research-release-validation, based on 6730302;
+targets main via no-ff merge. No remote push or history rewrite.
 
 ## Latest bounded result
 
@@ -15,10 +15,14 @@ final segment/merge hash. No remote push or history rewrite.
   Raw hashes/counts, exact decimal strings, UTC semantics, unique keys and Parquet
   roundtrip verified. Pilot 001 failed a Windows handle/rename; 002 passed after
   handle closure; 003/004 also bind lifecycle evidence. Failed artifacts retained.
-- FULL 66,893-partition normalization NOT RUN; prepared/tested cross-platform
-  entry point. User execution: python3 scripts/run_research_data.py build
-  (WSL Python with Arrow), then summary. Windows alternative: py -3.11.
-  Instructions, output/log paths and exact success criteria: RESEARCH_DATA_LAYER.md.
+- FULL normalization completed by user in WSL using funding-strategy Conda env.
+  Local release manifest reconciles: success/full_scope=true, errors=[], 66893/66893
+  partitions; trade 16217181, mark 16418784, funding 2811083; total 35447048 rows.
+  Overlay expected/integrated 33168, cache_hits=0. Builder SHA and copied lifecycle
+  event/ledger hashes independently match manifest. This follow-up checked metadata
+  and input hashes; it did not reread every partition or rerun the conversion.
+  Full-cache resume has not been run. Release normalization gate passes; historical
+  eligible-universe gate remains FALSE. See RESEARCH_DATA_LAYER.md.
 - Lifecycle ledger covers all 924 identifiers, with 21 captured official CMS
   sources and 47 curated events for 25 identifiers. Priority union 61; 23 have
   partial event evidence, 38 have none yet. ZERO complete lifecycles verified.
@@ -31,7 +35,8 @@ final segment/merge hash. No remote push or history rewrite.
 - Events are ex-post only, causal_available_at=null. Funding observations do not
   establish payable cashflows. All historical eligibility remains FALSE.
 - 51 tests and Ruff pass on native Python 3.11.5/Arrow 11.0.0. WSL launch timeouts
-  prevented native-WSL execution; configured project runtime remains Python 3.13.
+  prevented agent-run WSL tests at implementation time; user subsequently completed
+  full WSL conversion. Configured project runtime remains Python 3.13.
   Mypy unavailable/not run. No service restart or system environment change.
 
 ## Preserved prior evidence
@@ -54,9 +59,9 @@ final segment/merge hash. No remote push or history rewrite.
 
 ## Next bounded tasks
 
-1. User executes full conversion and returns final machine summary; reconcile
-   exact counts before calling the full release ready. Expected release shared
-   canonical/binance_um_research/v20261117_001/; old sources remain untouched.
+1. Full conversion gate passed. Shared observation release exists at
+   canonical/binance_um_research/v20261117_001/. No further full conversion
+   is required for this stage; strategy eligibility is still unverified.
 2. Continue lifecycle evidence for the 38 unsourced priority IDs and timing
    conflicts; terminal prices/cashflows and historical content availability remain
    unresolved even for sourced IDs. See LIFECYCLE_REVIEW.md.
