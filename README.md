@@ -39,3 +39,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Weekly cap identity and coverage audit](docs/CMC_IDENTITY_AUDIT.md)
 
 - [Contract identity evidence and proposed episodes](docs/CONTRACT_IDENTITY_EVIDENCE.md)
+
+- [Identity follow-up and named exclusion decisions](docs/IDENTITY_FOLLOWUP_DECISIONS.md)

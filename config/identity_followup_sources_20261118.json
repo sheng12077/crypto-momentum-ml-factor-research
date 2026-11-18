@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "sources": [
+    {
+      "id": "sun_launch",
+      "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=adac46dd47b142aebfa1c003c17af568"
+    },
+    {
+      "id": "cmc_sun",
+      "url": "https://coinmarketcap.com/currencies/sun-token/"
+    },
+    {
+      "id": "cmc_sats_bundle",
+      "url": "https://coinmarketcap.com/currencies/sats/"
+    },
+    {
+      "id": "cmc_sats_native",
+      "url": "https://coinmarketcap.com/currencies/sats-ordinals/"
+    },
+    {
+      "id": "cmc_knc",
+      "url": "https://coinmarketcap.com/currencies/kyber-network-crystal-v2/"
+    },
+    {
+      "id": "cmc_dydx_erc20",
+      "url": "https://coinmarketcap.com/currencies/dydx/"
+    },
+    {
+      "id": "cmc_dydx_native",
+      "url": "https://coinmarketcap.com/currencies/dydx-chain/"
+    },
+    {
+      "id": "cmc_babydoge",
+      "url": "https://coinmarketcap.com/currencies/baby-doge-coin/"
+    },
+    {
+      "id": "cmc_bob",
+      "url": "https://coinmarketcap.com/currencies/build-on-bnb/"
+    },
+    {
+      "id": "cmc_cat",
+      "url": "https://coinmarketcap.com/currencies/simonscat/"
+    },
+    {
+      "id": "cmc_rats",
+      "url": "https://coinmarketcap.com/currencies/rats-ordinals/"
+    },
+    {
+      "id": "cmc_why",
+      "url": "https://coinmarketcap.com/currencies/why/"
+    },
+    {
+      "id": "cmc_x",
+      "url": "https://coinmarketcap.com/currencies/x-empire/"
+    },
+    {
+      "id": "bnx_legacy_listing",
+      "url": "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?prefix=data/futures/um/monthly/klines/BNXUSDTSETTLED/1h/&max-keys=20"
+    },
+    {
+      "id": "bnx_legacy_feb_zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BNXUSDTSETTLED/1h/BNXUSDTSETTLED-1h-2023-02.zip"
+    },
+    {
+      "id": "bnx_legacy_feb_checksum",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BNXUSDTSETTLED/1h/BNXUSDTSETTLED-1h-2023-02.zip.CHECKSUM"
+    },
+    {
+      "id": "bnx_legacy_bar",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BNXUSDTSETTLED&interval=1h&startTime=1648782000000&limit=1"
+    }
+  ],
+  "queries_checked": [
+    "site:binance.com/en/support KNCUSDT migration",
+    "site:binance.com/en/support SUNUSDT redenomination",
+    "site:binance.com/en/support DYDXUSDT migration",
+    "Binance Kyber KNC contract swap futures 2021",
+    "Binance SUN token redenomination futures contract 2021",
+    "Binance DYDX native token futures index migration",
+    "Binance completes Kyber KNC contract swap 2021 futures",
+    "Binance dYdX DYDX native migration futures price index November 2023"
+  ],
+  "search_interpretation": "Bounded queries returned spot swap/mainnet deposit information; absence of futures switch evidence is not proof none exists."
+}
