@@ -45,3 +45,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Full-universe retention screen and candidate lists](docs/FULL_UNIVERSE_RETENTION_SCREEN.md)
 
 - [Daily episode-aware inputs and full-build command](docs/DAILY_RESEARCH_INPUTS.md)
+
+- [Approved chronological research split](docs/RESEARCH_SPLIT.md)

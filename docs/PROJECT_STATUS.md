@@ -1,9 +1,22 @@
 # Project status
 
-Updated 2026-11-18. Current segment: infra/daily-episode-inputs, registered
-on main at93cf6e1; based onfcfcacf. Target main via no-ff merge; inspect Git for
+Updated 2026-11-18. Current segment: docs/approved-research-split, based onb5a6f44.
+Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Approved split and user-reported full build
+
+- User approved docs/RESEARCH_SPLIT.md:train2021-22/validate2023;
+  train2021-23/validate2024;sealed final OOS2025-01 through2026-10,all UTC.
+  Trailing pre-boundary history allowed;overlapping training labels excluded.
+  Exact sample endpoints await target/execution timing;no random row split.
+- Full WSL build reported successful:223.383s,errors[],924 IDs/1968120 rows/
+  66893 source partitions/244 legacy BNX hours. Ever-passing diagnostics787
+  price/funding,338 assumed-Size four-factor,338 class-review-clear,0 strict.
+  Not simultaneous tradable counts;readiness/strict Size vintage remainfalse.
+- No strategy performance/OOS inspection. Horizon,rebalance,refit and complete
+  experiment protocol still undecided;next discuss those choices and coverage.
 
 ## Latest daily-input implementation and handoff
 
@@ -21,10 +34,10 @@ paper/live explicitly deferred until after OOS review.
   Pilot distinct candidates:price/funding3,assumed-Size four-factor2,strict0.
   Current classifications are ex-post annotations,not a causal universe.
 - 111 tests pass;new builder/rules/tests Ruff lint/format pass. Native3.11/Arrow11;
-  configured project3.13. Full daily build NOT run;hand off to user WSL Conda.
+  configured project3.13. Full daily build subsequently run by user in WSL Conda.
   Expected924 IDs/1968120 rows/66893 source partitions,not924 tradable assets.
-- Next:verify full manifest,then discuss/freeze chronological splits and label
-  overlap with the user before strategy experiments. No split selected here.
+- User supplied full manifest;calendar splits now approved above. Label overlap
+  details and the remaining strategy protocol still precede experiments.
 
 ## Latest completed full-universe retention screen
 
@@ -146,14 +159,14 @@ paper/live explicitly deferred until after OOS review.
   SHAP required. Equal composite baseline/LightGBM challenger discussed; NLP later.
 - Labels,horizons,holdings,rebalance,buffer,costs,refit and acceptance gates NOT
   frozen;7-day horizon is a candidate,not selected. Nautilus proposed,not installed.
-- User reports no2025-26 performance tuning. Draft final OOS2025-01..2026-10 remains
-  sealed/unfrozen. Liu/Tsyvinski2021 note docs/literature/liu_tsyvinski_2021.md;
+- User reports no2025-26 performance tuning. Final OOS2025-01..2026-10 calendar
+  approved and sealed;full protocol not frozen. Liu/Tsyvinski2021 note docs/literature/liu_tsyvinski_2021.md;
   appendix absent. Conditional means are not executable cross-sectional spreads.
 
 ## Next bounded segment
 
-1. User runs the full daily build from docs/DAILY_RESEARCH_INPUTS.md;verify final
-   manifest and measured daily diagnostic counts. Implementation/pilot complete.
+1. Discuss target/horizon,rebalance and boundary-label handling against the approved
+   split. Inspect daily coverage only as needed;no strategy/OOS performance.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -161,6 +174,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-User full-build command is prepared;runtime not measured. Never run Windows and
+User full build complete;no rerun needed for this agreement. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
