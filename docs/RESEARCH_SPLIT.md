@@ -22,7 +22,9 @@ must be excluded. Exact usable sample endpoints and any additional gap depend on
 the still-unselected label horizon, execution timing and availability rules.
 Preprocessing and model fitting must respect each training boundary.
 
-Still undecided: target/horizon, trading schedule, holdings, buffer thresholds,
+Weekly horizon and weekly baseline schedule subsequently approved in
+[WEEKLY_RESEARCH_SEQUENCE.md](WEEKLY_RESEARCH_SEQUENCE.md).
+Still undecided: exact target/execution clock, holdings, buffer thresholds,
 model selection, refit schedule (including within final OOS), costs and acceptance
 criteria. The windows do not authorize a particular OOS refit policy. Freeze the
 complete protocol and preregister experiment expectations/thresholds before

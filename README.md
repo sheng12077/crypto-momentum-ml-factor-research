@@ -47,3 +47,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Daily episode-aware inputs and full-build command](docs/DAILY_RESEARCH_INPUTS.md)
 
 - [Approved chronological research split](docs/RESEARCH_SPLIT.md)
+
+- [Approved weekly baseline, buffer and sizing research sequence](docs/WEEKLY_RESEARCH_SEQUENCE.md)
