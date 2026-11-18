@@ -35,3 +35,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Research-input readiness and public cap pilots](docs/RESEARCH_INPUT_READINESS.md)
 
 - [Weekly market-cap coverage acquisition](docs/CMC_WEEKLY_COVERAGE.md)
+
+- [Weekly cap identity and coverage audit](docs/CMC_IDENTITY_AUDIT.md)

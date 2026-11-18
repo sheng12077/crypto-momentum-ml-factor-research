@@ -1,5 +1,10 @@
 # CMC weekly coverage: acquisition handoff
 
+Completion update 2026-11-18: user completed all305 dates/61,000 rows/662 IDs,
+zero errors,151,839,940 raw bytes. No repeat download is needed. The original
+handoff below is retained as acquisition history; subsequent reconciliation and
+identity review preparation are in [CMC_IDENTITY_AUDIT.md](CMC_IDENTITY_AUDIT.md).
+
 Updated2026-11-18. Registered on main at d65d49b BEFORE implementation/data probes.
 Scope: raw public weekly cap/identity metadata. Full305-date acquisition NOT RUN.
 No paid access, credentials, trading, model/factor computation or OOS performance.
