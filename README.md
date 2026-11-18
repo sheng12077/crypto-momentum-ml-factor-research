@@ -53,3 +53,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Weekly baseline timing, boundary checks and coverage command](docs/WEEKLY_BASELINE_STAGE0.md)
 
 - [Early history, funding inventory and raw backfill command](docs/HISTORY_EXTENSION.md)
+
+- [Completed early raw integrity, gap and funding audit](docs/EARLY_HISTORY_AUDIT.md)

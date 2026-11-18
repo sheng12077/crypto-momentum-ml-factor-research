@@ -43,9 +43,10 @@ Check lifecycle boundaries/inactive artifacts before fetching or filling anythin
   the bounded pilot,not the failed exact12 test from the original project stage.
 - All134 regression tests pass,13 new;three changed Python files Ruff lint and
   format checks pass. Native Python3.11;configured project3.13.
-- Full1526-file raw extension NOT downloaded yet;full runtime unknown. The pilot
-  transferred six files in a command completing about3.9s,but this is not a full
-  network-runtime estimate. User WSL handoff below.
+- Full1526-file raw extension subsequently downloaded by user:1520 downloads,
+  6 cache hits,zero errors,24,153,565 bytes. Independent offline audit complete;
+  see [EARLY_HISTORY_AUDIT.md](EARLY_HISTORY_AUDIT.md). No rerun needed. The
+  WSL commands below remain available for reproducible acquisition/resume.
 
 ## Bounded2019 public API evidence
 
