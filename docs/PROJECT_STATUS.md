@@ -1,11 +1,34 @@
 # Project status
 
-Updated 2026-11-18. Current segment: infra/history-extension-inventory, registered
-on main atfc0238c. Inspect Git for final no-ff merge hash.
+Updated 2026-11-19. Current segment: infra/early-history-audit, registered
+on main atbc3383a;based ona59df97. Inspect Git for final no-ff merge hash.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed early RAW download and independent audit
+
+- User download succeeds:1526 files/24153565 bytes,1520 downloads/6 hits/errors[].
+  Independent offline audit verifies all raw/checksum/provenance bindings and
+  recomputed CSV quality in47.36s. docs/EARLY_HISTORY_AUDIT.md has exact findings.
+- All154 incomplete hourly files are boundary-only;865 complete,zero within-file
+  interior trade/mark gaps. Boundary geometry is not proven listing/settlement.
+- LENDUSDT2020-11:225 constant-price/zero-volume rows,no positive trade. Preserve
+  as inactive-artifact diagnostic,not usable history. Bar-month funding mismatches
+  November/December remain;do not fabricate payments or delete other history.
+- Funding507 files/43027 events,reported8h across81 identifiers;no intervalchanges
+  or spacing flags>1000ms;maxsmalloffset45ms. No interior funding archive-month
+  gaps,but QTUM2020-02 leading archive absent (trade Feb20,mark Feb19,fundingMar1).
+- DEFI3 funding events Aug27 08:00:00.010/16:00,Aug28 00:00UTC precede first
+  available markAug28 04:00/trade07:00. Need episode review,no inferred payments.
+  Other43024 events have same-hour mark bars,not proven exact event prices.
+- funding_cashflows_verified/exact_funding_event_mark_prices_proven/readiness
+  stayfalse. No returns/fits/PnL/OOS inspection,HTTP or source overwrites.
+- Tool audit_history_extension.py;ignored early_history_audit_20261119/full/.
+  Pilot72 files2.313s,resume72hits2.516s. 141 tests pass (7new),new files Ruff
+  lint/format pass. Next bounded QTUM recovery/DEFI+LEND review,then normalization
+  and earlier Size/identity/2019 coverage. No user command needed for this audit.
 
 ## Early-history/funding extension before portfolio experiments
 
@@ -19,8 +42,8 @@ paper/live explicitly deferred until after OOS review.
   24153565 bytes/81 IDs:trade509,mark510,funding507;zero checksum gaps.
   Monthly three-series file presence11 Jan/30 Jun/80 Dec,not eligible counts.
 - BTC/ETH January2020 six-file pilot124307 bytes passes;resume6 hits/0 downloads.
-  Full extension NOT downloaded. WSL:python scripts/extend_usdm_history.py
-  download --max-gib 0.03 --workers 2;then summary. Raw readiness only.
+  Full extension subsequently downloaded by user and independently audited above.
+  No rerun needed;raw success is not eligibility or verified funding cashflow.
 - probe_2019_history.py made3 bounded BTC2019-09-14 API requests,allHTTP200:
   trade1bar,mark0,funding2events with missing markPrice. Sample availability only;
   full2019 coverage unproven. Cached evidence retained,no retries/alternatehosts.
@@ -233,8 +256,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Complete the separate early RAW extension from HISTORY_EXTENSION.md,then
-   normalize/reconcile funding and earlier Size/identity. Portfolio work held.
+1. Target QTUM2020-02 funding recovery and DEFI/LEND episode review,then
+   normalize/reconcile early funding and Size/identity;portfolio work held.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -242,6 +265,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-Original daily build/weekly coverage complete;early RAW download handed off. Never run Windows and
+Original daily build/weekly coverage and early RAW audit complete. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
