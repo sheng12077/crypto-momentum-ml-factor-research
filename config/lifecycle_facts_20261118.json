@@ -1,0 +1,1575 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-11-18",
+  "interpretation": "Curated effective facts from current official pages; no historical publication version proven.",
+  "sources": [
+    {
+      "article_code": "0274f9d47da1437990bc13eb17b0ec99",
+      "url": "https://www.binance.com/en/support/announcement/detail/0274f9d47da1437990bc13eb17b0ec99"
+    },
+    {
+      "article_code": "034eee2293964e26b915b1ec5c42972a",
+      "url": "https://www.binance.com/en/support/announcement/detail/034eee2293964e26b915b1ec5c42972a"
+    },
+    {
+      "article_code": "043c8407bb904652a428573a50d07e07",
+      "url": "https://www.binance.com/en/support/announcement/detail/043c8407bb904652a428573a50d07e07"
+    },
+    {
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "url": "https://www.binance.com/en/support/announcement/detail/131b75b63a71490393034f36de70c92c"
+    },
+    {
+      "article_code": "1e43c128806544018d3cc537a8add3f6",
+      "url": "https://www.binance.com/en/support/announcement/detail/1e43c128806544018d3cc537a8add3f6"
+    },
+    {
+      "article_code": "1e89a9ca957c4b0ca7502e60b993e201",
+      "url": "https://www.binance.com/en/support/announcement/detail/1e89a9ca957c4b0ca7502e60b993e201"
+    },
+    {
+      "article_code": "21551cde98784f64b374f8d50ff2a438",
+      "url": "https://www.binance.com/en/support/announcement/detail/21551cde98784f64b374f8d50ff2a438"
+    },
+    {
+      "article_code": "27449abd481b473493b9c058350b4e2e",
+      "url": "https://www.binance.com/en/support/announcement/detail/27449abd481b473493b9c058350b4e2e"
+    },
+    {
+      "article_code": "27eac260521b4f40ab331e1a345887a7",
+      "url": "https://www.binance.com/en/support/announcement/detail/27eac260521b4f40ab331e1a345887a7"
+    },
+    {
+      "article_code": "29e4e52d711946c88762f0ba2259de2e",
+      "url": "https://www.binance.com/en/support/announcement/detail/29e4e52d711946c88762f0ba2259de2e"
+    },
+    {
+      "article_code": "2a9feaa556f74dcdaa2192366f0e247c",
+      "url": "https://www.binance.com/en/support/announcement/detail/2a9feaa556f74dcdaa2192366f0e247c"
+    },
+    {
+      "article_code": "2c08ba9e1a1b409fb6a4a2cb2f5ed58b",
+      "url": "https://www.binance.com/en/support/announcement/detail/2c08ba9e1a1b409fb6a4a2cb2f5ed58b"
+    },
+    {
+      "article_code": "2e6eb8e644664a6ca7b6659a226c41b0",
+      "url": "https://www.binance.com/en/support/announcement/detail/2e6eb8e644664a6ca7b6659a226c41b0"
+    },
+    {
+      "article_code": "2f963977c7274e0583f16f2e26987b61",
+      "url": "https://www.binance.com/en/support/announcement/detail/2f963977c7274e0583f16f2e26987b61"
+    },
+    {
+      "article_code": "3188e26f14a1464b91487abad452c04f",
+      "url": "https://www.binance.com/en/support/announcement/detail/3188e26f14a1464b91487abad452c04f"
+    },
+    {
+      "article_code": "3ab5488a00e04d4fb338c77ea28326a8",
+      "url": "https://www.binance.com/en/support/announcement/detail/3ab5488a00e04d4fb338c77ea28326a8"
+    },
+    {
+      "article_code": "3b4c7c08479b48d48189191e37a7adca",
+      "url": "https://www.binance.com/en/support/announcement/detail/3b4c7c08479b48d48189191e37a7adca"
+    },
+    {
+      "article_code": "45852dc155b641bc9e1c23bc41d8ded6",
+      "url": "https://www.binance.com/en/support/announcement/detail/45852dc155b641bc9e1c23bc41d8ded6"
+    },
+    {
+      "article_code": "4a4bb43f865a4348828de4facfc9eee4",
+      "url": "https://www.binance.com/en/support/announcement/detail/4a4bb43f865a4348828de4facfc9eee4"
+    },
+    {
+      "article_code": "4bc8b483d10d4619babb2015066b2d89",
+      "url": "https://www.binance.com/en/support/announcement/detail/4bc8b483d10d4619babb2015066b2d89"
+    },
+    {
+      "article_code": "572715f2d96e47769ebbb967c2a6e445",
+      "url": "https://www.binance.com/en/support/announcement/detail/572715f2d96e47769ebbb967c2a6e445"
+    },
+    {
+      "article_code": "63155163bce541f5856d416efa71c6e8",
+      "url": "https://www.binance.com/en/support/announcement/detail/63155163bce541f5856d416efa71c6e8"
+    },
+    {
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "url": "https://www.binance.com/en/support/announcement/detail/673183dd8eea4e3cba1596dcec7565d1"
+    },
+    {
+      "article_code": "6a33be00231c4539b3a4a625538e4d1e",
+      "url": "https://www.binance.com/en/support/announcement/detail/6a33be00231c4539b3a4a625538e4d1e"
+    },
+    {
+      "article_code": "6a6de383727f4659a3050f7982e1620f",
+      "url": "https://www.binance.com/en/support/announcement/detail/6a6de383727f4659a3050f7982e1620f"
+    },
+    {
+      "article_code": "6ce355dedc5d438abde7b5dc99b3a56d",
+      "url": "https://www.binance.com/en/support/announcement/detail/6ce355dedc5d438abde7b5dc99b3a56d"
+    },
+    {
+      "article_code": "82f730b7ef444a38b323ab7a2e56b757",
+      "url": "https://www.binance.com/en/support/announcement/detail/82f730b7ef444a38b323ab7a2e56b757"
+    },
+    {
+      "article_code": "90498d8e2fec42468ec3d659bdfbb78b",
+      "url": "https://www.binance.com/en/support/announcement/detail/90498d8e2fec42468ec3d659bdfbb78b"
+    },
+    {
+      "article_code": "9381a09f6dae4899b8c00046a4afc08b",
+      "url": "https://www.binance.com/en/support/announcement/detail/9381a09f6dae4899b8c00046a4afc08b"
+    },
+    {
+      "article_code": "9a6676662bd5417c92267953f3819dd0",
+      "url": "https://www.binance.com/en/support/announcement/detail/9a6676662bd5417c92267953f3819dd0"
+    },
+    {
+      "article_code": "a060f642ff8d4f8e8091e34fba220e77",
+      "url": "https://www.binance.com/en/support/announcement/detail/a060f642ff8d4f8e8091e34fba220e77"
+    },
+    {
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "url": "https://www.binance.com/en/support/announcement/detail/a58cc13f78a34fbba11f00ff7144e9ee"
+    },
+    {
+      "article_code": "aec6fcbc84b749eeab6690e6bcac2f3d",
+      "url": "https://www.binance.com/en/support/announcement/detail/aec6fcbc84b749eeab6690e6bcac2f3d"
+    },
+    {
+      "article_code": "b140faee7cf9482cb10257308abda245",
+      "url": "https://www.binance.com/en/support/announcement/detail/b140faee7cf9482cb10257308abda245"
+    },
+    {
+      "article_code": "b2871bc40ea84e639c2d63b048403b69",
+      "url": "https://www.binance.com/en/support/announcement/detail/b2871bc40ea84e639c2d63b048403b69"
+    },
+    {
+      "article_code": "b7b3a116013145569a9850f197c8cbe4",
+      "url": "https://www.binance.com/en/support/announcement/detail/b7b3a116013145569a9850f197c8cbe4"
+    },
+    {
+      "article_code": "bbe829426ad844b9b9dac62f878d1e67",
+      "url": "https://www.binance.com/en/support/announcement/detail/bbe829426ad844b9b9dac62f878d1e67"
+    },
+    {
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "url": "https://www.binance.com/en/support/announcement/detail/cb525a5fbb954935afc77630fc5bd0cc"
+    },
+    {
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "url": "https://www.binance.com/en/support/announcement/detail/ce74360a3fd444b2b35da7186f8dd0ad"
+    },
+    {
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "url": "https://www.binance.com/en/support/announcement/detail/cfe97d52a8c840d3ba631835b637e9e7"
+    },
+    {
+      "article_code": "d1f2ae8d99b24439a7a900caa9bb6b3b",
+      "url": "https://www.binance.com/en/support/announcement/detail/d1f2ae8d99b24439a7a900caa9bb6b3b"
+    },
+    {
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "url": "https://www.binance.com/en/support/announcement/detail/db7ad1c7aa6248cda735102cdcdc4b8d"
+    },
+    {
+      "article_code": "de870af81e8d42cd903b84a97fa5bc91",
+      "url": "https://www.binance.com/en/support/announcement/detail/de870af81e8d42cd903b84a97fa5bc91"
+    },
+    {
+      "article_code": "e485541c370240adba3929fded74f269",
+      "url": "https://www.binance.com/en/support/announcement/detail/e485541c370240adba3929fded74f269"
+    },
+    {
+      "article_code": "e59b61e52ad24b43bd1032052ea3a025",
+      "url": "https://www.binance.com/en/support/announcement/detail/e59b61e52ad24b43bd1032052ea3a025"
+    },
+    {
+      "article_code": "eedac7aff5b849d58efda6c4b3cec01b",
+      "url": "https://www.binance.com/en/support/announcement/detail/eedac7aff5b849d58efda6c4b3cec01b"
+    },
+    {
+      "article_code": "f1a8aa29692b4442a8f18be2076e14a0",
+      "url": "https://www.binance.com/en/support/announcement/detail/f1a8aa29692b4442a8f18be2076e14a0"
+    },
+    {
+      "article_code": "f3cc64a8758d4bb394e0830e5b31da97",
+      "url": "https://www.binance.com/en/support/announcement/detail/f3cc64a8758d4bb394e0830e5b31da97"
+    },
+    {
+      "article_code": "f65faeeefe07417a8b6dd2900ba8da7e",
+      "url": "https://www.binance.com/en/support/announcement/detail/f65faeeefe07417a8b6dd2900ba8da7e"
+    },
+    {
+      "article_code": "f75f933759ee49d0af1dfbce7e32144c",
+      "url": "https://www.binance.com/en/support/announcement/detail/f75f933759ee49d0af1dfbce7e32144c"
+    },
+    {
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "url": "https://www.binance.com/en/support/announcement/detail/fac9c3e401da4cc8b604566fd261d70c"
+    },
+    {
+      "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+      "url": "https://www.binance.com/en/support/announcement/detail/38a74ee47cdc43ebbc672e1dc6968358"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "AERGOUSDT:launch:2024-09-10T12:15:00",
+      "instrument_id": "AERGOUSDT",
+      "article_code": "de870af81e8d42cd903b84a97fa5bc91",
+      "effective_at": "2024-09-10T12:15:00+00:00",
+      "event_type": "launch",
+      "underlying": "Aergo",
+      "evidence_terms": [
+        "AERGOUSDT",
+        "2024-09-10",
+        "12:15",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "AERGOUSDT:launch:2025-04-16T11:00:00",
+      "instrument_id": "AERGOUSDT",
+      "article_code": "82f730b7ef444a38b323ab7a2e56b757",
+      "effective_at": "2025-04-16T11:00:00+00:00",
+      "event_type": "launch",
+      "underlying": "Aergo",
+      "evidence_terms": [
+        "AERGOUSDT",
+        "2025-04-16",
+        "11:00",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "CTKUSDT:launch:2025-04-30T10:15:00",
+      "instrument_id": "CTKUSDT",
+      "article_code": "63155163bce541f5856d416efa71c6e8",
+      "effective_at": "2025-04-30T10:15:00+00:00",
+      "event_type": "launch",
+      "underlying": "Shentu",
+      "evidence_terms": [
+        "CTKUSDT",
+        "2025-04-30",
+        "10:15",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "CVCUSDT:launch:2020-11-11T07:00:00",
+      "instrument_id": "CVCUSDT",
+      "article_code": "a060f642ff8d4f8e8091e34fba220e77",
+      "effective_at": "2020-11-11T07:00:00+00:00",
+      "event_type": "launch",
+      "underlying": "Civic",
+      "evidence_terms": [
+        "CVCUSDT",
+        "2020/11/11",
+        "7:00 AM",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "CVCUSDT:launch:2025-05-16T08:30:00",
+      "instrument_id": "CVCUSDT",
+      "article_code": "bbe829426ad844b9b9dac62f878d1e67",
+      "effective_at": "2025-05-16T08:30:00+00:00",
+      "event_type": "launch",
+      "underlying": "Civic",
+      "evidence_terms": [
+        "CVCUSDT",
+        "2025-05-16",
+        "08:30",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "CVXUSDT:launch:2025-07-23T11:30:00",
+      "instrument_id": "CVXUSDT",
+      "article_code": "b7b3a116013145569a9850f197c8cbe4",
+      "effective_at": "2025-07-23T11:30:00+00:00",
+      "event_type": "launch",
+      "underlying": "Convex Finance",
+      "evidence_terms": [
+        "CVXUSDT",
+        "2025-07-23",
+        "11:30",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "SLPUSDT:launch:2025-07-23T11:45:00",
+      "instrument_id": "SLPUSDT",
+      "article_code": "b7b3a116013145569a9850f197c8cbe4",
+      "effective_at": "2025-07-23T11:45:00+00:00",
+      "event_type": "launch",
+      "underlying": "Smooth Love Potion",
+      "evidence_terms": [
+        "SLPUSDT",
+        "2025-07-23",
+        "11:45",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "PUMPUSDT:launch:2025-04-12T14:30:00",
+      "instrument_id": "PUMPUSDT",
+      "article_code": "4a4bb43f865a4348828de4facfc9eee4",
+      "effective_at": "2025-04-12T14:30:00+00:00",
+      "event_type": "launch",
+      "underlying": "PumpBTC",
+      "evidence_terms": [
+        "PUMPUSDT",
+        "2025-04-12",
+        "14:30",
+        "UTC",
+        "PumpBTC"
+      ]
+    },
+    {
+      "event_id": "PUMPUSDT:launch:2025-07-10T07:30:00",
+      "instrument_id": "PUMPUSDT",
+      "article_code": "4bc8b483d10d4619babb2015066b2d89",
+      "effective_at": "2025-07-10T07:30:00+00:00",
+      "event_type": "launch",
+      "underlying": "Pump.fun",
+      "evidence_terms": [
+        "PUMPUSDT",
+        "2025-07-10",
+        "07:30",
+        "UTC",
+        "Pump.fun"
+      ]
+    },
+    {
+      "event_id": "LITUSDT:launch:2025-12-23T17:30:00",
+      "instrument_id": "LITUSDT",
+      "article_code": "6a33be00231c4539b3a4a625538e4d1e",
+      "effective_at": "2025-12-23T17:30:00+00:00",
+      "event_type": "launch",
+      "underlying": "Lighter Protocol",
+      "evidence_terms": [
+        "LITUSDT",
+        "2025-12-23",
+        "17:30",
+        "UTC",
+        "Lighter Protocol"
+      ]
+    },
+    {
+      "event_id": "MDTUSDT:launch:2026-10-21T09:20:00",
+      "instrument_id": "MDTUSDT",
+      "article_code": "29e4e52d711946c88762f0ba2259de2e",
+      "effective_at": "2026-10-21T09:20:00+00:00",
+      "event_type": "launch",
+      "underlying": "Medtronic",
+      "evidence_terms": [
+        "MDTUSDT",
+        "2026-10-21",
+        "09:20",
+        "UTC",
+        "Medtronic"
+      ]
+    },
+    {
+      "event_id": "BNTUSDT:launch:2023-08-10T12:00:00",
+      "instrument_id": "BNTUSDT",
+      "article_code": "e59b61e52ad24b43bd1032052ea3a025",
+      "effective_at": "2023-08-10T12:00:00+00:00",
+      "event_type": "launch",
+      "underlying": "Bancor",
+      "evidence_terms": [
+        "BNTUSDT",
+        "2023-08-10",
+        "12:00",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "WAVESUSDT:automatic_settlement:2024-06-11T09:00:00",
+      "instrument_id": "WAVESUSDT",
+      "article_code": "f65faeeefe07417a8b6dd2900ba8da7e",
+      "effective_at": "2024-06-11T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": "Waves",
+      "evidence_terms": [
+        "WAVESUSDT",
+        "2024-06-11",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "LITUSDT:automatic_settlement:2025-01-31T09:00:00",
+      "instrument_id": "LITUSDT",
+      "article_code": "2a9feaa556f74dcdaa2192366f0e247c",
+      "effective_at": "2025-01-31T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": "Litentry",
+      "evidence_terms": [
+        "LITUSDT",
+        "2025-01-31",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "AGIXUSDT:automatic_settlement:2024-06-25T09:00:00",
+      "instrument_id": "AGIXUSDT",
+      "article_code": "e485541c370240adba3929fded74f269",
+      "effective_at": "2024-06-25T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "AGIXUSDT",
+        "2024-06-25",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "OCEANUSDT:automatic_settlement:2024-06-25T09:00:00",
+      "instrument_id": "OCEANUSDT",
+      "article_code": "e485541c370240adba3929fded74f269",
+      "effective_at": "2024-06-25T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "OCEANUSDT",
+        "2024-06-25",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "BTCSTUSDT:automatic_settlement:2021-03-12T02:00:00",
+      "instrument_id": "BTCSTUSDT",
+      "article_code": "2c08ba9e1a1b409fb6a4a2cb2f5ed58b",
+      "effective_at": "2021-03-12T02:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "Binance Futures",
+        "BTCST/ USDT",
+        "2021-03-12 02:00 AM",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "ANTUSDT:automatic_settlement:2024-04-01T09:00:00",
+      "instrument_id": "ANTUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_at": "2024-04-01T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "ANTUSDT",
+        "2024-04-01",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "DGBUSDT:automatic_settlement:2024-04-01T09:00:00",
+      "instrument_id": "DGBUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_at": "2024-04-01T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "DGBUSDT",
+        "2024-04-01",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "CTKUSDT:automatic_settlement:2024-04-01T09:00:00",
+      "instrument_id": "CTKUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_at": "2024-04-01T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "CTKUSDT",
+        "2024-04-01",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "FOOTBALLUSDT:automatic_settlement:2024-03-26T09:00:00",
+      "instrument_id": "FOOTBALLUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_at": "2024-03-26T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "FOOTBALLUSDT",
+        "2024-03-26",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "BLUEBIRDUSDT:automatic_settlement:2024-03-26T09:00:00",
+      "instrument_id": "BLUEBIRDUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_at": "2024-03-26T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BLUEBIRDUSDT",
+        "2024-03-26",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "XEMUSDT:automatic_settlement:2024-12-09T09:00:00",
+      "instrument_id": "XEMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "XEMUSDT",
+        "2024-12-09",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "ORBSUSDT:automatic_settlement:2024-12-09T09:00:00",
+      "instrument_id": "ORBSUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "ORBSUSDT",
+        "2024-12-09",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "LOOMUSDT:automatic_settlement:2024-12-09T09:00:00",
+      "instrument_id": "LOOMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "LOOMUSDT",
+        "2024-12-09",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "KEYUSDT:automatic_settlement:2024-12-03T09:00:00",
+      "instrument_id": "KEYUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_at": "2024-12-03T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "KEYUSDT",
+        "2024-12-03",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "RENUSDT:automatic_settlement:2024-12-03T09:00:00",
+      "instrument_id": "RENUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_at": "2024-12-03T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "RENUSDT",
+        "2024-12-03",
+        "09:00",
+        "UTC",
+        "settlement"
+      ]
+    },
+    {
+      "event_id": "WAVESUSDT:new_positions_disabled:2024-06-11T08:30:00",
+      "instrument_id": "WAVESUSDT",
+      "article_code": "f65faeeefe07417a8b6dd2900ba8da7e",
+      "effective_at": "2024-06-11T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "WAVESUSDT",
+        "2024-06-11",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "LITUSDT:new_positions_disabled:2025-01-31T08:30:00",
+      "instrument_id": "LITUSDT",
+      "article_code": "2a9feaa556f74dcdaa2192366f0e247c",
+      "effective_at": "2025-01-31T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "LITUSDT",
+        "2025-01-31",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "FOOTBALLUSDT:new_positions_disabled:2024-03-26T08:30:00",
+      "instrument_id": "FOOTBALLUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_at": "2024-03-26T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "FOOTBALLUSDT",
+        "2024-03-26",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "BLUEBIRDUSDT:new_positions_disabled:2024-03-26T08:30:00",
+      "instrument_id": "BLUEBIRDUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_at": "2024-03-26T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "BLUEBIRDUSDT",
+        "2024-03-26",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "XEMUSDT:new_positions_disabled:2024-12-09T08:30:00",
+      "instrument_id": "XEMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "XEMUSDT",
+        "2024-12-09",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "ORBSUSDT:new_positions_disabled:2024-12-09T08:30:00",
+      "instrument_id": "ORBSUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "ORBSUSDT",
+        "2024-12-09",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "LOOMUSDT:new_positions_disabled:2024-12-09T08:30:00",
+      "instrument_id": "LOOMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_at": "2024-12-09T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "LOOMUSDT",
+        "2024-12-09",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "KEYUSDT:new_positions_disabled:2024-12-03T08:30:00",
+      "instrument_id": "KEYUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_at": "2024-12-03T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "KEYUSDT",
+        "2024-12-03",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "RENUSDT:new_positions_disabled:2024-12-03T08:30:00",
+      "instrument_id": "RENUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_at": "2024-12-03T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "RENUSDT",
+        "2024-12-03",
+        "08:30",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "IDEXUSDT:automatic_settlement:2024-05-15T09:00:00",
+      "instrument_id": "IDEXUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "IDEXUSDT",
+        "2024-05-15",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "IDEXUSDT:new_positions_disabled:2024-05-15T08:30:00",
+      "instrument_id": "IDEXUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "IDEXUSDT",
+        "2024-05-15",
+        "08:30",
+        "UTC",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "SLPUSDT:automatic_settlement:2024-05-15T09:00:00",
+      "instrument_id": "SLPUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "SLPUSDT",
+        "2024-05-15",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "SLPUSDT:new_positions_disabled:2024-05-15T08:30:00",
+      "instrument_id": "SLPUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "SLPUSDT",
+        "2024-05-15",
+        "08:30",
+        "UTC",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "GLMRUSDT:automatic_settlement:2024-05-15T09:00:00",
+      "instrument_id": "GLMRUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "GLMRUSDT",
+        "2024-05-15",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "GLMRUSDT:new_positions_disabled:2024-05-15T08:30:00",
+      "instrument_id": "GLMRUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-15T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "GLMRUSDT",
+        "2024-05-15",
+        "08:30",
+        "UTC",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "MDTUSDT:automatic_settlement:2024-05-16T09:00:00",
+      "instrument_id": "MDTUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-16T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "MDTUSDT",
+        "2024-05-16",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "MDTUSDT:new_positions_disabled:2024-05-16T08:30:00",
+      "instrument_id": "MDTUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-16T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "MDTUSDT",
+        "2024-05-16",
+        "08:30",
+        "UTC",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "AUDIOUSDT:automatic_settlement:2024-05-16T09:00:00",
+      "instrument_id": "AUDIOUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-16T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "AUDIOUSDT",
+        "2024-05-16",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "AUDIOUSDT:new_positions_disabled:2024-05-16T08:30:00",
+      "instrument_id": "AUDIOUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_at": "2024-05-16T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": null,
+      "evidence_terms": [
+        "AUDIOUSDT",
+        "2024-05-16",
+        "08:30",
+        "UTC",
+        "new positions"
+      ]
+    },
+    {
+      "event_id": "CVCUSDT:automatic_settlement:2022-11-29T09:00:00",
+      "instrument_id": "CVCUSDT",
+      "article_code": "3188e26f14a1464b91487abad452c04f",
+      "effective_at": "2022-11-29T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": "Civic",
+      "evidence_terms": [
+        "CVCUSDT",
+        "2022-11-29",
+        "09:00",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "STPTUSDT:automatic_settlement:2024-05-13T09:00:00",
+      "instrument_id": "STPTUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_at": "2024-05-13T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "STPTUSDT",
+        "2024-05-13",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "SNTUSDT:automatic_settlement:2024-05-13T09:00:00",
+      "instrument_id": "SNTUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_at": "2024-05-13T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "SNTUSDT",
+        "2024-05-13",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "MBLUSDT:automatic_settlement:2024-05-13T09:00:00",
+      "instrument_id": "MBLUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_at": "2024-05-13T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "MBLUSDT",
+        "2024-05-13",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "RADUSDT:automatic_settlement:2024-05-14T09:00:00",
+      "instrument_id": "RADUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_at": "2024-05-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "RADUSDT",
+        "2024-05-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "CVXUSDT:automatic_settlement:2024-05-14T09:00:00",
+      "instrument_id": "CVXUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_at": "2024-05-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "CVXUSDT",
+        "2024-05-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "AMBUSDT:automatic_settlement:2025-02-21T09:00:00",
+      "instrument_id": "AMBUSDT",
+      "article_code": "f3cc64a8758d4bb394e0830e5b31da97",
+      "effective_at": "2025-02-21T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "AMBUSDT",
+        "2025-02-21",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "STMXUSDT:automatic_settlement:2025-02-21T09:00:00",
+      "instrument_id": "STMXUSDT",
+      "article_code": "f3cc64a8758d4bb394e0830e5b31da97",
+      "effective_at": "2025-02-21T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "STMXUSDT",
+        "2025-02-21",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "AERGOUSDT:automatic_settlement:2025-03-27T09:00:00",
+      "instrument_id": "AERGOUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_at": "2025-03-27T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "AERGOUSDT",
+        "2025-03-27",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "COMBOUSDT:automatic_settlement:2025-03-27T09:00:00",
+      "instrument_id": "COMBOUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_at": "2025-03-27T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "COMBOUSDT",
+        "2025-03-27",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "LINAUSDT:automatic_settlement:2025-03-27T09:00:00",
+      "instrument_id": "LINAUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_at": "2025-03-27T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "LINAUSDT",
+        "2025-03-27",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "DARUSDT:automatic_settlement:2024-12-26T09:00:00",
+      "instrument_id": "DARUSDT",
+      "article_code": "21551cde98784f64b374f8d50ff2a438",
+      "effective_at": "2024-12-26T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "DARUSDT",
+        "2024-12-26",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "BLZUSDT:automatic_settlement:2024-12-23T09:00:00",
+      "instrument_id": "BLZUSDT",
+      "article_code": "b140faee7cf9482cb10257308abda245",
+      "effective_at": "2024-12-23T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BLZUSDT",
+        "2024-12-23",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "BONDUSDT:automatic_settlement:2024-12-16T09:00:00",
+      "instrument_id": "BONDUSDT",
+      "article_code": "27eac260521b4f40ab331e1a345887a7",
+      "effective_at": "2024-12-16T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BONDUSDT",
+        "2024-12-16",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "OMGUSDT:automatic_settlement:2025-01-31T09:00:00",
+      "instrument_id": "OMGUSDT",
+      "article_code": "1e43c128806544018d3cc537a8add3f6",
+      "effective_at": "2025-01-31T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "OMGUSDT",
+        "2025-01-31",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "supersedes_article_codes": [
+        "27eac260521b4f40ab331e1a345887a7",
+        "eedac7aff5b849d58efda6c4b3cec01b"
+      ]
+    },
+    {
+      "event_id": "BNXUSDT:automatic_settlement:2025-03-17T09:00:00",
+      "instrument_id": "BNXUSDT",
+      "article_code": "2f963977c7274e0583f16f2e26987b61",
+      "effective_at": "2025-03-17T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BNXUSDT",
+        "2025-03-17",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "FTMUSDT:automatic_settlement:2025-01-06T09:00:00",
+      "instrument_id": "FTMUSDT",
+      "article_code": "aec6fcbc84b749eeab6690e6bcac2f3d",
+      "effective_at": "2025-01-06T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "FTMUSDT",
+        "2025-01-06",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "EOSUSDT:automatic_settlement:2025-05-21T09:00:00",
+      "instrument_id": "EOSUSDT",
+      "article_code": "1e89a9ca957c4b0ca7502e60b993e201",
+      "effective_at": "2025-05-21T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "EOSUSDT",
+        "2025-05-21",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "FRONTUSDT:automatic_settlement:2024-08-23T09:00:00",
+      "instrument_id": "FRONTUSDT",
+      "article_code": "3ab5488a00e04d4fb338c77ea28326a8",
+      "effective_at": "2024-08-23T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "FRONTUSDT",
+        "2024-08-23",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "MATICUSDT:automatic_settlement:2024-09-04T09:00:00",
+      "instrument_id": "MATICUSDT",
+      "article_code": "6a6de383727f4659a3050f7982e1620f",
+      "effective_at": "2024-09-04T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "MATICUSDT",
+        "2024-09-04",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "RNDRUSDT:automatic_settlement:2024-07-16T09:00:00",
+      "instrument_id": "RNDRUSDT",
+      "article_code": "d1f2ae8d99b24439a7a900caa9bb6b3b",
+      "effective_at": "2024-07-16T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "RNDRUSDT",
+        "2024-07-16",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "GALUSDT:automatic_settlement:2024-07-11T09:00:00",
+      "instrument_id": "GALUSDT",
+      "article_code": "27449abd481b473493b9c058350b4e2e",
+      "effective_at": "2024-07-11T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "GALUSDT",
+        "2024-07-11",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "HNTUSDT:automatic_settlement:2023-03-20T09:00:00",
+      "instrument_id": "HNTUSDT",
+      "article_code": "f1a8aa29692b4442a8f18be2076e14a0",
+      "effective_at": "2023-03-20T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "HNTUSDT",
+        "2023-03-20",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "STRAXUSDT:automatic_settlement:2024-03-15T09:00:00",
+      "instrument_id": "STRAXUSDT",
+      "article_code": "2e6eb8e644664a6ca7b6659a226c41b0",
+      "effective_at": "2024-03-15T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "STRAXUSDT",
+        "2024-03-15",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "BADGERUSDT:automatic_settlement:2025-04-14T09:00:00",
+      "instrument_id": "BADGERUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_at": "2025-04-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BADGER",
+        "2025-04-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "BALUSDT:automatic_settlement:2025-04-14T09:00:00",
+      "instrument_id": "BALUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_at": "2025-04-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BAL",
+        "2025-04-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "NULSUSDT:automatic_settlement:2025-04-14T09:00:00",
+      "instrument_id": "NULSUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_at": "2025-04-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "NULS",
+        "2025-04-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "TROYUSDT:automatic_settlement:2025-04-14T09:00:00",
+      "instrument_id": "TROYUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_at": "2025-04-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "TROY",
+        "2025-04-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "VIDTUSDT:automatic_settlement:2025-04-14T09:00:00",
+      "instrument_id": "VIDTUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_at": "2025-04-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "VIDT",
+        "2025-04-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "ALPACAUSDT:automatic_settlement:2025-04-30T09:00:00",
+      "instrument_id": "ALPACAUSDT",
+      "article_code": "0274f9d47da1437990bc13eb17b0ec99",
+      "effective_at": "2025-04-30T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "ALPACA",
+        "2025-04-30",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ],
+      "scope_note": "Futures clause names contracts of the listed tokens; UM quote mapping still requires episode/specification review."
+    },
+    {
+      "event_id": "FTTUSDT:automatic_settlement:2022-11-14T04:00:00",
+      "instrument_id": "FTTUSDT",
+      "article_code": "3b4c7c08479b48d48189191e37a7adca",
+      "effective_at": "2022-11-14T04:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "FTTUSDT",
+        "2022-11-14",
+        "04:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "RAYUSDT:automatic_settlement:2022-11-15T04:00:00",
+      "instrument_id": "RAYUSDT",
+      "article_code": "9a6676662bd5417c92267953f3819dd0",
+      "effective_at": "2022-11-15T04:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "RAYUSDT",
+        "2022-11-15",
+        "04:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "SRMUSDT:automatic_settlement:2022-11-15T04:30:00",
+      "instrument_id": "SRMUSDT",
+      "article_code": "9a6676662bd5417c92267953f3819dd0",
+      "effective_at": "2022-11-15T04:30:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "SRMUSDT",
+        "2022-11-15",
+        "04:30",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "COCOSUSDT:automatic_settlement:2023-05-25T09:00:00",
+      "instrument_id": "COCOSUSDT",
+      "article_code": "45852dc155b641bc9e1c23bc41d8ded6",
+      "effective_at": "2023-05-25T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "COCOS",
+        "2023-05-25",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "TOMOUSDT:automatic_settlement:2023-11-14T09:00:00",
+      "instrument_id": "TOMOUSDT",
+      "article_code": "034eee2293964e26b915b1ec5c42972a",
+      "effective_at": "2023-11-14T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "TOMO",
+        "2023-11-14",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "KLAYUSDT:automatic_settlement:2024-10-22T09:00:00",
+      "instrument_id": "KLAYUSDT",
+      "article_code": "f75f933759ee49d0af1dfbce7e32144c",
+      "effective_at": "2024-10-22T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "KLAYUSDT",
+        "2024-10-22",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "UNFIUSDT:automatic_settlement:2024-10-30T09:00:00",
+      "instrument_id": "UNFIUSDT",
+      "article_code": "043c8407bb904652a428573a50d07e07",
+      "effective_at": "2024-10-30T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "UNFIUSDT",
+        "2024-10-30",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "REEFUSDT:automatic_settlement:2025-01-22T09:00:00",
+      "instrument_id": "REEFUSDT",
+      "article_code": "572715f2d96e47769ebbb967c2a6e445",
+      "effective_at": "2025-01-22T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "REEFUSDT",
+        "2025-01-22",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "BTSUSDT:automatic_settlement:2022-08-18T09:00:00",
+      "instrument_id": "BTSUSDT",
+      "article_code": "90498d8e2fec42468ec3d659bdfbb78b",
+      "effective_at": "2022-08-18T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "BTS",
+        "2022-08-18",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "SCUSDT:automatic_settlement:2022-06-17T09:00:00",
+      "instrument_id": "SCUSDT",
+      "article_code": "6ce355dedc5d438abde7b5dc99b3a56d",
+      "effective_at": "2022-06-17T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "SC",
+        "2022-06-17",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "DOTECOUSDT:automatic_settlement:2021-02-19T09:00:00",
+      "instrument_id": "DOTECOUSDT",
+      "article_code": "b2871bc40ea84e639c2d63b048403b69",
+      "effective_at": "2021-02-19T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": null,
+      "evidence_terms": [
+        "DOTECO",
+        "2021-02-19",
+        "09:00",
+        "UTC",
+        "automatic settlement"
+      ]
+    },
+    {
+      "event_id": "DOTECOUSDT:launch:2021-01-20T07:00:00",
+      "instrument_id": "DOTECOUSDT",
+      "article_code": "9381a09f6dae4899b8c00046a4afc08b",
+      "effective_at": "2021-01-20T07:00:00+00:00",
+      "event_type": "launch",
+      "underlying": "Polkadot Ecosystem composite index; not a separate token",
+      "underlying_type": "composite_index",
+      "evidence_terms": [
+        "DOTECOUSDT",
+        "2021/01/20",
+        "7:00 AM",
+        "not the ticker of a separate token"
+      ]
+    },
+    {
+      "event_id": "PUMPUSDT:automatic_settlement:2025-06-13T09:00:00",
+      "instrument_id": "PUMPUSDT",
+      "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+      "effective_at": "2025-06-13T09:00:00+00:00",
+      "event_type": "automatic_settlement",
+      "underlying": "PumpBTC",
+      "evidence_terms": [
+        "PUMPUSDT",
+        "2025-06-13",
+        "09:00",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "PUMPUSDT:new_positions_disabled:2025-06-13T08:30:00",
+      "instrument_id": "PUMPUSDT",
+      "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+      "effective_at": "2025-06-13T08:30:00+00:00",
+      "event_type": "new_positions_disabled",
+      "underlying": "PumpBTC",
+      "evidence_terms": [
+        "PUMPUSDT",
+        "2025-06-13",
+        "08:30",
+        "UTC"
+      ]
+    },
+    {
+      "event_id": "PUMPBTCUSDT:launch:2025-06-13T10:00:00",
+      "instrument_id": "PUMPBTCUSDT",
+      "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+      "effective_at": "2025-06-13T10:00:00+00:00",
+      "event_type": "launch",
+      "underlying": "PumpBTC",
+      "evidence_terms": [
+        "PUMPBTCUSDT",
+        "2025-06-13",
+        "10:00",
+        "UTC"
+      ]
+    }
+  ],
+  "identity_reuse": {
+    "LITUSDT": "Legacy Litentry ended 2025-01-31; later Lighter Protocol launch is a different underlying. Do not join episodes.",
+    "PUMPUSDT": "PumpBTC PUMPUSDT settled 2025-06-13 09:00 UTC; PumpBTC relisted as PUMPBTCUSDT at10:00. July10 PUMPUSDT is Pump.fun. Do not join identities or assume a free roll.",
+    "MDTUSDT": "Legacy MDT futures settled 2024-05-16; October 2026 launch tracks Medtronic equity. Do not join episodes."
+  }
+}
