@@ -1,13 +1,14 @@
 # Project status
 
 Updated: 2026-11-18. Engineering merged at 6730302; protocol f622b1b.
-Current documentation segment: docs/research-release-validation, based on 6730302;
+Current documentation segment: docs/liu-2021-research-review, based on d771ea2;
 targets main via no-ff merge. No remote push or history rewrite.
 
 ## Latest bounded result
 
-- User authorized stages 1 (research data layer) and 2 (lifecycle review).
-  Stage 3 strategy, exact OOS splits, fit, costs and selection rules are DEFERRED.
+- Data stages 1/2 completed to the partial-evidence scope below. User now
+  authorizes stage-3 DISCUSSION and paper review, not strategy implementation.
+  Exact OOS dates, labels, costs and selection rules are NOT frozen.
 - Implemented scripts/build_research_data.py, review_usdm_lifecycle.py,
   run_research_data.py, src/momentum_data reader and curated official facts.
 - FINAL pilot normalization_pilot_004_20261117: 34/34 partitions; 8767 trade,
@@ -38,6 +39,25 @@ targets main via no-ff merge. No remote push or history rewrite.
   prevented agent-run WSL tests at implementation time; user subsequently completed
   full WSL conversion. Configured project runtime remains Python 3.13.
   Mypy unavailable/not run. No service restart or system environment change.
+
+## Current research discussion (2026-11-18)
+
+- Four candidate components: momentum 20/60/120, Size, funding, taker trade
+  imbalance. Size data still need historical point-in-time coverage/identity.
+  News/NLP is deferred to a later project. No factor is presumed profitable.
+- User accepts rank-buffer concept and makes SHAP mandatory. Equal-score
+  baseline plus LightGBM challenger discussed; no target label/task is selected.
+  Capacity, buffer cutoffs, retraining and trading schedule remain undecided.
+- User reports no strategy/factor-performance-driven tuning on 2025-2026.
+  2025-01..2026-10 is only a proposed sealed final OOS; dates not preregistered.
+  No own strategy/factor returns, fits or OOS results have been computed/viewed.
+- Reviewed supplied FINAL Liu/Tsyvinski 2021 main article (39 journal pages).
+  Note: docs/literature/liu_tsyvinski_2021.md. Internet Appendix not supplied.
+  Weekly aggregate forecast tests differ from cross-sectional long/short.
+  Table 6's OOS uses first-two-year tercile cutoffs; high-low conditional means
+  are not simultaneous tradable spreads. Section 4.2 uses 3-week return sign,
+  1-week holding; calendar/weights/selection/cost details need its appendix.
+  Seven-day forecast/holding is a justified candidate, not an optimal/frozen rule.
 
 ## Preserved prior evidence
 
