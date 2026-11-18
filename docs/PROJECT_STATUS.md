@@ -1,10 +1,35 @@
 # Project status
 
-Updated 2026-11-18. Current segment: docs/weekly-coverage-results, based on2f71b5b.
+Updated 2026-11-18. Current segment: infra/history-extension-inventory, registered
+on main atfc0238c. Inspect Git for final no-ff merge hash.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Early-history/funding extension before portfolio experiments
+
+- User authorized backfill toward2019 and associated funding inputs;hold portfolio
+  specification while data work proceeds. docs/HISTORY_EXTENSION.md has findings
+  and tested WSL command. Existing release/calendar/training/OOS unchanged.
+- Tool extend_usdm_history.py verifies924 identifiers/2772 cached listing jobs,
+  full pagination/URL/hash integrity;97.688s,zero metadata HTTP. Reparsed old
+  66893-file/1035606342-byte totals match frozen census. No old tools modified.
+- Frozen archive evidence has no2019 monthly files;2020 extension1526 files/
+  24153565 bytes/81 IDs:trade509,mark510,funding507;zero checksum gaps.
+  Monthly three-series file presence11 Jan/30 Jun/80 Dec,not eligible counts.
+- BTC/ETH January2020 six-file pilot124307 bytes passes;resume6 hits/0 downloads.
+  Full extension NOT downloaded. WSL:python scripts/extend_usdm_history.py
+  download --max-gib 0.03 --workers 2;then summary. Raw readiness only.
+- probe_2019_history.py made3 bounded BTC2019-09-14 API requests,allHTTP200:
+  trade1bar,mark0,funding2events with missing markPrice. Sample availability only;
+  full2019 coverage unproven. Cached evidence retained,no retries/alternatehosts.
+- Funding archive/bar mismatches queue163 identifiers over2019--2026-10;not
+  proven missing settlements. Need interval/time/unit/sign/event-price/terminal
+  reconciliation;hourly mark cannot silently substitute for exact event mark.
+- 134 tests pass (13 new),new files Ruff lint/format pass. No model/returns/PnL/
+  OOS performance. Next raw backfill,normalization,funding/early Size/identity
+  checks;training extension needs protocol amendment,not silently edited dates.
 
 ## Completed full weekly coverage
 
@@ -208,8 +233,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Weekly development coverage complete;specify holdings/exposures,features/
-   model/refit and cost/accounting gates before performance experiments.
+1. Complete the separate early RAW extension from HISTORY_EXTENSION.md,then
+   normalize/reconcile funding and earlier Size/identity. Portfolio work held.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -217,6 +242,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-Daily build and weekly coverage complete. Never run Windows and
+Original daily build/weekly coverage complete;early RAW download handed off. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
