@@ -1,0 +1,1648 @@
+{
+  "schema": 1,
+  "reviewed_on": "2026-11-18",
+  "sources": [
+    "940d0e48493e4627889c3f46371df70b",
+    "67d516a4ecec4c3ca17760d9afe04570",
+    "4d23ada51a2e4fa182835c77d51ba1a9",
+    "a29c5916cc9f460dbf00ccefa28e19e5",
+    "2f963977c7274e0583f16f2e26987b61",
+    "2c08ba9e1a1b409fb6a4a2cb2f5ed58b",
+    "2722e6da4f5141dd9b2fb07b5b1f3f75",
+    "93cbeb51eed54bb9a9da8f8b3dfa20a2",
+    "4baf8d70485c46e38637bd063c58c4d8",
+    "e90bc8a7484f4467812a0f71f34b53ca",
+    "5e2f6ff0dc0548669e51abcef524f5ad",
+    "46398ed8e121442a8f7502369540c0fe",
+    "ef3ce76d5c2d45ee9b6dc3f281cde744",
+    "3b7184c80d544586993045a0e6e36e57",
+    "2bfb6f8dccf447ada57165b7e6a4cf1b",
+    "f923f2e4056843a9a9b87beb2aaa2f31",
+    "bf95a72b803247ea86904ac16e13087d",
+    "6a33be00231c4539b3a4a625538e4d1e",
+    "2a9feaa556f74dcdaa2192366f0e247c",
+    "29e4e52d711946c88762f0ba2259de2e",
+    "cb525a5fbb954935afc77630fc5bd0cc",
+    "4a4bb43f865a4348828de4facfc9eee4",
+    "4bc8b483d10d4619babb2015066b2d89",
+    "38a74ee47cdc43ebbc672e1dc6968358",
+    "9d12cbfb72bb46e6835313471b6b3c85",
+    "209355888f0042f788899dd1a04a0052",
+    "7b3f500e0eec40f380023b4ff0ccca18",
+    "ed43b9b4d8f8471087b6d200bffcb4ff",
+    "3dd2c1e3f5f040ac9f7a94c6597ef842",
+    "cb89820730db4065b1d406350f6c0d9d",
+    "5b9bc7ef56834de895cf829af859207e",
+    "41993e3389654713946bcb6b9b032eaf",
+    "c6eb2557f7a94f8db24ffda21ef0346e",
+    "a86323c8ac774e85ba77a497f8f88e7f",
+    "fa934b93fea6494fb7361d45ca7cc98a",
+    "974acd319e2343a094a9485d99fd5049",
+    "220339ba12bd451c8362ad8501ea87e9",
+    "7fc53c11624b4d788fa97521a3480cda",
+    "4336ae4908154736acff8302509f7a05"
+  ],
+  "records": [
+    {
+      "instrument_id": "1000000BOBUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "9d12cbfb72bb46e6835313471b6b3c85",
+              "terms": [
+                "1000000BOBUSDT",
+                "Build On BNB",
+                "2025-06-05 08:30"
+              ]
+            }
+          ],
+          "effective_at": "2025-06-05T08:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Build On BNB (BOB)",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2025-06-05T08:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000000MOGUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "209355888f0042f788899dd1a04a0052",
+              "terms": [
+                "1000000MOGUSDT",
+                "Mog Coin",
+                "2024-11-07 12:30"
+              ]
+            }
+          ],
+          "effective_at": "2024-11-07T12:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Mog Coin",
+          "proposed_vendor_asset_id": 27659,
+          "effective_from": "2024-11-07T12:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000BONKUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "7b3f500e0eec40f380023b4ff0ccca18",
+              "terms": [
+                "1000BONKUSDT",
+                "2023-11-22 14:00"
+              ]
+            }
+          ],
+          "effective_at": "2023-11-22T14:00:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "BONK (proposed Bonk)",
+          "proposed_vendor_asset_id": 23095,
+          "effective_from": "2023-11-22T14:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000BTTCUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "93cbeb51eed54bb9a9da8f8b3dfa20a2",
+              "terms": [
+                "1000BTTC",
+                "2022-01-26",
+                "03:30"
+              ]
+            }
+          ],
+          "effective_at": "2022-01-26T03:30:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "close",
+          "claim": "Automatic futures settlement closes this contract.",
+          "evidence": [
+            {
+              "article_code": "4baf8d70485c46e38637bd063c58c4d8",
+              "terms": [
+                "1000BTTC",
+                "2022-04-11 09:00"
+              ]
+            }
+          ],
+          "effective_at": "2022-04-11T09:00:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "migration",
+          "claim": "Spot redenomination explains BTTC naming; it does not roll old futures positions.",
+          "evidence": [
+            {
+              "article_code": "2722e6da4f5141dd9b2fb07b5b1f3f75",
+              "terms": [
+                "BitTorrent",
+                "BTTC",
+                "1:1,000"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "new BitTorrent / Binance BTTC",
+          "proposed_vendor_asset_id": 16086,
+          "effective_from": "2022-01-26T03:30:00+00:00",
+          "effective_to": "2022-04-11T09:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch",
+            "close",
+            "migration"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": "close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000CATUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "ed43b9b4d8f8471087b6d200bffcb4ff",
+              "terms": [
+                "1000CATUSDT",
+                "Simon's Cat",
+                "2024-10-21 12:30"
+              ]
+            }
+          ],
+          "effective_at": "2024-10-21T12:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Simon's Cat",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2024-10-21T12:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000CHEEMSUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "3dd2c1e3f5f040ac9f7a94c6597ef842",
+              "terms": [
+                "1000CHEEMSUSDT",
+                "Cheems",
+                "2024-11-25 11:45"
+              ]
+            }
+          ],
+          "effective_at": "2024-11-25T11:45:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Cheems",
+          "proposed_vendor_asset_id": 33280,
+          "effective_from": "2024-11-25T11:45:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000FLOKIUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "cb89820730db4065b1d406350f6c0d9d",
+              "terms": [
+                "1000FLOKIUSDT",
+                "2023-05-06 16:30"
+              ]
+            }
+          ],
+          "effective_at": "2023-05-06T16:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "FLOKI",
+          "proposed_vendor_asset_id": 10804,
+          "effective_from": "2023-05-06T16:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000LUNCUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "5b9bc7ef56834de895cf829af859207e",
+              "terms": [
+                "1000LUNCUSDT",
+                "2022-09-09 13:00"
+              ]
+            }
+          ],
+          "effective_at": "2022-09-09T13:00:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Terra Classic (proposed from LUNC label)",
+          "proposed_vendor_asset_id": 4172,
+          "effective_from": "2022-09-09T13:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000PEPEUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "41993e3389654713946bcb6b9b032eaf",
+              "terms": [
+                "1000PEPEUSDT",
+                "2023-05-05 16:30"
+              ]
+            }
+          ],
+          "effective_at": "2023-05-05T16:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Pepe (proposed from PEPE label)",
+          "proposed_vendor_asset_id": 24478,
+          "effective_from": "2023-05-05T16:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000RATSUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "c6eb2557f7a94f8db24ffda21ef0346e",
+              "terms": [
+                "1000RATSUSDT",
+                "2023-12-15 14:00"
+              ]
+            }
+          ],
+          "effective_at": "2023-12-15T14:00:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "RATS (exact token identity pending)",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2023-12-15T14:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000SATSUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "a86323c8ac774e85ba77a497f8f88e7f",
+              "terms": [
+                "1000SATSUSDT",
+                "2023-12-12 14:00"
+              ]
+            }
+          ],
+          "effective_at": "2023-12-12T14:00:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "denomination",
+          "claim": "Binance spot denomination is one thousand SATS; futures uses the same named bundle.",
+          "evidence": [
+            {
+              "article_code": "67d516a4ecec4c3ca17760d9afe04570",
+              "terms": [
+                "BRC-20",
+                "1000 times of SATS"
+              ]
+            }
+          ],
+          "underlying_tokens_per_price_unit": 1000
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "BRC-20 Sats",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2023-12-12T14:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch",
+            "denomination"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": 1000,
+          "unit_assertion_id": "denomination",
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations",
+            "CMC28194_SATS_vs_CMC28683_1000SATS_identity_and_duplicate_denomination"
+          ],
+          "candidate_vendor_asset_ids": [
+            28194,
+            28683
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000SHIBUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "fa934b93fea6494fb7361d45ca7cc98a",
+              "terms": [
+                "1000SHIB",
+                "2021-05-10",
+                "1:00 PM"
+              ]
+            }
+          ],
+          "effective_at": "2021-05-10T13:00:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "denomination",
+          "claim": "The launch notice explicitly defines the SHIB price bundle and index scaling.",
+          "evidence": [
+            {
+              "article_code": "fa934b93fea6494fb7361d45ca7cc98a",
+              "terms": [
+                "1,000 SHIB",
+                "1000 times"
+              ]
+            }
+          ],
+          "underlying_tokens_per_price_unit": 1000
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Shiba Inu",
+          "proposed_vendor_asset_id": 5994,
+          "effective_from": "2021-05-10T13:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch",
+            "denomination"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": 1000,
+          "unit_assertion_id": "denomination",
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000WHYUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "3dd2c1e3f5f040ac9f7a94c6597ef842",
+              "terms": [
+                "1000WHYUSDT",
+                "Why",
+                "2024-11-25 11:30"
+              ]
+            }
+          ],
+          "effective_at": "2024-11-25T11:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Why",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2024-11-25T11:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000XECUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "974acd319e2343a094a9485d99fd5049",
+              "terms": [
+                "1000XEC",
+                "2021-09-17",
+                "03:30"
+              ]
+            }
+          ],
+          "effective_at": "2021-09-17T03:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "eCash (proposed from XEC label)",
+          "proposed_vendor_asset_id": 10791,
+          "effective_from": "2021-09-17T03:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1000XUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "220339ba12bd451c8362ad8501ea87e9",
+              "terms": [
+                "1000XUSDT",
+                "X Empire",
+                "2024-11-13 12:30"
+              ]
+            }
+          ],
+          "effective_at": "2024-11-13T12:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "X Empire",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2024-11-13T12:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "1MBABYDOGEUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official announcement specifies this USDT contract launch; vendor association remains proposed.",
+          "evidence": [
+            {
+              "article_code": "7fc53c11624b4d788fa97521a3480cda",
+              "terms": [
+                "1MBABYDOGEUSDT",
+                "Baby Doge Coin",
+                "2024-09-16 11:35"
+              ]
+            }
+          ],
+          "effective_at": "2024-09-16T11:35:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "spot_denomination",
+          "claim": "Spot notice clarifies the bundle; original publication version and futures unit validity are still unproven.",
+          "evidence": [
+            {
+              "article_code": "4336ae4908154736acff8302509f7a05",
+              "terms": [
+                "1MBABYDOGE",
+                "1,000,000 BABYDOGE"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Baby Doge Coin",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2024-09-16T11:35:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch",
+            "spot_denomination"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "end_boundary_unknown",
+            "price_bundle_units_unproven_except_explicit_denominations"
+          ]
+        }
+      ],
+      "review_note": "Launch/underlying evidence is partial. Numeric prefix is only a review lead; no cap scaling or automatic alias join.",
+      "candidate_scale_from_label": 1000000,
+      "candidate_scale_is_not_verified_specification": true
+    },
+    {
+      "instrument_id": "BNXUSDT",
+      "assertions": [
+        {
+          "assertion_id": "old_close",
+          "claim": "Old BNX futures positions are settled before redenomination.",
+          "evidence": [
+            {
+              "article_code": "4d23ada51a2e4fa182835c77d51ba1a9",
+              "terms": [
+                "2023-02-11 04:00",
+                "automatic settlement"
+              ]
+            }
+          ],
+          "effective_at": "2023-02-11T04:00:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "relaunch",
+          "claim": "New BNX relaunch is separate; old data route uses BNXUSDTSETTLED.",
+          "evidence": [
+            {
+              "article_code": "940d0e48493e4627889c3f46371df70b",
+              "terms": [
+                "BNXUSDTSETTLED",
+                "2023-02-22 14:45"
+              ]
+            }
+          ],
+          "effective_at": "2023-02-22T14:45:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "new_close",
+          "claim": "Later BNX futures settle before FORM rebranding.",
+          "evidence": [
+            {
+              "article_code": "2f963977c7274e0583f16f2e26987b61",
+              "terms": [
+                "BNXUSDT",
+                "2025-03-17 09:00"
+              ]
+            }
+          ],
+          "effective_at": "2025-03-17T09:00:00+00:00",
+          "event_type": "automatic_settlement"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "BinaryX old",
+          "proposed_vendor_asset_id": 9891,
+          "effective_from": null,
+          "effective_to": "2023-02-11T04:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "old_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "old_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "old_archive_route_and_missing_legacy_history"
+          ]
+        },
+        {
+          "underlying": "BinaryX post-redenomination",
+          "proposed_vendor_asset_id": 23635,
+          "effective_from": "2023-02-22T14:45:00+00:00",
+          "effective_to": "2025-03-17T09:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "relaunch",
+            "new_close"
+          ],
+          "start_assertion_id": "relaunch",
+          "end_assertion_id": "new_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        }
+      ],
+      "review_note": "Never multiply Size by the spot redenomination ratio or roll settled positions. Old BNXUSDT data routing requires separate reconciliation.",
+      "legacy_archive_alias": "BNXUSDTSETTLED"
+    },
+    {
+      "instrument_id": "BTCSTUSDT",
+      "assertions": [
+        {
+          "assertion_id": "old_close",
+          "claim": "Old futures settle; spot token redenomination does not establish futures relisting.",
+          "evidence": [
+            {
+              "article_code": "2c08ba9e1a1b409fb6a4a2cb2f5ed58b",
+              "terms": [
+                "BTCST/USDT",
+                "2021-03-12 02:00",
+                "1:10"
+              ]
+            }
+          ],
+          "effective_at": "2021-03-12T02:00:00+00:00",
+          "event_type": "automatic_settlement"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "BTCST old",
+          "proposed_vendor_asset_id": 8210,
+          "effective_from": null,
+          "effective_to": "2021-03-12T02:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "old_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "old_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        },
+        {
+          "underlying": "BTCST post-redenomination candidate",
+          "proposed_vendor_asset_id": 8891,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "old_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_relisting_not_proven"
+          ]
+        }
+      ],
+      "review_note": "Two vendor IDs cannot be stitched through the spot 1:10 swap."
+    },
+    {
+      "instrument_id": "BTTUSDT",
+      "assertions": [
+        {
+          "assertion_id": "old_close",
+          "claim": "Old BTT futures settle; new BitTorrent listing uses another contract.",
+          "evidence": [
+            {
+              "article_code": "2722e6da4f5141dd9b2fb07b5b1f3f75",
+              "terms": [
+                "BTT/USDT",
+                "2022-01-14 02:00"
+              ]
+            }
+          ],
+          "effective_at": "2022-01-14T02:00:00+00:00",
+          "event_type": "automatic_settlement"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "BitTorrent old",
+          "proposed_vendor_asset_id": 3718,
+          "effective_from": null,
+          "effective_to": "2022-01-14T02:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "old_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "old_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        }
+      ],
+      "review_note": "CMC16086 belongs to the proposed new BTTC identity; no same-symbol BTTUSDT continuation is inferred.",
+      "do_not_join_vendor_asset_ids": [
+        16086
+      ]
+    },
+    {
+      "instrument_id": "DYDXUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Original dYdX USDT futures launch.",
+          "evidence": [
+            {
+              "article_code": "e90bc8a7484f4467812a0f71f34b53ca",
+              "terms": [
+                "DYDX",
+                "2021-09-10",
+                "03:30"
+              ]
+            }
+          ],
+          "effective_at": "2021-09-10T03:30:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "mainnet_deposits",
+          "claim": "Mainnet deposit integration does not define a futures index handover.",
+          "evidence": [
+            {
+              "article_code": "5e2f6ff0dc0548669e51abcef524f5ad",
+              "terms": [
+                "dYdX (DYDX) mainnet",
+                "Deposits"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "dYdX Ethereum-era candidate",
+          "proposed_vendor_asset_id": 11156,
+          "effective_from": "2021-09-10T03:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch",
+            "mainnet_deposits"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_index_underlying_handover_unknown"
+          ]
+        },
+        {
+          "underlying": "dYdX native-chain candidate",
+          "proposed_vendor_asset_id": 28324,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "mainnet_deposits"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_index_underlying_handover_unknown"
+          ]
+        }
+      ],
+      "review_note": "Do not use deposit-integration publication day as an automatic futures switch date."
+    },
+    {
+      "instrument_id": "KNCUSDT",
+      "assertions": [
+        {
+          "assertion_id": "spot_swap",
+          "claim": "Spot swap distinguishes legacy and new KNC contracts, not futures index timing.",
+          "evidence": [
+            {
+              "article_code": "46398ed8e121442a8f7502369540c0fe",
+              "terms": [
+                "KNCL",
+                "0xdeFA4e8a7bcBA345F687a2f1456F5Edd9CE97202"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Kyber legacy KNCL candidate",
+          "proposed_vendor_asset_id": 1982,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "spot_swap"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_migration_boundary_unknown"
+          ]
+        },
+        {
+          "underlying": "Kyber KNC v2 candidate",
+          "proposed_vendor_asset_id": 9444,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "spot_swap"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_migration_boundary_unknown"
+          ]
+        }
+      ],
+      "review_note": "Keep both futures mapping intervals unknown pending index evidence."
+    },
+    {
+      "instrument_id": "LITUSDT",
+      "assertions": [
+        {
+          "assertion_id": "legacy_close",
+          "claim": "Legacy LIT contract closes before a later unrelated LIT launch.",
+          "evidence": [
+            {
+              "article_code": "2a9feaa556f74dcdaa2192366f0e247c",
+              "terms": [
+                "LITUSDT",
+                "2025-01-31 09:00"
+              ]
+            }
+          ],
+          "effective_at": "2025-01-31T09:00:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "lighter_premarket",
+          "claim": "Later LIT launches as Lighter pre-market, not Litentry.",
+          "evidence": [
+            {
+              "article_code": "6a33be00231c4539b3a4a625538e4d1e",
+              "terms": [
+                "Lighter Protocol",
+                "pre-market",
+                "2025-12-23 17:30"
+              ]
+            }
+          ],
+          "effective_at": "2025-12-23T17:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Litentry",
+          "proposed_vendor_asset_id": 6833,
+          "effective_from": null,
+          "effective_to": "2025-01-31T09:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "legacy_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "legacy_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        },
+        {
+          "underlying": "Lighter Protocol",
+          "proposed_vendor_asset_id": 39125,
+          "effective_from": "2025-12-23T17:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "lighter_premarket"
+          ],
+          "start_assertion_id": "lighter_premarket",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "pre_market_to_regular_transition_unknown"
+          ],
+          "market_phase_at_launch": "pre_market"
+        }
+      ],
+      "review_note": "Distinct underlying identities; launch conflicts in old archive metadata remain unresolved."
+    },
+    {
+      "instrument_id": "LUNAUSDT",
+      "assertions": [
+        {
+          "assertion_id": "old_close",
+          "claim": "Original LUNA USDT contract settles.",
+          "evidence": [
+            {
+              "article_code": "ef3ce76d5c2d45ee9b6dc3f281cde744",
+              "terms": [
+                "LUNA",
+                "2022-05-12 15:30"
+              ]
+            }
+          ],
+          "effective_at": "2022-05-12T15:30:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "different_new_contract",
+          "claim": "New LUNA USDT listing is named LUNA2, not an automatic LUNAUSDT continuation.",
+          "evidence": [
+            {
+              "article_code": "3b7184c80d544586993045a0e6e36e57",
+              "terms": [
+                "LUNA2",
+                "2022-09-10"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Terra original / later Terra Classic",
+          "proposed_vendor_asset_id": 4172,
+          "effective_from": null,
+          "effective_to": "2022-05-12T15:30:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "old_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "old_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        }
+      ],
+      "review_note": "CMC20314 is a different Terra generation; evaluate LUNA2USDT separately.",
+      "do_not_join_vendor_asset_ids": [
+        20314
+      ]
+    },
+    {
+      "instrument_id": "MDTUSDT",
+      "assertions": [
+        {
+          "assertion_id": "legacy_close",
+          "claim": "Old MDT contract settles; exact legacy token identity still needs evidence.",
+          "evidence": [
+            {
+              "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+              "terms": [
+                "MDTUSDT",
+                "2024-05-16 09:00"
+              ]
+            }
+          ],
+          "effective_at": "2024-05-16T09:00:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "equity_launch",
+          "claim": "Later MDT tracks Medtronic ordinary shares, not a crypto token.",
+          "evidence": [
+            {
+              "article_code": "29e4e52d711946c88762f0ba2259de2e",
+              "terms": [
+                "MDTUSDT",
+                "Medtronic",
+                "2026-10-21 09:20"
+              ]
+            }
+          ],
+          "effective_at": "2026-10-21T09:20:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Legacy MDT crypto; exact underlying pending",
+          "proposed_vendor_asset_id": null,
+          "effective_from": null,
+          "effective_to": "2024-05-16T09:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "legacy_close"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": "legacy_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        },
+        {
+          "underlying": "Medtronic plc ordinary shares",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2026-10-21T09:20:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "equity_launch"
+          ],
+          "start_assertion_id": "equity_launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "crypto_market_cap_not_applicable"
+          ],
+          "asset_class": "equity_derivative"
+        }
+      ],
+      "review_note": "Do not apply current equity classification retroactively to the earlier contract."
+    },
+    {
+      "instrument_id": "PUMPUSDT",
+      "assertions": [
+        {
+          "assertion_id": "pumpbtc_launch",
+          "claim": "Original PUMP contract tracks PumpBTC.",
+          "evidence": [
+            {
+              "article_code": "4a4bb43f865a4348828de4facfc9eee4",
+              "terms": [
+                "PumpBTC",
+                "2025-04-12 14:30"
+              ]
+            }
+          ],
+          "effective_at": "2025-04-12T14:30:00+00:00",
+          "event_type": "launch"
+        },
+        {
+          "assertion_id": "pumpbtc_close",
+          "claim": "PumpBTC PUMPUSDT settles; a later PUMPBTCUSDT relisting is separate.",
+          "evidence": [
+            {
+              "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+              "terms": [
+                "PUMPUSDT",
+                "2025-06-13 09:00"
+              ]
+            }
+          ],
+          "effective_at": "2025-06-13T09:00:00+00:00",
+          "event_type": "automatic_settlement"
+        },
+        {
+          "assertion_id": "pumpfun_launch",
+          "claim": "Later PUMP pre-market contract tracks Pump.fun.",
+          "evidence": [
+            {
+              "article_code": "4bc8b483d10d4619babb2015066b2d89",
+              "terms": [
+                "Pump.fun",
+                "pre-market",
+                "2025-07-10 07:30"
+              ]
+            }
+          ],
+          "effective_at": "2025-07-10T07:30:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "PumpBTC",
+          "proposed_vendor_asset_id": null,
+          "effective_from": "2025-04-12T14:30:00+00:00",
+          "effective_to": "2025-06-13T09:00:00+00:00",
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "pumpbtc_launch",
+            "pumpbtc_close"
+          ],
+          "start_assertion_id": "pumpbtc_launch",
+          "end_assertion_id": "pumpbtc_close",
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        },
+        {
+          "underlying": "Pump.fun",
+          "proposed_vendor_asset_id": 36507,
+          "effective_from": "2025-07-10T07:30:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "pumpfun_launch"
+          ],
+          "start_assertion_id": "pumpfun_launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "pre_market_to_regular_transition_unknown"
+          ],
+          "market_phase_at_launch": "pre_market"
+        }
+      ],
+      "review_note": "CMC36507 cannot supply Size for the earlier PumpBTC episode."
+    },
+    {
+      "instrument_id": "STRKUSDT",
+      "assertions": [
+        {
+          "assertion_id": "launch",
+          "claim": "Official underlying is Starknet, excluding the unrelated Strike ticker match.",
+          "evidence": [
+            {
+              "article_code": "2bfb6f8dccf447ada57165b7e6a4cf1b",
+              "terms": [
+                "STRKUSDT",
+                "Starknet",
+                "2024-02-20 17:00"
+              ]
+            }
+          ],
+          "effective_at": "2024-02-20T17:00:00+00:00",
+          "event_type": "launch"
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "Starknet",
+          "proposed_vendor_asset_id": 22691,
+          "effective_from": "2024-02-20T17:00:00+00:00",
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "launch"
+          ],
+          "start_assertion_id": "launch",
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck"
+          ]
+        }
+      ],
+      "review_note": "Reject CMC8911 Strike as a lexical collision.",
+      "do_not_join_vendor_asset_ids": [
+        8911
+      ]
+    },
+    {
+      "instrument_id": "SUNUSDT",
+      "assertions": [
+        {
+          "assertion_id": "spot_migration",
+          "claim": "Spot SUN migration changes units but does not establish futures migration timing.",
+          "evidence": [
+            {
+              "article_code": "f923f2e4056843a9a9b87beb2aaa2f31",
+              "terms": [
+                "SUNOLD",
+                "1,000 SUN",
+                "2021-06-14"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "spot_completed",
+          "claim": "New spot SUN contract is confirmed; no futures timestamp is inferred.",
+          "evidence": [
+            {
+              "article_code": "bf95a72b803247ea86904ac16e13087d",
+              "terms": [
+                "SUNOLD",
+                "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S"
+              ]
+            }
+          ]
+        }
+      ],
+      "proposed_episodes": [
+        {
+          "underlying": "SUN old",
+          "proposed_vendor_asset_id": 6990,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "spot_migration"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_migration_boundary_unknown"
+          ]
+        },
+        {
+          "underlying": "SUN new",
+          "proposed_vendor_asset_id": 10529,
+          "effective_from": null,
+          "effective_to": null,
+          "interval_convention": "[from,to); null means UNKNOWN, not infinity",
+          "assertion_ids": [
+            "spot_migration",
+            "spot_completed"
+          ],
+          "start_assertion_id": null,
+          "end_assertion_id": null,
+          "underlying_tokens_per_price_unit": null,
+          "unit_assertion_id": null,
+          "unresolved": [
+            "historical_content_vintage_and_publication_availability",
+            "full_contract_lifecycle_and_specifications",
+            "vendor_identity_chain_contract_and_denomination_crosscheck",
+            "futures_migration_boundary_unknown"
+          ]
+        }
+      ],
+      "review_note": "Do not splice the futures series at a spot suspension or reopening timestamp."
+    }
+  ],
+  "interpretation": "Human-curated source-backed proposals; no historical join approval or causal availability certification."
+}
