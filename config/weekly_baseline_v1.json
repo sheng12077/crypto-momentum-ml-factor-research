@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "experiment": "001",
+  "stage": "development_calendar_and_coverage_only",
+  "timezone": "UTC",
+  "weekday": 0,
+  "feature_cutoff_hour": 0,
+  "decision_hour": 1,
+  "execution_window_hours": 1,
+  "horizon_days": 7,
+  "label_publication_lag_hours": 1,
+  "execution_proxy": "following_hour_quote_volume_divided_by_base_volume",
+  "target": "simple_forward_execution_proxy_price_return_before_costs_and_funding",
+  "development_start": "2021-01-01",
+  "sealed_oos_start": "2025-01-01",
+  "sealed_oos_end": "2026-11-01",
+  "rounds": [
+    {"name": "round_1", "train_start": "2021-01-01", "train_end": "2023-01-01", "validation_start": "2023-01-01", "validation_end": "2024-01-01"},
+    {"name": "round_2", "train_start": "2021-01-01", "train_end": "2024-01-01", "validation_start": "2024-01-01", "validation_end": "2025-01-01"}
+  ],
+  "coverage_diagnostic_minimum_names": 20,
+  "coverage_threshold_is_trading_approval": false,
+  "oos_access_enabled": false,
+  "performance_enabled": false
+}
