@@ -1,9 +1,21 @@
 # Project status
 
-Updated 2026-11-18. Current segment: docs/approved-research-split, based onb5a6f44.
+Updated 2026-11-18. Current segment: docs/weekly-research-sequence, based on419bbd0.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Approved weekly research sequence
+
+- User approved docs/WEEKLY_RESEARCH_SEQUENCE.md:one-week prediction/weekly
+  portfolio baseline,independent rank-buffer experiment,then position adjustment.
+  Exact label/clock remains pending;20/60/120 staged sizing is still a candidate.
+- Isolate buffer on the same schedule;daily monitoring is a separate frequency
+  comparison. Separate resizing turnover from membership changes. Later sizing
+  needs comparable exposure/risk;do not credit lower exposure as signal quality.
+- Literature anchors recorded with version limits. No performance/fit/OOS run.
+  This direction record is not the complete preregistration;fees,universe,label,
+  holdings,models,refit and numerical acceptance thresholds remain to resolve.
 
 ## Approved split and user-reported full build
 
@@ -15,8 +27,8 @@ paper/live explicitly deferred until after OOS review.
   66893 source partitions/244 legacy BNX hours. Ever-passing diagnostics787
   price/funding,338 assumed-Size four-factor,338 class-review-clear,0 strict.
   Not simultaneous tradable counts;readiness/strict Size vintage remainfalse.
-- No strategy performance/OOS inspection. Horizon,rebalance,refit and complete
-  experiment protocol still undecided;next discuss those choices and coverage.
+- No strategy performance/OOS inspection. Weekly baseline direction approved;
+  exact target/clock,refit and complete protocol remain pending.
 
 ## Latest daily-input implementation and handoff
 
@@ -157,15 +169,15 @@ paper/live explicitly deferred until after OOS review.
 
 - Candidates:momentum20/60/120,Size,funding,taker imbalance. Rank buffer accepted;
   SHAP required. Equal composite baseline/LightGBM challenger discussed; NLP later.
-- Labels,horizons,holdings,rebalance,buffer,costs,refit and acceptance gates NOT
-  frozen;7-day horizon is a candidate,not selected. Nautilus proposed,not installed.
+- Weekly baseline horizon/schedule approved;exact labels/clock,holdings,buffer,
+  costs,refit and acceptance gates NOT frozen. Nautilus proposed,not installed.
 - User reports no2025-26 performance tuning. Final OOS2025-01..2026-10 calendar
   approved and sealed;full protocol not frozen. Liu/Tsyvinski2021 note docs/literature/liu_tsyvinski_2021.md;
   appendix absent. Conditional means are not executable cross-sectional spreads.
 
 ## Next bounded segment
 
-1. Discuss target/horizon,rebalance and boundary-label handling against the approved
+1. Discuss exact weekly target/clock and boundary-label handling against the approved
    split. Inspect daily coverage only as needed;no strategy/OOS performance.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
