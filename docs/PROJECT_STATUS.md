@@ -1,9 +1,30 @@
 # Project status
 
-Updated 2026-11-18. Current segment: infra/full-universe-retention-screen, registered
-on main at9226252; based ondde16bb. Target main via no-ff merge; inspect Git for
+Updated 2026-11-18. Current segment: infra/daily-episode-inputs, registered
+on main at93cf6e1; based onfcfcacf. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Latest daily-input implementation and handoff
+
+- docs/DAILY_RESEARCH_INPUTS.md has the full WSL command and expected manifest;
+  scripts/build_daily_inputs.py + daily_input_rules.py build new immutable daily
+  sidecars. No factor returns/labels/fit/PnL, downloads or OOS performance viewed.
+- Fixed five-identifier pilot passed:759 daily rows,102 source partitions verified,
+  244 legacy BNX hours consumed;267 post-close archive hours excluded. Initial
+  17.328s;verified resume11.031s/five hits. Source releases remain unchanged.
+- Per-row episode resets,24-hour completeness,121-close history vs20/60/120
+  endpoints,strictly earlier same-episode funding and scoped policy enforced.
+  Unknown lifecycle/settlement accounting remain unresolved;no final universe.
+- Size uses separately labelled diagnostic snapshot-end+7d availability/7d expiry.
+  Publication/revision vintage is unproven;strict eligibility/readiness stayfalse.
+  Pilot distinct candidates:price/funding3,assumed-Size four-factor2,strict0.
+  Current classifications are ex-post annotations,not a causal universe.
+- 111 tests pass;new builder/rules/tests Ruff lint/format pass. Native3.11/Arrow11;
+  configured project3.13. Full daily build NOT run;hand off to user WSL Conda.
+  Expected924 IDs/1968120 rows/66893 source partitions,not924 tradable assets.
+- Next:verify full manifest,then discuss/freeze chronological splits and label
+  overlap with the user before strategy experiments. No split selected here.
 
 ## Latest completed full-universe retention screen
 
@@ -131,9 +152,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Use the full924 review queue/named405 Size-month leads to build row-level,
-   episode-aware inputs/daily qualification. Bind reviewed exclusions into a NEW
-   version;reconcile BNX legacy hours there without overwriting old releases.
+1. User runs the full daily build from docs/DAILY_RESEARCH_INPUTS.md;verify final
+   manifest and measured daily diagnostic counts. Implementation/pilot complete.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
@@ -141,6 +161,6 @@ paper/live explicitly deferred until after OOS review.
    strategy/OOS protocol before simulation/development experiments. Final OOS only
    after final version is frozen;paper/live discussion after OOS review.
 
-User need not run commands for this completed follow-up. Never run Windows and
+User full-build command is prepared;runtime not measured. Never run Windows and
 WSL writers concurrently; local locks do not coordinate hosts. No secrets/datasets
 committed; reusable tools remain in repo.
