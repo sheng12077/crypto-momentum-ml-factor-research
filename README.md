@@ -57,3 +57,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Completed early raw integrity, gap and funding audit](docs/EARLY_HISTORY_AUDIT.md)
 
 - [QTUM funding supplement and DEFI/LEND episode checks](docs/EARLY_CASES_REVIEW.md)
+
+- [Completed2020 observation release and daily panel](docs/EARLY_RESEARCH_RELEASE.md)
