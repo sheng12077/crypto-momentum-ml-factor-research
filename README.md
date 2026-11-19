@@ -63,3 +63,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Completed2020 Size inventory and named identity gaps](docs/EARLY_SIZE_INVENTORY.md)
 
 - [Early Size identity decisions and unresolved source gates](docs/EARLY_SIZE_IDENTITIES.md)
+
+- [IOTA alias recovery and UNI futures launch supplement](docs/EARLY_IDENTITY_FOLLOWUP.md)

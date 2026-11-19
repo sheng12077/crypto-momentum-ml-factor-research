@@ -1,12 +1,35 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-size-identities, registered
-on main at144143f. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Current segment: research/early-identity-followup, registered
+on main atdff917a. Inspect Git for final implementation/no-ff merge hashes.
 Completed identity implementation7e1c3ff,merged main5c44dca.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed IOTA and UNI targeted supplement
+
+- docs/EARLY_IDENTITY_FOLLOWUP.md;tool followup_early_identities.py.
+  Four fixed sources,4newHTTP,3captured/96469bytes;Binance monthly sourceHTTP202
+  frozen. No denial bypass/retry,purchases,canonical joins or OOS performance.
+- IOTA1720 historical54snapshots plus official Binance unit CMS/Foundation
+  nomenclature pass identity gates.29 named candidate asset-week gaps now have
+  a supported alias,not materialized Size joins. Cap scale1;no future supply edits.
+- UNI original futures CMS verifies2020Sep18 07UTC,USDT collateral.7083contract
+  and official origin/spot name corroborate;4113UNI COIN rejected. Monthly venue
+  cross-reference still missing,so registered combined identity gate staysfalse.
+- Three identity-only rules pass:IOTA,LEND,AAVE. Remaining833literal leads not
+  independently approved. No full specs/cashflows/Size vintage/strict eligibility.
+- Output early_identity_followup_20261119_v002/review_002;review_001's legacyHTML
+  parser failure retained. Original capture binding retained,new review binds
+  parser revision. Prior source captures/reviews and all old releases unchanged.
+  Pre-capture namespace stop retained:CRLF conversion of prior script restored
+  to exact recorded LF hash. Git attributes now preserve scripts/config LF.
+-178tests(7new),newfiles Ruff pass;frozen-source replay0HTTP. No user command.
+- Next bounded task:remaining literal identity leads by qualified asset-weeks;
+  UNI source remainspending. Then separately register a versioned hypothetical
+  Size join;do not claim the entire broad candidate universe is eligible.
 
 ## User preference: retain as many defensible assets as possible
 
