@@ -1,11 +1,35 @@
 # Project status
 
-Updated 2026-11-19. Current segment: infra/early-research-release, registered
-on main at37f3cf3. Inspect Git for final no-ff merge hash.
+Updated 2026-11-19. Current segment: research/early-size-inventory, registered
+on main at709ce35. Inspect Git for final no-ff merge hash.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed2020 Size coverage inventory
+
+- docs/EARLY_SIZE_INVENTORY.md;tool inventory_early_size.py. Captured54 dates
+  (52 Sundays+2019Dec22/29),10800 first-page metadata rows/427 vendorIDs.
+  Public data only;53new HTTP total,25042079 raw bytes;full104.61s/errors[].
+  Pilot4dates9.906s;resume7.703s/4hits/0HTTP;calendar+Dec27 source reused.
+- All81 early identifiers/52 decision dates inspected with verified daily flags.
+  74 have literal historical leads,approvedjoins0.862 price-history candidate
+  asset-weeks,833 unique literal cap leads(96.6357%);29 gaps allIOTAUSDT.
+  Weekly leads min0/median23/max39;29weeks>=20.17weeks havezero price-history
+  candidates;first2020May4=3leads,first20 June15,lastDec28=39of40.
+- IOTA namedMIOTA/CMC1720 in all54 snapshots,name-only proposal;needsidentity/unit
+  verification,no automatic cap scaling. UNI4113=UNI COIN vs7083=Uniswap;
+  AAVE7278 vs earlier nameAave/tickerLEND2239 require episode boundaries.
+- Other missing literal stems1INCH/AXS/BEL/FLM/SKL havezero121-close weeks in2020;
+  first-page absence not nonexistence or proof paid vendor coverage. DEFI index
+  excluded. Global cross-date ID changes flagged for review,not future-based masks.
+- No purchase justified from post-warm-up gaps alone;first resolve identity,
+  then versioned hypothetical7d-lag/7d-expiry join. Publication/vintage unproven,
+  strict eligibilityfalse. No factors/returns/labels/fits/PnL/OOS or olddata edits.
+- Output early_size_inventory_20261119/full/{weekly_coverage,asset_review_queue,
+  summary}.json and captured metadata.164tests(7new),newfiles Ruff lint/format
+  pass;output hashes/counts independently reconciled. No user command needed.
 
 ## Completed separate2020 research release
 
@@ -27,8 +51,8 @@ paper/live explicitly deferred until after OOS review.
   pass.157 tests (9new);new files Ruff lint/format pass;native3.11/Arrow11.
 - Historical Size,publication/event-price/cashflow/strict eligibility unproven.
   2019 samples not integrated;old2021 releases/warm-up flags,calendar and approved
-  splits unchanged. No user command needed. Next early Size/identity and remaining
-  2019 coverage,then versioned combined-history plan before performance.
+  splits unchanged. Early Size inventory subsequently completed above;identity
+  checks/join and remaining2019 coverage/combined-history plan still pending.
 
 ## Completed targeted checks with QTUM source gate unresolved
 
@@ -303,8 +327,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Extend earlier historical Size/identity coverage and bound remaining2019
-   feasibility;plan combined-history release without changing sealed OOS.
+1. Verify IOTA/MIOTA and UNI/AAVE/LEND identity episodes,then versioned early Size
+   join;consider paid data only from residual qualified gaps. OOS remains sealed.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
