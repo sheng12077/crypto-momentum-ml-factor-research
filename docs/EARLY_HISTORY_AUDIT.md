@@ -69,7 +69,8 @@ Ignored root:`data/interim/usdm_universe/early_history_audit_20261119/`:
 Log:`reports/acquisition/early_history_audit_full_20261119.log`.
 Read summaries with `python scripts/audit_history_extension.py summary`.
 
-Next bounded work:recover/qualify QTUM leading funding gap and review DEFI/LEND
-episodes,then versioned early normalization and2019 source-coverage work. Historical
+Targeted QTUM recovery and DEFI/LEND checks subsequently completed with one
+source capture gate unresolved;see [EARLY_CASES_REVIEW.md](EARLY_CASES_REVIEW.md).
+Next:versioned early normalization and2019 source-coverage work. Historical
 Size,publication/vintage,terminal accounting and final eligible pool remain
 unresolved. No claim that the full requested2019 history has been acquired.

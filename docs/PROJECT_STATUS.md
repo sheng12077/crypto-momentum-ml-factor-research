@@ -1,11 +1,35 @@
 # Project status
 
-Updated 2026-11-19. Current segment: infra/early-history-audit, registered
-on main atbc3383a;based ona59df97. Inspect Git for final no-ff merge hash.
+Updated 2026-11-19. Current segment: infra/early-funding-cases, registered
+on main at8df66d7. Inspect Git for final no-ff merge hash.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed targeted checks with QTUM source gate unresolved
+
+- docs/EARLY_CASES_REVIEW.md;tool check_early_cases.py/config early_cases_20261119.
+  Four fixed official URLs:3 captured,QTUM launch pageHTTP202;no alternatehosts
+  or retries. Initial capture/reviewsuccess=false preserved. review_002 freezes
+  terminal failure and binds source hashes;two reruns0HTTP. No user command now.
+- QTUM query32 observations inclMarch1 sentinel;31 February rows recovered,
+  exact Decimal March1 rate matches checksum-verified archive. All31 lack mark
+  price and API-reported interval. Before proposed launch2 events:Feb19 16:00,
+  Feb20 00:00. No inferred8h/cashflow;exact launch clause only web-reviewed,
+  local capture unverified. Summary staysfalse for that outstanding source gate.
+- Official CMS verifies DEFI composite index/not separate token,launchAug28
+  2020 07UTC.3 earlier funding events quarantined from live-payment inference;
+  cannot join a same-ticker standalone token Size. Source rawtext/hash preserved.
+- Official CMS verifies LEND futures settlementOct10 2020 00UTC,AAVE futures
+  launchOct16 07UTC;November zero-volume artifacts post-settlement. Retain prior
+  LEND history separately;100:1 spot swap does not splice futures prices.
+- Two declarative early-window decisions stored,not executable masks or applied
+  to old releases. Existing2021--2026 release/calendar/training/OOS unchanged.
+  Publication/vintage,funding cashflows,exact event prices/readiness stillfalse.
+- 148 tests pass (7new),new files Ruff lint/format pass. No returns/fits/PnL/OOS.
+  Next versioned early normalization/masks,then Size/identity/2019 coverage;
+  preserve unsupported QTUM launch capture and nullable rate interval/mark fields.
 
 ## Completed early RAW download and independent audit
 
@@ -27,8 +51,8 @@ paper/live explicitly deferred until after OOS review.
   stayfalse. No returns/fits/PnL/OOS inspection,HTTP or source overwrites.
 - Tool audit_history_extension.py;ignored early_history_audit_20261119/full/.
   Pilot72 files2.313s,resume72hits2.516s. 141 tests pass (7new),new files Ruff
-  lint/format pass. Next bounded QTUM recovery/DEFI+LEND review,then normalization
-  and earlier Size/identity/2019 coverage. No user command needed for this audit.
+  lint/format pass. Targeted checks subsequently completed above;normalization
+  and earlier Size/identity/2019 coverage pending. No user command for this audit.
 
 ## Early-history/funding extension before portfolio experiments
 
@@ -256,8 +280,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Target QTUM2020-02 funding recovery and DEFI/LEND episode review,then
-   normalize/reconcile early funding and Size/identity;portfolio work held.
+1. Versioned early normalization with observed QTUM supplement and nullable
+   interval/mark,DEFI/LEND episode masks;preserve source gates. Portfolio held.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
