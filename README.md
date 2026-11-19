@@ -69,3 +69,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [First remaining early identity batch and per-case decisions](docs/EARLY_IDENTITY_BATCH1.md)
 
 - [Second early identity batch and cumulative coverage](docs/EARLY_IDENTITY_BATCH2.md)
+
+- [Third early identity batch, token and migration checks](docs/EARLY_IDENTITY_BATCH3.md)
