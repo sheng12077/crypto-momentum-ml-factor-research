@@ -1,11 +1,34 @@
 # Project status
 
-Updated 2026-11-19. Current segment: infra/early-funding-cases, registered
-on main at8df66d7. Inspect Git for final no-ff merge hash.
+Updated 2026-11-19. Current segment: infra/early-research-release, registered
+on main at37f3cf3. Inspect Git for final no-ff merge hash.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed separate2020 research release
+
+- docs/EARLY_RESEARCH_RELEASE.md;tools build_early_research.py/early_research_rules.py.
+  Shared canonical/binance_um_early_research/v20261119_001/ built85.578s/errors[].
+  81 identifiers,1526 verified source partitions,1527 normalized partitions:
+  trade344043/mark346321/funding43058 rows;QTUM supplement31;daily29646 rows.
+- Each daily/{symbol}.parquet has366 data days;raw compatible observations have
+  source metadata/decimals and extra typed flags. Empty-day prices/volume sums
+  null;no price fills,factor values,forward labels,models,PnL or OOS performance.
+  Frozen924 inventory retained as file-presence annotations,not924 daily series.
+- QTUM31 missing intervals/event marks remainnull;pre-proposed-launch2 flagged,
+  HTTP202 source gate unresolved. DEFI composite-index flag;LEND settlement and
+  separate AAVE launch applied only here. Raw quarantinecounts trade753/mark1299/
+  funding6;rows retained,not automatically considered unpaid. Unknown origins kept.
+- Source verification,atomic roundtrip outputs,hash-bound per-symbol resume.
+  Six-name pilot143 sources/144 outputs/2196 daily rows16.625s;resume6hits11.109s.
+  Real observation reader integration and full output hash/count/schema checks
+  pass.157 tests (9new);new files Ruff lint/format pass;native3.11/Arrow11.
+- Historical Size,publication/event-price/cashflow/strict eligibility unproven.
+  2019 samples not integrated;old2021 releases/warm-up flags,calendar and approved
+  splits unchanged. No user command needed. Next early Size/identity and remaining
+  2019 coverage,then versioned combined-history plan before performance.
 
 ## Completed targeted checks with QTUM source gate unresolved
 
@@ -28,8 +51,8 @@ paper/live explicitly deferred until after OOS review.
   to old releases. Existing2021--2026 release/calendar/training/OOS unchanged.
   Publication/vintage,funding cashflows,exact event prices/readiness stillfalse.
 - 148 tests pass (7new),new files Ruff lint/format pass. No returns/fits/PnL/OOS.
-  Next versioned early normalization/masks,then Size/identity/2019 coverage;
-  preserve unsupported QTUM launch capture and nullable rate interval/mark fields.
+  Early normalization/masks subsequently completed above;Size/identity/2019
+  coverage pending. Unsupported QTUM capture/nullable fields preserved.
 
 ## Completed early RAW download and independent audit
 
@@ -280,8 +303,8 @@ paper/live explicitly deferred until after OOS review.
 
 ## Next bounded segment
 
-1. Versioned early normalization with observed QTUM supplement and nullable
-   interval/mark,DEFI/LEND episode masks;preserve source gates. Portfolio held.
+1. Extend earlier historical Size/identity coverage and bound remaining2019
+   feasibility;plan combined-history release without changing sealed OOS.
 2. Measure Size availability in a separately justified historical universe; decide
    missingness treatment or paid data from actual deficits. Do not restart open-
    ended KNC/DYDX searches without specific new evidence or select by future data.
