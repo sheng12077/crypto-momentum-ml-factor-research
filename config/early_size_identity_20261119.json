@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "scope_from": "2020-01-01T00:00:00+00:00",
+  "scope_to_exclusive": "2021-01-01T00:00:00+00:00",
+  "sources": [
+    {"id": "cmc_iota", "url": "https://coinmarketcap.com/currencies/iota/"},
+    {"id": "cmc_uni", "url": "https://coinmarketcap.com/currencies/uniswap/"},
+    {"id": "cmc_aave", "url": "https://coinmarketcap.com/currencies/aave/"},
+    {"id": "cmc_other_uni", "url": "https://coinmarketcap.com/currencies/uni-coin/"},
+    {"id": "iota_project", "url": "https://www.binance.com/en/research/projects/iota"},
+    {"id": "iota_units", "url": "https://www.binance.com/en/support/announcement/detail/115002193731"},
+    {"id": "uni_project", "url": "https://www.binance.com/en/research/projects/uniswap"},
+    {"id": "uni_origin", "url": "https://blog.uniswap.org/uni"},
+    {"id": "uni_spot", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=64d3dbe17d114c24b6c0007f48459f5f"},
+    {"id": "aave_origin", "url": "https://raw.githubusercontent.com/aave/aavenomics/main/README.md"},
+    {"id": "lend_settlement", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=17595222999545348c8acdd5dc41c00a", "reuse_early_case": true}
+  ],
+  "expected_provider_ids": {"cmc_iota": 1720, "cmc_uni": 7083, "cmc_aave": 7278, "cmc_other_uni": 4113},
+  "expected_uni_ethereum_contract": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+  "expected_aave_ethereum_contract": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9"
+}
