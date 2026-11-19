@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import copy
+import json
 import sys
 import tempfile
 import unittest
@@ -25,6 +27,7 @@ def item(symbol="BTCUSDT", weeks=10):
 class UnifiedIdentityTests(unittest.TestCase):
     def test_unfinished_template_cannot_pass_with_empty_terms(self):
         asset = {
+            "instrument_id": "TOKUSDT",
             "provider": "s",
             "name_source": "s",
             "future_source": "s",
@@ -184,3 +187,127 @@ class UnifiedIdentityTests(unittest.TestCase):
         plan["sources"].append({"id": "../unsafe", "url": "https://www.binance.com/"})
         with self.assertRaisesRegex(ValueError, "unsafe"):
             unified.source_specs(plan)
+
+    def remaining_plan(self):
+        return json.loads(unified.DEFAULT.read_text())
+
+    def test_registered_scope_and_budget(self):
+        plan = self.remaining_plan()["additional_plan"]
+        unified.validate_extra_plan(plan)
+        self.assertEqual(len(plan["assets"]), 18)
+        self.assertEqual(len(plan["sources"]), 59)
+        self.assertEqual(len({a["instrument_id"] for a in plan["assets"]}), 18)
+        self.assertTrue(all("etherscan.io" in s.get("url", "") for s in plan["sources"][-3:]))
+        self.assertFalse(any("etherscan.io" in s.get("url", "") for s in plan["sources"][:-3]))
+        duplicate = copy.deepcopy(plan)
+        duplicate["assets"].append(duplicate["assets"][0])
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            unified.validate_extra_plan(duplicate)
+
+    def test_pilot_prunes_cases_and_http_dependencies(self):
+        plan = self.remaining_plan()
+        extra = unified.select_extra_plan(plan["additional_plan"], set(plan["pilot_symbols"]))
+        self.assertEqual({a["symbol"] for a in extra["assets"]}, {"ALGO", "KNC", "DOT"})
+        labels = {s["id"] for s in extra["sources"]}
+        self.assertIn("knc_migration", labels)
+        self.assertIn("dot_superseded", labels)
+        self.assertNotIn("cmc_BTC", labels)
+        self.assertNotIn("contract_SXP", labels)
+        self.assertEqual(len(plan["additional_plan"]["assets"]), 18)
+        # Only the dependency subset reaches the downloader, even with fetch enabled.
+        downloader = Mock(requests=0)
+        downloader.get.return_value = (b"ok", {}, False)
+        with (
+            tempfile.TemporaryDirectory() as folder,
+            patch.object(unified, "Downloader", return_value=downloader),
+        ):
+            unified.additional_sources(extra, Path(folder), True, {}, set())
+        requested = {call.args[1] for call in downloader.get.call_args_list}
+        self.assertEqual(requested, {s["url"] for s in unified.source_specs(extra).values()})
+
+    def test_legacy_alias_never_accepts_new_knc_id(self):
+        a = next(
+            a for a in self.remaining_plan()["additional_plan"]["assets"] if a["symbol"] == "KNC"
+        )
+        old = {"id": 1982, "symbol": "KNCL", "name": "Kyber Network Crystal Legacy"}
+        self.assertTrue(unified.provider_labels_match(a, old))
+        self.assertFalse(unified.provider_labels_match(a, {**old, "id": 9444}))
+        self.assertFalse(unified.provider_labels_match(a, {**old, "symbol": "OTHER"}))
+        self.assertEqual(a["symbol"], "KNC")
+
+    def test_symbol_alias_requires_migration_assertion(self):
+        extra = self.remaining_plan()["additional_plan"]
+        a = next(a for a in extra["assets"] if a["symbol"] == "KNC")
+        a["extra_assertions"] = []
+        with self.assertRaisesRegex(ValueError, "migration gate"):
+            unified.validate_extra_plan(extra)
+
+    def test_missing_migration_or_wrong_contract_keeps_legacy_pending(self):
+        a = next(
+            a for a in self.remaining_plan()["additional_plan"]["assets"] if a["symbol"] == "KNC"
+        )
+        current = {
+            "id": 1982,
+            "symbol": "KNCL",
+            "name": "Kyber Network Crystal Legacy",
+            "contracts": [],
+        }
+
+        def terms(label, *args):
+            return label != "knc_migration", {}
+
+        with (
+            patch.object(unified.batch, "historical_check", return_value=(True, {})),
+            patch.object(unified.identity, "provider", return_value=current),
+            patch.object(unified.batch, "source_terms", side_effect=terms),
+        ):
+            result, _ = unified.evaluate_asset(
+                a,
+                {a["provider"]: (b"",)},
+                {},
+                [],
+                {a["instrument_id"]: {}},
+                "2021-01-01T00:00:00+00:00",
+                True,
+            )
+        self.assertFalse(result["size_identity_join_allowed"])
+        self.assertIn("provider_identity", result["pending_gates"])
+        self.assertIn("token_contract", result["pending_gates"])
+
+    def test_delayed_dot_excludes_original_launch_and_stop_boundary(self):
+        a = next(
+            a for a in self.remaining_plan()["additional_plan"]["assets"] if a["symbol"] == "DOT"
+        )
+        dates = [
+            "2020-08-20T07:00:00+00:00",
+            "2020-08-22T06:59:59+00:00",
+            "2020-08-22T07:00:00+00:00",
+            "2021-01-01T00:00:00+00:00",
+        ]
+        panel = {
+            unified.datetime.fromisoformat(d).timestamp() * 1000: {
+                "price_history_diagnostic_candidate": True
+            }
+            for d in dates
+        }
+        with (
+            patch.object(unified.batch, "historical_check", return_value=(True, {})),
+            patch.object(unified.batch, "source_terms", return_value=(True, {})),
+        ):
+            result, _ = unified.evaluate_asset(
+                a, {}, {}, [], {a["instrument_id"]: panel}, "2021-01-01T00:00:00+00:00", True
+            )
+        self.assertEqual(result["price_history_candidate_weeks_in_scope"], 1)
+
+    def test_replacement_hash_mismatch_is_rejected(self):
+        registry = {}
+        old = {"instrument_id": "BTCUSDT", "size_identity_join_allowed": False}
+        unified.register_rule(registry, old, "original")
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            unified.register_rule(
+                registry,
+                old,
+                "new",
+                {"replaces_rule_sha256": "wrong", "replacement_reason": "new evidence"},
+            )
+        self.assertEqual(registry["BTCUSDT"]["provenance"], "original")

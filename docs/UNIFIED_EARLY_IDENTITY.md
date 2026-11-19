@@ -1,4 +1,91 @@
-# One-command processing of all81 early identifiers
+# Unified early identity processing: current command
+
+Remaining-case protocol registered on main at4de60fe, before implementation
+and acquisition: REMAINING_EARLY_IDENTITY_PROTOCOL.md. Scope remains the81
+early contracts, not the924-ID ledger.
+
+In the WSL momentum_strategy directory:
+
+```bash
+conda activate funding-strategy
+python scripts/run_early_identity.py run --fetch --version v20261119_006
+python scripts/run_early_identity.py summary --version v20261119_006
+```
+
+The default is now config/early_identity_remaining_003_20261119.json:18 additional
+cases,59 explicit public URLs. Existing successful captures are reused by URL;
+failed captures remain frozen. Allow approximately3–8minutes for the first full
+acquisition, depending on network latency; repeated transport failures may take
+longer. Resume using the same command. Use one writer/host at a time.
+
+Small pilot: --pilot selects ALGO/KNC/DOT and prunes other additional cases AND
+their source dependencies before HTTP. Shared historical inputs and all frozen
+old rules are still verified in full. No recursive batch runners.
+
+Cases:ALGO,ZIL,KNC,ZRX,COMP,OMG,DOGE,SXP,BAND,KAVA,RLC,MKR,SNX,WAVES,DOT,
+plus explicitly hashed replacements for BTC/BCH/ETC. Superseded rules remain.
+The source plan lists assertions to test, not18 pre-approved mappings.
+
+- KNC: ID1982/legacy address only. Current KNCL alias requires a separate Kyber
+  migration assertion; new KNC ID9444 is rejected. Historical symbol stays KNC.
+- SXP: historical Swipe ERC20 plus later Solar/migration evidence. Missing old
+  Ethereum metadata keeps it pending; no historical native-phase inference.
+- DOT: superseding August22 scope, not original August20; separate redenomination
+  evidence, no cap scaling or price/history splice.
+- BAND: conservative August4 scope from the official monthly report, not an
+  exact listing timestamp. Venue native/token phase remains unproven.
+- BCH: still ends2020-11-15 12:00 UTC exclusively; no post-fork identity repair.
+- ERC20 addresses require independent project sources or direct explorer token
+  pages with additional token-name/symbol assertions for OMG/SXP/MKR. Endpoints
+  must actually return the required content; a registered URL is not proof.
+
+New ignored output: data/interim/early_identity_all/v20261119_006/full/.
+Files:asset_review.json,asset_review.csv,missing_evidence.json,evidence_checks.json,
+additional_sources.json,run_config.json,summary.json. Log:
+reports/acquisition/early_identity_all_v20261119_006.log. Summary verifies hashes.
+
+Full success means success=true,full_scope=true,identifiers_processed=81,
+additional_cases_evaluated=18,additional_sources_selected=59,
+common_input_validation_passes=1,old_batch_runners_invoked=0. Compare supported
+history identifiers against baseline22; do not assume40. Check source states and
+pending gates separately. all_identity_checks_complete may remain false.
+
+No automatic source substitutions or gate weakening. Changed plan/code needs a
+new output version. Acquisition uses a32MiB total budget and existing response
+limits/pacing/bounded retries;HTTP403/429 pauses subsequent requests. No keys or
+purchases. Identity corroboration does not prove Size publication vintage,
+contract specifications, historical eligibility, or paid funding. No canonical
+joins, labels, fit, PnL, or OOS access. Current identity sources are retrospective
+evidence, not historical features. QTUM/IOST limitations remain.
+
+v004 pilot obtained12 sources:ALGO passed;KNC date spelling and DOT ratio
+wording failed literal clauses. The preserved source bodies say "20th April 2021"
+and "redenominated by a factor of 100". v005 registers those equivalent clauses
+and more explicit migration
+wording;no date,ratio,scope,address,ID,or acceptance requirement is relaxed.
+Original v004 plan/proofs remain. Twelve hash-verified captures were copied to
+the new cache,with predecessor source-manifest hash recorded in the new plan.
+
+v005 cache-only pilot passed all3 cases in60.156s,zeroHTTP. Final v006 changes
+only source order:the three direct explorer endpoints are last,so an explorer
+access denial cannot preempt all venue/project checks. Assertions are unchanged;
+the verified captures are reused. No denial has been observed in this pilot.
+Final v006 pilot:3of3 identity rules passed,23in-scope candidateweeks,46.656s,
+zeroHTTP;all five report hashes identical to v005. Final215tests and changed-file
+Ruff lint/format checks passed. This is a pilot,not the full18-source-case result.
+Separate v006_offline full smoke:81records,18additional cases,59sources,
+45.375s,zeroHTTP. All3predecessor replacements accepted;baseline22of40supported
+retained. Six old captures reused,53notrequested. This is a processing check;
+use v006 for full acquisition,not the deliberately frozen offline version.
+
+## Archived v003 baseline documentation
+
+The sections below describe the completed v003 baseline and its original empty
+additional plan. They do not describe the current default. Its old outputs and
+config remain intact. Old code-bound versions cannot be rerun with changed code;
+their summary hashes can still be verified.
+
+# One-command processing of all81 early identifiers (v003 archive)
 
 Registered on main at `544965e`;implementation branch:
 `infra/unified-early-identity`. Scope is the81 early contracts,not the924-ID ledger.
