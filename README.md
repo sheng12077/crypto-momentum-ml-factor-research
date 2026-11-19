@@ -65,3 +65,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Early Size identity decisions and unresolved source gates](docs/EARLY_SIZE_IDENTITIES.md)
 
 - [IOTA alias recovery and UNI futures launch supplement](docs/EARLY_IDENTITY_FOLLOWUP.md)
+
+- [First remaining early identity batch and per-case decisions](docs/EARLY_IDENTITY_BATCH1.md)

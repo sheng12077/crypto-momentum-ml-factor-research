@@ -1,12 +1,36 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-identity-followup, registered
-on main atdff917a. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Current segment: research/early-identity-batch1, registered
+on main at1cb44f7. Inspect Git for final implementation/no-ff merge hashes.
+Prior supplement implementationf2a247a,merged mainae2a518.
 Completed identity implementation7e1c3ff,merged main5c44dca.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed first remaining early identity batch
+
+- docs/EARLY_IDENTITY_BATCH1.md;tool check_early_identity_batch.py. Reverified54
+  historical raw/parsed snapshots and all81 daily-panel hashes;recomputed full
+  inventory equals prior queue. First8 by qualified weeks total273candidateweeks.
+- Five identity-only mappings corroborated:ETH1027,EOS1765,LTC2,XRP52,LINK1975;
+ 170in-scope price-history candidate asset-weeks. LINK exact Ethereum address
+  agrees between CMC/official Chainlink docs. No canonical joins or strict eligibility.
+- BTC/BCH pending:designated official futures-overview pageHTTP202. ETC pending:
+  upgrade title has fullname,body lacks it;body-only gate preserved. BCH allowed
+  scope would end2020Nov15 12UTC exclusive;post-fork interval not approved.
+-21newHTTP,20raw captures,6980389bytes. Capturecomplete=false retained. Initial
+  review_001 kept;review_002 corrects only inline-parenthesis whitespace for LINK.
+  No title/related-article fallback,no changed thresholds,no terminal retry.
+- All81queue entries retained.40have2020price-history weeks;IOTA plus five this
+  batch corroborated;34still pending(3reviewed+31notthisbatch). LEND/AAVE separate,
+  zeroqualified120-day2020windows. These counts are not tradable universe counts.
+-185tests(7new),newfiles Ruffpass;frozen-source replay0HTTP. Size publication/
+  vintage,fullspecs,fundingcashflows unverified;OOSsealed,noPnL/factors/fit.
+- Next bounded batch by coverage:TRX,XLM,ADA,ATOM,DASH,XMR,XTZ,ZEC. Retain named
+  BTC/BCH/ETC and UNI gaps for separately registered evidence follow-up;then a
+  separately versioned hypothetical Size join,not automatic broad approval.
 
 ## Completed IOTA and UNI targeted supplement
 
