@@ -1,0 +1,281 @@
+{
+  "schema": 1,
+  "batch_id": "early_identity_batch2_20261119",
+  "expected_sources": 24,
+  "max_raw_bytes": 33554432,
+  "scope_end_exclusive": "2021-01-01T00:00:00+00:00",
+  "previous_review": "data/interim/early_identity_batch1_20261119/review_002",
+  "prior_cases": [
+    "IOTAUSDT",
+    "LENDUSDT",
+    "AAVEUSDT"
+  ],
+  "sources": [
+    {
+      "id": "cmc_trx",
+      "url": "https://coinmarketcap.com/currencies/tron/"
+    },
+    {
+      "id": "future_trx",
+      "article_code": "360038407872"
+    },
+    {
+      "id": "name_trx",
+      "article_code": "115002485371"
+    },
+    {
+      "id": "cmc_xlm",
+      "url": "https://coinmarketcap.com/currencies/stellar/"
+    },
+    {
+      "id": "future_xlm",
+      "article_code": "360038969011"
+    },
+    {
+      "id": "name_xlm",
+      "article_code": "115003322791"
+    },
+    {
+      "id": "cmc_ada",
+      "url": "https://coinmarketcap.com/currencies/cardano/"
+    },
+    {
+      "id": "future_ada",
+      "article_code": "360039355391"
+    },
+    {
+      "id": "name_ada",
+      "article_code": "115003098851"
+    },
+    {
+      "id": "cmc_atom",
+      "url": "https://coinmarketcap.com/currencies/cosmos/"
+    },
+    {
+      "id": "future_atom",
+      "article_code": "360039562671"
+    },
+    {
+      "id": "name_atom",
+      "article_code": "360037516831"
+    },
+    {
+      "id": "cmc_dash",
+      "url": "https://coinmarketcap.com/currencies/dash/"
+    },
+    {
+      "id": "future_dash",
+      "article_code": "360039045092"
+    },
+    {
+      "id": "name_dash",
+      "article_code": "95f970d5cc2c4dcfb48a6d522b507b45"
+    },
+    {
+      "id": "cmc_xmr",
+      "url": "https://coinmarketcap.com/currencies/monero/"
+    },
+    {
+      "id": "future_xmr",
+      "article_code": "360039429631"
+    },
+    {
+      "id": "name_xmr",
+      "article_code": "485c2c5a5f044875a7423f0af5c7e5ba"
+    },
+    {
+      "id": "cmc_xtz",
+      "url": "https://coinmarketcap.com/currencies/tezos/"
+    },
+    {
+      "id": "future_xtz",
+      "article_code": "360039529911"
+    },
+    {
+      "id": "name_xtz",
+      "article_code": "360033775612"
+    },
+    {
+      "id": "cmc_zec",
+      "url": "https://coinmarketcap.com/currencies/zcash/"
+    },
+    {
+      "id": "future_zec",
+      "article_code": "360039081212"
+    },
+    {
+      "id": "name_zec",
+      "article_code": "115002739912"
+    }
+  ],
+  "assets": [
+    {
+      "instrument_id": "TRXUSDT",
+      "vendor_asset_id": 1958,
+      "name": "TRON",
+      "symbol": "TRX",
+      "provider": "cmc_trx",
+      "name_source": "name_trx",
+      "name_terms": [
+        "Tron (TRX)"
+      ],
+      "future_source": "future_trx",
+      "future_terms": [
+        "TRX/USDT",
+        "perpetual contract",
+        "2020/01/15 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-01-15T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "XLMUSDT",
+      "vendor_asset_id": 512,
+      "name": "Stellar",
+      "symbol": "XLM",
+      "provider": "cmc_xlm",
+      "name_source": "name_xlm",
+      "name_terms": [
+        "Stellar Lumens (XLM)"
+      ],
+      "future_source": "future_xlm",
+      "future_terms": [
+        "XLM/USDT",
+        "perpetual contract",
+        "2020/01/20 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-01-20T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "historical_names": [
+        "Stellar",
+        "Stellar Lumens"
+      ],
+      "provider_names": [
+        "Stellar",
+        "Stellar Lumens"
+      ]
+    },
+    {
+      "instrument_id": "ADAUSDT",
+      "vendor_asset_id": 2010,
+      "name": "Cardano",
+      "symbol": "ADA",
+      "provider": "cmc_ada",
+      "name_source": "name_ada",
+      "name_terms": [
+        "Cardano (ADA)"
+      ],
+      "future_source": "future_ada",
+      "future_terms": [
+        "ADA/USDT",
+        "perpetual contract",
+        "2020/01/31 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-01-31T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "ATOMUSDT",
+      "vendor_asset_id": 3794,
+      "name": "Cosmos",
+      "symbol": "ATOM",
+      "provider": "cmc_atom",
+      "name_source": "name_atom",
+      "name_terms": [
+        "Cosmos (ATOM)"
+      ],
+      "future_source": "future_atom",
+      "future_terms": [
+        "ATOM/USDT",
+        "perpetual contract",
+        "2020/02/07 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-07T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "DASHUSDT",
+      "vendor_asset_id": 131,
+      "name": "Dash",
+      "symbol": "DASH",
+      "provider": "cmc_dash",
+      "name_source": "name_dash",
+      "name_terms": [
+        "Dash (DASH)"
+      ],
+      "future_source": "future_dash",
+      "future_terms": [
+        "DASH/USDT",
+        "perpetual contract",
+        "2020/02/04 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-04T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "XMRUSDT",
+      "vendor_asset_id": 328,
+      "name": "Monero",
+      "symbol": "XMR",
+      "provider": "cmc_xmr",
+      "name_source": "name_xmr",
+      "name_terms": [
+        "Monero (XMR)"
+      ],
+      "future_source": "future_xmr",
+      "future_terms": [
+        "XMR/USDT",
+        "perpetual contract",
+        "2020/02/03 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-03T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "XTZUSDT",
+      "vendor_asset_id": 2011,
+      "name": "Tezos",
+      "symbol": "XTZ",
+      "provider": "cmc_xtz",
+      "name_source": "name_xtz",
+      "name_terms": [
+        "Tezos (XTZ)"
+      ],
+      "future_source": "future_xtz",
+      "future_terms": [
+        "XTZ/USDT",
+        "perpetual contract",
+        "2020/02/06 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-06T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "ZECUSDT",
+      "vendor_asset_id": 1437,
+      "name": "Zcash",
+      "symbol": "ZEC",
+      "provider": "cmc_zec",
+      "name_source": "name_zec",
+      "name_terms": [
+        "Zcash (ZEC)"
+      ],
+      "future_source": "future_zec",
+      "future_terms": [
+        "ZEC/USDT",
+        "perpetual contract",
+        "2020/02/05 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-05T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    }
+  ]
+}
