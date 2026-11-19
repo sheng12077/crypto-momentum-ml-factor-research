@@ -24,7 +24,7 @@ from acquire_usdm_universe import bind_run, digest, exclusive_run, read_json, wr
 from collect_cmc_weekly import Downloader, LogTee, checked_source
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT = ROOT / "config/early_identity_all_20261119.json"
+DEFAULT = ROOT / "config/early_identity_remaining_003_20261119.json"
 
 
 def repo_path(value):
@@ -54,6 +54,11 @@ def source_specs(plan):
 
 def validate_extra_plan(plan):
     labels = set(source_specs(plan))
+    symbols = [asset["instrument_id"] for asset in plan["assets"]]
+    if len(symbols) != len(set(symbols)):
+        raise ValueError("duplicate additional instrument")
+    if len(labels) > 64:
+        raise ValueError("additional source budget exceeded")
     for asset in plan["assets"]:
         if not all(
             asset.get(key) in labels for key in ("provider", "name_source", "future_source")
@@ -70,6 +75,40 @@ def validate_extra_plan(plan):
             or asset.get("contract_source") not in labels
         ):
             raise ValueError("additional token needs exact address and source")
+        gates = {
+            "historical_identity",
+            "provider_identity",
+            "venue_name",
+            "venue_futures",
+            "token_contract",
+        }
+        for assertion in asset.get("extra_assertions", []):
+            if (
+                assertion.get("source") not in labels
+                or not assertion.get("gate")
+                or assertion["gate"] in gates
+                or not assertion.get("terms")
+                or not all(isinstance(t, str) and t.strip() for t in assertion["terms"])
+            ):
+                raise ValueError("invalid additional evidence assertion")
+            gates.add(assertion["gate"])
+        if "provider_symbols" in asset:
+            aliases = asset["provider_symbols"]
+            if (
+                not aliases
+                or asset["symbol"] not in aliases
+                or not all(isinstance(s, str) and s.strip() for s in aliases)
+                or asset.get("provider_symbol_migration_gate")
+                not in gates
+                - {
+                    "historical_identity",
+                    "provider_identity",
+                    "venue_name",
+                    "venue_futures",
+                    "token_contract",
+                }
+            ):
+                raise ValueError("provider symbol aliases need a separate migration gate")
         start = datetime.fromisoformat(asset["scope_from"])
         end = datetime.fromisoformat(asset.get("scope_to_exclusive", "2021-01-01T00:00:00+00:00"))
         if (
@@ -82,6 +121,33 @@ def validate_extra_plan(plan):
             )
         ):
             raise ValueError("additional case outside the2020 review window")
+
+
+def select_extra_plan(plan, symbols=None):
+    """Prune HTTP dependencies as well as cases for a genuine small pilot."""
+    if symbols is None:
+        return plan
+    selected = copy.deepcopy(plan)
+    selected["assets"] = [a for a in plan["assets"] if a["instrument_id"] in symbols]
+    needed = set()
+    for asset in selected["assets"]:
+        needed.update(asset[k] for k in ("provider", "name_source", "future_source"))
+        if "contract_source" in asset:
+            needed.add(asset["contract_source"])
+        needed.update(a["source"] for a in asset.get("extra_assertions", []))
+    selected["sources"] = [s for s in plan["sources"] if s["id"] in needed]
+    return selected
+
+
+def provider_labels_match(asset, current):
+    if "provider_symbols" not in asset:
+        return batch3.provider_labels_match(asset, current)
+    return (
+        current["id"] == asset["vendor_asset_id"]
+        and current["symbol"] in asset["provider_symbols"]
+        and current["name"].casefold()
+        in {n.casefold() for n in asset.get("provider_names", [asset["name"]])}
+    )
 
 
 def verify_attempts(root, failed_labels=()):
@@ -154,7 +220,7 @@ def evaluate_asset(asset, sources, specs, historical, panel, end, constrained=Fa
     if asset["provider"] in sources:
         try:
             current = identity.provider(sources[asset["provider"]][0], asset["vendor_asset_id"])
-            proof["provider_identity"] = batch3.provider_labels_match(asset, current)
+            proof["provider_identity"] = provider_labels_match(asset, current)
         except (ValueError, KeyError, TypeError) as exc:
             report["provider_error"] = str(exc)
     for gate, label, terms in (
@@ -169,6 +235,8 @@ def evaluate_asset(asset, sources, specs, historical, panel, end, constrained=Fa
         proof[gate], report[gate] = batch.source_terms(
             assertion["source"], assertion["terms"], sources, specs
         )
+    if "provider_symbols" in asset:
+        proof["provider_identity"] &= proof.get(asset["provider_symbol_migration_gate"], False)
     if "ethereum_contract" in asset:
         expected = asset["ethereum_contract"]
         origin, report["contract_origin"] = batch.source_terms(
@@ -332,6 +400,11 @@ def additional_sources(plan, output, fetch, available, frozen_urls):
             selected = {p: h for p, h in hashes.items() if Path(p).parent.name == key}
             write_json(terminal, {"url": url, "error": str(exc), "attempt_hashes": selected})
             outcomes[label] = {"state": "terminal_failure", "error": str(exc)}
+        if downloader.requests and downloader.requests % 10 == 0:
+            print(
+                f"additional sources: {len(outcomes)}/{len(specs)}; HTTP={downloader.requests}",
+                flush=True,
+            )
     return found, specs, outcomes, downloader.requests
 
 
@@ -410,7 +483,9 @@ def run(args):
                     available.setdefault(spec["url"], context["sources"][label])
                 else:
                     frozen_urls.add(spec["url"])
-        extra = plan["additional_plan"]
+        extra = select_extra_plan(
+            plan["additional_plan"], set(plan["pilot_symbols"]) if args.pilot else None
+        )
         found, specs, outcomes, requests = additional_sources(
             extra, output, args.fetch, available, frozen_urls
         )
@@ -485,6 +560,9 @@ def run(args):
             "candidate_asset_weeks": sum(r["price_history_candidate_weeks"] for r in rows),
             "all_identity_checks_complete": not any(r["missing_requirements"] for r in rows),
             "source_http_requests_this_run": requests,
+            "additional_cases_evaluated": len(extra["assets"]),
+            "additional_sources_selected": len(specs),
+            "additional_source_states": dict(Counter(v["state"] for v in outcomes.values())),
             "old_batch_runners_invoked": 0,
             "common_input_validation_passes": 1,
             "elapsed_seconds": round(time.monotonic() - started, 3),
@@ -511,7 +589,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("run", "summary"))
     parser.add_argument("--plan", default=str(DEFAULT.relative_to(ROOT)))
-    parser.add_argument("--version", default="v20261119_003")
+    parser.add_argument("--version", default="v20261119_006")
     parser.add_argument("--pilot", action="store_true")
     parser.add_argument(
         "--fetch", action="store_true", help="fetch only explicitly registered additional sources"

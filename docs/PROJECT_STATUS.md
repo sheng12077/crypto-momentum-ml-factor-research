@@ -1,7 +1,9 @@
 # Project status
 
-Updated 2026-11-19. Current segment: infra/unified-early-identity, registered
-on main at544965e. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Completed segment: research/remaining-early-identities,
+registered on main at4de60fe. Final target main via no-ff merge;inspect Git for
+implementation/merge hashes. No remote push or history rewrite.
+Prior unified engine implementationf96e5aa,merged main3a4d867;registration544965e.
 Batch3 implementation9155caa,merged main7ab42dd.
 Batch2 implementationd3f89de,merged main5a89e04.
 Batch1 implementationdb2695e,merged main3d3df0e.
@@ -12,7 +14,42 @@ Daily implementation registered on main at93cf6e1. Target main via no-ff merge; 
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
-## Completed unified81-identifier processing tool
+## Remaining18 source plan and full-run handoff
+
+- Scope remains81early contracts. No new eight-case runner. New default plan:
+  config/early_identity_remaining_003_20261119.json,18cases/59public sources.
+ 15new qualified cases plus hashed replacements for BTC/BCH/ETC;old rules retained.
+- scripts/run_early_identity.py now prunes pilot cases AND HTTP dependencies;
+  mandatory separate migration gate for provider-symbol aliases,exact numericID;
+  rejects duplicate cases/invalid assertions/source-budget excess. Frozen helpers
+  unchanged;old reviewed rules still reproduced. KNC legacy1982 is never9444.
+- ALGO/KNC/DOT pilot uses12sources. v004 captured all12 in81.828s;ALGO passed,
+  KNC date wording/DOT ratio wording failed. Saved bodies support equivalent
+  exact clauses;new v005 plan records corrections and predecessor source hashes.
+ 12verified captures copied into v005 cache;v004 proofs/config remain unchanged.
+- v005 cache-only pilot passed all3 cases in60.156s,zeroHTTP. Final v006 only
+  defers the3 explorer URLs to last;assertions unchanged,verified cache reused.
+  Final v006 pilot passed all3 in46.656s,zeroHTTP,23in-scope candidateweeks;
+  all output hashes identical to v005. Final215tests/Ruff lint+format passed.
+- Separate v006_offline full smoke passed45.375s,zeroHTTP:81unique records,
+  18additional cases/59sources,all3hashed replacements accepted,baseline22of40
+  supported retained. Six old captures available,53notrequested;this is not
+  the full acquisition result. Its outputs cannot be upgraded in place;usev006.
+- Full18 acquisition is for user execution after the pilot. Do not claim all18
+  passed or all81eligible. Baseline22of40 history candidates supported;no final
+  updated full count until the user's full summary. Other41 retained,not dropped.
+- Run inWSL:conda activate funding-strategy;then
+  python scripts/run_early_identity.py run --fetch --version v20261119_006
+  python scripts/run_early_identity.py summary --version v20261119_006
+  First full fetch estimate3–8minutes,network dependent. Result:
+  data/interim/early_identity_all/v20261119_006/full/summary.json;
+  log reports/acquisition/early_identity_all_v20261119_006.log.
+- See docs/UNIFIED_EARLY_IDENTITY.md and REMAINING_EARLY_IDENTITY_PROTOCOL.md.
+  No paid data/keys,canonical joins,factors,labels,fit,PnL,orOOS access. Size
+  vintage,lifecycle/specs/paidfunding remain unresolved. Next task:inspect full
+  acquisition summary and exact pending gates;register follow-up only as needed.
+
+## Completed unified81-identifier processing tool (preserved baseline)
 
 - User confirmed scope81early IDs,not924. docs/UNIFIED_EARLY_IDENTITY.md;
   scripts/run_early_identity.py;registry config/early_identity_all_20261119.json.
