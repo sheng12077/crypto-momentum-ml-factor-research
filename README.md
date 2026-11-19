@@ -67,3 +67,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [IOTA alias recovery and UNI futures launch supplement](docs/EARLY_IDENTITY_FOLLOWUP.md)
 
 - [First remaining early identity batch and per-case decisions](docs/EARLY_IDENTITY_BATCH1.md)
+
+- [Second early identity batch and cumulative coverage](docs/EARLY_IDENTITY_BATCH2.md)

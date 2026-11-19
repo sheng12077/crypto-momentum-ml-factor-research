@@ -1,13 +1,36 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-identity-batch1, registered
-on main at1cb44f7. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Current segment: research/early-identity-batch2, registered
+on main ata49a45c. Inspect Git for final implementation/no-ff merge hashes.
+Batch1 implementationdb2695e,merged main3d3df0e.
 Prior supplement implementationf2a247a,merged mainae2a518.
 Completed identity implementation7e1c3ff,merged main5c44dca.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed second remaining early identity batch
+
+- docs/EARLY_IDENTITY_BATCH2.md;tool check_early_identity_batch2.py reuses frozen
+  batch1 pure helpers and revalidates prior review with its unchanged runner.
+  All54snapshot/all81daily-panel hashes checked;original queue reproduced.
+- All8corroborated:TRX1958,XLM512,ADA2010,ATOM3794,DASH131,XMR328,XTZ2011,ZEC1437;
+ 246in-scope price-history candidate asset-weeks. Fixed24sources/24newHTTP,
+ 5814067rawbytes,errors[]. XLM Stellar/Lumens aliases registered beforehand;
+  DASH2023/XMR2022 name notices are retrospective identity evidence only.
+- Frozen batch1 remains5rules/170weeks,pendingBTC/BCH/ETC. With IOTA,14of40
+  identifiers with2020price-history weeks now have corroborated identity rules,
+ 445candidateweeks.26unresolved=3reviewed/pending+23outside batches. LEND/AAVE
+  separate,zero120-day2020windows. All81entries retained;no tradable-count claim.
+- Output early_identity_batch2_20261119/review_001 with cumulative81-item queue
+  preserving batch1 statuses;new/prior raw/config/tool/dependency/panel bindings.
+ 190tests(5new),newfiles Ruffpass;new/prior frozen-source replay0HTTP.
+- No canonical joins/factors/labels/fits/PnL/OOS;Sizevintage/fullspecs/cashflows
+  and stricteligibility remainunproven. No purchase or user command needed now.
+- Next bounded batch:BATUSDT,BNBUSDT,ONTUSDT,VETUSDT,IOSTUSDT,NEOUSDT,QTUMUSDT,
+  THETAUSDT;register case-specific token/native/migration assertions first.
+  Keep BTC/BCH/ETC/UNI evidence gaps pending;versioned hypothetical Size join later.
 
 ## Completed first remaining early identity batch
 
