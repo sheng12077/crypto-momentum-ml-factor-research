@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "expected_identifiers": 81,
+  "pilot_symbols": ["BTCUSDT", "ETHUSDT", "IOTAUSDT", "IOSTUSDT", "QTUMUSDT", "KNCUSDT", "DEFIUSDT", "AAVEUSDT"],
+  "bundles": [
+    {"config":"config/early_identity_batch1_20261119.json","root":"data/interim/early_identity_batch1_20261119","review":"review_002","tool":"check_early_identity_batch.py","kind":"batch"},
+    {"config":"config/early_identity_batch2_20261119.json","root":"data/interim/early_identity_batch2_20261119","review":"review_001","tool":"check_early_identity_batch2.py","kind":"batch"},
+    {"config":"config/early_identity_batch3_20261119.json","root":"data/interim/early_identity_batch3_20261119","review":"review_001","tool":"check_early_identity_batch3.py","kind":"batch3"}
+  ],
+  "base": {"config":"config/early_size_identity_20261119.json","root":"data/interim/early_size_identity_20261119","review":"review_001","tool":"verify_early_size_identities.py"},
+  "supplement": {"config":"config/early_identity_followup_20261119.json","root":"data/interim/early_identity_followup_20261119_v002","review":"review_002","tool":"followup_early_identities.py"},
+  "additional_plan": {"max_raw_bytes":33554432,"sources":[],"assets":[]}
+}
