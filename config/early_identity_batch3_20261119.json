@@ -1,0 +1,359 @@
+{
+  "schema": 1,
+  "batch_id": "early_identity_batch3_20261119",
+  "expected_sources": 26,
+  "max_raw_bytes": 33554432,
+  "scope_end_exclusive": "2021-01-01T00:00:00+00:00",
+  "previous_review": "data/interim/early_identity_batch2_20261119/review_001",
+  "prior_cases": [
+    "IOTAUSDT",
+    "LENDUSDT",
+    "AAVEUSDT",
+    "BCHUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "EOSUSDT",
+    "LTCUSDT",
+    "XRPUSDT",
+    "ETCUSDT",
+    "LINKUSDT"
+  ],
+  "sources": [
+    {
+      "id": "cmc_bat",
+      "url": "https://coinmarketcap.com/currencies/basic-attention-token/"
+    },
+    {
+      "id": "future_bat",
+      "article_code": "360039719631"
+    },
+    {
+      "id": "name_bat",
+      "article_code": "115002721972"
+    },
+    {
+      "id": "cmc_bnb",
+      "url": "https://coinmarketcap.com/currencies/bnb/"
+    },
+    {
+      "id": "future_bnb",
+      "article_code": "360039190692"
+    },
+    {
+      "id": "name_bnb",
+      "article_code": "360027291331"
+    },
+    {
+      "id": "cmc_ont",
+      "url": "https://coinmarketcap.com/currencies/ontology/"
+    },
+    {
+      "id": "future_ont",
+      "article_code": "360039232572"
+    },
+    {
+      "id": "name_ont",
+      "article_code": "360001553431"
+    },
+    {
+      "id": "cmc_vet",
+      "url": "https://coinmarketcap.com/currencies/vechain/"
+    },
+    {
+      "id": "future_vet",
+      "article_code": "360039757391"
+    },
+    {
+      "id": "name_vet",
+      "article_code": "782812929f8b4519a9f2a4453da8cc46"
+    },
+    {
+      "id": "cmc_iost",
+      "url": "https://coinmarketcap.com/currencies/iostoken/"
+    },
+    {
+      "id": "future_iost",
+      "article_code": "360039606612"
+    },
+    {
+      "id": "name_iost",
+      "article_code": "360024642452"
+    },
+    {
+      "id": "cmc_neo",
+      "url": "https://coinmarketcap.com/currencies/neo/"
+    },
+    {
+      "id": "future_neo",
+      "article_code": "360039470132"
+    },
+    {
+      "id": "name_neo",
+      "article_code": "6c3ae9d0845d440db5f7bc19228e266a"
+    },
+    {
+      "id": "cmc_qtum",
+      "url": "https://coinmarketcap.com/currencies/qtum/"
+    },
+    {
+      "id": "future_qtum",
+      "article_code": "360039972971"
+    },
+    {
+      "id": "name_qtum",
+      "article_code": "1980e3c443144776953a34ec48739450"
+    },
+    {
+      "id": "cmc_theta",
+      "url": "https://coinmarketcap.com/currencies/theta-network/"
+    },
+    {
+      "id": "future_theta",
+      "article_code": "360043620252"
+    },
+    {
+      "id": "name_theta",
+      "article_code": "360025803011"
+    },
+    {
+      "id": "bat_contract",
+      "url": "https://basicattentiontoken.org/FAQ/"
+    },
+    {
+      "id": "vet_swap",
+      "article_code": "360008162992"
+    }
+  ],
+  "assets": [
+    {
+      "instrument_id": "BATUSDT",
+      "vendor_asset_id": 1697,
+      "name": "Basic Attention Token",
+      "symbol": "BAT",
+      "provider": "cmc_bat",
+      "name_source": "name_bat",
+      "name_terms": [
+        "Basic Attention Token (BAT)"
+      ],
+      "future_source": "future_bat",
+      "future_terms": [
+        "BAT/USDT",
+        "perpetual contract",
+        "2020/02/13 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-13T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": false,
+      "ethereum_contract": "0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+      "contract_source": "bat_contract"
+    },
+    {
+      "instrument_id": "BNBUSDT",
+      "vendor_asset_id": 1839,
+      "name": "BNB",
+      "symbol": "BNB",
+      "provider": "cmc_bnb",
+      "name_source": "name_bnb",
+      "name_terms": [
+        "Binance Coin (BNB)"
+      ],
+      "future_source": "future_bnb",
+      "future_terms": [
+        "BNB/USDT",
+        "perpetual contract",
+        "2020/02/10 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-10T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "historical_names": [
+        "Binance Coin",
+        "BNB"
+      ],
+      "provider_names": [
+        "BNB",
+        "Binance Coin"
+      ],
+      "extra_assertions": [
+        {
+          "gate": "pre2020_swap_completed",
+          "source": "name_bnb",
+          "terms": [
+            "completed the Binance Coin (BNB) mainnet swap"
+          ]
+        }
+      ]
+    },
+    {
+      "instrument_id": "ONTUSDT",
+      "vendor_asset_id": 2566,
+      "name": "Ontology",
+      "symbol": "ONT",
+      "provider": "cmc_ont",
+      "name_source": "name_ont",
+      "name_terms": [
+        "Ontology (ONT)"
+      ],
+      "future_source": "future_ont",
+      "future_terms": [
+        "ONT/USDT",
+        "perpetual contract",
+        "2020/02/11 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-11T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "VETUSDT",
+      "vendor_asset_id": 3077,
+      "name": "VeChain",
+      "symbol": "VET",
+      "provider": "cmc_vet",
+      "name_source": "name_vet",
+      "name_terms": [
+        "VeChain (VET)"
+      ],
+      "future_source": "future_vet",
+      "future_terms": [
+        "VET/USDT",
+        "perpetual contract",
+        "2020/02/14 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-14T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "extra_assertions": [
+        {
+          "gate": "pre2020_swap_completed",
+          "source": "vet_swap",
+          "terms": [
+            "completed the VEN mainnet swap to VET"
+          ]
+        }
+      ],
+      "rejected_ticker_aliases": [
+        "VEN"
+      ]
+    },
+    {
+      "instrument_id": "IOSTUSDT",
+      "vendor_asset_id": 2405,
+      "name": "IOST",
+      "symbol": "IOST",
+      "provider": "cmc_iost",
+      "name_source": "name_iost",
+      "name_terms": [
+        "IOST mainnet token swap"
+      ],
+      "future_source": "future_iost",
+      "future_terms": [
+        "IOST/USDT",
+        "perpetual contract",
+        "2020/02/21 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-21T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "extra_assertions": [
+        {
+          "gate": "mainnet_support_acknowledged",
+          "source": "name_iost",
+          "terms": [
+            "confirm support for the IOST mainnet token swap"
+          ]
+        }
+      ],
+      "migration_state": "support_only_completion_unverified"
+    },
+    {
+      "instrument_id": "NEOUSDT",
+      "vendor_asset_id": 1376,
+      "name": "Neo",
+      "symbol": "NEO",
+      "provider": "cmc_neo",
+      "name_source": "name_neo",
+      "name_terms": [
+        "Neo (NEO)"
+      ],
+      "future_source": "future_neo",
+      "future_terms": [
+        "NEO/USDT",
+        "perpetual contract",
+        "2020/02/17 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-17T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true
+    },
+    {
+      "instrument_id": "QTUMUSDT",
+      "vendor_asset_id": 1684,
+      "name": "Qtum",
+      "symbol": "QTUM",
+      "provider": "cmc_qtum",
+      "name_source": "name_qtum",
+      "name_terms": [
+        "Qtum (QTUM)"
+      ],
+      "future_source": "future_qtum",
+      "future_terms": [
+        "QTUM/USDT",
+        "perpetual contract",
+        "2020/02/20 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-02-20T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "known_early_funding_limitations": {
+        "observed_supplement_rows": 31,
+        "events_before_proposed_launch": 2,
+        "event_marks_proven": false,
+        "reported_intervals_proven": false,
+        "cashflows_proven": false
+      }
+    },
+    {
+      "instrument_id": "THETAUSDT",
+      "vendor_asset_id": 2416,
+      "name": "Theta Network",
+      "symbol": "THETA",
+      "provider": "cmc_theta",
+      "name_source": "name_theta",
+      "name_terms": [
+        "Theta Network (THETA)"
+      ],
+      "future_source": "future_theta",
+      "future_terms": [
+        "THETA/USDT",
+        "perpetual contract",
+        "2020/05/27 08:00 AM (UTC)"
+      ],
+      "scope_from": "2020-05-27T08:00:00+00:00",
+      "scope_start_is_listing_time": true,
+      "native_asset_expected": true,
+      "historical_names": [
+        "THETA",
+        "Theta Network",
+        "Theta Token"
+      ],
+      "provider_names": [
+        "Theta Network",
+        "THETA",
+        "Theta Token"
+      ],
+      "extra_assertions": [
+        {
+          "gate": "pre2020_swap_completed",
+          "source": "name_theta",
+          "terms": [
+            "completed the Theta Network (THETA) mainnet swap"
+          ]
+        }
+      ],
+      "rejected_ticker_aliases": [
+        "TFUEL"
+      ]
+    }
+  ]
+}
