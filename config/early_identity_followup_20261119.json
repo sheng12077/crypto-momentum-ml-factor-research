@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "sources": [
+    {"id": "uni_futures", "article_code": "300bf39679ee4110b440ee79185bc898", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=300bf39679ee4110b440ee79185bc898"},
+    {"id": "iota_units", "article_code": "115002193731", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=115002193731"},
+    {"id": "iota_origin", "url": "https://blog.iota.org/stardust-upgrade-iota-tokenomics/"},
+    {"id": "venue_month", "url": "https://www.binance.com/en/blog/all/421499824684901111"}
+  ],
+  "max_raw_bytes": 8388608,
+  "uni_launch": "2020-09-18T07:00:00+00:00",
+  "scope_end_exclusive": "2021-01-01T00:00:00+00:00"
+}
