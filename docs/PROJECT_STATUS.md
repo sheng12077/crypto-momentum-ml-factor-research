@@ -1,11 +1,34 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-size-inventory, registered
-on main at709ce35. Inspect Git for final no-ff merge hash.
+Updated 2026-11-19. Current segment: research/early-size-identities, registered
+on main at144143f. Inspect Git for final implementation/no-ff merge hashes.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed bounded early Size identity review
+
+- docs/EARLY_SIZE_IDENTITIES.md;tool verify_early_size_identities.py.
+  Fixed11sources,8captured including reused LEND notice,10new HTTP requests.
+  IOTA project/unit and UNI project pages returned HTTP202;capture complete=false
+  preserved,not retried. Review completed=true is not eligibility approval.
+- Verified54 historical snapshot hashes and current numeric IDs/contracts.
+  Two identity-only rules pass:LEND2239 until2020Oct10 00UTC exclusive;
+  AAVE7278 from2020Oct16 07UTC through2020. Shared /aave/ slug cannot replace IDs.
+  Cap scale1;no100:1 futures history splice;no canonical joins materialized.
+- UNI4113=UNI COIN rejected;7083 contract matches official Uniswap introduction.
+  Registered Binance project evidence and futures-specific2020 link unresolved;
+  automatic join blocked. IOTA1720/MIOTA proposal likewise blocked locally;
+  all29 named gaps remain unresolved despite supportive web-reviewed pages.
+- Other833 literal leads not independently approved. Size publication/vintage,
+  full specifications,funding cashflows,strict eligibility remain unproven.
+  No factors/labels/fits/PnL/OOS;old release/calendar/splits unchanged.
+- Output early_size_identity_20261119/review_001;frozen capture failures and
+  source/tool/dependency hashes preserved.171 tests(7new),newfiles Ruff pass;
+  cached resume checked with0new HTTP. No user command or purchase needed.
+- Next:resolve missing sources/UNI futures evidence,or discuss explicit case
+  exclusions before a separately registered versioned hypothetical Size join.
 
 ## Completed2020 Size coverage inventory
 

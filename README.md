@@ -61,3 +61,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Completed2020 observation release and daily panel](docs/EARLY_RESEARCH_RELEASE.md)
 
 - [Completed2020 Size inventory and named identity gaps](docs/EARLY_SIZE_INVENTORY.md)
+
+- [Early Size identity decisions and unresolved source gates](docs/EARLY_SIZE_IDENTITIES.md)
