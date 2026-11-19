@@ -53,3 +53,37 @@ Run meaningful parser/alias tests,then this bounded follow-up locally;this is a
 small evidence acquisition,not a large market-data backfill. Report exact newly
 supported cases and unresolved gates. No factors,labels,fit,PnL,Size join,orOOS.
 Any remaining unavailable primary evidence stays pending for a separate task.
+
+## Observed full v007 result
+
+Processing passed in85.141s:81rows,18additional cases/60sources,8newHTTP,
+58available/1frozen prior failure not requested/1new terminalHTTP202failure.
+39corroborated identities overall;37of40history candidates supported,up from31.
+All33previously corroborated rules reproduce exactly. No old failed URL retried.
+Final replay62.562s,zeroHTTP;all five derived report hashes identical. JSON/CSV
+each81unique IDs;stricteligibility flags false throughout. Oldv006 artifacts
+verified unchanged. No download command or user rerun is required.
+
+Newly corroborated:BCH,ZRX,COMP,RLC,SNX,WAVES. Respectively28,10,9,5,3,3
+in-scope candidateweeks. BCH's old fork cutoff retained;none of these counts
+claims eligibility for every date. Full219tests passed;changed-file Ruff passes.
+
+Remaining history candidates:
+
+| Instrument | Pending evidence |
+|---|---|
+| BTCUSDT | New independent Research page returnedHTTP202;venue_futures false. |
+| BANDUSDT | Current Band name/rebranding verified;old failed futures URL frozen. |
+| SXPUSDT | ProviderID4279/nameSolar recovered;legacy Ethereum address absent from current provider contracts and old explorer page has noSwipe/SXP label. |
+
+The other registered pending case is UNI,which has no qualified120-day2020window.
+37other identifiers still need source assertions,1DEFI index is retained. None
+of those counts is a strict tradable-universe count. Sizevintage,lifecycle/specs,
+paid funding and execution timing remain open;zero canonical joins/OOS access.
+
+Current default config/early_identity_remaining_004_20261119.json. Outputs:
+data/interim/early_identity_all/v20261119_007/full/asset_review.json and
+summary.json;log reports/acquisition/early_identity_all_v20261119_007.log.
+The bounded acquisition is complete;no user download command is needed now.
+Next separately scoped task:primary evidence for BTC/BAND and legacySXP identity,
+or discuss an explicitly versioned limited research scope. Do not silently dropBTC.

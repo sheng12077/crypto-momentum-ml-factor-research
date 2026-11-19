@@ -1,4 +1,24 @@
-# Unified early identity processing: current command
+# Current follow-up: v007
+
+Nine-case follow-up registered5440693;see EARLY_IDENTITY_NINE_FOLLOWUP.md.
+Default plan config/early_identity_remaining_004_20261119.json,18additional
+cases/60sources. Hash-verified v006 evidence inherited;8newURLs only. Existing
+passed rules must reproduce exactly;terminal failures never retried. Scope81IDs.
+
+```bash
+python scripts/run_early_identity.py summary --version v20261119_007
+```
+
+Summary verifies report hashes. Output data/interim/early_identity_all/v20261119_007/full/;
+log reports/acquisition/early_identity_all_v20261119_007.log. A same-version
+run --fetch replays cached evidence;changed plans/code require a new version.
+No eligibility guarantee,canonical joins,models,PnL,orOOS access.
+Completed fullv007:37of40history candidates supported(up from31),39corroborated
+overall. Newly passed BCH/ZRX/COMP/RLC/SNX/WAVES;all33previous passes unchanged.
+Remaining BTC(ResearchHTTP202),BAND(futures proof),SXP(legacy address/label).
+Full219tests passed. This acquisition is already complete;no user rerun needed.
+
+# Preserved v006 command and validation
 
 Remaining-case protocol registered on main at4de60fe, before implementation
 and acquisition: REMAINING_EARLY_IDENTITY_PROTOCOL.md. Scope remains the81

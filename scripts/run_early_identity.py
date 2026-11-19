@@ -12,6 +12,7 @@ import time
 from collections import Counter
 from contextlib import redirect_stderr, redirect_stdout
 from datetime import datetime
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -24,7 +25,50 @@ from acquire_usdm_universe import bind_run, digest, exclusive_run, read_json, wr
 from collect_cmc_weekly import Downloader, LogTee, checked_source
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT = ROOT / "config/early_identity_remaining_003_20261119.json"
+DEFAULT = ROOT / "config/early_identity_remaining_004_20261119.json"
+
+
+class TokenLinks(HTMLParser):
+    """Collect real anchor captions; script strings are never parsed as links."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links, self.active, self.caption = [], None, []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self.active = dict(attrs).get("href")
+            self.caption = []
+
+    def handle_data(self, value):
+        if self.active is not None:
+            self.caption.append(value)
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self.active is not None:
+            self.links.append((self.active, " ".join("".join(self.caption).split())))
+            self.active, self.caption = None, []
+
+
+def contract_link(body, expected, caption):
+    parser = TokenLinks()
+    parser.feed(body.decode("utf-8"))
+    for href, text in parser.links:
+        url = urlsplit(href)
+        if (
+            url.scheme == "https"
+            and url.netloc == "etherscan.io"
+            and url.path.casefold() == "/token/" + expected.casefold()
+            and not url.query
+            and not url.fragment
+            and text.casefold() == caption.casefold()
+        ):
+            return True, {
+                "href": href,
+                "anchor_text": text,
+                "historical_content_version_proven": False,
+            }
+    return False, {"error": "exact Ethereum token anchor not found"}
 
 
 def repo_path(value):
@@ -75,6 +119,14 @@ def validate_extra_plan(plan):
             or asset.get("contract_source") not in labels
         ):
             raise ValueError("additional token needs exact address and source")
+        if "contract_link_evidence" in asset and (
+            "ethereum_contract" not in asset
+            or not asset["contract_link_evidence"].get("anchor_text", "").strip()
+            or not asset["contract_link_evidence"].get("document_host")
+            or urlsplit(source_specs(plan)[asset["contract_source"]]["url"]).hostname
+            != asset["contract_link_evidence"]["document_host"]
+        ):
+            raise ValueError("contract link evidence needs an address and caption")
         gates = {
             "historical_identity",
             "provider_identity",
@@ -242,6 +294,17 @@ def evaluate_asset(asset, sources, specs, historical, panel, end, constrained=Fa
         origin, report["contract_origin"] = batch.source_terms(
             asset.get("contract_source", "link_contract"), [expected], sources, specs
         )
+        if "contract_link_evidence" in asset:
+            label = asset["contract_source"]
+            evidence = asset["contract_link_evidence"]
+            origin = False
+            if (
+                label in sources
+                and urlsplit(specs[label]["url"]).hostname == evidence["document_host"]
+            ):
+                origin, report["contract_origin"] = contract_link(
+                    sources[label][0], expected, evidence["anchor_text"]
+                )
         proof["token_contract"] = (
             current is not None and identity.ethereum_contract(current, expected) and origin
         )
@@ -310,6 +373,64 @@ def verify_output_hashes(target, summary):
     for name, expected in summary["output_hashes"].items():
         if digest((target / name).read_bytes()) != expected:
             raise ValueError("derived report integrity mismatch: " + name)
+
+
+def load_source_predecessor(spec, existing=None):
+    version = spec["version"]
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", version):
+        raise ValueError("unsafe predecessor version")
+    root = ROOT / "data/interim/early_identity_all" / version
+    target = root / "full"
+    hashes = {}
+    for name in ("summary.json", "run_config.json"):
+        hashes[name] = digest((target / name).read_bytes())
+        if hashes[name] != spec["artifact_hashes"][name]:
+            raise ValueError("predecessor binding changed")
+    summary, binding = read_json(target / "summary.json"), read_json(target / "run_config.json")
+    if not summary["success"] or not summary["full_scope"]:
+        raise ValueError("predecessor must be a successful full processing run")
+    verify_output_hashes(target, summary)
+    plan_path = repo_path(spec["plan"])
+    if digest(plan_path.read_bytes()) != binding["plan_sha256"]:
+        raise ValueError("predecessor source plan changed")
+    specs = source_specs(read_json(plan_path)["additional_plan"])
+    outcomes = read_json(target / "additional_sources.json")
+    if outcomes != binding["additional_outcomes"]:
+        raise ValueError("predecessor outcomes differ from binding")
+    available, frozen = {}, set()
+    for label, outcome in outcomes.items():
+        url = specs[label]["url"]
+        if outcome["state"] == "available":
+            item = (existing or {}).get(url) or checked_source(
+                root / "additional_cache", digest(url.encode()), url
+            )
+            if item is None or item[1] != outcome["source"]:
+                raise ValueError("predecessor source missing or metadata differs")
+            available[url] = item
+        elif outcome["state"] == "terminal_failure":
+            key = digest(url.encode())
+            checkpoint = read_json(root / "additional_cache/terminal" / (key + ".json"))
+            actual = verify_attempts(
+                root / "additional_cache", [key] if checkpoint["attempt_hashes"] else []
+            )
+            if (
+                checkpoint["url"] != url
+                or checkpoint["error"] != outcome["error"]
+                or any(actual.get(p) != h for p, h in checkpoint["attempt_hashes"].items())
+            ):
+                raise ValueError("predecessor terminal failure changed")
+            frozen.add(url)
+    return available, frozen, read_json(target / "asset_review.json"), hashes
+
+
+def preserve_prior_passes(previous, rows):
+    current = {r["instrument_id"]: r for r in rows}
+    for old in previous:
+        if old["identity_status"] == "corroborated_identity" and (
+            old["mapping_record"]["mapping"]
+            != current[old["instrument_id"]]["mapping_record"]["mapping"]
+        ):
+            raise ValueError("previously corroborated rule changed: " + old["instrument_id"])
 
 
 def row_status(item, record):
@@ -483,6 +604,13 @@ def run(args):
                     available.setdefault(spec["url"], context["sources"][label])
                 else:
                     frozen_urls.add(spec["url"])
+        previous_rows, predecessor_hashes = [], {}
+        if "source_predecessor" in plan:
+            inherited, failures, previous_rows, predecessor_hashes = load_source_predecessor(
+                plan["source_predecessor"], available
+            )
+            available.update(inherited)
+            frozen_urls.update(failures)
         extra = select_extra_plan(
             plan["additional_plan"], set(plan["pilot_symbols"]) if args.pilot else None
         )
@@ -503,6 +631,14 @@ def run(args):
                 queue, key=lambda r: (-r["price_history_candidate_weeks"], r["instrument_id"])
             )
         ]
+        preserve_prior_passes(
+            [
+                r
+                for r in previous_rows
+                if not args.pilot or r["instrument_id"] in plan["pilot_symbols"]
+            ],
+            rows,
+        )
         if args.pilot:
             rows = [r for r in rows if r["instrument_id"] in plan["pilot_symbols"]]
         binding = {
@@ -516,6 +652,7 @@ def run(args):
                 c["root"].relative_to(ROOT).as_posix(): c["attempts"] for c in contexts
             },
             "additional_outcomes": outcomes,
+            "source_predecessor_artifacts": predecessor_hashes,
             "mode": mode,
         }
         target = output / mode
@@ -589,7 +726,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("run", "summary"))
     parser.add_argument("--plan", default=str(DEFAULT.relative_to(ROOT)))
-    parser.add_argument("--version", default="v20261119_006")
+    parser.add_argument("--version", default="v20261119_007")
     parser.add_argument("--pilot", action="store_true")
     parser.add_argument(
         "--fetch", action="store_true", help="fetch only explicitly registered additional sources"
