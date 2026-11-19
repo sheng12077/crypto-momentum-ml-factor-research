@@ -1,8 +1,9 @@
 # Project status
 
-Updated 2026-11-19. Completed segment: research/remaining-early-identities,
-registered on main at4de60fe. Final target main via no-ff merge;inspect Git for
+Updated 2026-11-19. Completed segment: research/nine-identity-followup,
+registered on main at5440693. Final target main via no-ff merge;inspect Git for
 implementation/merge hashes. No remote push or history rewrite.
+Prior remaining18 implementation8a79757,merged main499adcd;registration4de60fe.
 Prior unified engine implementationf96e5aa,merged main3a4d867;registration544965e.
 Batch3 implementation9155caa,merged main7ab42dd.
 Batch2 implementationd3f89de,merged main5a89e04.
@@ -14,7 +15,42 @@ Daily implementation registered on main at93cf6e1. Target main via no-ff merge; 
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
-## Remaining18 source plan and full-run handoff
+## Nine-case follow-up
+
+- User fullv006 completed108.382s:81records,33identity-corroborated,31of40
+  history candidates supported. Sources51available/8terminal failures,42HTTP.
+  All five report hashes verified. Newly passedETC,ALGO,ZIL,KNC,OMG,DOGE,KAVA,
+  MKR,DOT. RemainingBTC,BCH,ZRX,COMP,SXP,BAND,RLC,SNX,WAVES. No stricteligibility.
+- Protocol docs/EARLY_IDENTITY_NINE_FOLLOWUP.md registered5440693 before work.
+  New plan config/early_identity_remaining_004_20261119.json:18additional cases,
+  60sources,8newURLs;all nine earlier passing assertion objects unchanged.
+  Exact v006 summary/runbinding hashes fixed;raw and terminal states inherited
+  without copying/refetching old URLs. Prior passed rules must reproduce exactly.
+- ExactCOMP Ethereum-address anchors in official docs accepted via opt-in parser;
+  provider Ethereum check remains mandatory. ZRX exactID1896/name0x Protocol;
+  Band exactID4679/nameBand plus mandatory issuer rebrand notice. BTC uses
+  conservative Jan4scope from official Jan3Research report;BCH original CMS
+  launch notice,old fork cutoff retained. RLC official Binance.US name is only
+  retrospective identity corroboration,not Binance.com listing evidence.
+- Full219tests passed;22unified tests include exact-link negatives,wrong network/
+  address rejection,predecessor tampering and prior-pass preservation. No old
+  frozen helper changed. Full bounded v007 completed85.141s locally,8newHTTP;
+  58available,1frozen prior failure,1newHTTP202failure.39corroborated overall,
+  37of40history candidates supported(up from31). All33prior passes unchanged.
+  Replay62.562s,zeroHTTP,all five report hashes identical;JSON/CSV81unique IDs.
+- New passes BCH,ZRX,COMP,RLC,SNX,WAVES with28/10/9/5/3/3in-scope candidateweeks.
+  BCHfork cutoff retained. RemainingBTC(ResearchHTTP202),BAND(missing original
+  futures source),SXP(current provider lacks legacy Ethereum address;explorer
+  lacksSwipe/SXPlabel). UNIalso registered-pending but no2020pricehistorywindow.
+  37other IDs need assertions;1DEFIindex retained. No asset silently dropped.
+- Outputs data/interim/early_identity_all/v20261119_007/full/;
+  log reports/acquisition/early_identity_all_v20261119_007.log.
+  No factors,labels,fit,PnL,canonical joins,orOOS. Unavailable evidence stays pending.
+- No user download needed;current command is summary --version v20261119_007.
+  This bounded work segment ends here. Next separate task:remaining3primary
+  evidence or discuss a versioned limited research scope;do not silently dropBTC.
+
+## Remaining18 source plan and full-run handoff (completed v006)
 
 - Scope remains81early contracts. No new eight-case runner. New default plan:
   config/early_identity_remaining_003_20261119.json,18cases/59public sources.
@@ -35,9 +71,9 @@ paper/live explicitly deferred until after OOS review.
   18additional cases/59sources,all3hashed replacements accepted,baseline22of40
   supported retained. Six old captures available,53notrequested;this is not
   the full acquisition result. Its outputs cannot be upgraded in place;usev006.
-- Full18 acquisition is for user execution after the pilot. Do not claim all18
-  passed or all81eligible. Baseline22of40 history candidates supported;no final
-  updated full count until the user's full summary. Other41 retained,not dropped.
+- Full18 acquisition completed by user:31of40history candidates supported,
+  33corroborated overall. Nine remaining history candidates still pending;all81
+  retained. Baseline22of40 comparison is preserved,not the current count.
 - Run inWSL:conda activate funding-strategy;then
   python scripts/run_early_identity.py run --fetch --version v20261119_006
   python scripts/run_early_identity.py summary --version v20261119_006

@@ -195,10 +195,10 @@ class UnifiedIdentityTests(unittest.TestCase):
         plan = self.remaining_plan()["additional_plan"]
         unified.validate_extra_plan(plan)
         self.assertEqual(len(plan["assets"]), 18)
-        self.assertEqual(len(plan["sources"]), 59)
+        self.assertEqual(len(plan["sources"]), 60)
         self.assertEqual(len({a["instrument_id"] for a in plan["assets"]}), 18)
-        self.assertTrue(all("etherscan.io" in s.get("url", "") for s in plan["sources"][-3:]))
-        self.assertFalse(any("etherscan.io" in s.get("url", "") for s in plan["sources"][:-3]))
+        self.assertTrue(all("etherscan.io" in s.get("url", "") for s in plan["sources"][-4:]))
+        self.assertFalse(any("etherscan.io" in s.get("url", "") for s in plan["sources"][:-4]))
         duplicate = copy.deepcopy(plan)
         duplicate["assets"].append(duplicate["assets"][0])
         with self.assertRaisesRegex(ValueError, "duplicate"):
@@ -311,3 +311,115 @@ class UnifiedIdentityTests(unittest.TestCase):
                 {"replaces_rule_sha256": "wrong", "replacement_reason": "new evidence"},
             )
         self.assertEqual(registry["BTCUSDT"]["provenance"], "original")
+
+    def test_exact_contract_anchor_not_generic_html_mentions(self):
+        address = "0xc00e94cb662c3520282e6f5717214004a7f26888"
+        good = (
+            f'<a href="https://etherscan.io/token/{address}" target="_blank"><span>COMP</span></a>'
+        )
+        self.assertTrue(unified.contract_link(good.encode(), address, "COMP")[0])
+        for bad in (
+            good.replace("etherscan.io/", "etherscan.io.evil.example/"),
+            good.replace("https://", "http://"),
+            good.replace("/token/", "/address/"),
+            good.replace(address, "0x" + "0" * 40),
+            good.replace("COMP", "OTHER"),
+            good.replace(address, address + "?unrelated=COMP"),
+            f"<script>const template = {json.dumps(good)};</script>",
+            "<!--" + good + "-->",
+            "<p>COMP " + address + "</p>",
+        ):
+            with self.subTest(html=bad):
+                self.assertFalse(unified.contract_link(bad.encode(), address, "COMP")[0])
+
+    def test_document_link_does_not_override_provider_ethereum_gate(self):
+        plan = self.remaining_plan()["additional_plan"]
+        a = next(a for a in plan["assets"] if a["symbol"] == "COMP")
+        address = a["ethereum_contract"]
+        html = f'<a href="https://etherscan.io/token/{address}">COMP</a>'.encode()
+        for network, contract, allowed in [
+            ("Ethereum", address, True),
+            ("Other", address, False),
+            ("Ethereum", "0x" + "0" * 40, False),
+        ]:
+            current = {
+                "id": 5692,
+                "name": "Compound",
+                "symbol": "COMP",
+                "contracts": [{"contractPlatform": network, "contractAddress": contract}],
+            }
+            sources = {a["provider"]: (b"",), a["contract_source"]: (html,)}
+            with (
+                patch.object(unified.batch, "historical_check", return_value=(True, {})),
+                patch.object(unified.identity, "provider", return_value=current),
+                patch.object(unified.batch, "source_terms", return_value=(True, {})),
+            ):
+                result, _ = unified.evaluate_asset(
+                    a,
+                    sources,
+                    unified.source_specs(plan),
+                    [],
+                    {a["instrument_id"]: {}},
+                    "2021-01-01T00:00:00+00:00",
+                    True,
+                )
+            self.assertEqual(result["size_identity_join_allowed"], allowed)
+
+    def test_previously_passed_rules_cannot_change_silently(self):
+        old = {
+            "instrument_id": "ALGOUSDT",
+            "identity_status": "corroborated_identity",
+            "mapping_record": {"mapping": {"vendor_asset_id": 4030, "scope_from": "2020-06-16"}},
+        }
+        unified.preserve_prior_passes([old], [copy.deepcopy(old)])
+        altered = copy.deepcopy(old)
+        altered["mapping_record"]["mapping"]["scope_from"] = "2020-01-01"
+        with self.assertRaisesRegex(ValueError, "previously corroborated"):
+            unified.preserve_prior_passes([old], [altered])
+
+    def test_predecessor_sources_bound_to_saved_outcomes(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(unified, "ROOT", Path(folder)):
+            root = Path(folder)
+            target = root / "data/interim/early_identity_all/test/full"
+            url = "https://www.binance.com/source"
+            meta = {"url": url, "status": 200, "bytes": 2, "sha256": digest(b"ok")}
+            outcomes = {"one": {"state": "available", "source": meta}}
+            plan = {"additional_plan": {"sources": [{"id": "one", "url": url}]}}
+            write_json(root / "plan.json", plan)
+            write_json(target / "additional_sources.json", outcomes)
+            write_json(target / "asset_review.json", [])
+            write_json(
+                target / "run_config.json",
+                {
+                    "plan_sha256": digest((root / "plan.json").read_bytes()),
+                    "additional_outcomes": outcomes,
+                },
+            )
+            write_json(
+                target / "summary.json",
+                {
+                    "success": True,
+                    "full_scope": True,
+                    "output_hashes": {
+                        name: digest((target / name).read_bytes())
+                        for name in ["asset_review.json", "additional_sources.json"]
+                    },
+                },
+            )
+            spec = {
+                "version": "test",
+                "plan": "plan.json",
+                "artifact_hashes": {
+                    name: digest((target / name).read_bytes())
+                    for name in ["summary.json", "run_config.json"]
+                },
+            }
+            found, _, _, _ = unified.load_source_predecessor(spec, {url: (b"ok", meta, True)})
+            self.assertEqual(found[url][1], meta)
+            with self.assertRaisesRegex(ValueError, "metadata differs"):
+                unified.load_source_predecessor(
+                    spec, {url: (b"ok", {**meta, "sha256": "tampered"}, True)}
+                )
+            write_json(target / "summary.json", {"tampered": True})
+            with self.assertRaisesRegex(ValueError, "binding changed"):
+                unified.load_source_predecessor(spec)
