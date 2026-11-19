@@ -1,7 +1,8 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-identity-batch3, registered
-on main at6dfbc42. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Current segment: infra/unified-early-identity, registered
+on main at544965e. Inspect Git for final implementation/no-ff merge hashes.
+Batch3 implementation9155caa,merged main7ab42dd.
 Batch2 implementationd3f89de,merged main5a89e04.
 Batch1 implementationdb2695e,merged main3d3df0e.
 Prior supplement implementationf2a247a,merged mainae2a518.
@@ -10,6 +11,38 @@ Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed unified81-identifier processing tool
+
+- User confirmed scope81early IDs,not924. docs/UNIFIED_EARLY_IDENTITY.md;
+  scripts/run_early_identity.py;registry config/early_identity_all_20261119.json.
+  One command:python scripts/run_early_identity.py run --fetch. summary checks
+  exported report hashes. No more eight-case scripts or recursive old runners.
+- Shared54raw/parsed snapshots and81daily panels verified once;old24batch rules
+  recomputed with frozen pure helpers and matched exactly. Four base/supplement
+  rules reproduced;source/code/config/dependency/predecessor hashes checked;
+  primary IOTA evidence rechecked. Old batch outputs not rewritten.
+- Full v20261119_003 completed39.234s,81rows/862candidateweeks/zeroHTTP. Statuses:
+ 24corroborated identity,4registered-pending,52need source assertions,1indexDEFI.
+  Of40price-history candidate IDs,22supported;remaining18=3registered-pending+
+ 15unconfigured. SupportedLEND/AAVE lack120-day2020history. No eligibility claim.
+- JSON/CSV81unique IDs reconcile;missing-evidence queue emitted. Identity and
+  history separate;all strictflagsfalse. QTUMfunding/IOSTphase limitations kept.
+ 208tests(11new),newfiles Ruffpass;final same-version replay/report hashes checked.
+  v0018-case pilot40.938s/v002full41.063s retained;v003portablepaths/atomicCSV/
+  reporthashes/nonempty assertion guards. No gate relaxation or new evidence.
+- Outputs data/interim/early_identity_all/v20261119_003/full/{asset_review.json,
+  asset_review.csv,missing_evidence.json,evidence_checks.json,summary.json}.
+  Log reports/acquisition/early_identity_all_v20261119_003.log. No user rerun needed.
+- Additional URLs/cases have no8-case limit:bounded optionalfetch,URLdedup,
+  frozen failures,explicit hashed case replacement. Currentadditionalplanempty;
+  script completes processing81,not evidence approval81. Changedplan/code needs
+  new --version. Windows/WSL bindings portable;one writer/host only.
+- Next:register remaining15qualified-case sources/assertions together in the
+  additional plan,then one unifiedrun;do not create batch4/5 runner scripts.
+  Keep BTC/BCH/ETC/UNI gaps pending;warm-up-zero cases retained. No canonical
+  joins/factors/labels/fit/PnL/OOS,new purchases or keys. Sizevintage/specs/cashflows
+  unproven. Hypothetical-lag Size join remains a later separately registered task.
 
 ## Completed third remaining early identity batch
 
