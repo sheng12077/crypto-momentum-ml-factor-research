@@ -1,7 +1,8 @@
 # Project status
 
-Updated 2026-11-19. Current segment: research/early-identity-batch2, registered
-on main ata49a45c. Inspect Git for final implementation/no-ff merge hashes.
+Updated 2026-11-19. Current segment: research/early-identity-batch3, registered
+on main at6dfbc42. Inspect Git for final implementation/no-ff merge hashes.
+Batch2 implementationd3f89de,merged main5a89e04.
 Batch1 implementationdb2695e,merged main3d3df0e.
 Prior supplement implementationf2a247a,merged mainae2a518.
 Completed identity implementation7e1c3ff,merged main5c44dca.
@@ -9,6 +10,30 @@ Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Completed third remaining early identity batch
+
+- docs/EARLY_IDENTITY_BATCH3.md;tool check_early_identity_batch3.py,oldhelpers
+  unchanged. Both earlier reviews revalidated;54snapshots/all81daily panel hashes
+  checked;original inventory rederived;prior statuses preserved in cumulative queue.
+- All8identity rules corroborated:BAT1697,BNB1839,ONT2566,VET3077,IOST2405,NEO1376,
+  QTUM1684,THETA2416;214candidate asset-weeks in stated2020scopes. Fixed26sources,
+ 26newHTTP,5741950rawbytes,errors[]. BAT exact Ethereum address matched to FAQ.
+- BNB/VET/THETA pre2020completion clauses pass. No VEN/TFUEL alias,no cap scaling
+  or price splice. IOST support-only/native-phase unknown preserved. Later name
+  notices/migrations provide identity context,not2020availability or feature values.
+- New original QTUM CMS verifies2020Feb20 08UTC locally. Old failed Spanish
+  capture and early release flags unchanged.31supplement events still lack proven
+  marks/intervals/payments;two prelaunch. No automatic cashflow or phase repair.
+- With IOTA/prior batches,22of40price-history candidate IDs corroborated,
+ 659candidateweeks;18unresolved=3reviewed/pending+15outsidebatches. All81entries
+  retained. LEND/AAVE separate,zero120-day2020windows. No tradable-count claim.
+- Output early_identity_batch3_20261119/review_001;197tests(7new),newfiles Ruff
+  pass;new/prior frozen-source replay0HTTP. No canonical joins/factors/labels/
+  models/PnL/OOS. Fullspecs/cashflows/Size vintage/strict eligibility unproven.
+- Next bounded batch:ALGO,ZIL,KNC,ZRX,COMP,OMG,DOGE,SXP;register token/name/phase
+  assertions first. Keep BTC/BCH/ETC/UNI evidence gaps pending;hypothetical Size
+  join later. No purchase or user command needed now.
 
 ## Completed second remaining early identity batch
 
