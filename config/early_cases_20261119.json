@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "QTUM_202002_DEFI_LEND_2020_only",
+  "sources": [
+    {"id": "qtum_funding", "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=QTUMUSDT&startTime=1580515200000&endTime=1583020800000&limit=1000"},
+    {"id": "defi_launch", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=ebee6da5df3946519fdb9ab27706d1a4"},
+    {"id": "lend_settlement", "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode=17595222999545348c8acdd5dc41c00a"},
+    {"id": "qtum_launch", "url": "https://www.binance.com/es-LA/support/announcement/detail/360039972971"}
+  ],
+  "events": {
+    "qtum_launch": "2020-02-20T08:00:00+00:00",
+    "defi_launch": "2020-08-28T07:00:00+00:00",
+    "lend_settlement": "2020-10-10T00:00:00+00:00",
+    "aave_launch": "2020-10-16T07:00:00+00:00"
+  },
+  "historical_eligible_universe_ready": false,
+  "old_releases_modified": false
+}
