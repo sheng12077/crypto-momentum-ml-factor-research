@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "max_raw_bytes": 33554432,
+  "scope_end_exclusive": "2021-01-01T00:00:00+00:00",
+  "sources": [
+    {"id":"cmc_bch","url":"https://coinmarketcap.com/currencies/bitcoin-cash/"},
+    {"id":"cmc_btc","url":"https://coinmarketcap.com/currencies/bitcoin/"},
+    {"id":"cmc_eth","url":"https://coinmarketcap.com/currencies/ethereum/"},
+    {"id":"cmc_eos","url":"https://coinmarketcap.com/currencies/eos/"},
+    {"id":"cmc_ltc","url":"https://coinmarketcap.com/currencies/litecoin/"},
+    {"id":"cmc_xrp","url":"https://coinmarketcap.com/currencies/xrp/"},
+    {"id":"cmc_etc","url":"https://coinmarketcap.com/currencies/ethereum-classic/"},
+    {"id":"cmc_link","url":"https://coinmarketcap.com/currencies/chainlink/"},
+    {"id":"future_eth","article_code":"360036964392"},
+    {"id":"future_eos","article_code":"360038540771"},
+    {"id":"future_ltc","article_code":"360038585151"},
+    {"id":"future_xrp","article_code":"360038497311"},
+    {"id":"future_etc","article_code":"360038833831"},
+    {"id":"future_link","article_code":"360038885371"},
+    {"id":"names_common","article_code":"360022498052"},
+    {"id":"name_etc","article_code":"360038685731"},
+    {"id":"name_eos","article_code":"0772c229ee3f48df92b7a8e4e2093736"},
+    {"id":"name_link","article_code":"115001786451"},
+    {"id":"bch_fork","article_code":"ade106fd65974a9982fc5a32e063d0b0"},
+    {"id":"futures_overview","url":"https://www.binance.com/en/blog/all/421499824684900356"},
+    {"id":"link_contract","url":"https://docs.chain.link/resources/link-token-contracts"}
+  ],
+  "assets": [
+    {"instrument_id":"BCHUSDT","vendor_asset_id":1831,"name":"Bitcoin Cash","symbol":"BCH","provider":"cmc_bch","name_source":"bch_fork","name_terms":["Bitcoin Cash (BCH)","BCHUSDT perpetual contract"],"future_source":"futures_overview","future_terms":["Bitcoin Cash Futures (BCH/USDT)","perpetual"],"scope_from":"2020-01-01T00:00:00+00:00","scope_to_exclusive":"2020-11-15T12:00:00+00:00","scope_start_is_listing_time":false,"special":"post-fork interval pending separate evidence; do not substitute BCHA"},
+    {"instrument_id":"BTCUSDT","vendor_asset_id":1,"name":"Bitcoin","symbol":"BTC","provider":"cmc_btc","name_source":"names_common","name_terms":["Bitcoin (BTC)"],"future_source":"futures_overview","future_terms":["Bitcoin Futures (BTC/USDT)","BTC/USDT perpetual contract"],"scope_from":"2020-01-01T00:00:00+00:00","scope_start_is_listing_time":false},
+    {"instrument_id":"ETHUSDT","vendor_asset_id":1027,"name":"Ethereum","symbol":"ETH","provider":"cmc_eth","name_source":"names_common","name_terms":["Ethereum (ETH)"],"future_source":"future_eth","future_terms":["ETH/USDT","perpetual contract"],"scope_from":"2020-01-01T00:00:00+00:00","scope_start_is_listing_time":false},
+    {"instrument_id":"EOSUSDT","vendor_asset_id":1765,"name":"EOS","symbol":"EOS","provider":"cmc_eos","name_source":"name_eos","name_terms":["EOS (EOS)"],"future_source":"future_eos","future_terms":["EOS/USDT","2020/01/08 08:00 AM (UTC)","perpetual contract"],"scope_from":"2020-01-08T08:00:00+00:00","scope_start_is_listing_time":true,"special":"Later Vaulta migration must not be back-applied to 2020"},
+    {"instrument_id":"LTCUSDT","vendor_asset_id":2,"name":"Litecoin","symbol":"LTC","provider":"cmc_ltc","name_source":"names_common","name_terms":["Litecoin (LTC)"],"future_source":"future_ltc","future_terms":["LTC/USDT","2020/01/09 08:00 AM (UTC)","perpetual contract"],"scope_from":"2020-01-09T08:00:00+00:00","scope_start_is_listing_time":true},
+    {"instrument_id":"XRPUSDT","vendor_asset_id":52,"name":"XRP","symbol":"XRP","historical_names":["XRP"],"provider":"cmc_xrp","name_source":"names_common","name_terms":["XRP"],"future_source":"future_xrp","future_terms":["XRP/USDT","perpetual contract"],"scope_from":"2020-01-06T23:59:59+00:00","scope_start_is_listing_time":false,"special":"Notice says already launched; conservative end-of-notice-day bound, not exact listing time"},
+    {"instrument_id":"ETCUSDT","vendor_asset_id":1321,"name":"Ethereum Classic","symbol":"ETC","provider":"cmc_etc","name_source":"name_etc","name_terms":["Ethereum Classic (ETC)"],"future_source":"future_etc","future_terms":["ETC/USDT","2020/01/16 08:00 AM (UTC)","perpetual contract"],"scope_from":"2020-01-16T08:00:00+00:00","scope_start_is_listing_time":true},
+    {"instrument_id":"LINKUSDT","vendor_asset_id":1975,"name":"Chainlink","symbol":"LINK","historical_names":["Chainlink","ChainLink"],"provider":"cmc_link","name_source":"name_link","name_terms":["ChainLink (LINK)"],"future_source":"future_link","future_terms":["LINK/USDT","2020/01/17 08:00 AM (UTC)","perpetual contract"],"scope_from":"2020-01-17T08:00:00+00:00","scope_start_is_listing_time":true,"ethereum_contract":"0x514910771af9ca656af840dff83e8264ecf986ca"}
+  ]
+}
