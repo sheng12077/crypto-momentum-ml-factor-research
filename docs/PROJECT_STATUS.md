@@ -2,10 +2,30 @@
 
 Updated 2026-11-19. Current segment: research/early-size-identities, registered
 on main at144143f. Inspect Git for final implementation/no-ff merge hashes.
+Completed identity implementation7e1c3ff,merged main5c44dca.
 Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## User preference: retain as many defensible assets as possible
+
+- Reconfirmed2026-11-19. Prioritize additional identity/source verification over
+  convenient permanent exclusions. Missing evidence means pending,not proof of
+  an unusable underlying. Keep raw data and rejection reasons for later recovery.
+- Evaluate availability by asset episode and decision date. Exclude only the
+  unsupported interval/feature combination;retain supported intervals. Never
+  require an asset to survive to the present or have complete future history.
+- Keep a broad price/funding/flow candidate universe distinct from the subset
+  with defensible Size data. If Size is unavailable,do not fill it with zero or
+  silently substitute another feature. Any three-factor comparison is a separate
+  preregistered experiment,not a retrospective change to the four-factor baseline.
+- Prioritize IOTA's29 named2020 gaps,then UNI futures identity and the remaining
+  literal leads. Existing failed captures stay frozen;new evidence requires a
+  separately registered follow-up/version. No recovery or eligibility increase
+  claimed from this preference update. No purchase authorized or needed now.
+- Report both unique candidate assets and per-date eligible counts/asset-weeks;
+  never equate a lifetime identifier count with simultaneously tradable assets.
 
 ## Completed bounded early Size identity review
 
