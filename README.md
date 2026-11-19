@@ -55,3 +55,5 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 - [Early history, funding inventory and raw backfill command](docs/HISTORY_EXTENSION.md)
 
 - [Completed early raw integrity, gap and funding audit](docs/EARLY_HISTORY_AUDIT.md)
+
+- [QTUM funding supplement and DEFI/LEND episode checks](docs/EARLY_CASES_REVIEW.md)
