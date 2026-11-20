@@ -1,8 +1,9 @@
 # Project status
 
-Updated 2026-11-20. Completed segment: research/btc-public-api-check,
-registered on main at1c3117f. Final target main via no-ff merge;inspect Git for
+Updated 2026-11-20. Completed segment: research/early-weekly-universe,
+registered on main at676dc07. Final target main via no-ff merge;inspect Git for
 implementation/merge hashes. No remote push or history rewrite.
+Prior BTC API implementationdfe8d7f,merged main8d68fa0;registration1c3117f.
 Prior nine-case implementation93631d6,merged maineeabe9e;registration5440693.
 Prior remaining18 implementation8a79757,merged main499adcd;registration4de60fe.
 Prior unified engine implementationf96e5aa,merged main3a4d867;registration544965e.
@@ -16,7 +17,38 @@ Daily implementation registered on main at93cf6e1. Target main via no-ff merge; 
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
-## Completed BTC public API cross-check
+## Current identity release and 2020 weekly coverage
+
+- Protocol docs/EARLY_WEEKLY_UNIVERSE_PROTOCOL.md registered676dc07 before work.
+  New config/early_weekly_universe_20261120.json;reusable offline command:
+  python scripts/build_early_weekly_universe.py summary --version v20261120_001.
+- Latest identity source data/interim/early_weekly_universe/v20261120_001/
+  asset_review.json:81records,40corroborated overall,38of40ever-history IDs.
+  BTC combined evidence consumed,old exact rule retained as superseded,scope/
+  USDscale/no-splice/strict limitations unchanged. Other80records unchanged.
+  Oldv00737of40 is preserved predecessor,not the current count. BAND/SXP pending.
+- Recomputed all7BTC checks from saved raw responses/6archive Parquets and dated
+  2019notice;prior tools/dependencies/report/raw metadata/daily inputs hash-verified.
+  234tests(7new)passed,Ruff lint/format pass. Full build6.031s/replay4.672s,
+  zeroHTTP,all7output hashes identical. No user rerun needed.
+- Scope2020only/same81early IDs;52Monday00UTCdecisions,previousUTCday's panel.
+  Outputs4212asset-week CSV rows,52weekly JSON/CSV rows,members/exclusion reasons,
+  81identity JSON/CSV rows and BTCconsumption record. All counts reconcile.
+- Identity/scope/history coverage(all52weeks):min0/median24/max37;first nonempty
+  2020-05-04(3names),35nonempty weeks,29weeks>=20names,9weeks>=30names.
+  Jul6=24,Oct5=25,Dec28=37;first37-nameweekDec21. Do not assume38everyweek.
+- Raw862candidate asset-weeks->844after identity/scope gates:5BAND+6SXPpending
+  weeks,7BCHpost-cutoff weeks. All844also pass observed-funding freshness flag;
+  this does not prove paid cashflows or whole-period freshness. Strict trading
+  eligibility not established;Sizepublication vintage still unproven.
+- All old canonical/identity/API releases unchanged. No Sizejoins,factors,labels,
+  fit,PnL,OOS. Not a924-ID or2021–2026coverage audit. Next separately scoped
+  task:research-input continuity/Sizeavailability/execution-funding semantics;
+  do not extend2020identity scopes to later years or run backtests automatically.
+- Log reports/acquisition/early_weekly_universe_v20261120_001.log. Current
+  report root data/interim/early_weekly_universe/v20261120_001/.
+
+## Completed BTC public API cross-check (consumed in current release)
 
 - User authorized public API checks,no key. Protocol docs/BTC_PUBLIC_API_PROTOCOL.md
   registered1c3117f before work;config/btc_public_api_20261120.json fixes7GETs:
@@ -39,11 +71,10 @@ paper/live explicitly deferred until after OOS review.
 - Output data/interim/btc_public_api/v20261120_002/summary.json,checks.json,
   btc_identity_assessment.json,source_outcomes.json;raw undercapture/. Log
   reports/acquisition/btc_public_api_v20261120_002.log. No user rerun/key needed.
-- Unifiedv007 counts remain37of40 because this bounded audit writes a sidecar,
-  not a new registry release. BTC evidence is now satisfied;do not keep describing
-  BTC as lacking price/funding data. Next:explicitly consume BTC evidence in a
-  versioned identity/eligibility release,then weekly usable-pool audit. BAND/SXP
-  still pending. No factors,labels,fit,PnL,canonical joins,orOOS access.
+- API audit wrote a sidecar only;it is now consumed in the current38of40
+  identity release above. Its oldv00737of40predecessor remains intact. BTC is
+  no longer pending identity evidence;BAND/SXP still pending. No factors,labels,
+  fit,PnL,canonical joins,orOOS access.
 
 ## Nine-case follow-up (preserved v007 registry)
 

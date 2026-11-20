@@ -51,3 +51,49 @@ replay/report hashes. Old identity,API audit and canonical releases stay intact.
 Stop with the updated identity evidence and weekly coverage findings;do not
 automatically extend dates,apply Size lags,change strategy/OOS splits,or launch
 a backtest. Next work should follow the observed coverage and open limitations.
+
+## Completed release
+
+Offlinev20261120_001 completed6.031s;replay4.672s,zeroHTTP. All seven derived
+report hashes identical. Full234tests passed(7new);changed-file Ruff passes.
+BTC audit's7checks recomputed from raw public responses/archives;other80identity
+records unchanged. BTC old rule retained as superseded with unchanged scope and
+all limitations. New identity release:81records,40corroborated overall,38of40
+ever-history candidates;BAND/SXP remain pending. LEND/AAVE have no qualifying
+2020history window;UNI remains registered-pending without qualifying history.
+
+New current identity source:
+data/interim/early_weekly_universe/v20261120_001/asset_review.json.
+Do not keep using the preserved v007/37-of40 report as the latest release.
+
+| DecisionUTC | Raw history count | Identity/scope/history count | Also fresh observed funding |
+|---|---:|---:|---:|
+| 2020-01-06 |0|0|0|
+| 2020-05-04 |3|3|3|
+| 2020-07-06 |24|24|24|
+| 2020-10-05 |25|25|25|
+| 2020-12-28 |40|37|37|
+
+Across all52weeks(including17zero weeks),identity/scope/history count is
+min0/median24/max37;35nonempty weeks,29weeks>=20names,9weeks>=30names.
+First nonempty weekMay4;first37-name weekDecember21. Counts are calendar-specific,
+not a fixed38-asset portfolio. Raw862asset-weeks reduce to844:5BAND+6SXPpending
+identity weeks and7BCHweeks beyond its verified fork cutoff. In these844weeks,
+the existing observed-funding freshness flag removes no additional rows. This
+does not establish paid funding or freshness outside this sampled weekly subset.
+
+Outputs:81identity JSON/CSV rows,4212asset-week CSV rows,52weekly JSON/CSV rows,
+missing evidence and btc_evidence_consumption.json. Every membership/count and
+primary reason reconciles. Overlapping reasons are kept separately. All old
+inputs/identity/API/canonical releases retained;no Size join/PnL/OOS generated.
+Log reports/acquisition/early_weekly_universe_v20261120_001.log. User rerun not
+needed;optional verified summary command:
+
+```bash
+python scripts/build_early_weekly_universe.py summary --version v20261120_001
+```
+
+This is2020/81-ID diagnostic coverage only,not the924-ID or2021–2026universe,
+nor full trading eligibility. Next task should address research-input continuity,
+Size availability assumptions and execution/funding semantics before backtesting;
+do not extend these identity scopes or claim later-period coverage automatically.

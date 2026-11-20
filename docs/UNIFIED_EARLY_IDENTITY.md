@@ -1,4 +1,20 @@
-# Current follow-up: v007
+# Latest identity release: BTC integrated
+
+2026-11-20:latest identity source is now
+data/interim/early_weekly_universe/v20261120_001/asset_review.json,with38of40
+ever-history candidates corroborated(40overall including2without history).
+BTC API sidecar consumed;other80records unchanged. BAND/SXP remain pending.
+See EARLY_WEEKLY_UNIVERSE_PROTOCOL.md for the52-week2020audit and limitations.
+
+```bash
+python scripts/build_early_weekly_universe.py summary --version v20261120_001
+```
+
+Build is complete,no user rerun needed. Weekly counts range0–37,not a fixed38.
+Oldv007and API audit/canonical inputs are preserved. This is not strict trading
+eligibility or a924-ID/2021–2026coverage release. No PnL/OOS accessed.
+
+# Preserved follow-up: v007
 
 2026-11-20 update:separate BTC public audit v20261120_002 passed7of7checks,
 96trade+96mark hourlybars and12fundingevents. Combined BTC identity evidence
