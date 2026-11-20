@@ -1,6 +1,33 @@
 # Project status
 
-Updated 2026-11-20. Current documentation segment:docs/vip0-fees-slippage.
+Updated 2026-11-20. Current completed segment:infra/nautilus-runtime-accounting.
+Registration on main57a15f6;parent main3bf111e(cost docs implementationbead88e).
+Inspect Git for the final implementation/merge hashes. No push/history rewrite.
+
+## Simulator accounting validation
+
+- Installed isolated WSLCPython3.13.18/NautilusTrader1.231.0under
+  data/interim/runtime/nautilus313;borrowed conda environment unchanged.
+  Resolved requirements/nautilus-linux-py313.lock;no historical market reads.
+- scripts/run_nautilus_smoke.py actually executes15synthetic engine scenarios,
+  each twice. All passed with identical normalized reports;casesSHA256
+  2bb5e89ae4df702f6e75e4d61efd8e44f03a6468b16f098dfff29dfb66c5b6d4.
+  Output:data/interim/nautilus_smoke/v20261120_001/summary.json.
+- Net89.95USDTon10000→10100oneBTCroundtrip;flatroundtrip-10USDT;
+  adverse0/2/5/10bpsfillstress reconcilesfeesandbalance. No maker-filltest.
+- Stable exchange has no native perpetualFunding settlement;custom synthetic
+  SimulationModule uses engineaccountadjustments. Long/short/flat,negative
+  rate,exact/+1msandboundaryholdingspassed. Boundary convention isfixture-only;
+  skippedexacteventraises. Not an auditedhistoricalBinancecashflowadapter.
+- Tests:isolatedengine2passed;existingnativeArrowregression234passed/1skipped
+  (Nautilusnotinstalledthere);Ruffpassed. UpstreamPandasdeprecationwarnings.
+- Documentation/commands:docs/NAUTILUS_ACCOUNTING.md. Realstrategyperformance
+  notcomputed;OOSnotinspected;readinessfalse. Next segment:2021–2022universe/
+  identityand2020warmupcontinuity,thenhistoricalfunding/mark/executionadapter
+  andfrozenfeature/model/portfolio/selectionrules. Do notcallsyntheticPnLstrategyalpha.
+
+## Earlier milestones
+
 Parent maina89fb83(engine/scope implementation037c534);selection-workflow
 implementation6ed98bb,merged main454e3bc. Earlier weekly
 release implementation86e99a3,merged main84efd6c;registration676dc07.
@@ -41,9 +68,9 @@ paper/live explicitly deferred until after OOS review.
   docs/FIRST_DEVELOPMENT_RUN_DRAFT.md records confirmed choices and proposed
   5long/5short,gross100%/net0,feature/model defaults;these numbers are drafts,
   not user-confirmed specifications. SHAP remains required. No fit/PnL/OOS.
-- Project currently declaresPython3.13;pyproject has no Nautilus/LightGBM
-  dependencies. No installation or runtime claim. Pin/check compatible versions,
-  implement adapters/accounting/fill tests,freeze explicit fees/funding/latency.
+- Project declaresPython3.13;pyproject has no Nautilus/LightGBM dependencies.
+  Isolated Nautilus runtime/accounting checks are now complete as recorded above;
+  LightGBM and historical adapters remain pending. Freeze fees/funding/latency.
   HourlyVWAP is a stage0proxy,not a default engine fill. Docs support funding
   boundaries but real source timestamps/mark/cashflow mapping must be tested.
 
