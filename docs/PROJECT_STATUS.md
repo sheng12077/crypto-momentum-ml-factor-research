@@ -1,6 +1,36 @@
 # Project status
 
-Updated 2026-11-20. Current completed segment:infra/nautilus-runtime-accounting.
+Updated 2026-11-20. Current segment:feat/backtest-analysis-notebook.
+Parent main853a90c;accounting implementation22dabe9. Inspect Git for final
+notebook implementation/merge hashes. This segment is reporting tooling only.
+
+## Backtest analysis notebook
+
+- notebooks/backtest_analysis.ipynb reads saved outputs;does not fit or backtest.
+  Default reads15synthetic scenarios only. Historical section explicitly empty.
+  Notebook includes metric/dashboard code for2021–2022development,not OOS.
+- src/momentum_data/backtest_analysis.py supplies tables,drawdown/return metrics,
+  matchedBTC/ETHNAV comparison,monthlyreturns,exposures,costs,turnoverplots.
+  Historicalcontract requiresmarkedNAVincludingunrealizedPnL/fees/funding,
+  noexternalcashflows,commonUSDTvaluation,contiguousUTCdailygrid.
+  Manifest and timestamp-only checks rejectoutside2021–2022beforeNAVread.
+- Isolatedanalysis313runtime,separatefromsimulator;resolved
+  requirements/analysis-linux-py313.lock. Commands:docs/BACKTEST_NOTEBOOK.md.
+  scripts/check_analysis_notebook.py executesusingthisruntime'sownkernel.
+  Sourcecommittedwithnooutputs;executedcopyreports/acquisition/
+  backtest_analysis_executed.ipynb;PNG/CSVreports/figuresandtables/backtest_analysis.
+- Full defaultnotebookexecuted4codecells;syntheticPNGvisuallychecked.
+  Analysisenvironment10testspassed;fullnativeregression244passed/1skipped
+  (Nautilusnotinstalledthere);Ruffpassed. Tests validate metrics,missingdata/
+  bounds,andfuturechart rendering. Older/newerpandascompatibilityverified.
+  No strategyperformance/OOScomputed;historicalreadinessgatesunchanged.
+  SHAPstillmandatoryaftermodeltraining,notimplementedwithfakevalueshere.
+- Next:2021–2022identity/universe/warmupandhistoricalexecution/fundingadapter,
+  thenfreeze/runstrategyandexportthe documented dailycontract to this notebook.
+
+## Prior simulator milestone
+
+Completed segment:infra/nautilus-runtime-accounting.
 Registration on main57a15f6;parent main3bf111e(cost docs implementationbead88e).
 Inspect Git for the final implementation/merge hashes. No push/history rewrite.
 

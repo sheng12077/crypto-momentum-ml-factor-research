@@ -20,6 +20,8 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 
 ## Current research notes
 
+- [Backtest analysis notebook and launch instructions](docs/BACKTEST_NOTEBOOK.md)
+- [Notebook source](notebooks/backtest_analysis.ipynb)
 - [Momentum and trend-following research landscape](docs/momentum_research_landscape.md)
 - [Candidate strategy families before Experiment 001](docs/candidate_strategy_families.md)
 - [Project status and handoff](docs/PROJECT_STATUS.md)
