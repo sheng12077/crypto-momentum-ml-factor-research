@@ -1,8 +1,8 @@
 # Project status
 
-Updated 2026-11-20. Completed segment: research/early-weekly-universe,
-registered on main at676dc07. Final target main via no-ff merge;inspect Git for
-implementation/merge hashes. No remote push or history rewrite.
+Updated 2026-11-20. Current documentation segment:docs/development-selection-workflow.
+Parent main84efd6c(early-weekly implementation86e99a3;registration676dc07).
+Inspect Git for final documentation merge. No remote push or history rewrite.
 Prior BTC API implementationdfe8d7f,merged main8d68fa0;registration1c3117f.
 Prior nine-case implementation93631d6,merged maineeabe9e;registration5440693.
 Prior remaining18 implementation8a79757,merged main499adcd;registration4de60fe.
@@ -16,6 +16,24 @@ Weekly contract registered on main atee792fa. Inspect Git for final merge hash.
 Daily implementation registered on main at93cf6e1. Target main via no-ff merge; inspect Git for
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
+
+## Development-selection workflow discussion
+
+- User proposes selecting on2021–2022then examining2023. Draft recorded in
+  docs/DEVELOPMENT_SELECTION_WORKFLOW.md;approved split dates remain unchanged.
+  Optional inner2021train/2022validation,then eligible2021–2022refit/2023test;
+  keep all trials. Freeze selection objective,search budget,rules and refit policy
+  before2023inspection. Favorable2023is supporting evidence,not proof of nooverfit.
+- If unchanged,refit2021–2023under frozen rules and evaluate2024. If adjusted
+  from2023,mark2023as used development validation;do not call it untouched.
+  2025Jan–2026OctfinalOOSstayssealed. Numeric acceptance thresholds and full
+  executable trading/model/cost rules pending;this is not full preregistration.
+- Four candidate cadence/buffer definitions proposed;fixed benchmarks/risk
+  metrics discussed. No tests/performance run for this documentation-only segment;
+  no fit,labels,PnL,orOOS. Existing performance/oos flags remainfalse.
+- Next:complete executable trading/feature/model/cost rules and bounded ledger,
+  audit2021–2022identity/universe/warm-up continuity,then preregister/run initial
+  development experiments. Current38of40release remains2020/81early IDs only.
 
 ## Current identity release and 2020 weekly coverage
 
