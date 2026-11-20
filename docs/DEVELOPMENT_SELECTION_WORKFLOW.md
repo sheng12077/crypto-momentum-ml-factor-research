@@ -10,6 +10,11 @@
 
 ## Proposed sequence
 
+2026-11-20scope update:user selected momentum/funding/aggressive imbalance for
+the first2021–2022run,Size later;NautilusTrader confirmed as simulation engine.
+See FIRST_DEVELOPMENT_RUN_DRAFT.md for confirmed choices versus proposed
+portfolio/model/execution defaults. No performance has been run.
+
 1. Use2021–2022as the development/search period. Record every candidate,code and
    input version,model hyperparameters,and failed run;retain losing results.
    Selection within development is legitimate,but presenting only winning
