@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "identity_root": "data/interim/early_identity_all/v20261119_007/full",
+  "btc_audit_root": "data/interim/btc_public_api/v20261120_002",
+  "expected_identifiers": 81,
+  "expected_weeks": 52,
+  "expected_history_candidates": 40,
+  "expected_prior_supported_history": 37,
+  "expected_prior_corroborated": 39,
+  "inputs": {
+    "data/interim/early_identity_all/v20261119_007/full/summary.json": "53acc6b50b9c969c58766389ddd5a3b143beaf31673856c70c5a914f7f56cfe3",
+    "data/interim/early_identity_all/v20261119_007/full/run_config.json": "ff50ffc71d8d0ae1c47919f90ac6bf3190012aee95702edb3d325022efec6ecb",
+    "data/interim/early_identity_all/v20261119_007/full/asset_review.json": "c40f081b9d675490935289a16d2c9d6a4901da6682bddebfd40eaf563fbeed1e",
+    "data/interim/early_identity_all/v20261119_007/full/evidence_checks.json": "7ae3507055d5e632d748947eeda525e1e9eeb8eb43e0ef8e0aede43d4f0fd491",
+    "data/interim/btc_public_api/v20261120_002/summary.json": "c86c66533a34b135cc0db98db67c20c7dae2930ccb0b4beb3c771703c7f414a7",
+    "data/interim/btc_public_api/v20261120_002/review/run_config.json": "532c3d5e5aa0530edf920f43e16d0f65cb309b0b80e7638634cc87f3372b63d7",
+    "data/interim/btc_public_api/v20261120_002/contract/run_config.json": "25327cd4065a0ecc74f5ca3e665f456550c0872147a2c82fb2982c4332e349f9",
+    "data/interim/btc_public_api/v20261120_002/capture_seed.json": "6fc7b976cdb03991c7730d73f6b133a991cf5077d1f6c153f6df8dea4abdfb61",
+    "data/interim/btc_public_api/v20261120_002/checks.json": "a3c869e5a9b95b2b17572d87671a4d09bdb934bbc3f3f3142ac9fddc4f28ba8b",
+    "data/interim/btc_public_api/v20261120_002/source_outcomes.json": "5b95d55dadfff20c1c98a132667b6b7be8b40fddb35f74d8c1b17b395cf49c1f",
+    "data/interim/btc_public_api/v20261120_002/btc_identity_assessment.json": "14fe9a72900aa67b28e08080f426e3afee919b44dfd7fe9cd49003a8d67cec70"
+  },
+  "replaces_btc_rule_sha256": "4b9b3506e7e0a56bafbbfcb2a01f66b63335ff0203e151cb50f2a2097e063189"
+}
