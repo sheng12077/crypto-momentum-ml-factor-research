@@ -1,8 +1,9 @@
 # Project status
 
-Updated 2026-11-19. Completed segment: research/nine-identity-followup,
-registered on main at5440693. Final target main via no-ff merge;inspect Git for
+Updated 2026-11-20. Completed segment: research/btc-public-api-check,
+registered on main at1c3117f. Final target main via no-ff merge;inspect Git for
 implementation/merge hashes. No remote push or history rewrite.
+Prior nine-case implementation93631d6,merged maineeabe9e;registration5440693.
 Prior remaining18 implementation8a79757,merged main499adcd;registration4de60fe.
 Prior unified engine implementationf96e5aa,merged main3a4d867;registration544965e.
 Batch3 implementation9155caa,merged main7ab42dd.
@@ -15,7 +16,36 @@ Daily implementation registered on main at93cf6e1. Target main via no-ff merge; 
 final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
-## Nine-case follow-up
+## Completed BTC public API cross-check
+
+- User authorized public API checks,no key. Protocol docs/BTC_PUBLIC_API_PROTOCOL.md
+  registered1c3117f before work;config/btc_public_api_20261120.json fixes7GETs:
+  exchangeInfo and trade1h/mark1h/funding forJan1-3andJun1,2020UTC. Six archive
+  Parquets,index,priorv007proofs and captured2019ETHnotice hash-bound. No OOS.
+- Reusable script scripts/check_btc_public_api.py. Exact timestamp/Decimal
+  comparisons,strict coverage,instrument/type/schema checks;captures and terminal
+  failures frozen. Stops furthernew requests after failure;no alternate hosts.
+- v001 acquired all7responses;integration hit legacyHTML notice parser mismatch.
+  v002 uses existing legacy parser,unchanged gates;all7hash-verified responses
+  copied with recorded seed provenance. No source refetch or gate relaxation.
+- v002 passed7of7checks,4.812s/zeroHTTP:96trade+96mark hourlybars,12fundingevents,
+  exact agreement. Combined retrospective BTC identity assessment true. Current
+  metadata is not a historical rulebook;API/archive agreement is not independent
+  ground truth. Information availability,paid cashflows,full lifecycle unproven.
+- Final227tests passed(8new),Ruff lint/format pass. Replay2.579s,zeroHTTP,
+  all three report hashes identical. Source metadata BTCUSDT/PERPETUAL/BTC/USDT/
+  marginUSDT;onboardDate1567965300000,currentstatusTRADING. Do not use current
+  status or filter values as historical permissions/rules.
+- Output data/interim/btc_public_api/v20261120_002/summary.json,checks.json,
+  btc_identity_assessment.json,source_outcomes.json;raw undercapture/. Log
+  reports/acquisition/btc_public_api_v20261120_002.log. No user rerun/key needed.
+- Unifiedv007 counts remain37of40 because this bounded audit writes a sidecar,
+  not a new registry release. BTC evidence is now satisfied;do not keep describing
+  BTC as lacking price/funding data. Next:explicitly consume BTC evidence in a
+  versioned identity/eligibility release,then weekly usable-pool audit. BAND/SXP
+  still pending. No factors,labels,fit,PnL,canonical joins,orOOS access.
+
+## Nine-case follow-up (preserved v007 registry)
 
 - User fullv006 completed108.382s:81records,33identity-corroborated,31of40
   history candidates supported. Sources51available/8terminal failures,42HTTP.

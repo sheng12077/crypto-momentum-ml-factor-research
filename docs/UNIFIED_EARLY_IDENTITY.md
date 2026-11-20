@@ -1,5 +1,10 @@
 # Current follow-up: v007
 
+2026-11-20 update:separate BTC public audit v20261120_002 passed7of7checks,
+96trade+96mark hourlybars and12fundingevents. Combined BTC identity evidence
+satisfied;see BTC_PUBLIC_API_PROTOCOL.md. It writes a sidecar only;v007's37of40
+count is unchanged until explicit consumption in a new release. No OOS/PnL.
+
 Nine-case follow-up registered5440693;see EARLY_IDENTITY_NINE_FOLLOWUP.md.
 Default plan config/early_identity_remaining_004_20261119.json,18additional
 cases/60sources. Hash-verified v006 evidence inherited;8newURLs only. Existing

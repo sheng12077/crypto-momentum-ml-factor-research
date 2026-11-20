@@ -53,3 +53,36 @@ audit locally and verify a zero-HTTP replay and report hashes. Capture failures
 are an explicitly incomplete check,not data rejection. Provide one user command
 if this host cannot access the public API;do not request API keys to bypass it.
 No factors,labels,fit,PnL,OOS,canonical joins,or automatic registry updates.
+
+## Completed audit and interpretation
+
+v20261120_001 acquired all seven public responses. Integration then failed because
+the initially selected article parser did not support legacyHTML. No data mismatch
+was involved. Old contract/captures retained;v002 uses the existing frozen legacy
+parser,with unchanged windows,numeric gates,and source clauses. Seven source
+metadata hashes and the old contract hash are recorded in capture_seed.json;
+verified bodies were copied into v002 without new requests.
+Final227tests passed(including8new API-audit tests);changed-file Ruff lint/format
+passes. A same-version replay completed2.579s,zeroHTTP,all three report hashes
+identical. Summary verifies report hashes before returning its compact result.
+
+v002 completed4.812s,zeroHTTP:7of7checks passed,192hourly bars compared
+(96trade+96mark),12funding events. API/archive timestamps and selected Decimal
+fields agree exactly. Combined retrospective identity-evidence assessment passes,
+including prior numeric/name/history proofs and the explicit2019contract reference.
+This does not establish full-period coverage,real-time data availability,paid
+funding,or full historical execution/lifecycle rules. Binance remains the common
+provenance of both data channels.
+
+Output data/interim/btc_public_api/v20261120_002/{summary.json,checks.json,
+source_outcomes.json,btc_identity_assessment.json};raw responses undercapture/.
+Log reports/acquisition/btc_public_api_v20261120_002.log. Reusable command:
+
+```bash
+python scripts/check_btc_public_api.py summary --version v20261120_002
+```
+
+The acquisition is complete,no user key or download is required. The unifiedv007
+registry remains37of40;this sidecar has not silently rewritten it. Next task:
+register explicit consumption of this BTC evidence in a new identity/eligibility
+release,then audit the weekly usable universe before strategy experiments.
