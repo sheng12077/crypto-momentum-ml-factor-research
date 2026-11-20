@@ -25,6 +25,44 @@ Existing split and stage0clock stay unchanged. Development is2021–2022;an inne
 OOS stays sealed. Model/portfolio choices must not use2023performance until the
 promoted specification/selection procedure is frozen.
 
+## Fee and slippage policy
+
+User recallsVIP0and explicitly chooses noBNBdiscount,even ifBNBis held. Use
+that as the first-run fee-tier assumption;account tier/effective fees are not
+authenticated. config/execution_cost_policy_draft.json records this distinction.
+
+Public standard reference:maker0.02%(2bps),taker0.05%(5bps),withoutBNBdiscount.
+The officialFAQ's numeric examples explicitly call their rates hypothetical;
+the main fee-page text did not return its table in this lookup. Search-indexed
+officialVIPmaterial also displays these reference values. Do not call this an
+authenticated account commission snapshot or a verified2021–2022fee history.
+An explicit publicVIP0cost assumption is usable for research;authenticated rates
+are needed before describing results as account-exact. This cost-only draft
+remainsnon-executable until the full trading/model/execution contract is frozen.
+Applying the current reference to old prices is a current-cost replay,not historical fee
+reconstruction. Do not substitute a commission-API documentation example as a
+real account response. No keys/private endpoints were accessed.
+
+Charge fees on executed notional,not margin,at each partial/open/close/resizing/
+forced-exit fill. Maker/taker follows the actual fill's liquidity side:a marketable
+limit order can be a taker. Unknown liquidity is not grounds for cheaper maker
+fees. Market orders use taker fees. Account commission snapshots may differ by
+symbol,VIPlevel,promotion and time;freeze the chosen source/effective time.
+
+Proposed independent adverse slippage scenarios are0/2/5/10bpsperfill,on both
+entry and exit. Zero is an optimistic fee-only diagnostic,not a realistic-fill
+claim. These scenarios are stress assumptions,not estimated real slippage.
+Apply slippage through worse fill prices(buyhigher/selllower);calculate fees
+from resulting executed notional. Attribute implicit slippage separately and
+do not debit it again as a second fee. Specify the base spread/impact model
+before adding stress to prevent double-counting. Keep the same signals across
+stress cases;do not choose whichever cost scenario makes a strategy look best.
+
+HistoricalFunding remains a separate event-based cost/credit,with its own
+settlement and mark assumptions. SpotBTC/ETHbenchmarks require their own spot
+fee rules;do not apply a futures fee schedule to spot holdings. No simulation,
+performance,package installation or execution adapter is implemented here.
+
 ## Proposed first baseline defaults for review
 
 | Item | Proposed specification | Status |
@@ -70,6 +108,11 @@ cash accrual and treatment of unavailable marks must be frozen before a run.
 Official references checked2026-11-20(latest docs,not a pinned installed version):
 [Fill models](https://nautilustrader.io/docs/latest/concepts/backtesting/fill-models/),
 [Accounts and funding](https://nautilustrader.io/docs/latest/concepts/backtesting/accounts-and-margin/).
+
+Fee references checked2026-11-20:
+[Official fee formula and examples](https://www.binance.com/en/support/faq/detail/360033544231),
+[USD-M fee table](https://www.binance.com/en/fee/futureFee),
+[Signed account commission endpoint](https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/User-Commission-Rate).
 
 ## Remaining data prerequisites
 
