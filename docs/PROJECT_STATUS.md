@@ -1,7 +1,8 @@
 # Project status
 
-Updated 2026-11-20. Current documentation segment:docs/three-component-nautilus-baseline.
-Parent main454e3bc(selection-workflow implementation6ed98bb). Earlier weekly
+Updated 2026-11-20. Current documentation segment:docs/vip0-fees-slippage.
+Parent maina89fb83(engine/scope implementation037c534);selection-workflow
+implementation6ed98bb,merged main454e3bc. Earlier weekly
 release implementation86e99a3,merged main84efd6c;registration676dc07.
 Inspect Git for final documentation merge. No remote push or history rewrite.
 Prior BTC API implementationdfe8d7f,merged main8d68fa0;registration1c3117f.
@@ -19,6 +20,21 @@ final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
 ## Development-selection workflow discussion
+
+- User recallsVIP0and explicitly requests noBNBdiscount;use as tier assumption,
+  not authenticated account state. Reference maker0.0002/taker0.0005,additional
+  slippage stress0/2/5/10bpsperfillproposed. New non-executable draft:
+  config/execution_cost_policy_draft.json;performance/OOSflagsfalse.
+- OfficialFAQcalls numeric examples hypothetical;direct publicfee table did not
+  render. OfficialVIPsearch index has same reference values,but effective account
+  rates and2021–2022historical schedules remainunverified. Do not claim actual
+  account fees or historical fee reconstruction;no private endpoint/key used.
+- Costs separate commissions on actual fill notional,adverse-price slippage and
+  historicalFunding. Maker/taker follows fill liquidity,not limit-order label.
+  Do not double-debit implicit slippage. Freeze explicit execution/stress/fee
+  assumptions before performance. PublicVIP0reference can support research;
+  authenticated account rates are needed only for account-exact claims.
+  No model/PnL/OOS;cost-only config is a draft,not an execution gate itself.
 
 - User explicitly chose first-run momentum/funding/aggressive imbalance,Size
   later. NautilusTrader confirmed as execution/account simulation engine.
