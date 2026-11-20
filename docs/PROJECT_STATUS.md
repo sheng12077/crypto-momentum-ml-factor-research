@@ -1,7 +1,8 @@
 # Project status
 
-Updated 2026-11-20. Current documentation segment:docs/development-selection-workflow.
-Parent main84efd6c(early-weekly implementation86e99a3;registration676dc07).
+Updated 2026-11-20. Current documentation segment:docs/three-component-nautilus-baseline.
+Parent main454e3bc(selection-workflow implementation6ed98bb). Earlier weekly
+release implementation86e99a3,merged main84efd6c;registration676dc07.
 Inspect Git for final documentation merge. No remote push or history rewrite.
 Prior BTC API implementationdfe8d7f,merged main8d68fa0;registration1c3117f.
 Prior nine-case implementation93631d6,merged maineeabe9e;registration5440693.
@@ -18,6 +19,17 @@ final merge hash. No push/history rewrite. Scope ends at simulation/OOS;
 paper/live explicitly deferred until after OOS review.
 
 ## Development-selection workflow discussion
+
+- User explicitly chose first-run momentum/funding/aggressive imbalance,Size
+  later. NautilusTrader confirmed as execution/account simulation engine.
+  docs/FIRST_DEVELOPMENT_RUN_DRAFT.md records confirmed choices and proposed
+  5long/5short,gross100%/net0,feature/model defaults;these numbers are drafts,
+  not user-confirmed specifications. SHAP remains required. No fit/PnL/OOS.
+- Project currently declaresPython3.13;pyproject has no Nautilus/LightGBM
+  dependencies. No installation or runtime claim. Pin/check compatible versions,
+  implement adapters/accounting/fill tests,freeze explicit fees/funding/latency.
+  HourlyVWAP is a stage0proxy,not a default engine fill. Docs support funding
+  boundaries but real source timestamps/mark/cashflow mapping must be tested.
 
 - User proposes selecting on2021–2022then examining2023. Draft recorded in
   docs/DEVELOPMENT_SELECTION_WORKFLOW.md;approved split dates remain unchanged.
