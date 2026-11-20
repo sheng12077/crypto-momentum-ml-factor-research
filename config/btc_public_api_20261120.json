@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "symbol": "BTCUSDT",
+  "archive_release": "binance_um_early_research/v20261119_001",
+  "windows": [
+    {
+      "id": "january",
+      "start": "2020-01-01T00:00:00+00:00",
+      "end_exclusive": "2020-01-04T00:00:00+00:00",
+      "start_ms": 1577836800000,
+      "end_ms": 1578096000000
+    },
+    {
+      "id": "june",
+      "start": "2020-06-01T00:00:00+00:00",
+      "end_exclusive": "2020-06-02T00:00:00+00:00",
+      "start_ms": 1590969600000,
+      "end_ms": 1591056000000
+    }
+  ],
+  "max_raw_bytes": 16777216,
+  "sources": [
+    {
+      "id": "exchange_info",
+      "url": "https://fapi.binance.com/fapi/v1/exchangeInfo"
+    },
+    {
+      "id": "january_trade",
+      "kind": "trade",
+      "window": "january",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&startTime=1577836800000&endTime=1578095999999&limit=1000&interval=1h"
+    },
+    {
+      "id": "january_mark",
+      "kind": "mark",
+      "window": "january",
+      "url": "https://fapi.binance.com/fapi/v1/markPriceKlines?symbol=BTCUSDT&startTime=1577836800000&endTime=1578095999999&limit=1000&interval=1h"
+    },
+    {
+      "id": "january_funding",
+      "kind": "funding",
+      "window": "january",
+      "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1577836800000&endTime=1578095999999&limit=1000"
+    },
+    {
+      "id": "june_trade",
+      "kind": "trade",
+      "window": "june",
+      "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&startTime=1590969600000&endTime=1591055999999&limit=1000&interval=1h"
+    },
+    {
+      "id": "june_mark",
+      "kind": "mark",
+      "window": "june",
+      "url": "https://fapi.binance.com/fapi/v1/markPriceKlines?symbol=BTCUSDT&startTime=1590969600000&endTime=1591055999999&limit=1000&interval=1h"
+    },
+    {
+      "id": "june_funding",
+      "kind": "funding",
+      "window": "june",
+      "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1590969600000&endTime=1591055999999&limit=1000"
+    }
+  ],
+  "archive_index_sha256": "ae72ae88034c694147c7bab7758ede1255a8ffea4fcc183824b3e1652f8ce737",
+  "partitions": [
+    {
+      "kind": "funding",
+      "month": "2020-01",
+      "parquet_sha256": "e89e0b44ea5787fb627d4b16a3072b9091f34c40d1ce8c7a5dcc8b7d10ef2b4b",
+      "relative_path": "observations/funding/BTCUSDT/2020-01.parquet",
+      "rows": 93
+    },
+    {
+      "kind": "funding",
+      "month": "2020-06",
+      "parquet_sha256": "1a1273617a28fb743fbe02472840c619bbf2f4ec6ca1cc51c5d5e54303a61d2c",
+      "relative_path": "observations/funding/BTCUSDT/2020-06.parquet",
+      "rows": 90
+    },
+    {
+      "kind": "mark",
+      "month": "2020-01",
+      "parquet_sha256": "27c1ff3cad679730ba36ec86f1349626c0f6da306b693e23e01c4e33310aaa55",
+      "relative_path": "observations/mark/BTCUSDT/2020-01.parquet",
+      "rows": 744
+    },
+    {
+      "kind": "mark",
+      "month": "2020-06",
+      "parquet_sha256": "5bcd6b827e3b549bc148822c8ad7a14a44e5963fabba0daba9c82208a0930349",
+      "relative_path": "observations/mark/BTCUSDT/2020-06.parquet",
+      "rows": 720
+    },
+    {
+      "kind": "trade",
+      "month": "2020-01",
+      "parquet_sha256": "e79dcd78d9791dbf2b9813f552fa2e323e644e94238e25d48135858c5cee1cbe",
+      "relative_path": "observations/trade/BTCUSDT/2020-01.parquet",
+      "rows": 744
+    },
+    {
+      "kind": "trade",
+      "month": "2020-06",
+      "parquet_sha256": "80e3d2dafa607d210a201666705ba3dd5e460af0befeda89c566cb70c752b14b",
+      "relative_path": "observations/trade/BTCUSDT/2020-06.parquet",
+      "rows": 720
+    }
+  ],
+  "prior_inputs": {
+    "data/interim/early_identity_all/v20261119_007/full/summary.json": "53acc6b50b9c969c58766389ddd5a3b143beaf31673856c70c5a914f7f56cfe3",
+    "data/interim/early_identity_all/v20261119_007/full/run_config.json": "ff50ffc71d8d0ae1c47919f90ac6bf3190012aee95702edb3d325022efec6ecb",
+    "data/interim/early_identity_all/v20261119_007/full/asset_review.json": "c40f081b9d675490935289a16d2c9d6a4901da6682bddebfd40eaf563fbeed1e",
+    "data/interim/early_identity_all/v20261119_007/full/evidence_checks.json": "7ae3507055d5e632d748947eeda525e1e9eeb8eb43e0ef8e0aede43d4f0fd491",
+    "data/interim/early_identity_batch1_20261119/raw/future_eth.raw": "048f0b310dd16c3a495b64c9d43def6726272f0411356dc5772249462a68389d"
+  }
+}
