@@ -1,5 +1,33 @@
 # Project status
 
+## Completed fixed-membership weighting — 2026-11-21
+
+- Registration012:1406e9b;implementation exp/portfolio-weighting. Inspect Git for
+  final implementation/merge hashes. No push/history rewrite. User explicitly keeps
+  2024and finalOOSsealed until research is ready; no automatic next-window run.
+- Read docs/PORTFOLIO_WEIGHTING_RESULTS.md and English
+  notebooks/portfolio_weighting_results.ipynb.12cases(4cachedEQ+8newNautilus),
+  2IV60financialreplays,0fits;1560risk/weight audit rows independently reconstructed.
+- Same5long/5short/two-week/no-buffer/model/scores; only within-side weights differ.
+  IV60:60past dailyreturns, sigmafloor.005, absNAVcap.15. RANK:side25/22.5/20/17.5/15%.
+- Primary2022/2023return+Sharpe:EQ44.17%/1.858and18.06%/.946;
+  IV6031.07%/1.465and24.96%/1.222;RANK40.81%/1.752and11.71%/.669.
+  No alternative passes both-year gates. KeepEQbaseline;IVis a tradeoff, not uniformly
+  inferior;testedranktilt lowersSharpeboth. No retrospective criterion/parameter tuning.
+- IV2023MDD-9.12%vsEQ-10.51%,butIV2022Sharpe falls.10bpsreturnsEQ41.53/15.72%,
+  IV28.65/22.44%,RANK38.22/9.49%. IVdoesnotguaranteelower realizedportfolio volatility.
+- WSLfunding-strategy13focusedtestspassed, including syntheticengine.12case/
+  source/model/schedule/ledger/replayand1560past-risk audit checks passed;
+  notebook4cells executed;equity/riskcharts viewed;Ruffpassed. Native297passed/
+  9optional-dependency skips;syntheticWindowsfixture timestamp overflow fixed(int64).
+  Native regression:
+  reports/acquisition/weighting_regression_20261121.log.
+- Results:data/interim/portfolio_weighting/v20261121_001/;tables/figures under
+  reports/{tables,figures}/portfolio_weighting/. WSL activeenv command:
+  python scripts/run_weighting_experiment.py --stage summary
+- Current bounded experiment complete. Later windows remain sealed; await next
+  research discussion. All conditional cohort/execution/margin caveats remain.
+
 ## Completed user-run buffer sensitivity — 2026-11-21
 
 - Experiment011registration60f29cf, implementationfb4d7ad/merge4d071a7. Result
