@@ -20,6 +20,7 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 
 ## Current research notes
 
+- [Development warmup continuity and 2022 mark-gap audit](docs/DEVELOPMENT_CONTINUITY_AUDIT.md)
 - [Backtest analysis notebook and launch instructions](docs/BACKTEST_NOTEBOOK.md)
 - [Notebook source](notebooks/backtest_analysis.ipynb)
 - [Momentum and trend-following research landscape](docs/momentum_research_landscape.md)
