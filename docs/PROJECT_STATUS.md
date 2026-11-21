@@ -1,5 +1,25 @@
 # Project status
 
+## Fixed 2024 report sample-index verification — 2026-11-21
+
+- Fix branch fix/2024-report-index from exp/frozen-2024-validation HEAD65e6b90.
+  Report-only change: discard incidental DataFrame indices on both compared
+  training tables; retain exact values, dtypes, column order and sample order.
+- User completed4cases and primary replay; reporting failed at saved-vs-filtered
+  index comparison. Corrected verify() passes on all saved cases, training purge,
+  predictions, SHAP, targets, benchmarks and replay.4focused tests pass, including
+  Parquet index loss and rejection of changed values/reordered/missing samples.
+- Existing result/model files hashed before/after verification: unchanged. No fits
+  or historical simulations executed; final2025--2026holdout remains sealed.
+- Run ONLY: python scripts/run_frozen_2024.py --stage report
+  Then: python scripts/run_frozen_2024.py --stage summary
+  Do not use --stage all/simulate for this repair: original run contract binds the
+  pre-fix report source. Original contract stays immutable; independent verification
+  records corrected report SHA and original contract SHA for traceability.
+- Next: user regenerates report/notebook and shares compact summary. Experimental
+  conclusion remains pending; keep parent experiment branch unmerged to main.
+
+
 ## Prepared frozen 2024 validation; user execution handoff — 2026-11-21
 
 - Current branch exp/frozen-2024-validation, registration/base HEAD0f07723.

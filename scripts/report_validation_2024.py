@@ -21,6 +21,12 @@ FIGURES = ROOT / "reports/figures/validation_2024"
 TABLES = ROOT / "reports/tables/validation_2024"
 
 
+def assert_training_samples(saved, expected):
+    """Parquet omits the incidental index; preserve exact row order and values."""
+    pd.testing.assert_frame_equal(saved.reset_index(drop=True), expected.reset_index(drop=True),
+                                  check_exact=True)
+
+
 def verify():
     from prepare_validation_2024 import training_labels
     from run_validation_2024 import schedule, training_rows, verify_case
@@ -39,7 +45,7 @@ def verify():
                                   check_exact=True, check_dtype=False)
     model = RESULTS / "model"
     saved = pd.read_parquet(model / "training_samples.parquet")
-    pd.testing.assert_frame_equal(saved, training_rows(features), check_exact=True)
+    assert_training_samples(saved, training_rows(features))
     predictions = pd.read_parquet(model / "validation_predictions.parquet")
     if not predictions.label.isna().all() or (saved.label_available_ms >= START).any():
         raise ValueError("Label isolation violated")
@@ -77,6 +83,9 @@ def verify():
     if primary["financial_sha256"] != replay["financial_sha256"]:
         raise ValueError("Replay ledger mismatch")
     report = {"success": True, "verified_cases": 4, "training_preserved_and_purged": True,
+              "training_index_is_not_observation_identity": True,
+              "report_script_sha256": sha(Path(__file__)),
+              "original_run_contract_sha256": sha(RESULTS / "run_contract.json"),
               "validation_labels_absent": True, "shap_additivity_max_error": error,
               "replay_financial_sha256": primary["financial_sha256"],
               "final_2025_2026_OOS_inspected": False}

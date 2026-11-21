@@ -7,7 +7,20 @@ equal-weight five long/five short, no buffer. Primary extra slippage 5 bps, stre
 10 bps, plus 5 bps taker fees without BNB. BTC/ETH benchmarks use spot prices.
 Final 2025--October 2026 performance remains sealed.
 
-## Execute in WSL
+## Recovery from the report index error
+
+The four engine cases and primary replay completed. The report checker originally
+compared a RangeIndex from `to_parquet(index=False)` with a filtered source index.
+The fix normalizes only these incidental indices and still checks exact sample
+order, values, dtypes and columns. The corrected saved-run verification passes;
+all pre-existing result/model files remain byte-for-byte unchanged.
+
+Resume with `python scripts/run_frozen_2024.py --stage report`, then `--stage summary`.
+Do not rerun `all` or `simulate` to repair this report: the original immutable run
+contract binds the old report source. The independent verification records both
+original contract hash and corrected report hash. No model/backtest rerun is needed.
+
+## Original execution in WSL
 
 ```bash
 cd /home/sheng77/working_space/quant_research/strategies/momentum_strategy
