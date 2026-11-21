@@ -140,9 +140,14 @@ def plot_development(daily):
     (nav / nav.iloc[0]).plot(ax=axes[0, 0], title="Net equity / matched benchmarks (start=1)")
     (nav / nav.cummax() - 1).plot(ax=axes[0, 1], title="Drawdown")
     axes[0, 1].yaxis.set_major_formatter(PercentFormatter(1))
-    monthly.plot.bar(ax=axes[1, 0], title="Monthly returns (edge months may be partial)")
-    axes[1, 0].set_xticks(range(len(monthly)),
-                         [x.strftime("%Y-%m") for x in monthly.index], rotation=60)
+    positions = np.arange(len(monthly), dtype=float)
+    width = .8 / len(NAV_COLUMNS)
+    for i, column in enumerate(NAV_COLUMNS):
+        axes[1, 0].bar(positions + (i - 1) * width, monthly[column].to_numpy(),
+                       width=width, label=column)
+    axes[1, 0].set(title="Monthly returns (edge months may be partial)")
+    axes[1, 0].set_xticks(positions, [x.strftime("%Y-%m") for x in monthly.index], rotation=60)
+    axes[1, 0].legend()
     axes[1, 0].yaxis.set_major_formatter(PercentFormatter(1))
     daily[["gross_exposure", "net_exposure"]].plot(ax=axes[1, 1], title="Exposure / NAV")
     daily[["commissions_usdt", "funding_cashflow_usdt"]].cumsum().plot(
