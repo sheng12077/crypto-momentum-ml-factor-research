@@ -1,5 +1,90 @@
 # Project status
 
+## Completed frozen 2024 validation and bounded diagnosis — 2026-11-21
+
+- Branch exp/frozen-2024-validation before conclusion merge.013registration0f07723;
+  implementation65e6b90;report fix99e847f/merge63e9fb1.014diagnostic registration
+  on main2be05c7 (equivalent branch f152e40), before ledger reconstruction.
+- User completed4cases + primary replay/report. ML5bps: -12.7072%,Sharpe-.4995,
+  MDD-21.3715%;10bps-14.5122%. All3registered gates fail. Momentum5bps-16.7453%,
+  Sharpe-.3422;ML loses less but has worse Sharpe. Final2025--Oct2026 stays sealed.
+- Read docs/VALIDATION_2024_RESULTS.md. Diagnostic script
+  scripts/attribute_validation_2024.py reconstructs only saved2024ML/momentum5bps
+  ledgers:5synthetic tests pass; daily/cumulative NAV error<1e-6USDT, fees/funding/
+  notional/held quantities reconcile, final flat, source hashes unchanged.0fits,
+  0simulations/downloads/newlabels. Both attribution charts viewed.
+- ML net side PnL: long+10794.06,short-23501.29USDT. Source-VWAP same-quantity
+  price PnL-8378.49;slippage1862.11,fees1862.11,funding-604.52;net-12707.23.
+  Costs are not sole cause. March-10.48%;June+13.92%;4/12positive months.
+  ExcludingJune leaves-23.38%compounded;excludingMarch still-2.48%.
+- Funding43.84%meanabsSHAP share describes predictions, not causal PnL. Larger
+  short-side losses in rising benchmark months suggest sensitivity but do not
+  identify beta causally. Seven-day label/14day cadence is untested limitation.
+- Outputs:data/interim/validation_2024/v20261121_002/attribution_v001/;
+  reports/figures/validation_2024/*_attribution.png. Existing user notebook outputs
+  preserved unstaged. No strategy-rule edits, retrospective name exclusion or
+  timing experiment; no paper/live promotion. Later holdout untouched.
+- Current research conclusion: frozen candidate fails2024validation. Next research
+  or final holdout opening requires separate discussion; do not auto-expand scope.
+
+
+## Fixed 2024 report sample-index verification — 2026-11-21
+
+- Fix branch fix/2024-report-index from exp/frozen-2024-validation HEAD65e6b90.
+  Report-only change: discard incidental DataFrame indices on both compared
+  training tables; retain exact values, dtypes, column order and sample order.
+- User completed4cases and primary replay; reporting failed at saved-vs-filtered
+  index comparison. Corrected verify() passes on all saved cases, training purge,
+  predictions, SHAP, targets, benchmarks and replay.4focused tests pass, including
+  Parquet index loss and rejection of changed values/reordered/missing samples.
+- Existing result/model files hashed before/after verification: unchanged. No fits
+  or historical simulations executed; final2025--2026holdout remains sealed.
+- Run ONLY: python scripts/run_frozen_2024.py --stage report
+  Then: python scripts/run_frozen_2024.py --stage summary
+  Do not use --stage all/simulate for this repair: original run contract binds the
+  pre-fix report source. Original contract stays immutable; independent verification
+  records corrected report SHA and original contract SHA for traceability.
+- Next: user regenerates report/notebook and shares compact summary. Experimental
+  conclusion remains pending; keep parent experiment branch unmerged to main.
+
+
+## Prepared frozen 2024 validation; user execution handoff — 2026-11-21
+
+- Current branch exp/frozen-2024-validation, registration/base HEAD0f07723.
+  Implementation commit: inspect Git log for this entry. No push/history rewrite.
+  Read docs/VALIDATION_2024_RUNBOOK.md; registration013 freezes original five-input
+  LightGBM, train2021--2023 once with strict label purge; two-week/no-buffer/EQ,
+  long5/short5; ML and matched momentum60 at5/10bps, one primary ML replay.
+- User explicitly authorizes2024, then requests files and user-run execution.
+  Final2025--Oct2026 remains sealed. Do not run further historical cases or inspect
+  performance until user provides results or explicitly requests execution.
+- Prepared1932scored2024rows and1887matured2023traininglabels, preserving prior
+  features and pre2023labels exactly. No futures source repairs;24spot archives
+  verified. Scope daily2023-08 through2024only, hourly2024plus existing warmup.
+- Historical run had started before user's handoff steering. Stopped via SIGTERM;
+  model,3case completion markers(ML5/10,momentum5),primary replay exist. Fullsummary
+  absent. Preserve artifacts; no candidate rules changed after simulation started.
+  Partial case metrics have not been interpreted; no complete validation claim.
+  Preserve v001 with interrupted_code/ snapshots. Deliverable v002 normalizes LF
+  bytes to match Git and runs all4cases afresh; verified spot ZIPs reused from v001.
+- WSLfunding-strategy:13focused tests passed, including synthetic engine calendar/
+  phase, strict label boundary, future invariance and unchanged skip-week holdings.
+  Notebook nbformat/4codecell syntax/unexecuted-state checks passed; stopped-run
+  code contract matched before archival. Ruff unavailable in checked runtimes; not claimed.
+- USER command in WSL (environment funding-strategy):
+  python scripts/run_frozen_2024.py --stage all
+  python scripts/run_frozen_2024.py --stage summary
+  All stage logs:reports/acquisition/frozen_2024_<stage>_<UTC>.log.
+- New English notebook notebooks/validation_2024_results.ipynb is safe/unexecuted.
+  User run completes4cases, financial replay, independent verification, figures/
+  tables and executed English notebook. Results under
+  data/interim/validation_2024/v20261121_002/results/.
+- Keep experiment branch until completed result review; no merge to main yet.
+  Next: interpret user's compact summary against preregistered gates, record all
+  results, then conclude branch. Conditional universe/execution/margin limits stay.
+
+
+
 ## Completed fixed-membership weighting — 2026-11-21
 
 - Registration012:1406e9b;implementation exp/portfolio-weighting. Inspect Git for
