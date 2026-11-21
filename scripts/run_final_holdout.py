@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "data/interim/final_holdout/v20261122_002"
+BASE = ROOT / "data/interim/final_holdout/v20261122_003"
 STAGES = {"prepare": "prepare_final_holdout.py", "spot": "build_final_holdout_spot.py",
           "simulate": "run_final_holdout_cases.py", "report": "report_final_holdout.py"}
 
@@ -28,7 +28,8 @@ def summary():
         verified = verified and sha(BASE / "results/verification.json") == meta["verification_sha256"]
     return {"success": obj["success"], "registered_runs_completed": obj["registered_runs_completed"],
         "verified_replays": obj["verified_replays"], "model_fits": obj["model_fits"],
-        "report_verified": verified, "evidence_gates": obj["evidence_gates"],
+        "report_verified": verified, "data_complete": obj["data_complete"],
+        "blocked_case_count": len(obj.get("blocked_cases", [])), "evidence_gates": obj["evidence_gates"],
         "primary_results": [{k: r[k] for k in ("window", "model", "total_return", "Sharpe_rf0", "MDD")}
                             for r in obj["primary_results"]],
         "final_holdout_performance_computed": True, "prior_2024_validation_failed": True}

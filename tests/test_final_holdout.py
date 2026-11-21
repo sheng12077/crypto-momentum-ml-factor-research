@@ -221,7 +221,8 @@ def test_failed_http_consumes_persistent_budget_without_retry(tmp_path, monkeypa
     assert calls == ["checksum"]
 
 
-def test_synthetic_report_renders_all_windows_and_shared_year_anchor(tmp_path, monkeypatch):
+@pytest.mark.parametrize("missing_control", [False, True])
+def test_synthetic_report_renders_all_windows_and_shared_year_anchor(tmp_path, monkeypatch, missing_control):
     import report_final_holdout as report
     from momentum_data.backtest_analysis import performance_tables, validate_daily
     results, figures, tables = [tmp_path / n for n in ("results", "figures", "tables")]
@@ -248,8 +249,12 @@ def test_synthetic_report_renders_all_windows_and_shared_year_anchor(tmp_path, m
         folder = results / f"models/{year}"
         folder.mkdir(parents=True)
         pd.Series(np.arange(5)/100, index=FEATURES, name="mean_absolute_SHAP").to_csv(folder / "shap_importance.csv")
+    if missing_control:
+        for name in ("2025", "continuous"):
+            (results / f"{name}/momentum60/slippage_5bps/metrics.csv").unlink()
+        rows = [r for r in rows if r["model"] != "momentum60" or r["window"] == "2026_partial"]
     report.render(pd.DataFrame(rows))
-    assert len(pd.read_csv(tables / "primary_metrics.csv")) == 12
+    assert len(pd.read_csv(tables / "primary_metrics.csv")) == (10 if missing_control else 12)
     slices = pd.read_csv(tables / "continuous_year_slices.csv")
     assert set(slices[slices.continuous_year_slice == 2025].daily_observations) == {365}
     assert set(slices[slices.continuous_year_slice == 2026].daily_observations) == {303}

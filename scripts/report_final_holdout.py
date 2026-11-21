@@ -16,7 +16,7 @@ from final_holdout_common import (
     BASE, FEATURES, OLD, PREPARED, ROOT, START, STOP, WINDOWS,
     checked_manifest, code_contract, schedules, window_schedule, write,
 )
-from run_final_holdout_cases import RESULTS, SPOT, gates, read_ledger, samples, verify_case
+from run_final_holdout_cases import RESULTS, SPOT, gates, read_ledger, samples, terminal_blockers, verify_case
 from momentum_data.backtest_analysis import performance_tables, plot_development, validate_daily
 
 FIGURES = ROOT / "reports/figures/final_holdout"
@@ -31,11 +31,12 @@ def prepare_notebook():
         "# Frozen final holdout: 2025 and January-October 2026\n\nExperiment 015. "
         "Original strategy unchanged; two annual expanding fits, no within-year tuning. "
         "2024 failed validation and remains part of the research record. "
-        "Run `python scripts/run_final_holdout.py --stage all` first. This notebook reads saved results only."),
+        "Run `python scripts/run_final_holdout.py --stage all` first. This notebook reads saved results only. "
+        "Unverified settlement cases are explicitly blocked; successful report generation does not mean complete market data."),
         nbformat.v4.new_code_cell(
             "from pathlib import Path\nimport json\nimport pandas as pd\nfrom IPython.display import Image, display\n"
             "ROOT = Path.cwd()\nif not (ROOT / 'scripts').exists():\n    ROOT = ROOT.parent\n"
-            "BASE = ROOT / 'data/interim/final_holdout/v20261122_002'\n"
+            "BASE = ROOT / 'data/interim/final_holdout/v20261122_003'\n"
             "assert (BASE / 'results/verification.json').exists(), 'Complete the final holdout runner first.'\n"
             "display(pd.read_csv(ROOT / 'reports/tables/final_holdout/primary_metrics.csv'))"),
         nbformat.v4.new_markdown_cell(
@@ -51,6 +52,7 @@ def prepare_notebook():
             "## All cases and monthly concentration\n\nPrimary extra slippage is 5 bps; 10 bps is "
             "mandatory stress. Monthly exclusion is descriptive and not a tradable strategy."),
         nbformat.v4.new_code_cell(
+            "display(pd.DataFrame(json.loads((BASE / 'results/case_status.json').read_text())))\n"
             "display(pd.read_csv(BASE / 'results/all_runs.csv'))\n"
             "display(pd.read_csv(ROOT / 'reports/tables/final_holdout/monthly_returns.csv'))\n"
             "display(Image(filename=str(ROOT / 'reports/figures/final_holdout/cost_stress.png')))") ,
@@ -73,7 +75,8 @@ def verify():
     checked_manifest(PREPARED)
     checked_manifest(SPOT, "summary.json")
     summary = json.loads((RESULTS / "summary.json").read_text())
-    if not summary["success"] or summary["registered_runs_completed"] != 12 or summary["verified_replays"] != 3:
+    if (summary["registered_runs_completed"]+len(summary.get("blocked_cases", [])) != 12
+            or summary["verified_replays"] != 3 or not summary.get("all_planned_cases_accounted")):
         raise ValueError("Incomplete final holdout")
     old = pd.read_parquet(OLD / "features.parquet")
     frame = pd.read_parquet(PREPARED / "features.parquet")
@@ -111,6 +114,13 @@ def verify():
             actual = json.loads((RESULTS / f"{name}/{model}/schedule.json").read_text())["weights"]
             if actual != expected:
                 raise ValueError("Schedule reconstruction mismatch")
+            blockers = terminal_blockers(expected, name, checked_manifest(PREPARED).get("terminal_boundaries", {}))
+            if blockers:
+                for bps in (5, 10):
+                    status = json.loads((RESULTS / f"{name}/{model}/slippage_{bps}bps/_blocked.json").read_text())
+                    if status["blockers"] != blockers or status["status"] != "blocked_unverified_settlement":
+                        raise ValueError("Blocked-case evidence mismatch")
+                continue
             for bps in (5, 10):
                 folder = RESULTS / f"{name}/{model}/slippage_{bps}bps"
                 result = verify_case(folder, [name, model, bps, False], contract_hash)
@@ -144,7 +154,9 @@ def verify():
     table = pd.DataFrame(rows)
     if gates(table) != summary["evidence_gates"]:
         raise ValueError("Evidence gate mismatch")
-    write(RESULTS / "verification.json", {"success": True, "verified_cases": 12, "verified_replays": 3,
+    write(RESULTS / "verification.json", {"success": True, "verified_cases": len(rows), "verified_replays": 3,
+        "experiment_data_complete": summary["data_complete"], "blocked_cases": len(summary.get("blocked_cases", [])),
+        "all_planned_cases_accounted": True,
         "annual_models": 2, "strict_label_purge": True, "saved_training_order_values_verified": True,
         "continuous_year_end_cash_reset": False, "original_2024_failure_retained": True,
         "run_contract_sha256": contract_hash, "final_holdout_now_consumed": True})
@@ -160,9 +172,12 @@ def render(table):
         daily = validate_daily(pd.read_csv(folder / "daily.csv"))
         metrics = pd.read_csv(folder / "metrics.csv", index_col=0).reset_index()
         metrics["window"] = name
-        momentum = pd.read_csv(RESULTS / f"{name}/momentum60/slippage_5bps/metrics.csv", index_col=0).loc[["strategy_nav"]].reset_index()
-        momentum["series"], momentum["window"] = "momentum60", name
-        primary += [metrics, momentum]
+        primary.append(metrics)
+        control = RESULTS / f"{name}/momentum60/slippage_5bps/metrics.csv"
+        if control.exists():
+            momentum = pd.read_csv(control, index_col=0).loc[["strategy_nav"]].reset_index()
+            momentum["series"], momentum["window"] = "momentum60", name
+            primary.append(momentum)
         fig, _, monthly = plot_development(daily)
         fig.suptitle(f"FINAL HOLDOUT: {name} — net of fees/funding; conditional execution")
         fig.savefig(FIGURES / f"{name}_dashboard.png", dpi=130)
@@ -182,11 +197,15 @@ def render(table):
             pd.concat(slices).to_csv(TABLES / "continuous_year_slices.csv", index=False)
     pd.concat(primary).to_csv(TABLES / "primary_metrics.csv", index=False)
     pd.concat(months_out).to_csv(TABLES / "monthly_returns.csv", index=False)
-    table.to_csv(TABLES / "all_registered_cases.csv", index=False)
+    table.to_csv(TABLES / "verified_financial_cases.csv", index=False)
+    if (RESULTS / "case_status.json").exists():
+        pd.DataFrame(json.loads((RESULTS / "case_status.json").read_text())).to_csv(TABLES / "all_case_statuses.csv", index=False)
     fig, axes = plt.subplots(1, 3, figsize=(13, 4), layout="constrained")
     for ax, name in zip(axes, WINDOWS, strict=True):
         for model in ("lightgbm", "momentum60"):
             sub = table[(table.window == name) & (table.model == model)].sort_values("slippage_bps")
+            if sub.empty:
+                continue
             ax.plot(sub.slippage_bps, sub.total_return, marker="o", label=model)
         ax.set(title=name, xlabel="Extra adverse slippage (bps)", ylabel="Cumulative net return")
         ax.axhline(0, color="black", lw=.6)
@@ -217,10 +236,13 @@ def report():
     executed = ROOT / "reports/acquisition/final_holdout_results_executed.ipynb"
     nbformat.write(book, executed)
     artifacts = [*FIGURES.glob("*.png"), *TABLES.glob("*.csv"), executed]
-    write(RESULTS / "report_complete.json", {"success": True, "notebook_code_cells_executed": 4,
+    summary = json.loads((RESULTS / "summary.json").read_text())
+    write(RESULTS / "report_complete.json", {"success": True, "experiment_data_complete": summary["data_complete"],
+        "notebook_code_cells_executed": 4,
         "verification_sha256": sha(RESULTS / "verification.json"),
         "output_hashes": {str(p.relative_to(ROOT)): sha(p) for p in artifacts}})
-    print('{"success": true, "stage": "report", "verified_cases": 12, "notebook_code_cells_executed": 4}')
+    print(json.dumps({"success": True, "stage": "report", "verified_cases": len(table),
+                      "data_complete": summary["data_complete"], "notebook_code_cells_executed": 4}))
 
 
 if __name__ == "__main__":

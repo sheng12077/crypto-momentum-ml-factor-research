@@ -167,15 +167,33 @@ def execute_case(data, events, portfolio, name, model, bps, replay=False):
     return result
 
 
+def terminal_blockers(portfolio, name, boundaries):
+    start, stop = WINDOWS[name]
+    problems = []
+    for symbol, boundary in boundaries.items():
+        end = int(boundary["effective_ms"])
+        if not start <= end < stop:
+            continue
+        days = [d for d in portfolio if ms(d) < end]
+        day = max(days) if days else None
+        weight = portfolio[day].get(symbol, 0.) if day else 0.
+        if weight:
+            problems.append({"instrument_id": symbol, "effective_ms": end, "last_decision": day,
+                "target_weight": weight, "source_url": boundary["source_url"],
+                "reason": "Verified terminal settlement price/cashflow unavailable; no fabricated close."})
+    return problems
+
+
 def gates(table):
     result = {}
     for name in WINDOWS:
         primary = table[(table.window == name) & (table.slippage_bps == 5)].set_index("model")
-        ml, mom = primary.loc["lightgbm"], primary.loc["momentum60"]
+        ml = primary.loc["lightgbm"]
+        mom = primary.loc["momentum60"] if "momentum60" in primary.index else None
         stress = table[(table.window == name) & (table.model == "lightgbm") & (table.slippage_bps == 10)].iloc[0]
         result[name] = {"positive_net_return_and_sharpe": bool(ml.total_return > 0 and ml.Sharpe_rf0 > 0),
             "positive_10bps_stress_return": bool(stress.total_return > 0),
-            "beats_matched_momentum_return_and_sharpe": bool(ml.total_return > mom.total_return and ml.Sharpe_rf0 > mom.Sharpe_rf0)}
+            "beats_matched_momentum_return_and_sharpe": bool(ml.total_return > mom.total_return and ml.Sharpe_rf0 > mom.Sharpe_rf0) if mom is not None else None}
     return result
 
 
@@ -190,16 +208,28 @@ def run():
     predictions = pd.concat([model_scores(y) for y in (2025, 2026)], ignore_index=True)
     plans = {"lightgbm": schedules(predictions), "momentum60": schedules(predictions, "momentum60")}
     data = FinalHistoricalData(PREPARED)
-    rows = []
+    rows, case_status = [], []
     for name, (start, stop) in WINDOWS.items():
         events = data.events_range(start, stop-DAY)
         for model, plan in plans.items():
             portfolio = window_schedule(plan, name)
             write(RESULTS / f"{name}/{model}/schedule.json", {"weights": portfolio})
+            blockers = terminal_blockers(portfolio, name, prepared.get("terminal_boundaries", {}))
+            if blockers:
+                for bps in (5, 10):
+                    status = {"window": name, "model": model, "slippage_bps": bps,
+                              "status": "blocked_unverified_settlement", "blockers": blockers}
+                    case_status.append(status)
+                    write(RESULTS / f"{name}/{model}/slippage_{bps}bps/_blocked.json", status)
+                write(RESULTS / "case_status.json", case_status)
+                print(f"BLOCKED {name}/{model}: unsupported settlement; recorded, not silently omitted", flush=True)
+                continue
             for bps in (5, 10):
                 print(f"Nautilus {name}/{model}/{bps}bps", flush=True)
                 result = execute_case(data, events, portfolio, name, model, bps)
                 rows.append({"window": name, "model": model, "slippage_bps": bps, **result})
+                case_status.append({"window": name, "model": model, "slippage_bps": bps, "status": "complete"})
+                write(RESULTS / "case_status.json", case_status)
                 pd.DataFrame(rows).to_csv(RESULTS / "all_runs.csv", index=False)
             if model == "lightgbm":
                 replay = execute_case(data, events, portfolio, name, model, 5, True)
@@ -209,12 +239,16 @@ def run():
     if code_contract() != json.loads((BASE / "code_contract.json").read_text()):
         raise ValueError("Inputs/code changed during execution")
     table = pd.DataFrame(rows)
-    write(RESULTS / "summary.json", {"success": True, "registered_runs_completed": len(rows),
+    blocked = [c for c in case_status if c["status"] != "complete"]
+    write(RESULTS / "summary.json", {"success": len(rows) == 12, "registered_runs_completed": len(rows),
+        "registered_cases_planned": 12, "data_complete": not blocked, "blocked_cases": blocked,
+        "all_planned_cases_accounted": len(case_status) == 12,
         "verified_replays": 3, "model_fits": 2, "evidence_gates": gates(table),
         "primary_results": table[table.slippage_bps == 5].to_dict("records"),
         "final_holdout_performance_computed": True, "paper_or_live_ready": False,
         "continuous_has_no_year_end_cash_reset": True, "prior_2024_validation_failed": True})
-    print('{"success": true, "stage": "simulate", "completed_cases": 12, "replays": 3}')
+    print(json.dumps({"stage": "simulate", "completed_cases": len(rows), "blocked_cases": len(blocked),
+                      "all_planned_cases_accounted": len(case_status) == 12, "replays": 3}))
 
 
 if __name__ == "__main__":
