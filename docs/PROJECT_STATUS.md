@@ -1,6 +1,42 @@
 # Project status
 
-Updated 2026-11-21. Current segment:research/development-continuity-audit.
+Updated 2026-11-21. Current segment:infra/development-mark-boundary-recovery.
+Registration on main0bd42b5;parent mainbe09393(audit implementation92f579f).
+Inspect Git for final recovery implementation/merge hashes. No push.
+
+## Development mark boundary recovery
+
+- scripts/recover_development_marks.py inventories924verified daily sources,
+  thenchecks affected hourlysourcehashes;targetsrequirepositiveactualtradevolume
+  andmissingmarkinthe SAMEhour. All selectedvaluesare2021–2022.
+- Plan:data/interim/development_mark_recovery/v20261121_001/full/plan.json.
+  2901hours/121source-days/86identifiers:1893leadingand1008trailinghours.
+  Concentrations:2021-07-01(73days),2022-07-31(42days),sixotherdays.
+- BTC2022-07-31pilot24/24recovered,2HTTPrequests,920ZIPbytes;independent
+  rawZIP/checksum/CSVDecimalreadbackmatchesall24Parquetrows.
+  Pilotsharedoutput:data/canonical/binance_um_development_mark_recovery/
+  v20261121_001_pilot/mark_gap_overlay.parquet.
+- Source:officialdailyZIP+CHECKSUM,>=1srequestspacing,500day/1000request/
+  64MiBbudgets,exactoverlapchecks,noblind404retry,and403/418/429stop.
+  Partial/absent/conflictingresultsareexplicit;noneofthisapprovesidentityor
+  funding/publicationtiming. Existingdatasetsarenotoverwritten.
+- Tests16newpassed;fullregression270passed/1skipped(Nautilusnotinstalled
+  innativeenvironment);Ruffpassed. Commands:docs/DEVELOPMENT_MARK_RECOVERY.md.
+- Full2901/2901hoursrecovered,unresolved0,121days/86identifiers;240newHTTP
+  requestsplus1cachedpilotday;95686ZIPbytes;failedsources0/sourceconflicts0.
+  Sharedoutput:data/canonical/binance_um_development_mark_recovery/v20261121_001/.
+  Replay121cachedays/0HTTP;identicaloverlaySHA256
+  c19e069f46c47ae01c8b28b1cc5b012bde08bd97a44b7bf6c28458227ef27768.
+  scripts/validate_development_mark_overlay.py independentlycheckedall2901rows
+  against rawZIP/checksum/CSVDecimalandprovenance;passed. Creation/replayruntime:
+  WindowsPython3.11.5/PyArrow11.0.0;cross-versionParquetbyteidentitynotpromised.
+- Nextafterrecovery:explicitlyintegrateoverlayintonewversionedresearchinputs,
+  recheckcoverage,thenidentitybridgeandhistoricalexecution/fundingadapter.
+  NoPnL/labels/fit/OOSperformance. Usernotebook/unrelatedchangesuntouched.
+
+## Prior continuity milestone
+
+Completed segment:research/development-continuity-audit.
 Registration on mainc508a60;parent mainbbf2289. Notebook implementation amended
 with user approval to39831fcand merge bbf2289;English-only source. No push.
 Inspect Git for final audit implementation/merge hashes.

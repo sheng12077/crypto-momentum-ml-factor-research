@@ -20,6 +20,7 @@ outputs belong in ignored `data/interim` and `data/processed` directories.
 
 ## Current research notes
 
+- [Development mark boundary recovery and resumable commands](docs/DEVELOPMENT_MARK_RECOVERY.md)
 - [Development warmup continuity and 2022 mark-gap audit](docs/DEVELOPMENT_CONTINUITY_AUDIT.md)
 - [Backtest analysis notebook and launch instructions](docs/BACKTEST_NOTEBOOK.md)
 - [Notebook source](notebooks/backtest_analysis.ipynb)
