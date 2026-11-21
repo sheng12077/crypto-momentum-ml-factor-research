@@ -1,6 +1,39 @@
 # Project status
 
-Updated 2026-11-20. Current segment:feat/backtest-analysis-notebook.
+Updated 2026-11-21. Current segment:research/development-continuity-audit.
+Registration on mainc508a60;parent mainbbf2289. Notebook implementation amended
+with user approval to39831fcand merge bbf2289;English-only source. No push.
+Inspect Git for final audit implementation/merge hashes.
+
+## Development continuity audit
+
+- scripts/audit_development_continuity.py and development_continuity_rules.py
+  inspect2020warmup/2021–2022values only;no labels,fit,PnL,OOSperformance orHTTP.
+  Full924dailyfiles/81earlyfiles verified against indexSHA256;104weeklydecisions.
+  Output:data/interim/development_continuity/v20261121_001/full/.
+- First2021week oldprice/fundingcount0;hypotheticalwarmup+7dayimbalance49.
+  Across104weeks,hypotheticalcountsmin44/median101/max137;79identifiersand1135
+  asset-weeksdependonthenumericbridge. Existing2020evidence/splicepermissions
+  do notapproveanyfull2021–2022lookback;thisisnotacountofactuallytradableassets.
+  No sourceflagspromotedandhistoricalbacktestreadinessremainsfalse.
+- On2022-07-31,143identifiersthatdayhaveatradeormarkbar;44passoldgate.
+  42have24tradehoursbut0markhours(includingBTC/BNB);101have24/24.
+  BTCcanonicalJulytrade744rowsvsmark720,lastmarkJuly30at23UTC.
+  Priorrecoverytargetedinteriorgaps;thismonth-endgapneedsseparateinventory/
+  sourceverification. Do notforward-fillorcallallremainingholesinactive.
+- Pilot5passed;fullinitialaudit89.515s;10newtests/Ruffpassed;
+  fullregression254passed/1skipped(Nautilusnotinstalledinnativeenvironment).
+  Fullreplay84.547s,fouroutputhashesidentical(replay_hashes_identical=true).
+  Reproduciblecommands/results:docs/DEVELOPMENT_CONTINUITY_AUDIT.md.
+- Next:inventoryandrecover2021–2022active-trade/missing-markboundarykeyswith
+  versionedprovenance,thenresolveidentitybridgeandhistoricalexecution/funding
+  integrationbeforefeatures/modelperformance. KeepSizeoutoffirstexperiment.
+- Unrelatedexistingworking-treechanges(includinguser-executednotebookoutputs)
+  areoutside thissegmentandmustnotbestagedoroverwritten.
+
+## Prior notebook milestone
+
+Completed segment:feat/backtest-analysis-notebook.
 Parent main853a90c;accounting implementation22dabe9. Inspect Git for final
 notebook implementation/merge hashes. This segment is reporting tooling only.
 
