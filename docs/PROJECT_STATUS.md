@@ -1,5 +1,25 @@
 # Project status
 
+## Completed user-run buffer sensitivity — 2026-11-21
+
+- Experiment011registration60f29cf, implementationfb4d7ad/merge4d071a7. Result
+  documentation segment research/buffer-sensitivity-results; inspect Git for hashes.
+- User completed16/16cases,2replays,0newfits;worker/report/notebook success. Read
+  docs/TWO_WEEK_BUFFER_RESULTS.md and user-executed
+  notebooks/two_week_buffer_sensitivity.ipynb (outputs preserved, not staged).
+- No buffer size passes registered gates in BOTH development years. Keep two-week
+  no-buffer rank5as current candidate. Primary2022/2023returns:
+  rank5:+44.17/+18.06%;rank6:+47.49/+11.52%;rank8:+23.97/-7.11%;rank10:+31.08/-16.05%.
+  rank6improves2022only;widerbuffers lowernotional but worsen2023returns/drawdown.
+  No local threshold refinement or factor/cadence changes authorized by this review.
+- WSL funding-strategy read-only verify_results independently passes16savedcases,
+  source/code/runtime hashes and2replays;no new historical simulations. Chart viewed.
+  Sources/results:data/interim/buffer_sensitivity/v20261121_001/results/;
+  tables/figures:reports/{tables,figures}/buffer_sensitivity/.
+- Both2022/2023remain development after selection;2024and finalOOS stay sealed.
+  Current review complete. Discuss freezing two-week/no-buffer for next validation
+  or a separately preregistered robustness question. No automatic next-window run.
+
 ## Prepared two-week buffer sensitivity — 2026-11-21
 
 - Registration011:60f29cf on main; implementation exp/two-week-buffer-sensitivity.
