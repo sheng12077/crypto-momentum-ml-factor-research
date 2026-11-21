@@ -4,6 +4,26 @@ Experiment015registration4baee9d on main precedes implementation. Work branch:
 exp/final-holdout-2025-2026. User will run; no final-window historical data has
 been prepared, fitted, simulated or inspected by the agent during this handoff.
 
+## Acquisition repair: terminal archive tails
+
+The first run stopped at EOS2025-05-21: trade bars end at the official09UTC
+settlement boundary while mark archives continue. Version002 verifies cached
+lifecycle announcement bytes and quarantines terminal/post-terminal hourly rows;
+it retains the asset's valid pre-terminal history. OMG's terminal bucket contains
+settlement prints; that bucket is excluded, not treated as a new trading episode.
+Positive trading in later full-hour buckets fails for episode review.
+
+A read-only key audit of all37assets now reports zero unresolved active trade/mark
+key differences. This is availability validation, not a profitability/backtest
+result.32focused synthetic/regression tests cover boundary tails and held-terminal
+failure. No model fit, forecast or historical simulation was run for this repair.
+
+Rerun the same `--stage all` command below. No manual deletion is needed. Failed
+version001and its code contract remain intact; verified source caches and already
+consumed request budgets are copied to version002. The model, rank selection,
+fees and performance gates are unchanged. Unsupported held settlement now produces
+an explicit error instead of using stale marks or an invented closing price.
+
 ## Run in WSL
 
 ```bash
@@ -40,7 +60,7 @@ case. Partial2026totalreturn is cumulative, distinct from annualized CAGR/Sharpe
 
 ## Outputs and success
 
-- Results: `data/interim/final_holdout/v20261122_001/results/summary.json`.
+- Results: `data/interim/final_holdout/v20261122_002/results/summary.json`.
 - Verification: same folder, `verification.json` and `report_complete.json`.
 - Tables/figures: `reports/{tables,figures}/final_holdout/`.
 - English notebook: `notebooks/final_holdout_results.ipynb` (unexecuted at handoff).

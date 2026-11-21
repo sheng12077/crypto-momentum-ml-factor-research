@@ -35,7 +35,7 @@ def prepare_notebook():
         nbformat.v4.new_code_cell(
             "from pathlib import Path\nimport json\nimport pandas as pd\nfrom IPython.display import Image, display\n"
             "ROOT = Path.cwd()\nif not (ROOT / 'scripts').exists():\n    ROOT = ROOT.parent\n"
-            "BASE = ROOT / 'data/interim/final_holdout/v20261122_001'\n"
+            "BASE = ROOT / 'data/interim/final_holdout/v20261122_002'\n"
             "assert (BASE / 'results/verification.json').exists(), 'Complete the final holdout runner first.'\n"
             "display(pd.read_csv(ROOT / 'reports/tables/final_holdout/primary_metrics.csv'))"),
         nbformat.v4.new_markdown_cell(

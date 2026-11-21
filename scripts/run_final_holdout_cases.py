@@ -13,8 +13,7 @@ from final_holdout_common import (
     BASE, DAY, FEATURES, PREPARED, ROOT, STOP, WINDOWS, bind, checked_manifest,
     code_contract, matured_training, ms, schedules, window_schedule, write,
 )
-from final_holdout_engine import FinalHistoricalData
-from first_development_engine import simulate
+from final_holdout_engine import FinalHistoricalData, simulate
 from run_first_development import PARAMS
 
 import sys
