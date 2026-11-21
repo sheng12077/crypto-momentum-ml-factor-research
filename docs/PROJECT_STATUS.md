@@ -1,5 +1,34 @@
 # Project status
 
+## Completed frozen2023 validation — 2026-11-21
+
+- Registration009:57f75e5 on main; implementation exp/validation-2023. Inspect Git
+  for final implementation/merge hashes. No push/history rewrite.
+- Start docs/VALIDATION_2023_RESULTS.md and English
+  notebooks/validation_2023_results.ipynb;4cells executed in ignored report copy.
+  Data/results:data/interim/validation_2023/v20261121_001/;figures/tables under
+  reports/{figures,tables}/validation_2023/.
+- Same37cohort,52weeks/1924validation rows. Corrected2021–22features preserved
+  exactly;3804purged train rows, one2021–22fit with unchanged parameters. No2023
+  labels computed/fitted; SHAP1924rows additivity6.94e-17. No2024/finalOOS access.
+- All8Nautilus cases and primary replay verified. ML5bps:+4.1369%,Sharpe0.2993,
+  MDD-18.4396%. Matched2023momentum:-23.2525%,Sharpe-1.1294,MDD-27.4357%.
+  BTC/ETHspot:+154.5146/+91.0313%,Sharpe2.3425/1.6166.
+- Concentration remains:June+6.8867%,cash+6153.95 versus annual+4136.87;
+  other eleven months compounded-2.5726%. Do not infer June seasonality.
+  ML0/2/10bps:+8.1513/+6.5281/+0.2656%. Even0extra-slipSharpe0.4822.
+- Minimum prespecified positive-performance/control gates pass, but absolute
+  risk-adjusted outcome weak and concentration-dependent. No deployment claim.
+- No futures repairs needed;24spot source ZIPs/checksums48requests;2partial hours
+  quarantined. All source/model/ledger/purge/scope checks passed, replay hash
+  6ac3c053c45e0556135e8144d5fb51982b1593e3fc7154d6a1a7372680d1b403.
+- Checks:native278passed/4optional-dependency skips;isolated11focusedpassed;
+  Ruffpassed;dashboard/SHAP viewed. Existing runtime launchers repaired with
+  backups/no package changes. Attribution helper explicitns fixes Pandas3timestamp
+  resolution; engine adds end_year with old2022default. User notebook edits preserved.
+- Current authorized task complete. Discuss next research choice before any new
+  ablation/cadence/buffer changes or opening2024. Final2025–Oct2026remains sealed.
+
 ## Completed frozen-result profit attribution — 2026-11-21
 
 - Registration008:6ea350d on main; implementation segment research/profit-attribution.

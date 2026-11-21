@@ -37,7 +37,8 @@ def main():
     inputs.append(SOURCE / "monthly_returns.csv")
     hashes = {str(p.relative_to(ROOT)): sha(p) for p in inputs}
     daily, fills, funding = [pd.read_csv(p) for p in inputs[:3]]
-    stamps = pd.DatetimeIndex(pd.to_datetime(daily.timestamp, utc=True)).asi8
+    # Pandas3 may infer microsecond storage; Timestamp.value is explicitly ns.
+    stamps = np.asarray([pd.Timestamp(value).value for value in daily.timestamp], dtype=np.int64)
     marks = {}
     trades = pd.read_parquet(inputs[4])
     trade_lookup = {(r.instrument_id, int(r.bar_open_ms)): float(r.quote_volume / r.volume)
