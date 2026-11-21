@@ -1,5 +1,31 @@
 # Project status
 
+## Completed frozen-result profit attribution — 2026-11-21
+
+- Registration008:6ea350d on main; implementation segment research/profit-attribution.
+  Inspect Git for final implementation/merge hashes. No push/history rewrite.
+- Read docs/FIRST_DEVELOPMENT_ATTRIBUTION.md; reusable script
+  scripts/attribute_first_development.py. Outputs under
+  data/interim/first_development/v20261121_001/attribution_v001/ and
+  reports/figures/first_development/profit_attribution.png.
+- Fixed2022ML5bps fills only; no refit/simulation/rule change or new-window access.
+  June net+23945.57USDT (long-5949.98,short+29895.54); full year+22242.16.
+  June20 holding week contributed+10802.77, driven by long rebound gains.
+  Multiple assets contribute; WAVES/ETC/KAVA/COMP/ZRX top June asset totals.
+- Other eleven months: before-slippage pricePnL+5508.47,funding+294.91,
+  fees-3753.39,slippage-3753.39 =>cashPnL-1703.41. Other-month compounded
+  return-1.50% is descriptive; not a June-exclusion trading strategy.
+- Daily NAV reconciliation maximum4.44e-8USDT,cumulative9.11e-8USDT;
+  funding quantities/fees/notional/fill proxy/month boundaries/finalflat verified;
+  six input hashes unchanged. Five targeted tests and Ruff pass. Chart viewed.
+  Native Python3.11 worked; old isolated Python3.13 trampoline failed to launch.
+  No environment repair undertaken; original data and user notebook outputs preserved.
+- Interpretation: strong June relative long/short performance; weak other-month
+  gross gains consumed by costs. Does not establish causal factor alpha, zero beta,
+  short-only superiority or generalizable crash timing. All005 limitations remain.
+- Next separately authorized research: matched2022cash-start momentum reference,
+  bounded preregistered cadence/buffer tests and ablations, then freeze before2023.
+
 Updated 2026-11-21. Current segment:exp/first-historical-development.
 Main registrations005:0cf6127,006:63aefa0,007:53e75f2;parent main1982073.
 Inspect Git for final implementation/merge hashes. No push/history rewrite.
