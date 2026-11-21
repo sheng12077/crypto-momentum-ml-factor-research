@@ -1,5 +1,33 @@
 # Project status
 
+## Completed frozen 2024 validation and bounded diagnosis — 2026-11-21
+
+- Branch exp/frozen-2024-validation before conclusion merge.013registration0f07723;
+  implementation65e6b90;report fix99e847f/merge63e9fb1.014diagnostic registration
+  on main2be05c7 (equivalent branch f152e40), before ledger reconstruction.
+- User completed4cases + primary replay/report. ML5bps: -12.7072%,Sharpe-.4995,
+  MDD-21.3715%;10bps-14.5122%. All3registered gates fail. Momentum5bps-16.7453%,
+  Sharpe-.3422;ML loses less but has worse Sharpe. Final2025--Oct2026 stays sealed.
+- Read docs/VALIDATION_2024_RESULTS.md. Diagnostic script
+  scripts/attribute_validation_2024.py reconstructs only saved2024ML/momentum5bps
+  ledgers:5synthetic tests pass; daily/cumulative NAV error<1e-6USDT, fees/funding/
+  notional/held quantities reconcile, final flat, source hashes unchanged.0fits,
+  0simulations/downloads/newlabels. Both attribution charts viewed.
+- ML net side PnL: long+10794.06,short-23501.29USDT. Source-VWAP same-quantity
+  price PnL-8378.49;slippage1862.11,fees1862.11,funding-604.52;net-12707.23.
+  Costs are not sole cause. March-10.48%;June+13.92%;4/12positive months.
+  ExcludingJune leaves-23.38%compounded;excludingMarch still-2.48%.
+- Funding43.84%meanabsSHAP share describes predictions, not causal PnL. Larger
+  short-side losses in rising benchmark months suggest sensitivity but do not
+  identify beta causally. Seven-day label/14day cadence is untested limitation.
+- Outputs:data/interim/validation_2024/v20261121_002/attribution_v001/;
+  reports/figures/validation_2024/*_attribution.png. Existing user notebook outputs
+  preserved unstaged. No strategy-rule edits, retrospective name exclusion or
+  timing experiment; no paper/live promotion. Later holdout untouched.
+- Current research conclusion: frozen candidate fails2024validation. Next research
+  or final holdout opening requires separate discussion; do not auto-expand scope.
+
+
 ## Fixed 2024 report sample-index verification — 2026-11-21
 
 - Fix branch fix/2024-report-index from exp/frozen-2024-validation HEAD65e6b90.
