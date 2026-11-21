@@ -90,5 +90,6 @@ def test_dashboard_renders_from_test_fixture_only(tmp_path):
     fig, _, _ = plot_development(validate_daily(fixture_daily()))
     fig.suptitle("TEST FIXTURE — not actual strategy performance")
     assert len(fig.axes) == 6
+    assert fig.axes[2].get_xlim()[1] < 5  # One fixture month must use categorical positions.
     fig.savefig(tmp_path / "fixture_dashboard.png", dpi=80)
     plt.close(fig)

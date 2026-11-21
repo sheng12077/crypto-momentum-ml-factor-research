@@ -1,6 +1,56 @@
 # Project status
 
-Updated 2026-11-21. Current segment:infra/development-mark-boundary-recovery.
+Updated 2026-11-21. Current segment:exp/first-historical-development.
+Main registrations005:0cf6127,006:63aefa0,007:53e75f2;parent main1982073.
+Inspect Git for final implementation/merge hashes. No push/history rewrite.
+
+## Completed first historical backtests — start here
+
+- Deliverable achieved:integrated sources/features,actual Nautilus histories,
+  originalfixedLightGBMmodel,validationSHAP,8costcases,financialreplay,verified
+  ledgers and executed English notebook. This is not another audit-only handoff.
+- Open notebooks/first_historical_results.ipynb;oldsyntheticnotebook/useroutputs
+  untouched. Executedcopyreports/acquisition/first_historical_results_executed.ipynb.
+  Plots/tablesreports/{figures,tables}/first_development/.
+  Report/commands/assumptions:docs/FIRST_HISTORICAL_DEVELOPMENT.md.
+- Finaldata:data/interim/first_development/v20261121_001/prepared_v003/.
+  Conditionalfixed37pre2021symbolcohort;3841feature rows. Actualcoverage36–37,
+  all52weeksof2022have37candidates. Authoritativecounts:results_v003/final_coverage.json;
+  preparedmanifestweekly_candidate_*countersareinheritedpre-trade-repairdiagnostics.
+- Results:.../results_v003/summary.json,all_runs.csv,model/,permodel/slippage_<bps>bps/.
+  Originalpurged2021train1880rows;corrected2022validation1924rows. Oneoriginalfit;
+  modelhash/trainingexactlyunchangedafterrepairs;all2022SHAPadditivityerror8.33e-17.
+- Primary2022ML,5bps:totalreturn+22.2422%,Sharpe1.03073,dailyMDD-14.0880%,
+  endingNAV122242.16041289USDT;841fills/10850fundingcashflows;commissions4048.71865,
+  fundingnetcredit1310.08931. Cash/closedPnL/fundingresidual1.46e-11USDT.
+  0/2/10bpsMLreturns+26.6132/+24.8470/+18.0167%;allcasesretained.
+- BTC/ETHactualspotpassivehold2022returns-64.6299/-67.9687%;notfundedperps.
+  Unfitted60daymomentumbaseline2021–2022at5bpslost68.8227%,Sharpe-1.03714,
+  MDD-74.3634%. Differentperiods:do notdirectlyrankML2022againstbaseline2years.
+- Preservedfailedattempts:results/(fundedBTCperpetualbenchmarkinsolvency),
+  diagnostics/btc_accounting/andresults_v002/(missingexecutiontradeprices).
+  006registeredspotbenchmarkcorrection:48officialmonths,8partialhoursquarantined.
+  007restored1440tradehours/60days/12symbols;2021trainunchanged;2022inputsrebuilt.
+  No parameter/rulechangebasedonstrategyPnL;actualsuccessfulcasesallin_v003.
+- Verification:independent8caseNAV/cash/fees/funding/spot/source/modelchecks;
+  primaryfinancialreplayidentical;notebook5codecellsfullyexecuted;14isolated
+  engine/reporttestspassed,native271passed/2skipped;Ruffpassed. Monthlyplotaxis
+  fixedvisually;8financialmetricsassertedunchangedonchartrender.
+- Runtime:isolatedWindowsCPython3.13.18underTEMP/momentum_development_005/venv;
+  requirements/development-windows-py313.lock. WSLlaunchesfailed;borrowedconda
+  andoldruntimesunchanged. scripts/run_first_development_launcher.pyprovides
+  --stage report/verify/all;PythonentrypointavoidsUNC.ps1signingpolicy.
+- Materiallimits:retrospectivecohort/conditionalidentitybridge;fractionallots,
+  VWAPfills,markhourfundingproxy,currentreferencefees;exchangefilters/L2/
+  liquidationnotvalidated. CertifiedPITuniversefalse,paper/livefalse.
+  2023/2024/finalOOSremainsealed. Do notclaimpublishedalphaordeployreadiness.
+- Next work should analyze these results and frozen-scope limitations;do not
+  restart genericdataaudits or blindly redownload data. Source snapshots/repaired
+  caches already support the registered prototype. Userunrelatedchangespreserved.
+
+## Prior mark-recovery milestone
+
+Completed segment:infra/development-mark-boundary-recovery.
 Registration on main0bd42b5;parent mainbe09393(audit implementation92f579f).
 Inspect Git for final recovery implementation/merge hashes. No push.
 
