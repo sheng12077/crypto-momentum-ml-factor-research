@@ -1,5 +1,42 @@
 # Project status
 
+## Prepared frozen 2024 validation; user execution handoff — 2026-11-21
+
+- Current branch exp/frozen-2024-validation, registration/base HEAD0f07723.
+  Implementation commit: inspect Git log for this entry. No push/history rewrite.
+  Read docs/VALIDATION_2024_RUNBOOK.md; registration013 freezes original five-input
+  LightGBM, train2021--2023 once with strict label purge; two-week/no-buffer/EQ,
+  long5/short5; ML and matched momentum60 at5/10bps, one primary ML replay.
+- User explicitly authorizes2024, then requests files and user-run execution.
+  Final2025--Oct2026 remains sealed. Do not run further historical cases or inspect
+  performance until user provides results or explicitly requests execution.
+- Prepared1932scored2024rows and1887matured2023traininglabels, preserving prior
+  features and pre2023labels exactly. No futures source repairs;24spot archives
+  verified. Scope daily2023-08 through2024only, hourly2024plus existing warmup.
+- Historical run had started before user's handoff steering. Stopped via SIGTERM;
+  model,3case completion markers(ML5/10,momentum5),primary replay exist. Fullsummary
+  absent. Preserve artifacts; no candidate rules changed after simulation started.
+  Partial case metrics have not been interpreted; no complete validation claim.
+  Preserve v001 with interrupted_code/ snapshots. Deliverable v002 normalizes LF
+  bytes to match Git and runs all4cases afresh; verified spot ZIPs reused from v001.
+- WSLfunding-strategy:13focused tests passed, including synthetic engine calendar/
+  phase, strict label boundary, future invariance and unchanged skip-week holdings.
+  Notebook nbformat/4codecell syntax/unexecuted-state checks passed; stopped-run
+  code contract matched before archival. Ruff unavailable in checked runtimes; not claimed.
+- USER command in WSL (environment funding-strategy):
+  python scripts/run_frozen_2024.py --stage all
+  python scripts/run_frozen_2024.py --stage summary
+  All stage logs:reports/acquisition/frozen_2024_<stage>_<UTC>.log.
+- New English notebook notebooks/validation_2024_results.ipynb is safe/unexecuted.
+  User run completes4cases, financial replay, independent verification, figures/
+  tables and executed English notebook. Results under
+  data/interim/validation_2024/v20261121_002/results/.
+- Keep experiment branch until completed result review; no merge to main yet.
+  Next: interpret user's compact summary against preregistered gates, record all
+  results, then conclude branch. Conditional universe/execution/margin limits stay.
+
+
+
 ## Completed fixed-membership weighting — 2026-11-21
 
 - Registration012:1406e9b;implementation exp/portfolio-weighting. Inspect Git for
