@@ -1,5 +1,34 @@
 # Project status
 
+## Completed bounded strategy adjustments — 2026-11-21
+
+- Registration010:09b0acc on main; implementation exp/bounded-strategy-adjustments.
+  Inspect Git for final implementation/merge hashes. No push/history rewrite.
+- Read docs/STRATEGY_ADJUSTMENTS_RESULTS.md and English
+  notebooks/strategy_adjustments_results.ipynb.32cases(4cached A+28newNautilus),
+  6ablationfits/SHAP,2Bfinancialreplays;4notebookcells executed. No new downloads.
+  Results:data/interim/strategy_adjustments/v20261121_001/results/.
+  Tables/figures:reports/{tables,figures}/strategy_adjustments/.
+- C_two_week is sole execution candidate passing preregistered positive-return,
+  improved-Sharpe,no-worse-MDD,lower-notional gates in BOTH development years.
+  2022:+44.1698%,Sharpe1.8583,MDD-13.5626%,notional58.50%ofA.
+  2023:+18.0610%,Sharpe0.9461,MDD-10.5083%,notional63.03%ofA.
+  10bpsstress:+41.5340/+15.7194%;other-best-monthscompounded+19.7383/+8.1120%.
+  BestJune still51.26/55.11%annualcashprofit; concentration reduced, not eliminated.
+- Bbuffer modest Sharpe gain/18%lessnotional, worseMDDboth;Dfour-week higherSharpe
+  but worse2022MDD. Efunding-only+52.23%in2022/-17.26%in2023. Removingfunding or
+  imbalance lowersSharpeboth;removingmomentum helps2022/harms2023. Keepallresults;
+  no automatic factor deletion, buffer/cadence combination or new signals.
+- Independent32case/source/model/train/purge/schedule/ledgerchecks passed;
+  6SHAPmodels maxresidual1.25e-16;bothBprimaryreplays verified. Native283passed/
+  5optional-dependency skips;isolated12focusedpassed;Ruffpassed;figuresviewed.
+- No engine/data/training/hyperparameter changes. C/Dkeep actual quantities
+  between scheduled dates; same7day forecast label. One fixed first-Monday phase
+  only; alternate phases untested. Bentry5/retain8 still weekly equalweightresize.
+- Both2022/2023are development after multiple comparisons. C is a candidate,
+  not untouched-OOS proof.2024and final2025–Oct2026remain sealed. Current task
+  complete; discuss next freeze/robustness task before further tests or opening2024.
+
 ## Completed frozen2023 validation — 2026-11-21
 
 - Registration009:57f75e5 on main; implementation exp/validation-2023. Inspect Git
