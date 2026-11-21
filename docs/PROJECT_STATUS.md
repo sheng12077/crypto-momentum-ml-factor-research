@@ -1,5 +1,45 @@
 # Project status
 
+## Prepared final holdout; user will execute — 2026-11-22
+
+- Current branch exp/final-holdout-2025-2026, registration/base4baee9d on main.
+  Implementation commit: inspect Git log for this entry. Do not merge unfinished
+  experiment into main; no push/history rewrite. Protocol015precedes code/data.
+- User authorizes final2025and2026Jan--Oct disclosure and explicitly requests
+  files/commands to run themselves. Agent has NOT loaded final-window historical
+  sources, prepared data, fitted historical models or run historical simulations.
+  Output data/interim/final_holdout/v20261122_001 does not yet exist.
+- Same5inputs/PARAMS,7daylabels,2week first-Monday phase per year,no buffer,EQ5L/5S,
+  5bps taker/noBNB,5/10bps extra slippage.2025train2021--24;2026train2021--25 with
+  strict Jan1label availability.2026fit independent of2025results. Prior2024failure
+  stays visible. New labels only in separate matured training samples.
+- 12cases=ML/momentum60 x5/10bps x2025/2026partial/continuous;3MLreplays;2fits.
+  Continuous positions/NAV persist across2025year-end; never chain fresh-cash runs.
+  Retain midnight-last-day convention:365/304/669snapshots,364/303/668returns.
+  Source projection ends2026-11-01exclusive; no later market values.
+- WSLfunding-strategy:25focused tests passed (15new+10regression), all synthetic.
+  Covers cross-year Nautilus funding/quantities/replay, partial calendars, strict
+  purge/matured labels/future invariance, exact old feature arithmetic, real toy
+  LightGBM/SHAP cache roundtrip, empty cash-only ledgers, corruption rejection,
+  persistent HTTP budgets/429stop, CLI locking, complete report render/year slices.
+  Test log:reports/acquisition/final_holdout_handoff_tests_20261122.log.
+- English notebooks/final_holdout_results.ipynb prepared with4unexecuted code cells;
+  nbformat/syntax checked. No historical notebook execution; synthetic report
+  rendering passed. Acquisition source/time normalizationms/us and bounds tested.
+- USER WSL command after conda activate funding-strategy:
+  python scripts/run_final_holdout.py --stage all
+  python scripts/run_final_holdout.py --stage summary
+  See docs/FINAL_HOLDOUT_RUNBOOK.md. Logs under reports/acquisition/final_holdout_*.
+  Expected success12cases/3replays/2models/report_verified=true. Gates may be false.
+- Results:data/interim/final_holdout/v20261122_001/results/; reports tables/figures
+  final_holdout/; executed notebook reports/acquisition/final_holdout_results_executed.ipynb.
+  Caches bind code/runtime/input hashes; preserve failures and stop on unsupported
+  lifecycle/missing held prices, never fabricate settlement/drop names to finish.
+- Next: user runs and shares compact summary. Do not execute/monitor without request
+  or auto-tune/promote paper/live after disclosure. Existing user notebooks/edits
+  preserved unstaged. Later than2026Oct remains out of scope.
+
+
 ## Completed frozen 2024 validation and bounded diagnosis — 2026-11-21
 
 - Branch exp/frozen-2024-validation before conclusion merge.013registration0f07723;
