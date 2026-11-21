@@ -1,5 +1,38 @@
 # Project status
 
+## Fixed final-holdout terminal source boundaries — 2026-11-22
+
+- Fix branch fix/final-holdout-lifecycle-boundaries from experiment HEAD59ad6ce;
+  parent exp/final-holdout-2025-2026 remains incomplete. No history rewrite/push.
+- User's prepare failed on EOS2025-05-21after11assets: official daily trade archive
+  ends09UTC while mark archive continues; cached official EOS announcement confirms
+  automatic settlement09UTC. EOS wasn't missing active trading hours. OMG has
+  positive settlement prints in its terminal-hour bucket, not later full hours.
+- v002verifies existing official lifecycle source bytes forEOS/OMG/WAVES, quarantines
+  full-hour rows at/after terminal boundaries and preserves pre-terminal history.
+  Later positive full-hour trading requires episode review, not silent exclusion.
+  Missing genuine hours fail with symbol/kind/date/UTCand evidence JSON. Partial
+  lifecycle days keep their failure flags. Source publication vintage stays unproven.
+- New terminal guard expires marks/VWAP and invalidates held unsupported settlement;
+  no manufactured settlement price/cashflow or automatic portfolio-rule change.
+  Original engine remains unchanged; synthetic nonterminal financial SHA matches.
+- Read-only timestamp/source audit scripts/audit_final_holdout_keys.py checked37/37:
+  zero unresolved active trade/mark differences.0newHTTPrequests,0features/models/
+  forecasts/PnL/history simulations. Audit JSON under reports/acquisition/
+  final_holdout_terminal_key_audit_20261122.json. This is not full backtest success.
+-32focused tests pass inclEOS/OMGboundary tails, explicit real-gap failures,
+  held-terminal rejection, cache/budget preservation and unchanged active accounting.
+- New output:data/interim/final_holdout/v20261122_002. Failed001contract/raw evidence
+  remain intact; user prepare copies only source caches/request budgets.001had no
+  prepared manifest or results contract. English notebook and runbook point to002.
+- USER WSL commands unchanged:
+  python scripts/run_final_holdout.py --stage all
+  python scripts/run_final_holdout.py --stage summary
+  Do not delete contracts/caches. Agent has not restarted full prepare or backtests.
+  Frozen strategy/gates remain015; source lifecycle handling implements its existing
+  terminal/missing-held-price safeguards. User executes and returns logs/summary.
+
+
 ## Prepared final holdout; user will execute — 2026-11-22
 
 - Current branch exp/final-holdout-2025-2026, registration/base4baee9d on main.

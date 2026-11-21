@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "data/interim/final_holdout/v20261122_001"
+BASE = ROOT / "data/interim/final_holdout/v20261122_002"
 STAGES = {"prepare": "prepare_final_holdout.py", "spot": "build_final_holdout_spot.py",
           "simulate": "run_final_holdout_cases.py", "report": "report_final_holdout.py"}
 

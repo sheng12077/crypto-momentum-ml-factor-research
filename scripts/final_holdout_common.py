@@ -11,17 +11,17 @@ from development_continuity_rules import normalized, numeric_history
 from prepare_first_development import DAY, FEATURES, HOUR, ROOT, funding_feature
 from strategy_adjustment_rules import portfolio_schedule
 
-BASE = ROOT / "data/interim/final_holdout/v20261122_001"
+BASE = ROOT / "data/interim/final_holdout/v20261122_002"
 OLD = ROOT / "data/interim/validation_2024/v20261121_002/prepared"
 PREPARED = BASE / "prepared"
 REGISTRATION = "experiments/015_final_holdout_2025_2026.md"
-CODE = ["final_holdout_common.py", "final_holdout_engine.py", "prepare_final_holdout.py",
+CODE = ["final_holdout_common.py", "final_holdout_engine.py", "final_holdout_lifecycle.py", "prepare_final_holdout.py",
         "build_final_holdout_spot.py", "run_final_holdout_cases.py", "report_final_holdout.py",
         "final_holdout_acquisition.py", "run_final_holdout.py", "first_development_engine.py", "run_first_development.py",
         "prepare_first_development.py", "prepare_validation_2024.py", "strategy_adjustment_rules.py",
         "development_continuity_rules.py", "audit_development_continuity.py",
         "reconcile_mark_gaps.py", "recover_development_marks.py", "acquire_usdm_universe.py",
-        "check_universe_feasibility.py", "check_lifecycle_rows.py"]
+        "check_universe_feasibility.py", "check_lifecycle_rows.py", "review_usdm_lifecycle.py"]
 
 
 def ms(value):
@@ -56,6 +56,7 @@ def bind(path, value):
 
 def code_contract():
     return {"registration_sha256": sha(ROOT / REGISTRATION),
+            "lifecycle_events_sha256": sha(ROOT / "data/interim/usdm_universe/lifecycle_review_20261118/events.json"),
             "old_prepared_sha256": sha(OLD / "manifest.json"),
             "code_hashes": {f"scripts/{p}": sha(ROOT / "scripts" / p) for p in CODE},
             "analysis_sha256": sha(ROOT / "src/momentum_data/backtest_analysis.py"),

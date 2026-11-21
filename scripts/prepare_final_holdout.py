@@ -14,7 +14,8 @@ from final_holdout_common import (
     code_contract, features_for_dates, mondays, months, write,
 )
 from prepare_first_development import DAILY, load_hours
-from prepare_validation_2024 import defaultdict_rows, repair_pair
+from prepare_validation_2024 import defaultdict_rows
+from final_holdout_lifecycle import filter_terminal_rows, inherit_source_caches, repair_pair, terminal_boundaries
 from reconcile_mark_gaps import parse_payload
 
 
@@ -55,6 +56,7 @@ class Repair:
 
 def prepare():
     bind(BASE / "code_contract.json", code_contract())
+    inherit_source_caches(BASE)
     old_meta = checked_manifest(OLD)
     if (PREPARED / "manifest.json").exists():
         meta = checked_manifest(PREPARED)
@@ -70,6 +72,8 @@ def prepare():
     symbols, bindings, repairs = old_meta["symbols"], {}, {}
     if len(symbols) != 37:
         raise ValueError("Frozen cohort changed")
+    boundaries = terminal_boundaries(symbols)
+    boundary_audit = {}
     additions = {k: [] for k in ("trade", "mark", "funding")}
     features, repair = [], Repair()
     for i, symbol in enumerate(symbols, 1):
@@ -86,7 +90,10 @@ def prepare():
         for kind, target in products.items():
             for month in months():
                 target += load_hours(symbol, kind, month, index, False, bindings)
-        trades, marks, changed, counts = repair_pair(symbol, products["trade"], products["mark"], repair)
+        products, boundary_audit[symbol] = filter_terminal_rows(symbol, products, boundaries.get(symbol))
+        write(BASE / "repair/terminal_boundary_audit.json", boundary_audit)
+        trades, marks, changed, counts = repair_pair(symbol, products["trade"], products["mark"], repair,
+                                                   BASE / "repair/unresolved")
         repairs[symbol] = counts
         grouped = defaultdict_rows(trades)
         for r in rows:
@@ -94,7 +101,9 @@ def prepare():
                 continue
             g = grouped[r["data_day"]]
             if len(g) != 24:
-                raise ValueError("Recovered trade day incomplete")
+                if r["partial_lifecycle_day"] or r["known_lifecycle_order_block"]:
+                    continue  # Preserve lifecycle failure flags; never turn this into a full eligible day.
+                raise ValueError(f"Recovered active trade day incomplete: {symbol}/{r['data_day']}")
             r.update(trade_hours=24, trade_close=g[-1]["close"], trade_volume_sum=math.fsum(v["volume"] for v in g),
                 trade_quote_volume_sum=math.fsum(v["quote_volume"] for v in g),
                 taker_buy_quote_volume_sum=math.fsum(v["taker_buy_quote_volume"] for v in g), imbalance_inputs_valid=True)
@@ -136,6 +145,7 @@ def prepare():
         "code_contract_sha256": sha(BASE / "code_contract.json"), "prior_features_labels_preserved": True,
         "holdout_feature_rows": len(features), "holdout_labels_computed": False,
         "model_fitted": False, "PnL_computed": False, "source_repairs": repairs,
+        "terminal_boundaries": boundaries, "terminal_archive_tails_quarantined": True,
         "output_hashes": {p.name: sha(p) for p in PREPARED.iterdir() if p.is_file() and p.name != "manifest.json"}})
     print(json.dumps({"success": True, "stage": "prepare", "holdout_rows": len(features)}))
 
