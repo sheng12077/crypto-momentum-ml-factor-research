@@ -54,9 +54,11 @@ class HistoricalData:
         row = self.trades[symbol].get(hour)
         return row[2] / row[1] if row and row[1] > 0 and row[2] > 0 else None
 
-    def events(self, year):
+    def events(self, year, end_year=2022):
+        if year > end_year:
+            raise ValueError("Start year exceeds event calendar end year")
         start = int(datetime(year, 1, 1, tzinfo=UTC).timestamp() * 1000)
-        end = int(datetime(2022, 12, 31, tzinfo=UTC).timestamp() * 1000)
+        end = int(datetime(end_year, 12, 31, tzinfo=UTC).timestamp() * 1000)
         final = end - HOUR
         events = {}
 
