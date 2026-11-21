@@ -1,5 +1,37 @@
 # Project status
 
+## Prepared two-week buffer sensitivity — 2026-11-21
+
+- Registration011:60f29cf on main; implementation exp/two-week-buffer-sensitivity.
+  Inspect Git for final implementation/merge hashes. No push/history rewrite.
+- USER WILL RUN FULL HISTORY. Scope of this segment is implementation, tests,
+  synthetic engine pilot and prepare-only handoff; no candidate historical runs.
+  Read docs/TWO_WEEK_BUFFER_SENSITIVITY.md and English
+  notebooks/two_week_buffer_sensitivity.ipynb (safe prepared state,4cells executed).
+- Copyable PowerShell from strategy root:
+  py -3.11 scripts/run_buffer_sensitivity.py --stage all
+  Then --stage summary prints compact JSON. Existing isolatedWindows3.13 runtime
+  selected automatically; no conda activation/package installs/downloads required.
+- Two-week entry5; retention5(control)/6/8/10, inclusive rank boundaries. Fixed
+  first-Monday phase,26decisions/year. Same37cohort/models/scores/fees/funding.
+  16cases across2022/2023x5/10bps:4cached010Ccontrols+12new simulations, plus2rank8
+  primary replays;0newfits. No weekly exits between the two-week decisions.
+- Success after userrun:16completedcases,2verifiedreplays,new_model_fits0,
+  sealed_2024_and_final_OOS_inspected=false. Fullsummary at
+  data/interim/buffer_sensitivity/v20261121_001/results/summary.json does NOT exist
+  yet.8schedules prepared;historical completion markers0. Do not imply results.
+- Checkpoint hashes protect resume, failed attempts retained, errors propagate;
+  reports include all ranks/years/costs/concentration and nearby-rank support.
+  No threshold auto-selection or next-window run.2024/finalOOS remain sealed.
+- Checks:21focused isolatedtests passed;synthetic20asset/16daypilot funding+10,
+  finalcash99910exact;default prepare command/notebook4cells passed. Report renderer
+  tested using synthetic fixtures only; no historical chart/performance produced.
+  Native293passed/8optional-dependency skips;Ruffpassed. Regression log:
+  reports/acquisition/buffer_sensitivity_regression_20261121.log.
+- Logs:reports/acquisition/buffer_sensitivity_<stage>_<timestamp>.log.
+  Next: user executes all, sends --stage summary JSON; interpret fullgrid without
+  finer threshold search or opening2024 automatically. All prior caveats remain.
+
 ## Completed bounded strategy adjustments — 2026-11-21
 
 - Registration010:09b0acc on main; implementation exp/bounded-strategy-adjustments.
