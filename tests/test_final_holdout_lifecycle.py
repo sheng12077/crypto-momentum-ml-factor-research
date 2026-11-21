@@ -91,3 +91,44 @@ def test_acquisition_cache_copy_preserves_request_budget_and_old_contract(tmp_pa
     assert (new / "repair/raw/budget.json").read_bytes() == (old / "repair/raw/budget.json").read_bytes()
     assert (old / "code_contract.json").read_text() == '{"original":true}'
     assert not (new / "code_contract.json").exists()
+
+
+def test_funding_execution_collision_uses_completed_mark_not_vwap(tmp_path):
+    data, start, last = synthetic_data()
+    funding_at = ms("2026-01-05")+2*HOUR
+    original_vwap = data.vwap
+    data.vwap = lambda symbol, t: 200. if t == funding_at-HOUR else original_vwap(symbol, t)
+    data.funding = {"BTCUSDT": [(start+2*HOUR, .001), (funding_at, .001)]}
+    events = data.events_range(start, last)
+    collision = next(e for e in events if e["stamp"] == funding_at*1000000 and e["symbol"] == "BTCUSDT")
+    assert collision["kind"] == "execution" and collision["mark_at"] is None
+    assert collision["price"] == 200. and collision["funding_price"] == 110.
+    _, result = simulate(data, events, {"2025-12-30": {"BTCUSDT": 1.}}, tmp_path, bps=0)
+    ledger = pd.read_csv(tmp_path / "funding.csv")
+    assert len(ledger) == 1 and ledger.mark_proxy.iloc[0] == 110.
+    assert ledger.signed_quantity.iloc[0] == 1000. and ledger.cashflow_usdt.iloc[0] == -110.
+    assert result["ending_nav"] == pytest.approx(109785.)
+
+
+def test_terminal_blocker_is_reported_without_changing_selection():
+    from run_final_holdout_cases import terminal_blockers
+    portfolio = {"2025-05-12": {"EOSUSDT": .1}}
+    boundary = {"EOSUSDT": {"effective_ms": ms("2025-05-21T09:00:00"), "source_url": "official"}}
+    blocked = terminal_blockers(portfolio, "2025", boundary)
+    assert blocked[0]["instrument_id"] == "EOSUSDT" and blocked[0]["target_weight"] == .1
+    assert portfolio == {"2025-05-12": {"EOSUSDT": .1}}
+    assert terminal_blockers(portfolio, "2026_partial", boundary) == []
+
+
+def test_missing_control_gate_is_unknown_not_false_or_passed():
+    from run_final_holdout_cases import gates
+    rows = []
+    for name in ("2025", "2026_partial", "continuous"):
+        for bps in (5, 10):
+            rows.append({"window": name, "model": "lightgbm", "slippage_bps": bps, "total_return": .1, "Sharpe_rf0": 1.})
+            if name == "2026_partial":
+                rows.append({"window": name, "model": "momentum60", "slippage_bps": bps, "total_return": .05, "Sharpe_rf0": .5})
+    result = gates(pd.DataFrame(rows))
+    assert result["2025"]["beats_matched_momentum_return_and_sharpe"] is None
+    assert result["continuous"]["beats_matched_momentum_return_and_sharpe"] is None
+    assert result["2026_partial"]["beats_matched_momentum_return_and_sharpe"] is True

@@ -1,5 +1,37 @@
 # Project status
 
+## Ran final holdout end to end after user escalation — 2026-11-22
+
+- Fix branch fix/final-holdout-funding-collisions from experiment b2a40f7. User
+  explicitly rejected another unvalidated retry; agent ran real workflow through
+  report/notebook. Read docs/FINAL_HOLDOUT_EXECUTION_RESULTS.md first.
+- KAVA mark files were present.7funding/execution collisions (4assets) discarded
+  dedicated funding marks. Fixed funding_price/funding_mark_at and pre-fill funding
+  calculation; no execution-VWAP substitution. Original strategy/models unchanged.
+- Controlled v002->v003migration verifies exact parent contracta58f4792..., copies
+  verified inputs and both models, keeps old failures/contracts.0newfits/market-archive downloads;
+  no old financial attempts reused. Source model/prediction hashes unchanged.
+- Actual8financial cases +3MLreplays +report/4notebook cells passed. All12planned
+  cases accounted;4momentum60cases(2025/continuous,5/10bps) blocked because held
+  EOS at terminal has no verified settlement price. ML did not hold EOS there.
+  Do not claim12cases data-complete:summary.success=false,data_complete=false,
+  report_verified=true. Missing matched-control gates null. No fake settlements.
+- ML5bps:2025+30.6057%,Sharpe1.4332,MDD-17.0419%;2026partial-10.5874%,Sharpe-.1928,
+  MDD-24.7852%;continuous+16.3131%,Sharpe.4355,CAGR8.6075%,MDD-24.7852%.
+  Prior2024failure remains. Finalholdout now consumed; no paper/live readiness.
+-36focused tests pass. Independent real source audit:3772fills/105958funding rows
+  verified (VWAP/slip,fees,pre-fill quantities,mark price/availability,cashflows).
+  Actual continuous dashboard viewed. Reports/acquisition/final_holdout_execution_
+  audit_20261122.json; EOS public settlement probe returned[] (not exact-price proof).
+- Current outputs:data/interim/final_holdout/v20261122_003/results/;
+  English executed notebook reports/acquisition/final_holdout_results_executed.ipynb.
+  User need not rerun to view. Root notebooks/final_holdout_results.ipynb remains
+  safe saved-results reader; four blocked cases and source limitations visible.
+- Next: review findings; no more user retry instructions or automatic parameter
+  changes. Resolve actual EOSsettlement proof only if further control work is
+  requested. Keep parent experiment off main while full-case certification pending.
+
+
 ## Fixed final-holdout terminal source boundaries — 2026-11-22
 
 - Fix branch fix/final-holdout-lifecycle-boundaries from experiment HEAD59ad6ce;

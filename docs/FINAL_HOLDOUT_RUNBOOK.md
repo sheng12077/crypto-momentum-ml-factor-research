@@ -4,6 +4,28 @@ Experiment015registration4baee9d on main precedes implementation. Work branch:
 exp/final-holdout-2025-2026. User will run; no final-window historical data has
 been prepared, fitted, simulated or inspected by the agent during this handoff.
 
+## Current verified state: do not ask the user to rerun
+
+After repeated errors the user requested actual end-to-end validation. The agent
+ran prepare/spot/simulation/report on real inputs in v003, reusing verified v002
+data and both trained models. No repeat downloads or model fits were performed.
+The report and4notebook cells executed successfully:8financial cases verified,
+3MLfinancial replays identical,4planned control cases explicitly blocked for
+unverified EOS terminal settlement. This is NOT full12case data completeness.
+
+KAVA's error was an event merge bug, not a missing mark file: funding at the same
+instant as execution lost its dedicated mark fields. Seven such events across
+XTZ,KAVA,ONT,IOSThave valid source marks. Funding now retains its own completed
+mark price/availability independently of the execution VWAP. Original failedv002
+and contract remain intact; controlledv003migration copies input/model caches,
+never reuses failed financial output. Original forecasts and parameters unchanged.
+
+Open `reports/acquisition/final_holdout_results_executed.ipynb` directly. A new
+backtest command is not needed to view results. `--stage summary` reports
+report_verified=true but data_complete=false/success=false because4of12registered
+cases cannot be certified. Missing control comparisons are null, not false or
+silently passed. See docs/FINAL_HOLDOUT_EXECUTION_RESULTS.md.
+
 ## Acquisition repair: terminal archive tails
 
 The first run stopped at EOS2025-05-21: trade bars end at the official09UTC
@@ -60,7 +82,7 @@ case. Partial2026totalreturn is cumulative, distinct from annualized CAGR/Sharpe
 
 ## Outputs and success
 
-- Results: `data/interim/final_holdout/v20261122_002/results/summary.json`.
+- Results: `data/interim/final_holdout/v20261122_003/results/summary.json`.
 - Verification: same folder, `verification.json` and `report_complete.json`.
 - Tables/figures: `reports/{tables,figures}/final_holdout/`.
 - English notebook: `notebooks/final_holdout_results.ipynb` (unexecuted at handoff).

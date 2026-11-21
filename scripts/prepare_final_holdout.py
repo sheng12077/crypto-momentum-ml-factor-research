@@ -56,6 +56,8 @@ class Repair:
 
 def prepare():
     bind(BASE / "code_contract.json", code_contract())
+    from final_holdout_migration import migrate_engine_fix
+    migrate_engine_fix(BASE)
     inherit_source_caches(BASE)
     old_meta = checked_manifest(OLD)
     if (PREPARED / "manifest.json").exists():

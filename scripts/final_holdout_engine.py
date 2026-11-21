@@ -41,9 +41,13 @@ class FinalHistoricalData(HistoricalData):
             if key in events:
                 if rate is not None:
                     events[key]["rate"] = rate
+                    events[key]["funding_price"] = price
+                    events[key]["funding_mark_at"] = mark_at
                 return
             events[key] = {"symbol": symbol, "stamp": stamp, "kind": kind,
-                           "price": price, "mark_at": mark_at, "rate": rate}
+                           "price": price, "mark_at": mark_at, "rate": rate,
+                           "funding_price": price if rate is not None else None,
+                           "funding_mark_at": mark_at if rate is not None else None}
 
         for day in range(start, last+1, DAY):
             for symbol in self.symbols:
@@ -101,11 +105,35 @@ class TerminalGuardPortfolio(Portfolio):
         super().on_quote_tick(tick)
 
 
+class MarkedFundingModule(FundingModule):
+    def pre_process(self, data):
+        self.pending = None
+        symbol = self.by_id.get(getattr(data, "instrument_id", None))
+        event = self.events.get((symbol, data.ts_init))
+        if not event or event["rate"] is None:
+            return
+        quantity = sum((p.quantity.as_decimal()*(1 if p.is_long else -1)
+                        for p in self.exchange.cache.positions_open()
+                        if p.instrument_id == data.instrument_id), D(0))
+        if not quantity:
+            return
+        mark_at = event.get("funding_mark_at", event["mark_at"])
+        price = event.get("funding_price", event["price"])
+        now_ms = data.ts_init//1000000
+        if mark_at is None or price is None or not 0 <= now_ms-mark_at <= 2*HOUR:
+            raise ValueError(f"Held funding event lacks completed mark:{symbol}:time_ns={data.ts_init}:mark_ms={mark_at}")
+        cash = -quantity*D(str(price))*D(str(event["rate"]))
+        self.pending = {"timestamp_ns": data.ts_init, "instrument_id": symbol,
+                        "signed_quantity": str(quantity), "rate": event["rate"],
+                        "mark_proxy": price, "mark_available_ms": mark_at,
+                        "cashflow_usdt": str(Money(cash, USDT).as_decimal())}
+
+
 def simulate(data, event_list, schedule, output, bps=5, benchmark=None):
     instruments = {s: instrument(s) for s in data.symbols}
     events = {(e["symbol"], e["stamp"]): e for e in event_list}
     by_id = {i.id: s for s, i in instruments.items()}
-    funding = FundingModule(events, by_id)
+    funding = MarkedFundingModule(events, by_id)
     engine = BacktestEngine(BacktestEngineConfig(logging=LoggingConfig(bypass_logging=True)))
     engine.add_venue(venue=Venue("BINANCE"), oms_type=OmsType.NETTING,
                      account_type=AccountType.MARGIN, starting_balances=[Money(100000, USDT)],
