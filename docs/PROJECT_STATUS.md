@@ -1,5 +1,20 @@
 # Project status
 
+## Local main ready; user will push -- 2026-11-22
+
+- Local main now includes the complete published research tree, badges, new layout
+  and explicit full-period/original OOS disclosure. Research merge9a9b4c7; old
+  main README is replaced. Completed experiment/publication branches were removed.
+- User explicitly chooses to push personally. Assistant must not push or start an
+  authentication flow. No remote write performed; origin remains the user's repository.
+- Committed candidate code passed356tests+31subtests in isolated snapshot. Subsequent
+  changes are documentation only; main code matches tested1e99966 exactly.
+- All19original local files restored byte-for-byte; substantive legacy changes remain
+  unstaged. Git index is clean. A push sends commits, not those uncommitted changes.
+- User command:git push -u origin main (or push main in their authenticated Git client).
+  No additional staging or strategy/backtest rerun is required for this publication.
+
+
 ## Prepared main publication -- 2026-11-22
 
 - User reports GitHub shows old README; confirmed main=a808b5e while research

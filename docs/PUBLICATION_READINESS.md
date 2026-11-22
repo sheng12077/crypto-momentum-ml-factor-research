@@ -59,6 +59,7 @@ Do not force-push, amend old commits or change registered thresholds. GitHub rem
 https://github.com/sheng12077/crypto-momentum-ml-factor-research.git
 
 The latest remote read requested GitHub authentication; successful access must be
-rechecked after sign-in. Push is a separate user-approved step required by AGENTS.md.
+rechecked after sign-in. The user elected to push main personally; the assistant performs no push or login
+flow. The local main research merge is9a9b4c7, followed only by handoff documentation.
 No credentials should be entered into repository files or chat messages. No push
 has been performed by this release-preparation task.
