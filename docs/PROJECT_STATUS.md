@@ -1,5 +1,24 @@
 # Project status
 
+## 2023 user-run preparation completed — 2026-11-22
+
+- Experiment021registration2917c70;topicfeat/user-run-window-2023,merge completed
+  preparation to main with no-ff. Full2023execution belongs to user;do not launch it.
+- config/dynamic_2023.json and docs/RUN_DYNAMIC_2023.md give one shared windowCLI.
+  Train2021–2022/trade2023;unchanged model/features/two-week5L5S/equal weights/costs.
+- Date ranges,schedules,spotcalendar,reportlabels and registration bindings generalized;
+  prior cessation applies only to its episode. Saved2022artifacts are untouched and
+  readable with --run-dir. New2023model/run uses a distinct content identifier.
+- Added known2023BNX/HNT/COCOS/TOMOofficial notice references;user-triggered prepare
+  verifies public source bodies and exit prices. No claim those requests have passed yet.
+- Ten targeted synthetic tests and changed-file lint pass;CLI help smoke test passes.
+  No historical2023prepare,fit,PnL or downloads. No conclusions or extra tuning added.
+- User command:python -m crypto_factor_research window --config config/dynamic_2023.json --stage all
+  After completion request only --stage summary output. Logs/results paths printed.
+- Old17userdirtylegacyfiles untouched. No push or history rewrite.
+
+
+
 ## First-window implementation preserved; 2023 preparation next
 
 - Experiment020 registration1553967; completed first-window code on exp/dynamic-first-window.

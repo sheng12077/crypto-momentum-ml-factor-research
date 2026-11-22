@@ -24,6 +24,7 @@ def main():
             "repair-scope",
             "capacity-audit",
             "first-window",
+            "window",
         ],
     )
     parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2])
@@ -38,8 +39,11 @@ def main():
         choices=["all", "prepare", "fit", "preflight", "simulate", "report", "summary"],
         default="all",
     )
+    parser.add_argument("--run-dir", type=Path)
     args = parser.parse_args()
-    if args.command == "first-window":
+    if args.command in {"first-window", "window"}:
+        if args.command == "window" and args.config == Path("config/full_universe_inputs.json"):
+            parser.error("window requires --config")
         import contextlib
         import sys
         from datetime import UTC, datetime
@@ -60,9 +64,7 @@ def main():
 
         logs = args.project_root / "reports/acquisition"
         logs.mkdir(parents=True, exist_ok=True)
-        log_path = logs / (
-            "dynamic_first_window_" + datetime.now(UTC).strftime("%Y%m%dT%H%M%S") + ".log"
-        )
+        log_path = logs / ("dynamic_window_" + datetime.now(UTC).strftime("%Y%m%dT%H%M%S") + ".log")
         print("Log: " + str(log_path), flush=True)
         config = args.project_root / (
             "config/dynamic_first_window.json"
@@ -74,7 +76,7 @@ def main():
             contextlib.redirect_stdout(Tee(sys.stdout, log)),
             contextlib.redirect_stderr(Tee(sys.stderr, log)),
         ):
-            result = main_stage(args.project_root, config, args.stage)
+            result = main_stage(args.project_root, config, args.stage, args.run_dir)
         if result.get("success") is False:
             raise SystemExit(1)
         return
