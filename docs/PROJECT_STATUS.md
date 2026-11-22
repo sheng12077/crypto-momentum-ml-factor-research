@@ -1,5 +1,39 @@
 # Project status
 
+## Full-catalog input reconstruction completed — 2026-11-22
+
+- Completed topic: research/full-universe-inputs; current branch main after no-ff
+  merge. Registration commit850d68f (Experiment017) predates code/run.
+- New src/crypto_factor_research package and config/full_universe_inputs.json;
+  no imports of archived Python. One CLI: python -m crypto_factor_research.
+- Full924catalog accounted;1,968,120daily /280,896weeklyrows;304Mondays.
+  775ever provisional candidates,738outside old37;maximum617simultaneous.
+  Zero source-integrity errors. No blanket Size gate/fixed37pool.
+- Final dataset:data/features/full_universe/2a39c4222ec6feaa432e;
+  manifest sha256:5f0ef4bc76d0915d6cd06e99887524a0d5ff33ca152731b1c18fb06bcd1483c4.
+  Classified tables:reports/tables/full_universe_inputs/2a39c4222ec6feaa432e/.
+- 1,577raw issue intervals:831normal listing flow warmups,4known stops,
+  742remaining review intervals (597funding,122marks,14flow,7close/episode,2phase).
+  These are intervals, not asset counts; neither775nor924means executable.
+- Local funding series miss2026-06-24 04:00UTC for multiple contracts, explaining
+  the June29candidate drop. No value fabricated; check official alternative sources
+  next. Existing registration covers local input reconstruction only, no downloads.
+- Full build +source/output verified exact cache reuse succeeded;24active tests and
+  new package lint pass. Future mutation/gap/episode/funding/corruption tests included.
+- Read docs/FULL_UNIVERSE_INPUTS.md and docs/REMEDIATION_PLAN.md. Execution_ready,
+  model_fitted,PnL_computed remain false. No new backtest, certified PIT claim or push.
+- Old performance applies only to37prototype. All years already inspected remain
+  retrospective. User dirty legacy files and untracked tree.json preserved.
+- Next segment: targeted official-source repair and complete execution preflight;
+  preserve usable dated intervals. Later full-population model/backtest needs its
+  own preregistration. Broader legacy architecture migration remains unfinished.
+
+## Previous correction and publication history
+
+The following earlier stage notes are retained for provenance and superseded where
+inconsistent with the completed input stage above.
+
+
 ## Full-universe remediation specification and audit -- 2026-11-22
 
 - User resumes work after stopping it and requests complete corrective solutions;
