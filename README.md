@@ -26,6 +26,8 @@ not yet produced an expanded-universe strategy backtest. The [source-repair pass
 completed all 788 jobs and recovered 25,251 observations; unresolved funding rules,
 source omissions/conflicts and dated product scope still block execution readiness.
 The catalog includes noncrypto contracts; 775 is not a certified crypto-asset count.
+[Dated candidate-pool capacity](docs/DYNAMIC_UNIVERSE_CAPACITY.md) is measured separately
+from execution readiness; future holding-data problems never filter earlier entries.
 The uninterrupted 2022--October 2026 account is net profitable with lower historical
 volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
 are substantially stronger in development years. Paper/live trading is not implemented
