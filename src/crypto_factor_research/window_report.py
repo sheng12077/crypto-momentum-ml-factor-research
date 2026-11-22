@@ -53,7 +53,9 @@ def spot_benchmark(root, config, symbol, start, last):
     missing = sorted(required - observed.keys())
     if missing:
         first = pd.Timestamp(missing[0], unit="ms", tz="UTC").isoformat()
-        raise ValueError(f"Spot required prices missing: {symbol}, count={len(missing)}, first={first}")
+        raise ValueError(
+            f"Spot required prices missing: {symbol}, count={len(missing)}, first={first}"
+        )
     if any(not np.isfinite(observed[t][0]) or observed[t][0] <= 0 for t in required):
         raise ValueError("Spot required price invalid")
     a, b = observed[entry], observed[final - HOUR]
@@ -104,7 +106,7 @@ def report(root, config, path):
     out.mkdir(exist_ok=True)
     asset.to_csv(out / "asset_attribution.csv")
     side.to_csv(out / "side_attribution.csv")
-    all_metrics, monthlies = [], {}
+    all_metrics, monthlies, candidate_daily = [], {}, {}
     for case in summary["cases"]:
         name = f"{case['case']}_{case['bps']}bps"
         folder = path / "results" / name
@@ -122,11 +124,20 @@ def report(root, config, path):
         metric["case"] = name
         all_metrics.append(metric)
         monthlies[name] = monthly
+        if name in {"lightgbm_5bps", "equal_groups_5bps"}:
+            candidate_daily[name] = daily.strategy_nav.copy()
         if name == "lightgbm_5bps":
             daily.to_csv(out / "primary_daily.csv", index=False)
             primary = daily
     metrics = pd.concat(all_metrics, ignore_index=True)
     metrics.to_csv(out / "all_case_metrics.csv", index=False)
+    comparison = metrics[
+        metrics.series.eq("strategy_nav")
+        & metrics["case"].str.startswith(("lightgbm_", "equal_groups_", "momentum60_"))
+    ].copy()
+    comparison.to_csv(out / "candidate_comparison.csv", index=False)
+    paired_monthly = pd.DataFrame({name: monthlies[name].strategy_nav for name in candidate_daily})
+    paired_monthly.to_csv(out / "candidate_monthly_returns.csv")
     monthly = monthlies["lightgbm_5bps"]
     monthly.to_csv(out / "monthly_returns.csv")
     primary_metrics = metrics[(metrics["case"] == "lightgbm_5bps")]
@@ -172,6 +183,11 @@ def report(root, config, path):
         ("eth_nav", "ETH spot"),
     ]:
         ax.plot(primary.index, primary[col] / 100000, label=label)
+    ax.plot(
+        primary.index,
+        candidate_daily["equal_groups_5bps"] / 100000,
+        label="Equal factor-group score",
+    )
     ax.set(title=config["start"][:4] + " retrospective replay", ylabel="NAV / initial capital")
     ax.legend()
     ax.grid(alpha=0.2)
@@ -179,18 +195,19 @@ def report(root, config, path):
     fig.savefig(out / "equity.png", dpi=150)
     plt.close(fig)
     fig, ax = plt.subplots(figsize=(10, 2.8))
-    values = monthly.strategy_nav.to_numpy() * 100
+    values = paired_monthly.to_numpy().T * 100
     ax.imshow(
-        values.reshape(1, -1),
+        values,
         cmap="RdYlGn",
         aspect="auto",
-        vmin=-max(abs(values)),
-        vmax=max(abs(values)),
+        vmin=-np.max(abs(values)),
+        vmax=np.max(abs(values)),
     )
-    ax.set_xticks(range(len(values)), [x.strftime("%b") for x in monthly.index])
-    ax.set_yticks([0], [config["start"][:4]])
-    for i, value in enumerate(values):
-        ax.text(i, 0, f"{value:.1f}%", ha="center", va="center", fontsize=9)
+    ax.set_xticks(range(values.shape[1]), [x.strftime("%b") for x in paired_monthly.index])
+    ax.set_yticks([0, 1], ["LightGBM", "Equal factor groups"])
+    for row, line in enumerate(values):
+        for i, value in enumerate(line):
+            ax.text(i, row, f"{value:.1f}%", ha="center", va="center", fontsize=9)
     ax.set_title("Net monthly strategy returns (partial boundary months)")
     fig.tight_layout()
     fig.savefig(out / "monthly_returns.png", dpi=150)
@@ -201,6 +218,8 @@ def report(root, config, path):
         + window_label(config)
         + ". Retrospective research; not fresh OOS.\n\n"
         + markdown_table(primary_metrics[columns])
+        + "\n\n## Matched candidate comparison\n\n"
+        + markdown_table(comparison[columns])
         + "\n\nAll registered cases and random controls are retained in CSV.\n\nReturn excluding the best month: "
         + f"{other:.2%}"
         + ".\n\nExecution uses VWAP/mark proxies,fractional research lots and a current-cost fee assumption. It is not tick-level liquidation or historical fee reconstruction.\n"
@@ -231,6 +250,7 @@ def report(root, config, path):
         "registered_cases_completed": summary["completed_cases"],
         "primary_replay_identical": summary["primary_replay_identical"],
         "primary_metrics": primary_metrics.replace({np.nan: None}).to_dict("records"),
+        "candidate_comparison": comparison[columns].replace({np.nan: None}).to_dict("records"),
         "random_control_summary": random_stats,
         "random_comparison": random_comparison,
         "costs": costs,

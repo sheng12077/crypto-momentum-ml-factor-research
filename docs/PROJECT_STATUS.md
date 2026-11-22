@@ -1,5 +1,32 @@
 # Project status
 
+## Dual-candidate 2025–2026 preparation completed — 2026-11-23
+
+- Experiment 023 registration 4c52846 preceded implementation. Completed topic
+  feat/dynamic-final-windows; merge with no-ff. No push/history rewrite.
+- Read docs/RUN_DYNAMIC_FINAL_WINDOWS.md. New configs dynamic_2025/2026.json;
+  annual expanding fits, separate 100000-USDT accounts, unchanged ranking/position
+  rules/costs. 2026 stops at October boundary; no continuous-account claim.
+- User command: python scripts/run_dynamic_final_windows.py
+  Both years must pass preflight before any financial simulation. 30 cases/year,
+  60 total; LightGBM and equal-group candidate results directly visible in compact
+  summaries, comparison CSV, equity plot and paired monthly heatmap.
+- Added partial-year schedule bound and repeat-cessation support, including
+  independently checked exit-price lookup. AERGO 2025 relaunch is source-bound;
+  its two cessations no longer overwrite one another.
+- Official index/source review: 95 notice assertions for 2025, 127 for 2026.
+  All 127 source identity/date/publication checks pass; new launch source checked.
+  Cached BTC/ETH required spot keys pass (365/304 daily NAV rows). This does not
+  certify every lifecycle event or all notice exit bars; user-run prepare checks those.
+- 27 targeted synthetic/CSV-fixture/regression tests and changed-file lint pass;
+  launcher help smoke passes. No full market prepare, model fit, preflight, PnL
+  or final-period performance inspection by agent during this preparation.
+- Known June 2026 funding gaps may block held schedules; never zero-fill or silently
+  omit affected assets/intervals. Log paths and batch_status.json locate failures.
+- Shared code changes new identities; read old 2024 results using explicit --run-dir
+  a51e40a2229536b092cf and original config; do not rerun older windows automatically.
+- Existing 17 user legacy edits preserved. Next: user execution, then summary.
+
 ## Completed 2024 result attribution — 2026-11-22
 
 - Run a51e40a2229536b092cf: 30 cases, replay and independent audit passed.

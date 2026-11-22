@@ -95,6 +95,31 @@ class PublicSources:
             "source": source,
         }
 
+    def relaunch(self, item):
+        code = item["relaunch_article_code"]
+        body, source = self.get(
+            "https://www.binance.com/bapi/composite/v1/public/cms/article/detail/query?articleCode="
+            + code
+        )
+        payload = json.loads(body)
+        article = payload["data"]
+        text = " ".join(text_nodes(json.loads(article["body"])))
+        stamp = pd.Timestamp(item["relaunch_utc"])
+        if (
+            not payload.get("success")
+            or article["code"] != code
+            or item["symbol"] not in text
+            or "Futures" not in text
+            or "Perpetual" not in text
+            or stamp.strftime("%Y-%m-%d") not in text
+            or stamp.strftime("%H:%M") not in text
+        ):
+            raise ValueError("Relaunch source does not corroborate contract/date/time")
+        t = int(stamp.timestamp() * 1000)
+        if int(article["publishDate"]) + 5 * MINUTE > t:
+            raise ValueError("Relaunch not available before reopening")
+        return t, source
+
     def bar(self, symbol, kind, start, interval="1h"):
         step = HOUR if interval == "1h" else MINUTE
         endpoint = "markPriceKlines" if kind == "mark" else "klines"
@@ -381,7 +406,8 @@ class WindowData:
                         kind,
                         self.mark("BTCUSDT", t + offset)[0],
                     )
-        for symbol, value in self.notices.items():
+        for key, value in self.notices.items():
+            symbol = value.get("symbol", key)
             if symbol not in self.marks:
                 continue
             if start <= value["effective_ms"] <= last:
@@ -404,12 +430,13 @@ class WindowData:
                         mark[1] if mark else None,
                         rate,
                     )
-        for symbol, value in self.notices.items():
+        for key, value in self.notices.items():
+            symbol = value.get("symbol", key)
             if symbol not in self.marks:
                 continue
             t = value["exit_ms"]
-            if start <= t < last and symbol in self.exit_prices:
-                add(symbol, t * 1000000, "final", self.exit_prices[symbol])
+            if start <= t < last and key in self.exit_prices:
+                add(symbol, t * 1000000, "final", self.exit_prices[key])
         final = last - HOUR
         for symbol in self.symbols:
             price = self.vwap(symbol, final - HOUR)
@@ -420,8 +447,12 @@ class WindowData:
 
 
 def episode_notice(notices, symbol, t):
-    notice = notices.get(symbol)
-    return None if notice and t >= notice.get("valid_to_ms", 2**63 - 1) else notice
+    matches = [
+        notice
+        for key, notice in notices.items()
+        if notice.get("symbol", key) == symbol and t < notice.get("valid_to_ms", 2**63 - 1)
+    ]
+    return min(matches, key=lambda n: n.get("effective_ms", 0)) if matches else None
 
 
 def window_label(config):
