@@ -3,7 +3,7 @@
   "stop_exclusive": "2026-11-01",
   "prepared": "interim/final_holdout/v20261122_003/prepared",
   "frozen_output": "interim/continuous_reconstruction/v20261122_001",
-  "package_output": "interim/continuous_package/v20261122_003",
+  "package_output": "interim/continuous_package/v20261122_004",
   "features": [
     "momentum20",
     "momentum60",

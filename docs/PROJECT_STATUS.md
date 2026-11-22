@@ -1,5 +1,17 @@
 # Project status
 
+## Added truthful README badges -- 2026-11-22
+
+- Topic docs/readme-project-badges from current experiment; merge back when complete.
+- README badges:Python3.13,NautilusTrader,locally verified checks,retrospective research.
+  Each links to implementation/verification evidence. No unconfigured CI, coverage,
+  license, profitability or live-trading claims. Publisher retains badges on regeneration.
+- Presentation-only change; no model/engine/accounting source changed. No new tests or
+  historical simulations needed. Existing package003exact replay evidence remains valid
+  for that recorded source version. Namespace004reserved for future source-bound replay;
+  no old contract or financial result overwritten. No remote/push.
+
+
 ## Full-period / original OOS disclosure -- 2026-11-22
 
 - User requests explicit separation of full-period and OOS results. Presentation only;
