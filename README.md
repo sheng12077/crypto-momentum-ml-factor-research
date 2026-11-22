@@ -196,6 +196,7 @@ ignored; this README and its figure publish aggregate results only.
 
 ## Research archive
 
+- [Publication scope and committed-tree checks](docs/PUBLICATION_READINESS.md)
 - [Completed historical backtests: results, assumptions and commands](research/legacy/docs/FIRST_HISTORICAL_DEVELOPMENT.md)
 - [English historical-results notebook](research/legacy/notebooks/first_historical_results.ipynb)
 - [Development mark boundary recovery and resumable commands](research/legacy/docs/DEVELOPMENT_MARK_RECOVERY.md)

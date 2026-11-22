@@ -1,5 +1,28 @@
 # Project status
 
+## Prepared main publication -- 2026-11-22
+
+- User reports GitHub shows old README; confirmed main=a808b5e while research
+  branch1e99966contained16new commits. User authorized local publication preparation.
+- Remote now exists:origin=https://github.com/sheng12077/crypto-momentum-ml-factor-research.git.
+  Latest read required GitHub login. No push, force push or history rewrite performed.
+- Topic docs/prepare-main-publication adds publication scope/check record; merge the
+  completed research package into local main with no-ff, then remove completed branches.
+  Unlike prior interim notes, known control limits are now explicitly closed as a
+  documented partial research outcome for publication, not a claim all cases passed.
+- Original015flags remain success=false/data_complete=false:8valid cases,4blocked
+  EOSmomentum controls. No criteria revised and no fabricated control/settlement.
+- Exported committed1e99966tree into isolated snapshot:356tests+31subtests pass
+  without user edits/local data.483Git blobs scanned; no checked credential patterns
+  or market-data history paths found. Public documentation links checked.
+- Engine/model/data code matches verified003; later changes only publication/badge
+  and output namespace004. No new backtest necessary for this Markdown-only step.
+- Back up and restore existing19original working files byte-for-byte around main
+  checkout; keep substantive legacy edits unstaged. Release contains committed tree.
+- Next: after local main is ready, obtain required push confirmation and GitHub
+  authentication, recheck remote and push only main. Never put credentials in chat.
+
+
 ## Added truthful README badges -- 2026-11-22
 
 - Topic docs/readme-project-badges from current experiment; merge back when complete.
