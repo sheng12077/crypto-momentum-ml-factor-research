@@ -596,6 +596,16 @@
       "effective_utc": "2026-01-30T09:00:00Z"
     },
     {
+      "symbol": "GHSTUSDT",
+      "article_code": "87a9bdf137f348668a85575ee02b8a27",
+      "effective_utc": "2026-02-06T09:00:00Z"
+    },
+    {
+      "symbol": "NKNUSDT",
+      "article_code": "87a9bdf137f348668a85575ee02b8a27",
+      "effective_utc": "2026-02-06T09:00:00Z"
+    },
+    {
       "symbol": "RVVUSDT",
       "article_code": "9ac36fb4f2ad4bf2b3b27f9c9224739c",
       "effective_utc": "2026-02-10T09:00:00Z"
@@ -641,6 +651,31 @@
       "effective_utc": "2026-04-08T09:00:00Z"
     },
     {
+      "symbol": "FIOUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "FUNUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "OXTUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "article_code": "d067b373496c44a4ab8d28f3e90b66ad",
+      "effective_utc": "2026-04-21T09:00:00Z"
+    },
+    {
+      "symbol": "TRUUSDT",
+      "article_code": "d067b373496c44a4ab8d28f3e90b66ad",
+      "effective_utc": "2026-04-21T09:00:00Z"
+    },
+    {
       "symbol": "B3USDT",
       "article_code": "1d2b6970facd470dbba6a674e1595bd4",
       "effective_utc": "2026-04-28T09:00:00Z"
@@ -681,6 +716,21 @@
       "effective_utc": "2026-04-29T09:00:00Z"
     },
     {
+      "symbol": "ATAUSDT",
+      "article_code": "a42f51022cb649aea0b4cb808205fd76",
+      "effective_utc": "2026-05-19T09:00:00Z"
+    },
+    {
+      "symbol": "COSUSDT",
+      "article_code": "24aced8c698649d9a552a47eeead5e34",
+      "effective_utc": "2026-06-11T09:00:00Z"
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "article_code": "24aced8c698649d9a552a47eeead5e34",
+      "effective_utc": "2026-06-11T09:00:00Z"
+    },
+    {
       "symbol": "IPUSDT",
       "article_code": "5702f93568604ea7bfd2f4233f054bd1",
       "effective_utc": "2026-06-28T09:00:00Z"
@@ -689,6 +739,21 @@
       "symbol": "AERGOUSDT",
       "article_code": "f0e3fc835b9545759e4279c64b200389",
       "effective_utc": "2026-07-24T06:30:00Z"
+    },
+    {
+      "symbol": "VANRYUSDT",
+      "article_code": "64cf7544b98e4f2ca7f54ba11fd72d9d",
+      "effective_utc": "2026-08-07T09:00:00Z"
+    },
+    {
+      "symbol": "STORJUSDT",
+      "article_code": "d72915ed7a60473b92f0818d959a227a",
+      "effective_utc": "2026-08-26T09:00:00Z"
+    },
+    {
+      "symbol": "STGUSDT",
+      "article_code": "0c1e8975f48d42c4b856c113926c5fdd",
+      "effective_utc": "2026-09-24T09:00:00Z"
     },
     {
       "symbol": "1000000BOBUSDT",

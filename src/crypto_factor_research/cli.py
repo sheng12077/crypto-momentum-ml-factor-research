@@ -25,6 +25,7 @@ def main():
             "capacity-audit",
             "first-window",
             "window",
+            "funding-breaks",
         ],
     )
     parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2])
@@ -40,7 +41,17 @@ def main():
         default="all",
     )
     parser.add_argument("--run-dir", type=Path)
+    parser.add_argument("--limit", type=int)
     args = parser.parse_args()
+    if args.command == "funding-breaks":
+        if args.run_dir is None:
+            parser.error("funding-breaks requires --run-dir")
+        from .funding_evidence import audit_breaks
+
+        result = audit_breaks(args.project_root, args.run_dir, args.limit)
+        if not result["success"]:
+            raise SystemExit(1)
+        return
     if args.command in {"first-window", "window"}:
         if args.command == "window" and args.config == Path("config/full_universe_inputs.json"):
             parser.error("window requires --config")
