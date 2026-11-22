@@ -339,6 +339,11 @@
       "effective_utc": "2025-02-21T09:00:00Z"
     },
     {
+      "symbol": "BNXUSDT",
+      "article_code": "2f963977c7274e0583f16f2e26987b61",
+      "effective_utc": "2025-03-17T09:00:00Z"
+    },
+    {
       "symbol": "AERGOUSDT",
       "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
       "effective_utc": "2025-03-27T09:00:00Z",
@@ -396,6 +401,11 @@
       "effective_utc": "2025-06-13T09:00:00Z"
     },
     {
+      "symbol": "LOKAUSDT",
+      "article_code": "551eeaf9861c47b8ad3482f45abf3f38",
+      "effective_utc": "2025-07-21T09:00:00Z"
+    },
+    {
       "symbol": "DEFIUSDT",
       "article_code": "21e399dcea734230a3c181daf5407b64",
       "effective_utc": "2025-08-11T09:00:00Z"
@@ -414,6 +424,11 @@
       "symbol": "BSWUSDT",
       "article_code": "c95b56efd290471ba11c6cb850208d07",
       "effective_utc": "2025-09-15T09:00:00Z"
+    },
+    {
+      "symbol": "OMNIUSDT",
+      "article_code": "13d0a79f79ef4406963dcd7f9d1de325",
+      "effective_utc": "2025-09-22T09:00:00Z"
     },
     {
       "symbol": "ALPHAUSDT",

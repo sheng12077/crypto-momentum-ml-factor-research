@@ -1,5 +1,21 @@
 # Project status
 
+## 2025 migration blockers corrected — 2026-11-23
+
+- Topic fix/2025-migration-notices. User run a8f57f099aeecdcb127a reached
+  preflight after memory fix; six findings concern BNX/LOKA/OMNI, no PnL.
+- Added 2025 futures settlements BNX Mar17, LOKA Jul21, OMNI Sep22 at 09UTC
+  to both final-window configs. BNX 2025 had been skipped by initial symbol-only
+  registry assembly; preserve both 2023/2025 events. LOKA/OMNI funding-tail flags
+  follow cessation, addressed by announced exits, not fabricated funding rows.
+- Verified three official source bodies/clocks and positive-volume one-minute
+  post-notice exits. Saved-plan diagnostic: all six old timestamps fall outside
+  corrected holding intervals. No full prepare/fit/preflight/simulation launched.
+- 34 targeted tests/lint pass. Config assertion counts now 98/130 for 2025/2026.
+- User reruns python scripts/run_dynamic_final_windows.py; config changes require
+  new identities and models, source caches remain reusable. Full preflight still
+  required; known June2026 funding issue unchanged. User legacy edits preserved.
+
 ## Confirmed OOM corrected in annual window preparation — 2026-11-23
 
 - Topic fix/window-memory-usage; no strategy/config/date/cost changes.
