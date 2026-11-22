@@ -71,8 +71,8 @@ means those requested steps passed, not that 60 financial cases completed.
 ## Data gates and verified coverage
 
 An official delisting-index review added dated settlement assertions beyond the
-earlier ledger. Configs contain 95 (2025) and 127 (2026) historical notice assertions.
-The 127 configured notice bodies, symbols/dates/publication checks were verified
+earlier ledger. Configs contain 98 (2025) and 130 (2026) historical notice assertions.
+The configured notice bodies, symbols/dates/publication checks were verified
 with the existing public client. AERGO's evidenced 2025-04-16 relaunch is included;
 both its 2025 and 2026 cessations remain represented rather than overwriting one.
 Source cache bodies and hashes stay local. Official source IDs are in each config.
@@ -96,6 +96,28 @@ with `funding_gap` evidence. No funding interpolation, zero-fill, future-informe
 entry exclusions, or shorter evaluation period is introduced here. Supply the
 printed problem-file path and compact status for a targeted source investigation.
 Preparing the code does not mean the 2026 data gate has passed.
+
+## Migration correction after the next 2025 preflight
+
+Run `a8f57f099aeecdcb127a` stopped before PnL with six findings across BNX,
+LOKA and OMNI. Their missing futures settlement facts are now included:
+
+- [BNX: 2025-03-17 09:00 UTC](https://www.binance.com/en/support/announcement/detail/2f963977c7274e0583f16f2e26987b61)
+- [LOKA: 2025-07-21 09:00 UTC](https://www.binance.com/en/support/announcement/detail/551eeaf9861c47b8ad3482f45abf3f38)
+- [OMNI: 2025-09-22 09:00 UTC](https://www.binance.com/en/support/announcement/detail/13d0a79f79ef4406963dcd7f9d1de325)
+
+BNX's 2025 ledger event was skipped by initial symbol-only registry assembly.
+Both its 2023 and 2025 events are now preserved and covered by regression tests.
+LOKA/OMNI migration announcements are outside the previously reviewed delisting
+index subset. Their funding-tail findings occur after cessation; the correction
+is the existing announced-exit rule, not invented funding. All three notice clocks
+and positive-volume one-minute post-notice exit prices were verified.
+
+A bounded saved-schedule diagnostic with the corrected public-notice eligibility
+and holding-interval rules confirms none of the six old failure times remains
+held. This is not a new fit, full preflight or simulation. Rerun the same batch
+command: updated configs create new identities and models, source caches are
+reused, and the stopped version stays preserved. Full preflight remains required.
 
 ## Memory correction after the first 2025 attempt
 

@@ -74,6 +74,21 @@ def test_partial_2026_schedule_has_no_november_decisions():
 
 
 @pytest.mark.parametrize("year", [2025, 2026])
+def test_migration_registry_preserves_repeated_symbols_and_futures_dates(year):
+    config = json.loads((ROOT / f"config/dynamic_{year}.json").read_text())
+    assertions = {
+        (x["symbol"], x["effective_utc"]): x["article_code"] for x in config["cessation_notices"]
+    }
+    expected = {
+        ("BNXUSDT", "2023-02-11T04:00:00Z"): "4d23ada51a2e4fa182835c77d51ba1a9",
+        ("BNXUSDT", "2025-03-17T09:00:00Z"): "2f963977c7274e0583f16f2e26987b61",
+        ("LOKAUSDT", "2025-07-21T09:00:00Z"): "551eeaf9861c47b8ad3482f45abf3f38",
+        ("OMNIUSDT", "2025-09-22T09:00:00Z"): "13d0a79f79ef4406963dcd7f9d1de325",
+    }
+    assert expected.items() <= assertions.items()
+
+
+@pytest.mark.parametrize("year", [2025, 2026])
 def test_configs_freeze_parameters_and_purge_future_labels(year):
     old = json.loads((ROOT / "config/dynamic_2024.json").read_text())
     config = json.loads((ROOT / f"config/dynamic_{year}.json").read_text())
