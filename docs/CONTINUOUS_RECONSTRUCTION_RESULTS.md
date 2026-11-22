@@ -4,6 +4,69 @@ This is an uninterrupted NautilusTrader simulation using frozen annual model cac
 not a product of independent annual NAV resets. All years were already inspected
 when Experiment 016 was registered. The full path is retrospective, not fresh OOS.
 
+## Full period versus original OOS
+
+| Period | Role | Interpretation |
+| --- | --- | --- |
+| 2022--2023 | Development / selection | Used to inform strategy and execution choices |
+| 2024 | Frozen validation | Revealed before the final holdout |
+| 2025--October 2026 | Original final OOS; now disclosed | Protocol015 separate account; frozen annual expanding fits |
+| 2022--October 2026 | Full retrospective reconstruction | Protocol016 registered after all annual results were observed |
+
+| Account / period | Return | CAGR | Sharpe (rf=0) | MDD |
+| --- | --- | --- | --- | --- |
+| Full path (2022--2026) | +84.06% | +13.45% | 0.645 | -26.77% |
+| Original OOS account (2025--2026) | +16.31% | +8.61% | 0.435 | -24.79% |
+| OOS-date slice of full path; carry-in diagnostic | +24.08% | +12.51% | 0.557 | -24.79% |
+
+All primary rows include 5 bps adverse slippage plus 5 bps perpetual taker fees and
+Funding. The original OOS account starts with USDT 100,000 in cash on Jan 1, 2025;
+it does not inherit 2024 positions. The full-path diagnostic carries positions/capital
+from 2024 and is rebased at exactly the same Jan 1, 2025 NAV timestamp. It is **not**
+a substitute OOS result. The +84.06% whole-period result is also **not all OOS**.
+All comparisons end Oct 31, 2026 00:00 UTC; the last civil day is not included.
+Development years may contain chronological forward forecasts but were used for
+rule selection; that does not make them the clean final test.
+
+![Full path and original OOS equity](assets/full_period_vs_oos.png)
+
+### Original OOS benchmark comparison
+
+| Original OOS series | Return | CAGR | Sharpe (rf=0) | MDD |
+| --- | --- | --- | --- | --- |
+| Strategy (5 bps slippage) | +16.31% | +8.61% | 0.435 | -24.79% |
+| BTC spot buy-and-hold | -18.36% | -10.49% | -0.043 | -52.97% |
+| ETH spot buy-and-hold | -33.42% | -19.93% | 0.016 | -67.55% |
+
+Original OOS 10 bps strategy stress: return **+12.25%**,
+Sharpe **0.367**, MDD **-24.95%**. Primary OOS:
+**12/22 positive months**.
+Models use frozen annual expanding windows: 2025 uses matured 2021--2024 labels;
+2026 may use matured 2025 labels, as preregistered. This is walk-forward evaluation,
+not a single model trained once and held unchanged throughout OOS.
+
+The OOS was originally withheld and is now revealed. Reusing these dates for new
+choices does not create a new independent OOS. The 37-identifier conditional-universe,
+execution/funding proxy and incomplete matched momentum-control limitations still
+apply. The ML OOS cases are verified; the broader protocol's blocked EOS control
+cases are not converted into completed cases by this publication.
+
+The heatmap below belongs to the **full retrospective account**, including its
+2025--2026 carry-in holdings. It must not be read as the original OOS account's monthly
+return table. The latter's exact monthly values are reported separately below.
+
+### Original OOS monthly net returns
+
+| Original OOS account | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2025 | +9.04% | -0.73% | +2.22% | -0.09% | +10.46% | +2.40% | -11.82% | +3.46% | -2.31% | -0.65% | +13.74% | +3.80% |
+| 2026 | -5.79% | +7.98% | -0.78% | +1.47% | -8.56% | +6.14% | +7.24% | +5.77% | -0.96% | -20.33% | N/A | N/A |
+
+Monthly values use the same ending-UTC-NAV-date buckets as the existing reports.
+
+Original OOS source: `data/interim/final_holdout/v20261122_003`; case 5 bps manifest SHA256: `3c00647be9541cc63ca8bf6fc5d2999b7ea4972032e2362f3e09a43884b33551`.
+
+
 ## Whole-path results
 
 Start: 2022-01-01 00:00 UTC. Last NAV: 2026-10-31 00:00 UTC; final liquidation
@@ -39,8 +102,8 @@ are simulation assumptions; the project does not certify every historical fee ti
 Cells compound daily marked-equity returns, net of fees/funding/slippage, grouped
 by the ending UTC NAV snapshot date. These are the existing report's month buckets,
 not a newly reconstructed exchange-calendar month-end series. For example, a
-return ending Feb 1 00UTC belongs to February, although its interval starts Jan 31.
-January 2022 starts with initial NAV; October 2026 ends at Oct 31 00UTC and omits
+return ending Feb 1 00:00 UTC belongs to February, although its interval starts Jan 31.
+January 2022 starts with initial NAV; October 2026 ends at Oct 31 00:00 UTC and omits
 that civil day's trading. Missing November/December cells are N/A, never zero.
 Period totals compound the monthly cells; they are not sums or annualized partial years.
 
@@ -189,4 +252,4 @@ Verified source hashes for this publication:
 - `reports/tables/continuous_reconstruction/monthly_returns_5bps.csv`: `c38c4689c7325921f4c0a1e424c95a4dd222900ede9fb0a3ebc967ca4c9dbb1b`
 - `reports/tables/continuous_reconstruction/year_slices_5bps.csv`: `3e4e1ea42ada89b562be87c3b650b141460496965b05e387137dedb9ca43d595`
 
-Publisher SHA256: `71f979f83395c69c72de86a79dd66b0172757d3b10ae38d3d0725fac96a2fed4`.
+Publisher SHA256: `df9e8c1db287d9cb7b67e8242d89300cd017b96ff5e0cb35109035cb95fc7d8a`.

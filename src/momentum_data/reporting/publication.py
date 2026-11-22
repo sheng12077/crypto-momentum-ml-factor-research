@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 
 from ..backtest import workflow as source
-from ..integrity import sha
+from ..integrity import sha, checked_manifest, frozen_path
+from ..settings import DATA_ROOT
 
 ROOT = source.ROOT
 ASSETS = ROOT / "docs/assets"
@@ -104,6 +105,7 @@ def heatmap(monthly, yearly):
             range(12),
             ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         )
+        ax.axhline(2.5, color="#344050", linewidth=2.2)
         ax.xaxis.tick_top()
         ax.tick_params(axis="both", length=0, pad=9)
         ax.set_yticks(
@@ -112,8 +114,8 @@ def heatmap(monthly, yearly):
                 "2022  |  Development",
                 "2023  |  Development",
                 "2024  |  Validation",
-                "2025  |  Former holdout",
-                "2026* |  Former holdout",
+                "2025  |  OOS dates, full path",
+                "2026* |  OOS dates, full path",
             ],
         )
         for i in range(5):
@@ -160,7 +162,7 @@ def heatmap(monthly, yearly):
         fig.text(
             0.16,
             0.82,
-            "Retrospective reconstruction: all periods already inspected; not fresh OOS",
+            "Full-path monthly returns; 2025-26 rows carry prior holdings and are not the separate OOS account",
             fontsize=11,
             color="#8f4035",
         )
@@ -195,9 +197,213 @@ def heatmap(monthly, yearly):
         plt.close(fig)
 
 
+def original_oos():
+    """Read the registered separate OOS account, not a slice of the later full path."""
+    from importlib.metadata import version
+
+    base = DATA_ROOT / "interim/final_holdout/v20261122_003"
+    code = json.loads((base / "code_contract.json").read_text())
+    for name, digest in code["code_hashes"].items():
+        if sha(frozen_path(name)) != digest:
+            raise ValueError("Original OOS source changed: " + name)
+    if (
+        sha(frozen_path("experiments/015_final_holdout_2025_2026.md"))
+        != code["registration_sha256"]
+    ):
+        raise ValueError("OOS preregistration changed")
+    for name, expected in code["runtime"].items():
+        if version(name) != expected:
+            raise ValueError("OOS runtime mismatch: " + name)
+    run = json.loads((base / "results/run_contract.json").read_text())
+    if (
+        run["code_contract_sha256"] != sha(base / "code_contract.json")
+        or run["prepared_sha256"] != sha(base / "prepared/manifest.json")
+        or run["spot_sha256"] != sha(base / "spot_benchmarks/summary.json")
+    ):
+        raise ValueError("Original OOS run contract mismatch")
+    results = {}
+    for bps in (5, 10):
+        folder = base / f"results/continuous/lightgbm/slippage_{bps}bps"
+        meta = checked_manifest(folder, "_complete.json")
+        if meta["run_contract_sha256"] != sha(base / "results/run_contract.json"):
+            raise ValueError("OOS case belongs to another run")
+        daily = source.validate_daily(pd.read_csv(folder / "daily.csv"))
+        if daily.index[0] != pd.Timestamp("2025-01-01", tz="UTC") or daily.index[
+            -1
+        ] != pd.Timestamp("2026-10-31", tz="UTC"):
+            raise ValueError("Original OOS calendar mismatch")
+        if daily.strategy_nav.iloc[0] != 100000.0 or daily.gross_exposure.iloc[0] != 0:
+            raise ValueError("Original OOS must begin with fresh cash, not inherited holdings")
+        metrics, monthly = source.performance_tables(daily)
+        saved = pd.read_csv(folder / "metrics.csv", index_col=0)
+        pd.testing.assert_frame_equal(
+            metrics, saved, check_exact=False, atol=1e-12, rtol=0, check_dtype=False
+        )
+        results[bps] = (daily, metrics, monthly)
+    return base, results
+
+
+def period_disclosure(daily, full_metrics):
+    base, oos = original_oos()
+    original, metrics, monthly = oos[5]
+    carry = daily.loc[original.index[0] : original.index[-1]]
+    if not carry.index.equals(original.index):
+        raise ValueError("Full-path/OOS comparison dates differ")
+    carry_metrics, _ = source.performance_tables(carry)
+    phases = table(
+        ["Period", "Role", "Interpretation"],
+        [
+            [
+                "2022--2023",
+                "Development / selection",
+                "Used to inform strategy and execution choices",
+            ],
+            ["2024", "Frozen validation", "Revealed before the final holdout"],
+            [
+                "2025--October 2026",
+                "Original final OOS; now disclosed",
+                "Protocol015 separate account; frozen annual expanding fits",
+            ],
+            [
+                "2022--October 2026",
+                "Full retrospective reconstruction",
+                "Protocol016 registered after all annual results were observed",
+            ],
+        ],
+    )
+    rows = []
+    for label, m in [
+        ("Full path (2022--2026)", full_metrics.loc["strategy_nav"]),
+        ("Original OOS account (2025--2026)", metrics.loc["strategy_nav"]),
+        ("OOS-date slice of full path; carry-in diagnostic", carry_metrics.loc["strategy_nav"]),
+    ]:
+        rows.append([label, pct(m.total_return), pct(m.CAGR), f"{m.Sharpe_rf0:.3f}", pct(m.MDD)])
+    overview = table(["Account / period", "Return", "CAGR", "Sharpe (rf=0)", "MDD"], rows)
+    controls = table(
+        ["Original OOS series", "Return", "CAGR", "Sharpe (rf=0)", "MDD"],
+        [
+            [
+                LABELS[name],
+                pct(row.total_return),
+                pct(row.CAGR),
+                f"{row.Sharpe_rf0:.3f}",
+                pct(row.MDD),
+            ]
+            for name, row in metrics.iterrows()
+        ],
+    )
+    stress = oos[10][1].loc["strategy_nav"]
+    strategy_months = monthly.strategy_nav
+    full_section = f"""## Full period versus original OOS
+
+{phases}
+
+{overview}
+
+All primary rows include 5 bps adverse slippage plus 5 bps perpetual taker fees and
+Funding. The original OOS account starts with USDT 100,000 in cash on Jan 1, 2025;
+it does not inherit 2024 positions. The full-path diagnostic carries positions/capital
+from 2024 and is rebased at exactly the same Jan 1, 2025 NAV timestamp. It is **not**
+a substitute OOS result. The +84.06% whole-period result is also **not all OOS**.
+All comparisons end Oct 31, 2026 00:00 UTC; the last civil day is not included.
+Development years may contain chronological forward forecasts but were used for
+rule selection; that does not make them the clean final test.
+
+![Full path and original OOS equity](assets/full_period_vs_oos.png)
+
+### Original OOS benchmark comparison
+
+{controls}
+
+Original OOS 10 bps strategy stress: return **{pct(stress.total_return)}**,
+Sharpe **{stress.Sharpe_rf0:.3f}**, MDD **{pct(stress.MDD)}**. Primary OOS:
+**{int((strategy_months > 0).sum())}/{len(strategy_months)} positive months**.
+Models use frozen annual expanding windows: 2025 uses matured 2021--2024 labels;
+2026 may use matured 2025 labels, as preregistered. This is walk-forward evaluation,
+not a single model trained once and held unchanged throughout OOS.
+
+The OOS was originally withheld and is now revealed. Reusing these dates for new
+choices does not create a new independent OOS. The 37-identifier conditional-universe,
+execution/funding proxy and incomplete matched momentum-control limitations still
+apply. The ML OOS cases are verified; the broader protocol's blocked EOS control
+cases are not converted into completed cases by this publication.
+
+The heatmap below belongs to the **full retrospective account**, including its
+2025--2026 carry-in holdings. It must not be read as the original OOS account's monthly
+return table. The latter's exact monthly values are reported separately below.
+"""
+    monthly_rows = []
+    for y in (2025, 2026):
+        g = {t.month: v for t, v in strategy_months.items() if t.year == y}
+        monthly_rows.append([str(y)] + [pct(g[m]) if m in g else "N/A" for m in range(1, 13)])
+    oos_month_table = table(
+        [
+            "Original OOS account",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ],
+        monthly_rows,
+    )
+    full_section += (
+        "\n### Original OOS monthly net returns\n\n"
+        + oos_month_table
+        + "\n\nMonthly values use the same ending-UTC-NAV-date buckets as the existing reports.\n"
+    )
+    # Visually isolate full-path development/validation from the separate original OOS account.
+    fig, axes = plt.subplots(1, 2, figsize=(14, 4.8), layout="constrained")
+    colors = {"strategy_nav": "#16766d", "btc_nav": "#cd8a2c", "eth_nav": "#5b70a5"}
+    for ax, frame, title in [
+        (axes[0], daily, "Full path | retrospective | 2022--2026"),
+        (axes[1], original, "Original final OOS | disclosed | 2025--2026"),
+    ]:
+        for name, label in LABELS.items():
+            ax.plot(
+                frame.index,
+                frame[name] / frame[name].iloc[0],
+                label=label,
+                color=colors[name],
+                linewidth=1.5,
+            )
+        ax.set(title=title, ylabel="Equity / initial account NAV", xlabel="UTC NAV snapshot")
+        ax.axhline(1, color="#7a8593", lw=0.6)
+        ax.grid(alpha=0.18)
+        ax.legend(fontsize=8)
+    for a, b, color in [
+        ("2022-01-01", "2024-01-01", "#f1dccf"),
+        ("2024-01-01", "2025-01-01", "#dae4f1"),
+        ("2025-01-01", "2026-10-31", "#daeee8"),
+    ]:
+        axes[0].axvspan(
+            pd.Timestamp(a, tz="UTC"), pd.Timestamp(b, tz="UTC"), color=color, alpha=0.35
+        )
+    axes[0].axvline(pd.Timestamp("2025-01-01", tz="UTC"), color="#344050", ls="--", lw=1)
+    fig.suptitle("Separate account definitions: full-path gains are not all OOS", fontsize=13)
+    fig.savefig(ASSETS / "full_period_vs_oos.png", dpi=150)
+    plt.close(fig)
+    readme_section = full_section.replace(
+        "assets/full_period_vs_oos.png", "docs/assets/full_period_vs_oos.png"
+    )
+    # Keep README compact while the detailed page retains benchmark/monthly explanations.
+    readme_section = readme_section.split("### Original OOS benchmark comparison")[0]
+    readme_section += "\nOriginal OOS benchmarks and monthly results: [detailed period disclosure](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md#full-period-versus-original-oos).\n"
+    provenance = f"\nOriginal OOS source: `{base.relative_to(ROOT)}`; case 5 bps manifest SHA256: `{sha(base / 'results/continuous/lightgbm/slippage_5bps/_complete.json')}`.\n"
+    return readme_section, full_section + provenance
+
+
 def publish():
     summary, daily, metrics, monthly, yearly = verify_inputs()
     heatmap(monthly, yearly)
+    period_readme, period_details = period_disclosure(daily, metrics)
     returns = monthly.strategy_nav
     positive = int((returns > 0).sum())
     annual = yearly.pivot(index="year", columns="series", values="total_return")
@@ -312,6 +518,8 @@ This is an uninterrupted NautilusTrader simulation using frozen annual model cac
 not a product of independent annual NAV resets. All years were already inspected
 when Experiment 016 was registered. The full path is retrospective, not fresh OOS.
 
+{period_details}
+
 ## Whole-path results
 
 Start: 2022-01-01 00:00 UTC. Last NAV: 2026-10-31 00:00 UTC; final liquidation
@@ -336,8 +544,8 @@ are simulation assumptions; the project does not certify every historical fee ti
 Cells compound daily marked-equity returns, net of fees/funding/slippage, grouped
 by the ending UTC NAV snapshot date. These are the existing report's month buckets,
 not a newly reconstructed exchange-calendar month-end series. For example, a
-return ending Feb 1 00UTC belongs to February, although its interval starts Jan 31.
-January 2022 starts with initial NAV; October 2026 ends at Oct 31 00UTC and omits
+return ending Feb 1 00:00 UTC belongs to February, although its interval starts Jan 31.
+January 2022 starts with initial NAV; October 2026 ends at Oct 31 00:00 UTC and omits
 that civil day's trading. Missing November/December cells are N/A, never zero.
 Period totals compound the monthly cells; they are not sums or annualized partial years.
 
@@ -491,7 +699,9 @@ volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and re
 are substantially stronger in development years. Paper/live trading is not implemented
 or certified by these results.
 
-## Continuous performance
+{period_readme}
+
+## Continuous performance (full retrospective account)
 
 {whole_table}
 
@@ -532,7 +742,7 @@ therefore differ from separately liquidated, fresh-cash annual runs.
   20 eligible candidates. Target gross exposure 100%, target net notional zero;
   actual exposures drift. This is not a guarantee of zero market beta.
 - Two-week rebalance, first-Monday anchor per year; actual quantities held between
-  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00UTC,
+  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00:00 UTC,
   sizing at 01UTC, prior-hour VWAP execution proxy at 02UTC.
 - Perpetual taker fee 5 bps, no BNB discount; adverse slippage 5/10 bps per fill.
   Funding uses observed rates and a completed-hour mark proxy on pre-fill holdings.

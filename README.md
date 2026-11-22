@@ -10,7 +10,37 @@ volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and re
 are substantially stronger in development years. Paper/live trading is not implemented
 or certified by these results.
 
-## Continuous performance
+## Full period versus original OOS
+
+| Period | Role | Interpretation |
+| --- | --- | --- |
+| 2022--2023 | Development / selection | Used to inform strategy and execution choices |
+| 2024 | Frozen validation | Revealed before the final holdout |
+| 2025--October 2026 | Original final OOS; now disclosed | Protocol015 separate account; frozen annual expanding fits |
+| 2022--October 2026 | Full retrospective reconstruction | Protocol016 registered after all annual results were observed |
+
+| Account / period | Return | CAGR | Sharpe (rf=0) | MDD |
+| --- | --- | --- | --- | --- |
+| Full path (2022--2026) | +84.06% | +13.45% | 0.645 | -26.77% |
+| Original OOS account (2025--2026) | +16.31% | +8.61% | 0.435 | -24.79% |
+| OOS-date slice of full path; carry-in diagnostic | +24.08% | +12.51% | 0.557 | -24.79% |
+
+All primary rows include 5 bps adverse slippage plus 5 bps perpetual taker fees and
+Funding. The original OOS account starts with USDT 100,000 in cash on Jan 1, 2025;
+it does not inherit 2024 positions. The full-path diagnostic carries positions/capital
+from 2024 and is rebased at exactly the same Jan 1, 2025 NAV timestamp. It is **not**
+a substitute OOS result. The +84.06% whole-period result is also **not all OOS**.
+All comparisons end Oct 31, 2026 00:00 UTC; the last civil day is not included.
+Development years may contain chronological forward forecasts but were used for
+rule selection; that does not make them the clean final test.
+
+![Full path and original OOS equity](docs/assets/full_period_vs_oos.png)
+
+
+Original OOS benchmarks and monthly results: [detailed period disclosure](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md#full-period-versus-original-oos).
+
+
+## Continuous performance (full retrospective account)
 
 | Series | Total return | CAGR | Sharpe (rf=0) | MDD | Annual vol. | Calmar |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -62,7 +92,7 @@ therefore differ from separately liquidated, fresh-cash annual runs.
   20 eligible candidates. Target gross exposure 100%, target net notional zero;
   actual exposures drift. This is not a guarantee of zero market beta.
 - Two-week rebalance, first-Monday anchor per year; actual quantities held between
-  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00UTC,
+  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00:00 UTC,
   sizing at 01UTC, prior-hour VWAP execution proxy at 02UTC.
 - Perpetual taker fee 5 bps, no BNB discount; adverse slippage 5/10 bps per fill.
   Funding uses observed rates and a completed-hour mark proxy on pre-fill holdings.
