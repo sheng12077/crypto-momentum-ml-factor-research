@@ -23,6 +23,7 @@ def main():
             "repair-evidence",
             "repair-scope",
             "capacity-audit",
+            "first-window",
         ],
     )
     parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2])
@@ -32,7 +33,51 @@ def main():
     parser.add_argument("--prototype-manifest", type=Path)
     parser.add_argument("--repair-dir", type=Path)
     parser.add_argument("--retry-failed", action="store_true")
+    parser.add_argument(
+        "--stage",
+        choices=["all", "prepare", "fit", "preflight", "simulate", "report", "summary"],
+        default="all",
+    )
     args = parser.parse_args()
+    if args.command == "first-window":
+        import contextlib
+        import sys
+        from datetime import UTC, datetime
+
+        from .first_window import main_stage
+
+        class Tee:
+            def __init__(self, original, log):
+                self.original, self.log = original, log
+
+            def write(self, value):
+                self.original.write(value)
+                self.log.write(value)
+
+            def flush(self):
+                self.original.flush()
+                self.log.flush()
+
+        logs = args.project_root / "reports/acquisition"
+        logs.mkdir(parents=True, exist_ok=True)
+        log_path = logs / (
+            "dynamic_first_window_" + datetime.now(UTC).strftime("%Y%m%dT%H%M%S") + ".log"
+        )
+        print("Log: " + str(log_path), flush=True)
+        config = args.project_root / (
+            "config/dynamic_first_window.json"
+            if args.config == Path("config/full_universe_inputs.json")
+            else args.config
+        )
+        with (
+            log_path.open("w") as log,
+            contextlib.redirect_stdout(Tee(sys.stdout, log)),
+            contextlib.redirect_stderr(Tee(sys.stderr, log)),
+        ):
+            result = main_stage(args.project_root, config, args.stage)
+        if result.get("success") is False:
+            raise SystemExit(1)
+        return
     if args.command == "capacity-audit":
         if args.repair_dir is None:
             parser.error("capacity-audit requires --repair-dir")

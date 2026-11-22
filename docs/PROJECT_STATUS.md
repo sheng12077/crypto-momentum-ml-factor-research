@@ -1,5 +1,15 @@
 # Project status
 
+## First-window implementation preserved; 2023 preparation next
+
+- Experiment020 registration1553967; completed first-window code on exp/dynamic-first-window.
+- Results:data/processed/dynamic_first_window/57a76d3c3a17b445f1b1;30cases and replay passed,independent audit passed.
+- 2021train/2022simulation;conclusions deferred by user. Original artifacts remain frozen.
+- User requires full training/backtests to be run personally:prepare code,small tests and one CLI command only.
+- Existing17dirtylegacyfiles untouched. No push/history rewrite.
+
+
+
 ## Dated pool-capacity diagnostic completed — 2026-11-22
 
 - Completed topic research/dynamic-universe-capacity;main after no-ff merge.
