@@ -1,5 +1,15 @@
 # Crypto Cross-Sectional Factor Research
 
+<!-- scope-correction:start -->
+> **Scope correction — 2026-11-22:** Existing reported performance uses a fixed
+> 37-identifier early cohort. The requested dynamic study across the acquired
+> 924-identifier catalog is incomplete. A full-input audit verified924daily files;
+> 750identifiers outside the old pool have at least one old price/Funding diagnostic
+> candidate day. These are diagnostic counts, not certified new trading eligibility.
+> See the [remediation specification](docs/REMEDIATION_PLAN.md). Publication and
+> deployment-readiness claims must remain restricted to the prototype's actual scope.
+<!-- scope-correction:end -->
+
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![NautilusTrader engine](https://img.shields.io/badge/Engine-NautilusTrader-334155)](src/momentum_data/backtest/engine.py)
 [![Checks verified locally](https://img.shields.io/badge/Checks-verified_locally-16876B)](docs/PACKAGE_MIGRATION_VERIFICATION.md)
@@ -9,7 +19,7 @@ A reproducible, medium-frequency crypto long/short research project using annual
 LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
 aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
 
-**Current status: completed retrospective backtest; no live profitability claim.**
+**Current status: restricted-universe prototype; full-universe remediation planned.**
 The uninterrupted 2022--October 2026 account is net profitable with lower historical
 volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
 are substantially stronger in development years. Paper/live trading is not implemented

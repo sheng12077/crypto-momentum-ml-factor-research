@@ -400,6 +400,22 @@ return table. The latter's exact monthly values are reported separately below.
     return readme_section, full_section + provenance
 
 
+def preserve_scope_correction(previous, generated):
+    """A regenerated report must retain an explicit limitation/correction notice."""
+    start, end = "<!-- scope-correction:start -->", "<!-- scope-correction:end -->"
+    if start not in previous and end not in previous:
+        return generated
+    if (
+        previous.count(start) != 1
+        or previous.count(end) != 1
+        or previous.index(end) < previous.index(start)
+    ):
+        raise ValueError("Malformed scope correction; refusing to drop it")
+    block = previous[previous.index(start) : previous.index(end) + len(end)]
+    title, body = generated.split("\n", 1)
+    return title + "\n\n" + block + "\n\n" + body.lstrip("\n")
+
+
 def publish():
     summary, daily, metrics, monthly, yearly = verify_inputs()
     heatmap(monthly, yearly)
@@ -667,6 +683,7 @@ Publisher SHA256: `{sha(Path(__file__))}`.
     DETAILS.write_text(details, encoding="utf-8")
     readme = ROOT / "README.md"
     previous = readme.read_text()
+    preserve_scope_correction(previous, "# Scope preflight\n")
     if "## Research archive" in previous:
         archive = previous.split("## Research archive", 1)[1].strip()
     elif "## Current research notes" in previous:
@@ -698,7 +715,7 @@ A reproducible, medium-frequency crypto long/short research project using annual
 LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
 aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
 
-**Current status: completed retrospective backtest; no live profitability claim.**
+**Current status: restricted-universe prototype; full-universe remediation planned.**
 The uninterrupted 2022--October 2026 account is net profitable with lower historical
 volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
 are substantially stronger in development years. Paper/live trading is not implemented
@@ -850,6 +867,10 @@ ignored; this README and its figure publish aggregate results only.
 """,
         encoding="utf-8",
     )
+    published = readme.read_text()
+    protected = preserve_scope_correction(previous, published)
+    if protected != published:
+        readme.write_text(protected, encoding="utf-8")
     print(
         json.dumps(
             {
