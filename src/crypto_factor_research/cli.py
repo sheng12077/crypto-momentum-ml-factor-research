@@ -22,6 +22,7 @@ def main():
             "repair-assess",
             "repair-evidence",
             "repair-scope",
+            "capacity-audit",
         ],
     )
     parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2])
@@ -32,6 +33,13 @@ def main():
     parser.add_argument("--repair-dir", type=Path)
     parser.add_argument("--retry-failed", action="store_true")
     args = parser.parse_args()
+    if args.command == "capacity-audit":
+        if args.repair_dir is None:
+            parser.error("capacity-audit requires --repair-dir")
+        from .capacity import capacity_audit
+
+        capacity_audit(args.project_root, args.repair_dir)
+        return
     if args.command in {"repair-evidence", "repair-scope"}:
         if args.repair_dir is None:
             parser.error(args.command + " requires --repair-dir")

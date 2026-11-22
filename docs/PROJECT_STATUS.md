@@ -1,5 +1,36 @@
 # Project status
 
+## Dated pool-capacity diagnostic completed — 2026-11-22
+
+- Completed topic research/dynamic-universe-capacity;main after no-ff merge.
+  Experiment019registration24c10d8predates implementation/count inspection.
+- Read docs/DYNAMIC_UNIVERSE_CAPACITY.md. All924IDs x304Mondays accounted.
+  Newcapacity.py plus capacity-auditCLI;no model/PnL,new downloads or source overwrite.
+- Finalignoredartifact:reports/tables/dynamic_universe_capacity/bdd1832d201a3a81105e/.
+  Broad dated candidate yearlymin/median/max:2022 80/120/135;2023 134/159.5/196;
+  2024 196/241/263;2025 267/351.5/448;2026 127/500/511.2021includes0warmup.
+  Both broad/current-COIN-supported comparisons exceed100everyweek since2023.
+  Current metadata is conditional retrospective scope evidence,not certified PIT.
+- Preserve unknown historical class/currently absent identifiers and pre-onboard
+  prior episodes. No whole-symbol survival gate,no top-N/liquidity filter.
+  Original funding-duration and phase flags unchanged;repair overlaynotintegrated.
+- Fullbuild+boundsource/output verifiedcache reuse pass;39active tests+lint pass.
+  Allcandidate prior-day mark snapshots available in verified source union;not
+  certification of required decision/fill/held/terminal marks.
+- Knownbounded samefrequency funding observation breaks:385nominalslots,allJune24.
+  14dayhypothetical holding flags:June15 372/500candidates;June22 374/502.
+  Future flags never alter entry mask;these are potential candidates,not held positions.
+  ExcludingJune29newentrydoesnotrepairunknownJune24cost for existing positions.
+- An initialunpublisheddiagnostic incorrectlybridgedsparsecheckedmonths;marked
+  INVALIDATED.md in18a81606bc8a2ab02bf2. Finalcodechecksbreaksperboundedjob;
+  regressiontestpreventsrecurrence. Neveruseinvalidatedholdingcounts.
+- Execution_ready=false. Next:dated-ruledefinition/acceptedoverlayintegration and
+  actualheld/targetexecution/cost/terminalpreflight;no needforceeveryassetalwaysvalid.
+- Existinguserlegacyeditsremainunstaged;no pushorhistoryrewrite.
+
+## Previous source-verification handoff
+
+
 ## Full-catalog official-source verification completed — 2026-11-22
 
 - Completed topic:fix/full-catalog-source-repair;main after no-ff merge. Registration
