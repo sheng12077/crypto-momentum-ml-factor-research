@@ -1,0 +1,21 @@
+{
+  "start": "2022-01-01",
+  "stop_exclusive": "2026-11-01",
+  "prepared": "interim/final_holdout/v20261122_003/prepared",
+  "frozen_output": "interim/continuous_reconstruction/v20261122_001",
+  "package_output": "interim/continuous_package/v20261122_002",
+  "features": [
+    "momentum20",
+    "momentum60",
+    "momentum120",
+    "funding7",
+    "imbalance7"
+  ],
+  "slippage_bps": [
+    5,
+    10
+  ],
+  "perpetual_taker_fee_bps": 5,
+  "spot_taker_fee_bps": 10,
+  "spot_slippage_bps": 5
+}

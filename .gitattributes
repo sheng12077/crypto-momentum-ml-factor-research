@@ -1,3 +1,8 @@
 # Research manifests bind exact source/configuration bytes across Windows and WSL.
 scripts/*.py text eol=lf
 config/*.json text eol=lf
+research/legacy/scripts/*.py text eol=lf
+src/**/*.py text eol=lf
+
+# Historical snapshots retain exact source bytes, including original whitespace.
+research/legacy/** -whitespace

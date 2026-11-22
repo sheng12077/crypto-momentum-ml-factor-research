@@ -174,6 +174,12 @@ See [runbook](CONTINUOUS_RECONSTRUCTION_RUNBOOK.md),
 [English notebook](../notebooks/continuous_reconstruction_results.ipynb).
 Only summarized results and the figure are published in Git; source data stay ignored.
 
+Historical contracts retain their original logical source names. Original script
+bytes now live under `research/legacy/scripts/`, and original analysis source under
+`research/legacy/src/`; the active verifier resolves these preserved files rather
+than deleting or revising the old contracts. Refactored replays have a separate
+package contract and must produce identical financial hashes.
+
 Verified source hashes for this publication:
 
 - `data/interim/continuous_reconstruction/v20261122_001/contract.json`: `656e168a23137280dc7d64d0e945b24947dfb3ee126f438ac0b5ec82b5e2193a`
@@ -183,4 +189,4 @@ Verified source hashes for this publication:
 - `reports/tables/continuous_reconstruction/monthly_returns_5bps.csv`: `c38c4689c7325921f4c0a1e424c95a4dd222900ede9fb0a3ebc967ca4c9dbb1b`
 - `reports/tables/continuous_reconstruction/year_slices_5bps.csv`: `3e4e1ea42ada89b562be87c3b650b141460496965b05e387137dedb9ca43d595`
 
-Publisher SHA256: `498999b79c1b5e710ade18809e92adfbe9e9d5a9f0d59c59ecc40f02747d74dd`.
+Publisher SHA256: `71f979f83395c69c72de86a79dd66b0172757d3b10ae38d3d0725fac96a2fed4`.
