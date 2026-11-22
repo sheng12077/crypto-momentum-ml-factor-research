@@ -1,5 +1,24 @@
 # Project status
 
+## 2024 user-run preparation completed — 2026-11-22
+
+- Experiment 022 registration 6a16769 committed on main before implementation;
+  topic feat/user-run-window-2024 completed and merged with no-ff.
+- config/dynamic_2024.json and docs/RUN_DYNAMIC_2024.md use the same window CLI.
+  Train 2021–2023 / trade 2024; unchanged features/model/two-week 5L5S/costs and
+  30 cases. 2024 is validation, 2025–2026 the originally assigned final OOS;
+  earlier prototype disclosure prevents fresh-untouched-OOS claims.
+- Added 2024 locally registered settlements plus official STRAX/RNDR/MATIC and
+  STPT/SNT/MBL/RAD/CVX notices. User-run preparation verifies bodies/exit bars;
+  full preflight remains required. No assertion of complete execution readiness.
+- Thirteen targeted tests and changed-file lint pass; both cached 2024 spot
+  benchmarks have all required prices (366 daily rows). No strategy historical
+  preparation, fitting, full preflight or backtest launched by agent.
+- User command: python -m crypto_factor_research window --config config/dynamic_2024.json --stage all
+  Then share --stage summary. Logs under reports/acquisition; results under
+  data/processed/dynamic_2024. Full runtime not measured. No 2025–2026 PnL inspected.
+- Existing 17 user legacy edits untouched; no push or history rewrite.
+
 ## 2023 benchmark preflight fix — 2026-11-22
 
 - Topic fix/spot-benchmark-required-keys; completed fix merged with no-ff.
