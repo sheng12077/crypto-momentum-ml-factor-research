@@ -1,5 +1,38 @@
 # Project status
 
+## Full-catalog official-source verification completed — 2026-11-22
+
+- Completed topic:fix/full-catalog-source-repair;main after no-ff merge. Registration
+  Experiment018committed before implementation/download;inspect git log for commits.
+- Read docs/FULL_CATALOG_SOURCE_REPAIR.md first. All1,577original intervals accounted,
+  including742pending;788jobs(616funding,151mark,21trade);677HTTP requests plus115
+  verified local cache reuses. Replay:788verified checkpoint hits,zero extra requests.
+- data/repairs/full_universe/9d8e79788ba25d039b37/containsplan,jobs/rawresponses,
+  assessment,verified_case_dispositions,remaining_required_keys,deduplicated observations.
+  New23,492marks+1,759funding observations;all122mark intervals' required keys recovered.
+- Dispositions:831initialwarmups,9knownpartialeventwarmups,4knownstops,122recovered,
+  492funding gap/invalid/stale,101duration-only rule review,4funding interval-unverified,
+  11other gaps,2phase terms found(actual completion unverified),1UNFI source conflict.
+- Remaining-key CSV has3,868funding feature cutoffs+42flow-hour keys+7close keys.
+  These are not missing funding payment counts. No imputation/threshold relaxation.
+- Official PUMP/LIT transition CMS bodies saved and verified. UNFI2023-11-30 12:00
+  archive totalvolume41538<takerbuy51617.3;REST total122711.7. Quarantined,not replaced.
+- All924product-scope rows retained:currentmetadata655COIN,235other nonpremarket
+  types,5PREMARKET,29absent. Current labels never justify deleting prior episodes.
+  The775provisional figure includes noncrypto/currently reused identifiers;not775coins.
+- Newrepair.py,repair_assessment.py,source_evidence.py via onecrypto_factor_researchCLI.
+  33active tests+lint pass. No old canonical overwrite,no fit/PnL,no paid data,no push.
+- Added observations remain an additive repair artifact;not yet a new integrated
+  feature/engine release. Execution_ready=false. Unknown source omissions remain.
+- Next:registered duration-definition correction review,dated product/phase scope,
+  accepted overlay integration,then all-required-execution-key preflight. Do not run
+  another expanded backtest using the unrepaired earlier release or claim full readiness.
+- Existing user edits in legacy files remain untouched and unstaged. No deletion
+  or broad filesystem restructuring was performed.
+
+## Prior stage handoff (retained for provenance)
+
+
 ## Full-catalog input reconstruction completed — 2026-11-22
 
 - Completed topic: research/full-universe-inputs; current branch main after no-ff
