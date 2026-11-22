@@ -22,7 +22,10 @@ aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
 **Current status: restricted-universe prototype; full-catalog inputs reconstructed, execution pending.**
 The new [full-catalog input report](docs/FULL_UNIVERSE_INPUTS.md) accounts for all 924
 identifiers, including 775 with provisional weekly candidate rows. Those inputs have
-not yet produced an expanded-universe strategy backtest.
+not yet produced an expanded-universe strategy backtest. The [source-repair pass](docs/FULL_CATALOG_SOURCE_REPAIR.md)
+completed all 788 jobs and recovered 25,251 observations; unresolved funding rules,
+source omissions/conflicts and dated product scope still block execution readiness.
+The catalog includes noncrypto contracts; 775 is not a certified crypto-asset count.
 The uninterrupted 2022--October 2026 account is net profitable with lower historical
 volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
 are substantially stronger in development years. Paper/live trading is not implemented

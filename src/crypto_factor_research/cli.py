@@ -11,13 +11,62 @@ def main():
     parser = argparse.ArgumentParser(
         description="Full-catalog chronological input construction (no fitting or PnL)"
     )
-    parser.add_argument("command", choices=["universe", "summary", "review"])
+    parser.add_argument(
+        "command",
+        choices=[
+            "universe",
+            "summary",
+            "review",
+            "repair-plan",
+            "repair-run",
+            "repair-assess",
+            "repair-evidence",
+            "repair-scope",
+        ],
+    )
     parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[2])
     parser.add_argument("--config", type=Path, default=Path("config/full_universe_inputs.json"))
     parser.add_argument("--dataset", type=Path)
     parser.add_argument("--report-dir", type=Path)
     parser.add_argument("--prototype-manifest", type=Path)
+    parser.add_argument("--repair-dir", type=Path)
+    parser.add_argument("--retry-failed", action="store_true")
     args = parser.parse_args()
+    if args.command in {"repair-evidence", "repair-scope"}:
+        if args.repair_dir is None:
+            parser.error(args.command + " requires --repair-dir")
+        from .source_evidence import collect_evidence, scope_report
+
+        if args.command == "repair-evidence":
+            collect_evidence(args.repair_dir)
+        else:
+            scope_report(args.project_root, args.repair_dir)
+        return
+    if args.command == "repair-assess":
+        if args.repair_dir is None:
+            parser.error("repair-assess requires --repair-dir")
+        from .repair_assessment import assess_repairs
+
+        assess_repairs(args.project_root, args.repair_dir)
+        return
+    if args.command == "repair-plan":
+        if args.dataset is None:
+            parser.error("repair-plan requires --dataset")
+        from .repair import make_plan
+
+        review = (
+            args.report_dir
+            or args.project_root / "reports/tables/full_universe_inputs" / args.dataset.name
+        )
+        make_plan(args.project_root, args.dataset, review)
+        return
+    if args.command == "repair-run":
+        if args.repair_dir is None:
+            parser.error("repair-run requires --repair-dir")
+        from .repair import run_repairs
+
+        run_repairs(args.project_root, args.repair_dir, retry_failed=args.retry_failed)
+        return
     if args.command == "review":
         if args.dataset is None:
             parser.error("review requires --dataset")
