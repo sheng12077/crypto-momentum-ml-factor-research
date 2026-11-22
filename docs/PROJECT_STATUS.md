@@ -1,5 +1,31 @@
 # Project status
 
+## Full-period / original OOS disclosure -- 2026-11-22
+
+- User requests explicit separation of full-period and OOS results. Presentation only;
+  no signal, model, decision calendar, fee or label changes. No remote/push authorized.
+- Work topic docs/separate-full-period-and-oos from425f6d5; merge into existing
+  exp/final-holdout-2025-2026 when complete. Preserve all legacy working edits.
+- README/results now distinguish2022--23development,2024frozen validation,
+  original2025--Oct2026final OOS(now disclosed), and post-disclosure full reconstruction.
+- Full primary:+84.06%,CAGR13.45%,Sharpe.645,MDD-26.77%. Original independent OOS
+  account:+16.31%,CAGR8.61%,Sharpe.435,MDD-24.79%; OOS10bps+12.25%.
+- Do not replace OOS with full-account same-date slice:+24.08%,Sharpe.557, inherited
+  2024positions. Both slices startJan1 2025 00UTC/endOct31 2026 00UTC but different
+  starting accounts. OOSannual fits remain original allowed expanding-window policy.
+- Original OOS code/registration/runtime/run/case hashes verified. Daily NAV metrics
+  recomputed and match saved OOSmetrics. Known momentum-only EOScontrol stays blocked.
+- docs/assets/full_period_vs_oos.png shows separate account equity; full monthly
+  heatmap has a phase divider and explicit carry-in labels. Original OOSmonthly
+  table and matched spot benchmarks are separately reported in detailed results.
+- Active9tests passed, including independent OOS-vs-carry attribution and date-grid
+  rejection. Publication is idempotent; links/source hashes checked; figures viewed.
+- Prior verified package002remains immutable. Publication changes use package003
+  output provenance. All three package003financial hashes matched original frozen
+  cases; verification.json confirms equality. No new fit/download or rule change.
+- Next: review the new disclosure; no fresh OOS exists in these already seen dates.
+
+
 ## Current state -- 2026-11-22
 
 - User requests local architecture cleanup only; no GitHub repository/remote or push.
