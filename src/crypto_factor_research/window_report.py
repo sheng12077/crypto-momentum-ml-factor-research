@@ -11,12 +11,14 @@ import pandas as pd
 
 from .config import DAY, HOUR, load_json, sha
 from .repair import write_json
-from .window_data import ms
+from .window_data import ms, window_label
 
 
 def spot_benchmark(root, config, symbol, start, last):
     observed, bindings = {}, {}
-    for month in pd.period_range("2022-01", "2022-12", freq="M").astype(str):
+    for month in pd.period_range(
+        config["start"][:7], pd.Timestamp(config["stop_exclusive"]) - pd.Timedelta(days=1), freq="M"
+    ).astype(str):
         folder = root / config["spot_root"] / symbol / month
         body = (folder / "archive.zip").read_bytes()
         meta = load_json(folder / "source.json")
@@ -40,7 +42,7 @@ def spot_benchmark(root, config, symbol, start, last):
                 if t in observed or t % HOUR:
                     raise ValueError("Spot duplicate/off-grid timestamp")
                 observed[t] = (float(row[4]), float(row[5]), float(row[7]))
-    if len(observed) != 365 * 24:
+    if len(observed) != (ms(config["stop_exclusive"]) - start) // HOUR:
         raise ValueError("Spot calendar incomplete")
     entry, final = start + HOUR, last - HOUR
     a, b = observed[entry], observed[final - HOUR]
@@ -159,7 +161,7 @@ def report(root, config, path):
         ("eth_nav", "ETH spot"),
     ]:
         ax.plot(primary.index, primary[col] / 100000, label=label)
-    ax.set(title="First window: 2022 retrospective replay", ylabel="NAV / initial capital")
+    ax.set(title=config["start"][:4] + " retrospective replay", ylabel="NAV / initial capital")
     ax.legend()
     ax.grid(alpha=0.2)
     fig.tight_layout()
@@ -175,7 +177,7 @@ def report(root, config, path):
         vmax=max(abs(values)),
     )
     ax.set_xticks(range(len(values)), [x.strftime("%b") for x in monthly.index])
-    ax.set_yticks([0], ["2022"])
+    ax.set_yticks([0], [config["start"][:4]])
     for i, value in enumerate(values):
         ax.text(i, 0, f"{value:.1f}%", ha="center", va="center", fontsize=9)
     ax.set_title("Net monthly strategy returns (partial boundary months)")
@@ -184,7 +186,9 @@ def report(root, config, path):
     plt.close(fig)
     columns = ["case", "series", "total_return", "Sharpe_rf0", "MDD", "CAGR", "Calmar"]
     md = (
-        "# Dynamic-universe first window results\n\nRetrospective development replay:2021training,2022simulation. Not fresh OOS.\n\n"
+        "# Dynamic-universe annual results\n\n"
+        + window_label(config)
+        + ". Retrospective research; not fresh OOS.\n\n"
         + markdown_table(primary_metrics[columns])
         + "\n\nAll registered cases and random controls are retained in CSV.\n\nReturn excluding the best month: "
         + f"{other:.2%}"
@@ -211,7 +215,7 @@ def report(root, config, path):
     result = {
         "success": True,
         "independent_audit": audit,
-        "window": "train2021/trade2022",
+        "window": window_label(config),
         "fresh_OOS": False,
         "registered_cases_completed": summary["completed_cases"],
         "primary_replay_identical": summary["primary_replay_identical"],
@@ -230,7 +234,9 @@ def report(root, config, path):
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "# Dynamic-universe first window\n2021 training and 2022 retrospective simulation. All cost/control cases are retained. This is not fresh OOS."
+                "# Dynamic-universe annual results\n"
+                + window_label(config)
+                + ". All cost/control cases are retained. This is not fresh OOS."
             ],
         },
         {

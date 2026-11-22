@@ -9,7 +9,7 @@ import pandas as pd
 
 from .config import DAY, HOUR, load_json, sha
 from .repair import write_json
-from .window_data import PublicSources, WindowData, ms, read_market
+from .window_data import PublicSources, WindowData, episode_notice, ms, read_market, window_label
 
 
 def identity(root, config_path, config):
@@ -29,7 +29,9 @@ def identity(root, config_path, config):
         "code": {str(p.relative_to(root)): sha(p) for p in files},
         "capacity_summary_sha256": sha(root / config["capacity_run"] / "summary.json"),
         "repair_assessment_sha256": sha(root / config["repair_run"] / "assessment.json"),
-        "registration_sha256": sha(root / "experiments/020_dynamic_first_window.md"),
+        "registration_sha256": sha(
+            root / config.get("registration", "experiments/020_dynamic_first_window.md")
+        ),
         "runtime": {
             "numpy": np.__version__,
             "pandas": pd.__version__,
@@ -66,6 +68,11 @@ def prepare(root, config, path, ident):
     ].copy()
     client = PublicSources(root / config["public_cache"])
     notices, errors = {}, []
+    metadata_record = load_json(root / config["repair_run"] / "evidence/exchange_info/source.json")
+    if sha(metadata_record["path"]) != metadata_record["sha256"]:
+        raise ValueError("Episode metadata changed")
+    metadata = {x["symbol"]: x for x in load_json(metadata_record["path"])["symbols"]}
+    client.bindings[metadata_record["path"]] = metadata_record["sha256"]
     for item in config["cessation_notices"]:
         try:
             notice = client.notice(item)
@@ -73,6 +80,9 @@ def prepare(root, config, path, ident):
             if row["volume"] <= 0 or row["quote_volume"] <= 0:
                 raise ValueError("Risk exit has zero traded volume")
             notice.update(exit_vwap=row["quote_volume"] / row["volume"], exit_source=source)
+            relaunch = metadata.get(item["symbol"], {}).get("onboardDate", 0)
+            if relaunch > notice["effective_ms"]:
+                notice["valid_to_ms"] = int(relaunch)
             notices[item["symbol"]] = notice
         except Exception as exc:
             errors.append(
@@ -84,7 +94,7 @@ def prepare(root, config, path, ident):
     frame = frame[
         frame.apply(
             lambda row: (
-                row.instrument_id not in notices
+                episode_notice(notices, row.instrument_id, row.decision_ms) is None
                 or row.decision_ms < notices[row.instrument_id]["blocked_from_ms"]
             ),
             axis=1,
@@ -160,7 +170,7 @@ def training_rows(frame, data, cutoff):
     for row in samples.to_dict("records"):
         entry = row["feature_cutoff_ms"] + HOUR
         end = entry + 7 * DAY
-        notice = data.notices.get(row["instrument_id"])
+        notice = episode_notice(data.notices, row["instrument_id"], entry)
         a, b = data.vwap(row["instrument_id"], entry), data.vwap(row["instrument_id"], end)
         if not a or not b or (notice and end + HOUR >= notice["effective_ms"]):
             rejected.append(
@@ -267,17 +277,20 @@ def fit(root, config, path, data):
     write_json(out / "label_rejections.json", rejected)
     schedules = {
         "lightgbm": ranked_schedule(
-            test, 2022, config["rebalance_weeks"], config["minimum_candidates"]
+            test, int(config["start"][:4]), config["rebalance_weeks"], config["minimum_candidates"]
         )
     }
     for kind in ["momentum60", "equal_groups"]:
         schedules[kind] = ranked_schedule(
-            score_control(test, kind), 2022, config["rebalance_weeks"], config["minimum_candidates"]
+            score_control(test, kind),
+            int(config["start"][:4]),
+            config["rebalance_weeks"],
+            config["minimum_candidates"],
         )
     for seed in config["random_seeds"]:
         schedules[f"random_{seed}"] = ranked_schedule(
             score_control(test, "random", seed),
-            2022,
+            int(config["start"][:4]),
             config["rebalance_weeks"],
             config["minimum_candidates"],
         )
@@ -306,7 +319,7 @@ def held_intervals(schedule, notices, start, last):
         for symbol, weight in schedule[day].items():
             if not weight:
                 continue
-            notice = notices.get(symbol)
+            notice = episode_notice(notices, symbol, a)
             end = min(b, notice["exit_ms"]) if notice else b
             if end > a:
                 intervals.setdefault(symbol, []).append((a, end))
@@ -329,7 +342,10 @@ def inspect_schedule(data, schedule, start, last):
         if data.mark("BTCUSDT", t + 2 * HOUR) is None:
             add("BTCUSDT", t + HOUR, "mark", "execution_check_anchor")
         previous = {
-            s for s in previous if not data.notices.get(s) or data.notices[s]["exit_ms"] > t + HOUR
+            s
+            for s in previous
+            if episode_notice(data.notices, s, t + HOUR) is None
+            or data.notices[s]["exit_ms"] > t + HOUR
         }
         for symbol in previous | set(weights):
             if not data.trades[symbol].get(t) or data.trades[symbol][t][0] <= 0:
@@ -538,29 +554,34 @@ def run_cases(root, config, path, data):
         "cases": result_rows,
         "event_count": len(events),
         "fresh_OOS": False,
-        "window": "train2021/trade2022",
+        "window": window_label(config),
     }
     write_json(path / "simulation_summary.json", summary)
     return summary
 
 
-def main_stage(root, config_path, stage):
+def main_stage(root, config_path, stage, run_dir=None):
     root, config_path = Path(root), Path(config_path)
     config = load_json(config_path)
+    if config["train_stop"] != config["start"]:
+        raise ValueError("Training cutoff must equal forecast-year start")
+    if run_dir is not None:
+        path = Path(run_dir)
+        if stage not in {"summary", "report"}:
+            raise ValueError("Explicit run-dir is read/report only")
+        if load_json(path / "manifest.json")["identity"]["config_sha256"] != sha(config_path):
+            raise ValueError("Saved run/config mismatch")
+        if stage == "report":
+            from .window_report import report
+
+            return report(root, config, path)
+        return print_summary(path)
     ident = identity(root, config_path, config)
     key = hashlib.sha256(json.dumps(ident, sort_keys=True).encode()).hexdigest()[:20]
     path = root / config["output_root"] / key
-    print("First-window output: " + str(path), flush=True)
+    print("Window output: " + str(path), flush=True)
     if stage == "summary":
-        result = load_json(
-            path / "report_summary.json"
-            if (path / "report_summary.json").exists()
-            else path / "simulation_summary.json"
-            if (path / "simulation_summary.json").exists()
-            else path / "preflight.json"
-        )
-        print(json.dumps(result), flush=True)
-        return result
+        return print_summary(path)
     prepare(root, config, path, ident)
     if stage == "prepare":
         return {"prepared": str(path)}
@@ -583,3 +604,35 @@ def main_stage(root, config_path, stage):
     from .window_report import report
 
     return report(root, config, path)
+
+
+def print_summary(path):
+    name = next(
+        (
+            n
+            for n in ["report_summary.json", "simulation_summary.json", "preflight.json"]
+            if (path / n).exists()
+        ),
+        None,
+    )
+    if name is None:
+        raise ValueError("No completed stage summary in " + str(path))
+    result = load_json(path / name)
+    keys = [
+        "success",
+        "window",
+        "registered_cases_completed",
+        "completed_cases",
+        "primary_replay_identical",
+        "random_comparison",
+        "return_excluding_best_month",
+        "problem_count",
+    ]
+    compact = {k: result[k] for k in keys if k in result}
+    if "primary_metrics" in result:
+        compact["primary_metrics"] = [
+            {k: row[k] for k in ["series", "total_return", "Sharpe_rf0", "MDD"]}
+            for row in result["primary_metrics"]
+        ]
+    print(json.dumps(compact), flush=True)
+    return result

@@ -180,7 +180,7 @@ def read_market(root, config, symbols):
         bindings[str(index_path)] = sha(index_path)
         for key, binding in sorted(index["sources"].items()):
             month = key.rsplit("-", 2)[-2] + "-" + key.rsplit("-", 1)[-1][:-4]
-            if not "2021-01" <= month <= "2022-12":
+            if not config["train_start"][:7] <= month < config["stop_exclusive"][:7]:
                 continue
             kind = (
                 "funding"
@@ -235,7 +235,9 @@ def read_market(root, config, symbols):
     for line in overlay.read_text().splitlines():
         row = json.loads(line)
         t = row["timestamp_ms"]
-        if row["symbol"] not in symbols or not ms("2021-01-01") <= t < ms("2023-01-01"):
+        if row["symbol"] not in symbols or not ms(config["train_start"]) <= t < ms(
+            config["stop_exclusive"]
+        ):
             continue
         if sha(row["source"]["path"]) != row["source"]["sha256"]:
             raise ValueError("Recovered source changed")
@@ -380,6 +382,8 @@ class WindowData:
                         self.mark("BTCUSDT", t + offset)[0],
                     )
         for symbol, value in self.notices.items():
+            if symbol not in self.marks:
+                continue
             if start <= value["effective_ms"] <= last:
                 mark = self.mark(symbol, value["effective_ms"] - 1)
                 add(
@@ -401,6 +405,8 @@ class WindowData:
                         rate,
                     )
         for symbol, value in self.notices.items():
+            if symbol not in self.marks:
+                continue
             t = value["exit_ms"]
             if start <= t < last and symbol in self.exit_prices:
                 add(symbol, t * 1000000, "final", self.exit_prices[symbol])
@@ -411,3 +417,16 @@ class WindowData:
                 add(symbol, final * 1000000, "final", price)
         add("BTCUSDT", final * 1000000 + 100, "final_check", self.mark("BTCUSDT", final)[0])
         return [events[k] for k in sorted(events, key=lambda k: (k[1], k[0]))]
+
+
+def episode_notice(notices, symbol, t):
+    notice = notices.get(symbol)
+    return None if notice and t >= notice.get("valid_to_ms", 2**63 - 1) else notice
+
+
+def window_label(config):
+    first = config["train_start"][:4]
+    last = str(int(config["train_stop"][:4]) - 1)
+    return (
+        "train" + (first if first == last else first + "-" + last) + "/trade" + config["start"][:4]
+    )
