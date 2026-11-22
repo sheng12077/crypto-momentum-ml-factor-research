@@ -22,6 +22,7 @@ dependencies = [
 
 [project.scripts]
 momentum-research = "momentum_data.cli:main"
+crypto-factor-research = "crypto_factor_research.cli:main"
 
 [project.optional-dependencies]
 research = ["nautilus-trader==1.231.0", "lightgbm==4.7.0", "shap==0.54.1", "matplotlib", "ipykernel", "jupyterlab", "nbformat", "nbclient"]

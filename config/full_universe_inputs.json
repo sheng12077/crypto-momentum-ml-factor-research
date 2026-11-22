@@ -1,0 +1,14 @@
+{
+  "daily_root": "data/canonical/binance_um_daily_research/v20261118_001",
+  "hourly_root": "data/canonical/binance_um_research/v20261117_001",
+  "source_start": "2021-01-01",
+  "source_stop": "2026-11-01",
+  "decision_start": "2021-01-01",
+  "decision_stop": "2026-11-01",
+  "funding_lag_hours": 1,
+  "funding_window_days": 7,
+  "history_days": 120,
+  "output_root": "data/features/full_universe",
+  "scope_policy": "research/legacy/config/identity_decisions_20261118.json",
+  "registration": "experiments/017_full_universe_inputs.md"
+}

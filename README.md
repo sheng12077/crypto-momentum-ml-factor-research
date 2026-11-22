@@ -19,7 +19,10 @@ A reproducible, medium-frequency crypto long/short research project using annual
 LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
 aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
 
-**Current status: restricted-universe prototype; full-universe remediation planned.**
+**Current status: restricted-universe prototype; full-catalog inputs reconstructed, execution pending.**
+The new [full-catalog input report](docs/FULL_UNIVERSE_INPUTS.md) accounts for all 924
+identifiers, including 775 with provisional weekly candidate rows. Those inputs have
+not yet produced an expanded-universe strategy backtest.
 The uninterrupted 2022--October 2026 account is net profitable with lower historical
 volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
 are substantially stronger in development years. Paper/live trading is not implemented
