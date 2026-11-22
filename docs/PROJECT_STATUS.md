@@ -1,5 +1,39 @@
 # Project status
 
+## Full-universe remediation specification and audit -- 2026-11-22
+
+- User resumes work after stopping it and requests complete corrective solutions;
+  do not promise perfect/profitable results. No push, deployment or paid data purchase.
+- Completed topic research/full-universe-repair-spec:specification plus read-only
+  full-catalog audit. Merge this narrow correction/audit into main; the corrected
+  dynamic-universe strategy remains unimplemented. Inspect latest merge for commit.
+- Read docs/REMEDIATION_PLAN.md first. Covers population,dated eligibility,fees/
+  Funding/terminal assumptions,matched momentum/equal-factor/random controls,
+  label/holding horizon,migration,naming,cache/run identity and final reporting.
+- Existing37pool is a first-prototype subset inherited through2026, not924screened
+  down to37. No broad-market or full-project-completion claim is supported by it.
+- tools/audit_universe_coverage.py ran on all924daily files:924hashesverified,
+  37oldpool,887neverconsidered,787oldcandidateever,750oldcandidatesoutsidepool,
+  922withpositivevolume in2021--Oct2026release;GAIB/LENDno positiveactivity there.
+- reports/tables/universe_audit/{assets.csv,daily_diagnostic_counts.csv,summary.json}
+  are ignored. No data/labels/models/PnL changed, no network calls. New dynamic
+  eligibility is explicitly not built or certified by this audit.6focused tests pass;
+  READMEpublisher preserves scope corrections and validates them before overwriting.
+- All old working edits and untracked tree.json preserved. No full-tree move,
+  extra source snapshot or deletion. Previous publication advice is superseded by
+  explicit README scope correction. Historical results/contracts remain unchanged.
+- Existing historical years may all be used for research; never label seen dates
+  as fresh independent OOS. This is not a permission barrier to correcting coverage.
+- Next implementation is chronological universe/feature construction plus complete
+  repair/assumption queue. Preregister that experiment on main before implementation
+  or strategy performance. Do not keep tuning37or claim the larger strategy is done.
+
+## Earlier engineering/publication history
+
+The prior handoff text is retained below for provenance; its readiness statements
+are superseded by the scope correction above.
+
+
 ## Local main ready; user will push -- 2026-11-22
 
 - Local main now includes the complete published research tree, badges, new layout

@@ -252,4 +252,4 @@ Verified source hashes for this publication:
 - `reports/tables/continuous_reconstruction/monthly_returns_5bps.csv`: `c38c4689c7325921f4c0a1e424c95a4dd222900ede9fb0a3ebc967ca4c9dbb1b`
 - `reports/tables/continuous_reconstruction/year_slices_5bps.csv`: `3e4e1ea42ada89b562be87c3b650b141460496965b05e387137dedb9ca43d595`
 
-Publisher SHA256: `f309162c2bff95bb4b8dec16b286b4199f996553ec2efb8037b019b90519c67f`.
+Publisher SHA256: `8ffeb0ce7ebc82b6bf1744648cb957ee42ced355cb5fca92a84dc9bc2e2ce2e8`.
