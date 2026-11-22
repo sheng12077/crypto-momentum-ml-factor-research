@@ -1,6 +1,39 @@
 # Project status
 
 
+## Verified continuous results and published README -- 2026-11-22
+
+- User completed protocol016:2historical financial cases+1identical replay, zero
+  annual cash resets/new fits. Source report/case/contract hashes reverified locally.
+- Continuous5bps: return+84.0566%,CAGR13.4548%,Sharpe.6446,MDD-26.7715%;10bps
+  return+67.5621%,Sharpe.5638. All registered descriptive gates pass, not fresh OOS.
+- Annual continuous returns2022+44.31%,2023+18.00%,2024-13.59%,2025+40.58%,
+  2026partial-11.02%. Annual products match full NAV; includes Jan1 bridge returns.
+  Do not substitute previous standalone annual metrics (2025 standalone+30.61%).
+- Monthly58buckets:28positive(48.28%),median-.1064%,best2022Jun+20.4040%,
+  worst2026Oct-20.3300%. Ex-best-month+52.8658%; bestmonth26.94%additive cashprofit.
+- Important diagnostic:2024onward+8.0880%,Sharpe.238,MDD-24.79%; BTC+82.25%,
+  Sharpe.685. Development years materially strengthen aggregate. No stable-alpha,
+  uniform profitability or live-readiness claim. Monthly hit rate alone not decisive.
+- README rewritten for actual cross-sectional LightGBM project; original research
+  links preserved in archive. English docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md
+  includes full/annual/monthly/stress/fees/funding, phase labels, diagnostic and hashes.
+- Tracked docs/assets/continuous_monthly_returns.png:year-month net%heatmap plus
+  compounded period totals, exact partial end and unobserved cells. Visually checked.
+  Existing convention compounds returns by ending UTCsnapshot date; not a new
+  exchange-calendar month-end series. October2026omits final civil day.
+- Reusable publisher:scripts/publish_continuous_results.py. It verifies contracts,
+  caches/reports, reconstructs monthly/annual summaries from savedNAV, and writes
+  README/results/figure. No refit/download/historical resimulation. Actual execution,
+  idempotency, 58monthly values/annual products and new local links checked.
+- Documentation topic docs/continuous-results-presentation merges back into parent
+  exp/final-holdout-2025-2026 when complete; inspect latest merge for exact commit.
+  Registration016:a808b5e; simulator implementation3182f37/merge13785db. Keep parent
+  off main while its blocked momentum-only controls remain unverified. No push/rewrite.
+- Next: user reviews publication and uneven annual/monthly findings; no automatic
+  tuning or paper implementation. Preserve other pre-existing dirty files.
+
+
 ## Prepared uninterrupted reconstruction; user will run PnL -- 2026-11-22
 
 - Registration016 committed separately on main:a808b5e; then merged into the

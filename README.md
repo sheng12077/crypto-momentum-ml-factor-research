@@ -1,24 +1,108 @@
-# Time-Series Momentum Research
+# Crypto Cross-Sectional Factor Research
 
-Standalone BTC/ETH medium-frequency, volatility-scaled time-series momentum
-and trend-following research.
+A reproducible, medium-frequency crypto long/short research project using annual
+LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
+aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
 
-- `experiments/`: preregistrations and immutable result reports.
-- `docs/`: literature, methodology, assumptions, and risk documentation.
-- `src/`: strategy implementation and command-line interfaces.
-- `tests/`: strategy and accounting regression tests.
-- `scripts/`: reusable data and research entry points.
+**Current status: completed retrospective backtest; no live profitability claim.**
+The uninterrupted 2022--October 2026 account is net profitable with lower historical
+volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
+are substantially stronger in development years. Paper/live trading is not implemented
+or certified by these results.
 
-This repository begins a new experiment sequence. Its first strategy experiment
-will be Experiment 001 and must be preregistered on `main` before implementation
-or performance inspection.
+## Continuous performance
 
-Datasets and generated backtest artifacts are excluded from Git. The local
-`data/raw`, `data/canonical`, and `data/catalog` paths link to the shared,
-strategy-neutral market-data lake. Momentum-specific features and backtest
-outputs belong in ignored `data/interim` and `data/processed` directories.
+| Series | Total return | CAGR | Sharpe (rf=0) | MDD | Annual vol. | Calmar |
+| --- | --- | --- | --- | --- | --- | --- |
+| Strategy (5 bps slippage) | +84.06% | +13.45% | 0.645 | -26.77% | +24.13% | 0.503 |
+| Strategy (10 bps slippage) | +67.56% | +11.27% | 0.564 | -27.96% | +24.16% | 0.403 |
+| BTC spot buy-and-hold | +64.02% | +10.78% | 0.455 | -66.93% | +50.34% | 0.161 |
+| ETH spot buy-and-hold | -40.13% | -10.07% | 0.185 | -74.01% | +68.33% | -0.136 |
 
-## Current research notes
+The account starts with USDT 100,000 on Jan 1 2022. Last valuation is **Oct 31 2026
+00:00 UTC**, not the end of that civil day. Positions and capital persist across years;
+there is one final liquidation and no yearly cash reset. Spot benchmarks buy once,
+hold fixed units and sell once. All periods are already inspected; this reconstruction
+is **not a fresh OOS test**. See [full results and limitations](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md).
+
+## Monthly net returns
+
+![Continuous strategy monthly net returns](docs/assets/continuous_monthly_returns.png)
+
+- Positive months: **28/58 (48.28%)**; median month **-0.11%**.
+- Best month: **2022-06, +20.40%**; worst: **2026-10, -20.33%**.
+- Return excluding the best month: **+52.87%** (descriptive compounding check).
+- From 2024 onward: **+8.09%**, versus **+84.06%** over the full path.
+
+Monthly values compound daily NAV changes grouped by UTC snapshot date, using the
+saved report's bucket convention. October 2026 is partial; November/December are
+unobserved. Green months do not establish a persistent edge or statistical significance.
+
+| Year | Strategy | BTC spot | ETH spot |
+| --- | --- | --- | --- |
+| 2022 | +44.31% | -64.53% | -67.89% |
+| 2023 | +18.00% | +153.74% | +90.97% |
+| 2024 | -13.59% | +120.20% | +46.70% |
+| 2025 | +40.58% | -4.64% | -11.55% |
+| 2026 (partial) | -11.02% | -13.20% | -24.77% |
+
+2022--2023 informed development; 2024 was frozen validation; 2025--2026 were the
+original holdout, now revealed. The continuous reconstruction was registered after
+all results were observed. Annual slices include the cross-year daily return and
+therefore differ from separately liquidated, fresh-cash annual runs.
+
+## Frozen strategy and simulation
+
+- Five inputs across three groups: 20/60/120-day momentum, seven-day funding,
+  seven-day taker-quote imbalance. The momentum horizons are model features,
+  not a staged-entry position-control rule. No Size feature or buffer in this version.
+- Existing annual expanding-window model caches; strict matured-label cutoffs.
+  LightGBM parameters and forecasts are unchanged; annual SHAP is verified.
+- Top five long / bottom five short, equal +/-10% target NAV per asset; at least
+  20 eligible candidates. Target gross exposure 100%, target net notional zero;
+  actual exposures drift. This is not a guarantee of zero market beta.
+- Two-week rebalance, first-Monday anchor per year; actual quantities held between
+  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00UTC,
+  sizing at 01UTC, prior-hour VWAP execution proxy at 02UTC.
+- Perpetual taker fee 5 bps, no BNB discount; adverse slippage 5/10 bps per fill.
+  Funding uses observed rates and a completed-hour mark proxy on pre-fill holdings.
+  BTC/ETH spot benchmarks use 10 bps taker + 5 bps slippage per side.
+- Required held-price/terminal checks, source-price/fee/funding reconstruction,
+  daily-ledger reconciliation and an exact primary financial replay. Historical
+  lots/margin/liquidation and order-book impact are not certified.
+
+The conditional cohort's historical publication vintage is unresolved. A matched
+momentum-only control has an unverified EOS terminal settlement and cannot support
+an alpha claim. Lower simulated MDD does not prove live safety or future returns.
+
+## Reproduce saved results
+
+In WSL, using the existing prepared local dataset and model/source caches:
+
+```bash
+conda activate funding-strategy
+python scripts/run_continuous_reconstruction.py --stage all
+python scripts/run_continuous_reconstruction.py --stage summary
+python scripts/publish_continuous_results.py
+```
+
+The publisher reads verified outputs; it performs no refit, download or simulation.
+Full simulator runs require the ignored local research data and frozen caches; this
+repository alone does not supply a one-command fresh-data bootstrap. Never add keys
+or market datasets to Git, or delete contracts to bypass validation failures.
+
+- [Results, annual/monthly detail and source provenance](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md)
+- [Simulation runbook, logs and resume behavior](docs/CONTINUOUS_RECONSTRUCTION_RUNBOOK.md)
+- [English saved-results notebook](notebooks/continuous_reconstruction_results.ipynb)
+- [Experiment 016 registration](experiments/016_continuous_2022_2026.md)
+- [Project status / handoff](docs/PROJECT_STATUS.md)
+
+`experiments/` holds registrations; `scripts/` reusable research tools; `src/`
+implementation and analysis; `tests/` accounting/regression checks; `docs/`
+methodology and conclusions. Source datasets and generated working reports remain
+ignored; this README and its figure publish aggregate results only.
+
+## Research archive
 
 - [Completed historical backtests: results, assumptions and commands](docs/FIRST_HISTORICAL_DEVELOPMENT.md)
 - [English historical-results notebook](notebooks/first_historical_results.ipynb)
