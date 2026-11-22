@@ -61,3 +61,10 @@ MDD, Calmar, fee/funding/turnover, best-month concentration and all registered g
 Conditional universe, publication vintage, hourly execution/funding price proxies and
 uncertified historical exchange lot/margin/liquidation remain material limitations.
 All years have already been disclosed; no further tuning can reuse them as fresh OOS.
+
+## Package layout
+
+The public package now owns implementation; scripts are thin launchers. See
+[structure and contract migration](PROJECT_STRUCTURE.md). `--stage all` verifies
+the frozen inputs, replays into a separate package output, then publishes saved
+results. Existing financial files and contracts remain intact.

@@ -1,0 +1,3 @@
+# Research manifests bind exact source/configuration bytes across Windows and WSL.
+scripts/*.py text eol=lf
+config/*.json text eol=lf

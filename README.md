@@ -75,9 +75,66 @@ The conditional cohort's historical publication vintage is unresolved. A matched
 momentum-only control has an unverified EOS terminal settlement and cannot support
 an alpha claim. Lower simulated MDD does not prove live safety or future returns.
 
+## Project structure
+
+```text
+src/momentum_data/
+    data/          # hourly stores, benchmarks and complete input checks
+    features/      # past-only factor definitions and history validation
+    models/        # frozen annual model/training/prediction/SHAP verification
+    portfolio/     # ranking and two-week portfolio schedule
+    backtest/      # Nautilus execution, Funding, independent ledger audit
+    reporting/     # metrics, publication and monthly heatmap
+    cli.py         # public commands
+scripts/           # three thin compatibility/demo entry points
+config/            # named frozen-run paths and execution assumptions
+notebooks/         # current English results reader
+research/legacy/   # preserved earlier research layout and frozen source bytes
+experiments/       # original preregistrations
+```
+
+[Architecture and migration notes](docs/PROJECT_STRUCTURE.md) explain which paths
+are active, how frozen contracts survive relocation, and how historical tools are
+kept separate. The public package does not import legacy scripts. Archived model
+training/acquisition pipelines remain research evidence; the current CLI verifies
+and replays the existing frozen model caches, rather than promising a fresh-data bootstrap.
+
+## Install and run without market data
+
+From the repository root on Linux/WSL with Python 3.13:
+
+```bash
+python -m pip install -r requirements/research-runtime-py313.txt
+python -m pip install -e ".[research,dev]"
+python -m momentum_data --help
+python -m momentum_data smoke
+python -m pytest tests -q
+```
+
+The smoke example creates a synthetic cross-year position and verifies its cash
+and Funding. It requires no API key, exchange connection or market dataset and
+makes no profitability claim. Runtime pins cover the current top-level packages,
+not a fully transitive environment lock. Historical lockfiles are retained separately.
+
 ## Reproduce saved results
 
-In WSL, using the existing prepared local dataset and model/source caches:
+With the existing ignored local dataset and frozen caches available:
+
+```bash
+python -m momentum_data verify
+python -m momentum_data replay
+python -m momentum_data summary
+python -m momentum_data publish
+```
+
+`replay` runs both cost cases and the primary replay through the reorganized engine
+in a separate output directory; every financial SHA256 must equal the frozen result.
+It never overwrites the original case files. The new package also binds its own
+source/configuration contract. Local paths default to this checkout; set
+`MOMENTUM_PROJECT_ROOT` and, if needed, `MOMENTUM_DATA_ROOT` before importing the
+package to point at another research checkout/data root.
+
+The original convenience commands remain available:
 
 ```bash
 conda activate funding-strategy
@@ -97,69 +154,69 @@ or market datasets to Git, or delete contracts to bypass validation failures.
 - [Experiment 016 registration](experiments/016_continuous_2022_2026.md)
 - [Project status / handoff](docs/PROJECT_STATUS.md)
 
-`experiments/` holds registrations; `scripts/` reusable research tools; `src/`
-implementation and analysis; `tests/` accounting/regression checks; `docs/`
+`experiments/` holds registrations; `scripts/` contains thin launchers; `src/`
+holds the independent package; `tests/` current accounting/interface checks; `docs/`
 methodology and conclusions. Source datasets and generated working reports remain
 ignored; this README and its figure publish aggregate results only.
 
 ## Research archive
 
-- [Completed historical backtests: results, assumptions and commands](docs/FIRST_HISTORICAL_DEVELOPMENT.md)
-- [English historical-results notebook](notebooks/first_historical_results.ipynb)
-- [Development mark boundary recovery and resumable commands](docs/DEVELOPMENT_MARK_RECOVERY.md)
-- [Development warmup continuity and 2022 mark-gap audit](docs/DEVELOPMENT_CONTINUITY_AUDIT.md)
-- [Backtest analysis notebook and launch instructions](docs/BACKTEST_NOTEBOOK.md)
-- [Notebook source](notebooks/backtest_analysis.ipynb)
-- [Momentum and trend-following research landscape](docs/momentum_research_landscape.md)
-- [Candidate strategy families before Experiment 001](docs/candidate_strategy_families.md)
+- [Completed historical backtests: results, assumptions and commands](research/legacy/docs/FIRST_HISTORICAL_DEVELOPMENT.md)
+- [English historical-results notebook](research/legacy/notebooks/first_historical_results.ipynb)
+- [Development mark boundary recovery and resumable commands](research/legacy/docs/DEVELOPMENT_MARK_RECOVERY.md)
+- [Development warmup continuity and 2022 mark-gap audit](research/legacy/docs/DEVELOPMENT_CONTINUITY_AUDIT.md)
+- [Backtest analysis notebook and launch instructions](research/legacy/docs/BACKTEST_NOTEBOOK.md)
+- [Notebook source](research/legacy/notebooks/backtest_analysis.ipynb)
+- [Momentum and trend-following research landscape](research/legacy/docs/momentum_research_landscape.md)
+- [Candidate strategy families before Experiment 001](research/legacy/docs/candidate_strategy_families.md)
 - [Project status and handoff](docs/PROJECT_STATUS.md)
-- [Historical universe feasibility](docs/historical_universe_feasibility.md)
-- [WSL raw-data acquisition commands](docs/USDM_ACQUISITION.md)
-- [Post-acquisition quality audit](docs/POST_ACQUISITION_AUDIT.md)
-- [Mark-gap source reconciliation](docs/MARK_GAP_RECONCILIATION.md)
-- [Mark-gap recovery and versioned partial overlay](docs/MARK_GAP_RECOVERY.md)
+- [Historical universe feasibility](research/legacy/docs/historical_universe_feasibility.md)
+- [WSL raw-data acquisition commands](research/legacy/docs/USDM_ACQUISITION.md)
+- [Post-acquisition quality audit](research/legacy/docs/POST_ACQUISITION_AUDIT.md)
+- [Mark-gap source reconciliation](research/legacy/docs/MARK_GAP_RECONCILIATION.md)
+- [Mark-gap recovery and versioned partial overlay](research/legacy/docs/MARK_GAP_RECOVERY.md)
 
-- [Research data layer and full-conversion command](docs/RESEARCH_DATA_LAYER.md)
-- [Partial lifecycle evidence and remaining gates](docs/LIFECYCLE_REVIEW.md)
+- [Research data layer and full-conversion command](research/legacy/docs/RESEARCH_DATA_LAYER.md)
+- [Partial lifecycle evidence and remaining gates](research/legacy/docs/LIFECYCLE_REVIEW.md)
 
-- [Research-input readiness and public cap pilots](docs/RESEARCH_INPUT_READINESS.md)
+- [Research-input readiness and public cap pilots](research/legacy/docs/RESEARCH_INPUT_READINESS.md)
 
-- [Weekly market-cap coverage acquisition](docs/CMC_WEEKLY_COVERAGE.md)
+- [Weekly market-cap coverage acquisition](research/legacy/docs/CMC_WEEKLY_COVERAGE.md)
 
-- [Weekly cap identity and coverage audit](docs/CMC_IDENTITY_AUDIT.md)
+- [Weekly cap identity and coverage audit](research/legacy/docs/CMC_IDENTITY_AUDIT.md)
 
-- [Contract identity evidence and proposed episodes](docs/CONTRACT_IDENTITY_EVIDENCE.md)
+- [Contract identity evidence and proposed episodes](research/legacy/docs/CONTRACT_IDENTITY_EVIDENCE.md)
 
-- [Identity follow-up and named exclusion decisions](docs/IDENTITY_FOLLOWUP_DECISIONS.md)
+- [Identity follow-up and named exclusion decisions](research/legacy/docs/IDENTITY_FOLLOWUP_DECISIONS.md)
 
-- [Full-universe retention screen and candidate lists](docs/FULL_UNIVERSE_RETENTION_SCREEN.md)
+- [Full-universe retention screen and candidate lists](research/legacy/docs/FULL_UNIVERSE_RETENTION_SCREEN.md)
 
-- [Daily episode-aware inputs and full-build command](docs/DAILY_RESEARCH_INPUTS.md)
+- [Daily episode-aware inputs and full-build command](research/legacy/docs/DAILY_RESEARCH_INPUTS.md)
 
-- [Approved chronological research split](docs/RESEARCH_SPLIT.md)
+- [Approved chronological research split](research/legacy/docs/RESEARCH_SPLIT.md)
 
-- [Approved weekly baseline, buffer and sizing research sequence](docs/WEEKLY_RESEARCH_SEQUENCE.md)
+- [Approved weekly baseline, buffer and sizing research sequence](research/legacy/docs/WEEKLY_RESEARCH_SEQUENCE.md)
 
-- [Weekly baseline timing, boundary checks and coverage command](docs/WEEKLY_BASELINE_STAGE0.md)
+- [Weekly baseline timing, boundary checks and coverage command](research/legacy/docs/WEEKLY_BASELINE_STAGE0.md)
 
-- [Early history, funding inventory and raw backfill command](docs/HISTORY_EXTENSION.md)
+- [Early history, funding inventory and raw backfill command](research/legacy/docs/HISTORY_EXTENSION.md)
 
-- [Completed early raw integrity, gap and funding audit](docs/EARLY_HISTORY_AUDIT.md)
+- [Completed early raw integrity, gap and funding audit](research/legacy/docs/EARLY_HISTORY_AUDIT.md)
 
-- [QTUM funding supplement and DEFI/LEND episode checks](docs/EARLY_CASES_REVIEW.md)
+- [QTUM funding supplement and DEFI/LEND episode checks](research/legacy/docs/EARLY_CASES_REVIEW.md)
 
-- [Completed2020 observation release and daily panel](docs/EARLY_RESEARCH_RELEASE.md)
+- [Completed2020 observation release and daily panel](research/legacy/docs/EARLY_RESEARCH_RELEASE.md)
 
-- [Completed2020 Size inventory and named identity gaps](docs/EARLY_SIZE_INVENTORY.md)
+- [Completed2020 Size inventory and named identity gaps](research/legacy/docs/EARLY_SIZE_INVENTORY.md)
 
-- [Early Size identity decisions and unresolved source gates](docs/EARLY_SIZE_IDENTITIES.md)
+- [Early Size identity decisions and unresolved source gates](research/legacy/docs/EARLY_SIZE_IDENTITIES.md)
 
-- [IOTA alias recovery and UNI futures launch supplement](docs/EARLY_IDENTITY_FOLLOWUP.md)
+- [IOTA alias recovery and UNI futures launch supplement](research/legacy/docs/EARLY_IDENTITY_FOLLOWUP.md)
 
-- [First remaining early identity batch and per-case decisions](docs/EARLY_IDENTITY_BATCH1.md)
+- [First remaining early identity batch and per-case decisions](research/legacy/docs/EARLY_IDENTITY_BATCH1.md)
 
-- [Second early identity batch and cumulative coverage](docs/EARLY_IDENTITY_BATCH2.md)
+- [Second early identity batch and cumulative coverage](research/legacy/docs/EARLY_IDENTITY_BATCH2.md)
 
-- [Third early identity batch, token and migration checks](docs/EARLY_IDENTITY_BATCH3.md)
+- [Third early identity batch, token and migration checks](research/legacy/docs/EARLY_IDENTITY_BATCH3.md)
 
-- [One-command processing and reports for all81 early identifiers](docs/UNIFIED_EARLY_IDENTITY.md)
+- [One-command processing and reports for all81 early identifiers](research/legacy/docs/UNIFIED_EARLY_IDENTITY.md)
