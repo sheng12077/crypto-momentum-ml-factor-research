@@ -277,6 +277,36 @@
       "symbol": "CVXUSDT",
       "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
       "effective_utc": "2024-05-14T09:00:00Z"
+    },
+    {
+      "symbol": "UNFIUSDT",
+      "article_code": "043c8407bb904652a428573a50d07e07",
+      "effective_utc": "2024-10-30T09:00:00Z"
+    },
+    {
+      "symbol": "BONDUSDT",
+      "article_code": "27eac260521b4f40ab331e1a345887a7",
+      "effective_utc": "2024-12-16T09:00:00Z"
+    },
+    {
+      "symbol": "KLAYUSDT",
+      "article_code": "f75f933759ee49d0af1dfbce7e32144c",
+      "effective_utc": "2024-10-22T09:00:00Z"
+    },
+    {
+      "symbol": "GALUSDT",
+      "article_code": "27449abd481b473493b9c058350b4e2e",
+      "effective_utc": "2024-07-11T09:00:00Z"
+    },
+    {
+      "symbol": "BLZUSDT",
+      "article_code": "b140faee7cf9482cb10257308abda245",
+      "effective_utc": "2024-12-23T09:00:00Z"
+    },
+    {
+      "symbol": "DARUSDT",
+      "article_code": "21551cde98784f64b374f8d50ff2a438",
+      "effective_utc": "2024-12-26T09:00:00Z"
     }
   ],
   "registration": "experiments/022_dynamic_2024.md"
