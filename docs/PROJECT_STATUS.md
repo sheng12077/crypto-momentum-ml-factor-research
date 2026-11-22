@@ -1,5 +1,40 @@
 # Project status
 
+
+## Prepared uninterrupted reconstruction; user will run PnL -- 2026-11-22
+
+- Registration016 committed separately on main:a808b5e; then merged into the
+  existing final-holdout experiment. Implementation topic feat/continuous-historical-reconstruction completed; merge
+  tooling into exp/final-holdout-2025-2026, not main. Inspect latest merge for code commit.
+- User requests prepared files and will execute full historical runs. No historical
+  strategy PnL computed by this work. Continuous BTC/ETH reuses116 verified archives.
+- scripts/run_continuous_reconstruction.py: one Nautilus account2022Jan1--2026Oct31
+  00UTC; final exitOct30 23UTC,127 scheduled rebalances, no annual flat/reset/bridge.
+  Reuses five annual frozen models, zero fits/downloads, existing first-Monday phase
+  per year (possible7/21day year-crossing interval),5/10bps slip plus5bps taker.
+- Original2022--2024 training eligibility retained:2024cache5691rows vs5728 if
+  later-matured labels were reconstructed. Verify original source/cached training;
+  do not silently enlarge the fitted sample.2025/26 matured cutoffs also checked.
+- Whole-data preflight passed:0proxy gaps,243851events,5model/prediction caches,
+  116 spot checksums. PnL_computed=false. Snapshot/funding/decision/execution/terminal
+  proxies checked for every planned holding. No unsupported terminal settlement held.
+- Focused31tests passed; all5new tests re-passed after full synthetic notebook
+  execution was added. Synthetic real-engine tests cover cross-year quantities/funding/replay,
+  funding/exit collision, January1return attribution, corrupt outputs, report rendering.
+- WSL funding-strategy command:python scripts/run_continuous_reconstruction.py --stage all
+  then --stage summary. Full runtime not measured;2full cases+1replay. Log reports/
+  acquisition/continuous_all_*.log; resume validates completed cases; preserve failures.
+- docs/CONTINUOUS_RECONSTRUCTION_RUNBOOK.md and English saved-results reader
+  notebooks/continuous_reconstruction_results.ipynb prepared. Tables/figures under
+  reports/{tables,figures}/continuous_reconstruction; outputs data/interim/
+  continuous_reconstruction/v20261122_001. Report requires independent every-fill/
+  funding audit and exact primary replay, <=0.01USDT ledger reconciliation.
+- Known EOS momentum-only settlement blocker remains; control outside protocol016,
+  explicitly not silently replaced. Retrospective mixed-development path, not fresh
+  OOS or alpha/live-readiness proof. User returns compact summary for interpretation.
+- Preserve pre-existing dirty files. No push/history rewrite. Parent experiment stays
+  off main pending conclusions and existing blocked control certification.
+
 ## Ran final holdout end to end after user escalation — 2026-11-22
 
 - Fix branch fix/final-holdout-funding-collisions from experiment b2a40f7. User
