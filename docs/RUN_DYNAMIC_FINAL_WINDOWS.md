@@ -71,7 +71,7 @@ means those requested steps passed, not that 60 financial cases completed.
 ## Data gates and verified coverage
 
 An official delisting-index review added dated settlement assertions beyond the
-earlier ledger. Configs contain 98 (2025) and 130 (2026) historical notice assertions.
+earlier ledger. Configs contain 98 (2025) and 143 (2026) historical notice assertions.
 The configured notice bodies, symbols/dates/publication checks were verified
 with the existing public client. AERGO's evidenced 2025-04-16 relaunch is included;
 both its 2025 and 2026 cessations remain represented rather than overwriting one.
@@ -140,6 +140,51 @@ identity; existing downloaded source caches are reused, with no new dataset scop
 The same batch command resumes the work under the corrected implementation.
 New `market_merge` messages identify source-merge progress. Full-history memory
 peak is not yet measured; no full user job was launched during this fix.
+
+## Current 2026 gate: collect funding evidence before another full batch
+
+The subsequent batch passed 2025 preflight and stopped at 2026 run
+`14f5d985c3030e85fb3e`: 207 findings, no PnL. The 179 internal funding-break
+findings are 145 unique contracts, all on 2026-06-24. The other 28 findings are
+post-cessation execution prices/funding tails across 13 contracts.
+
+The 13 missing 2026 futures notices are now in the config; all announcement clocks
+and positive-volume one-minute post-notice exit prices were verified. Existing
+generic delisting articles' futures clauses referred to the aforementioned tokens,
+which the earlier explicit-USDT extraction missed. Official source IDs and futures
+dates are preserved in the config; spot delisting dates were not substituted.
+The contracts are ATA, COS, DEGO, FIO, FUN, GHST, HIGH, NKN, OXT, STG, STORJ,
+TRU and VANRY (all USDT). A saved-plan diagnostic confirms the 28 old times are
+outside corrected holding intervals; new schedules still require full preflight.
+
+**Do not rerun the complete batch yet.** Use the new read-only source investigation:
+
+```bash
+python -m crypto_factor_research funding-breaks --run-dir data/processed/dynamic_2026/14f5d985c3030e85fb3e
+```
+
+This checks all 145 saved break brackets against public fundingRate observations.
+At 0.7-second request pacing, allow approximately 2–5 minutes depending on network
+and cache hits. It does not prepare strategy data, fit models, compute PnL, fill
+rates or alter eligibility. Progress prints every ten brackets. Evidence bodies
+use the existing source cache; JSON evidence and compact summary go to a printed
+content-keyed directory under `reports/tables/funding_breaks/`. Repeating the
+command reuses cached source responses. Share the final summary JSON.
+
+`success=true` means requests/validation completed, not that funding is resolved.
+`api_has_additional_events` identifies potential recoverable observations for a
+later explicit source reconciliation. `api_has_same_observed_gap` means the API
+also has no interior record between matching anchors; it is **not** proof that
+funding was zero or no payment occurred. Anchor disagreement/request failure
+requires further investigation. The tool always reports financial execution
+readiness as false and never modifies strategy records.
+
+A three-contract pilot passed: all three API responses have the same observed
+gap. Thus an API key is not currently an established solution. The 2025 prepared
+stage/model remain reusable because this fix changes only 2026 config, CLI and
+evidence tooling; no financial shared-code identity change was introduced.
+The batch still requires both preflights before financial execution. No standalone
+2025 financial run was launched or silently substituted for the registered batch.
 
 ## Small validation and preserved artifacts
 

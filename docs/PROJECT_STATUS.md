@@ -1,5 +1,27 @@
 # Project status
 
+## 2026 source gate: lifecycle corrected, funding still unresolved — 2026-11-23
+
+- Topic fix/2026-preflight-evidence. Latest batch passes 2025 preflight; 2026
+  run 14f5d985c3030e85fb3e fails with 207 findings, no PnL.
+- 179 internal funding-break findings = 145 unique contracts, all Jun24 2026.
+  Other 28 findings concern 13 post-cessation contracts. Added their official
+  futures dates; source clauses used generic token references missed by earlier
+  explicit-USDT extraction. 2026 config now143 assertions, 2025 unchanged98.
+- Verified all13 official notices and positive one-minute announcement exit bars.
+  Saved-plan diagnostic confirms all28 old times fall outside corrected holds.
+  No full reprepare/fit/preflight/backtest executed; new schedules remain unchecked.
+- New CLI funding-breaks --run-dir data/processed/dynamic_2026/14f5d985c3030e85fb3e
+  audits only saved brackets/public funding records, no strategy mutations/PnL.
+  User runs full145 source checks; output reports/tables/funding_breaks/<hash>/.
+- Three-contract pilot299b27869d2e009cf5e4: all3 matching API anchors but same
+  missing interior records. Absence does NOT establish zero costs/no settlement.
+  43 targeted tests and changed-file lint pass. Financial readiness remains false.
+- Do not rerun full batch yet; collect source evidence first. 2025 caches remain
+  identity-compatible. Original both-year preflight gate is retained; no alternative
+  2025 standalone run or scientific rule change made without user direction.
+- User legacy changes preserved. No push/history rewrite.
+
 ## 2025 migration blockers corrected — 2026-11-23
 
 - Topic fix/2025-migration-notices. User run a8f57f099aeecdcb127a reached
