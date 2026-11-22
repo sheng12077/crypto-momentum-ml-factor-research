@@ -1,5 +1,19 @@
 # Project status
 
+## Completed 2024 result attribution — 2026-11-22
+
+- Run a51e40a2229536b092cf: 30 cases, replay and independent audit passed.
+- Read docs/DYNAMIC_2024_ANALYSIS.md. Model 5bps -7.19%, Sharpe -0.006,
+  MDD -37.75%; matched equal-group score +116.62%, 1.941, -31.23%.
+- Equal-group score is not position weighting: both cases hold equal weights.
+  Model long +23207.84 / short -30401.97 USDT; all three 5bps cases' side-ledger
+  sums reconciled within 0.01. No new backtest or fit, only existing CSV reads.
+- Model excluding best month -23.30%; equal-group +67.38%. Model still loses
+  before fees/funding at existing slipped fills; fee reduction alone is insufficient.
+- Next research decision remains with user; no weighting/new-factor/OOS execution
+  launched. Preserve candidates separately; do not select/tune silently on 2024.
+- Completed on research/2024-result-attribution; no-ff merge. User edits preserved.
+
 ## 2024 missing cessation facts corrected — 2026-11-22
 
 - Topic fix/2024-cessation-coverage; corrected config and run documentation.
