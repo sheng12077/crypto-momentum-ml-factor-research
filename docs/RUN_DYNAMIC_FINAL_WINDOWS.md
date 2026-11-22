@@ -97,6 +97,28 @@ entry exclusions, or shorter evaluation period is introduced here. Supply the
 printed problem-file path and compact status for a targeted source investigation.
 Preparing the code does not mean the 2026 data gate has passed.
 
+## Memory correction after the first 2025 attempt
+
+Run `01f451fb8c9302eab205` stopped during source preparation, before writing its
+manifest or fitting a model. Kernel logs confirm OOM killed the Python process
+at approximately 4.3 GiB resident memory; exit `-9` was SIGKILL, not a completed
+data-preflight finding. The printed 538 symbols/48765 candidate rows include
+training inputs and do not indicate concurrent positions.
+
+The shared reader now projects only the trade close/volume/quote volume, mark
+close and funding fields needed downstream. Symbol IDs share categorical codes,
+monthly chunk references are released after each kind is merged, and trade
+lookup uses sorted NumPy arrays with a sparse verified-repair overlay instead of
+per-bar Python tuples/dictionaries. Core trade arrays occupy 32 bytes per bar;
+this is not a claim about total process memory or full-run peak RAM.
+
+All source hashes, repair checks, dated eligibility, costs and trade rules remain
+in force. A stopped run stays preserved. Shared code changes create a new run
+identity; existing downloaded source caches are reused, with no new dataset scope.
+The same batch command resumes the work under the corrected implementation.
+New `market_merge` messages identify source-merge progress. Full-history memory
+peak is not yet measured; no full user job was launched during this fix.
+
 ## Small validation and preserved artifacts
 
 Offline tests cover partial-year scheduling, matured labels, batch stop/order,

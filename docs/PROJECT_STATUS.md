@@ -1,5 +1,21 @@
 # Project status
 
+## Confirmed OOM corrected in annual window preparation — 2026-11-23
+
+- Topic fix/window-memory-usage; no strategy/config/date/cost changes.
+- 2025 run 01f451fb8c9302eab205: 538 symbols/48765 candidate rows, then SIGKILL
+  (-9). Kernel OOM log confirms Python PID 24594 killed with 4541736 KiB anon RSS.
+  Only source_errors.json exists: no prepared manifest, model or preflight result.
+- Projected unused market columns out, categorical symbol IDs shared across
+  monthly chunks, release chunk collections after merging, compact NumPy trade
+  lookups plus sparse repair overlay. Preserve all source/hash/conflict/zero-volume
+  checks. Trade arrays 32 bytes/bar; full process peak remains unmeasured.
+- 32 targeted tests and changed-file lint pass, including actual tiny Nautilus
+  accounting cases and nonempty recovery overlay. No full data job/fit/backtest.
+- User reruns python scripts/run_dynamic_final_windows.py; source cache reused,
+  new content-bound run directory. Do not rerun the known old failed identity.
+- Existing 17 user legacy edits untouched. No push/history rewrite.
+
 ## Dual-candidate 2025–2026 preparation completed — 2026-11-23
 
 - Experiment 023 registration 4c52846 preceded implementation. Completed topic
