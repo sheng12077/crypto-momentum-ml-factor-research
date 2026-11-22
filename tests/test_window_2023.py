@@ -80,7 +80,8 @@ def test_verified_new_episode_can_reenter_without_old_exit_truncation():
     assert spans["A"] == [(t + 2 * HOUR, t + 5 * DAY - HOUR)]
 
 
-def test_market_reader_includes_2023_but_not_2024(tmp_path):
+@pytest.mark.parametrize("with_overlay", [False, True])
+def test_market_reader_includes_2023_but_not_2024(tmp_path, with_overlay):
     daily = tmp_path / "daily"
     hourly = tmp_path / "hourly"
     (daily / "index").mkdir(parents=True)
@@ -143,6 +144,35 @@ def test_market_reader_includes_2023_but_not_2024(tmp_path):
     repair.mkdir()
     overlay = repair / "deduplicated_observations.jsonl"
     overlay.write_text("")
+    if with_overlay:
+        stamp = ms("2023-01-01") + HOUR
+        source = repair / "source.json"
+        source.write_text("verified fixture")
+        overlay.write_text(
+            json.dumps(
+                {
+                    "symbol": "X",
+                    "kind": "trade",
+                    "timestamp_ms": stamp,
+                    "source": {"path": str(source), "sha256": sha(source)},
+                    "values": [
+                        stamp,
+                        2.0,
+                        2.0,
+                        2.0,
+                        2.0,
+                        3.0,
+                        stamp + HOUR - 1,
+                        6.0,
+                        1,
+                        1.0,
+                        2.0,
+                        0,
+                    ],
+                }
+            )
+            + "\n"
+        )
     (repair / "assessment.json").write_text(
         json.dumps({"output_hashes": {overlay.name: sha(overlay)}})
     )
@@ -157,8 +187,21 @@ def test_market_reader_includes_2023_but_not_2024(tmp_path):
         },
         {"X"},
     )
-    assert market["trade"].bar_open_ms.tolist() == [ms("2022-12-01"), ms("2023-01-01")]
+    expected = [ms("2022-12-01"), ms("2023-01-01")]
+    if with_overlay:
+        expected.append(ms("2023-01-01") + HOUR)
+        assert market["trade"].iloc[-1].quote_volume == 6.0
+    assert market["trade"].bar_open_ms.tolist() == expected
     assert len(market["funding"]) == 2
+    assert list(market["trade"].columns) == [
+        "instrument_id",
+        "bar_open_ms",
+        "close",
+        "volume",
+        "quote_volume",
+    ]
+    assert list(market["mark"].columns) == ["instrument_id", "bar_open_ms", "close"]
+    assert isinstance(market["trade"].instrument_id.dtype, pd.CategoricalDtype)
 
 
 def test_saved_run_can_be_summarized_without_loading_or_fitting(tmp_path, capsys):

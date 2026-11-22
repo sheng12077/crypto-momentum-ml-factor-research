@@ -45,6 +45,8 @@ def run_batch(stage="all", root=ROOT, runner=None):
             return status
         step = {"config": config, "stage": action, "returncode": result.returncode}
         if result.returncode:
+            if result.returncode == -9:
+                step["termination"] = "SIGKILL; check kernel OOM log before retrying"
             status["failed_step"] = step
             save()
             return status

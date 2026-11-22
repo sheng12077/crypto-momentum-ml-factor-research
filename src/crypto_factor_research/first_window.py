@@ -9,7 +9,15 @@ import pandas as pd
 
 from .config import DAY, HOUR, load_json, sha
 from .repair import write_json
-from .window_data import PublicSources, WindowData, episode_notice, ms, read_market, window_label
+from .window_data import (
+    MARKET_COLUMNS,
+    PublicSources,
+    WindowData,
+    episode_notice,
+    ms,
+    read_market,
+    window_label,
+)
 
 
 def identity(root, config_path, config):
@@ -166,7 +174,8 @@ def prepare(root, config, path, ident):
 
 def load_data(path):
     market = {
-        kind: pd.read_parquet(path / (kind + ".parquet")) for kind in ["trade", "mark", "funding"]
+        kind: pd.read_parquet(path / (kind + ".parquet"), columns=columns)
+        for kind, columns in MARKET_COLUMNS.items()
     }
     data = WindowData(market, load_json(path / "notices.json"))
     for symbol, notice in data.notices.items():

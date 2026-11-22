@@ -18,6 +18,14 @@ from .repair import RateGate, request, write_json
 
 MINUTE = 60000
 
+# Execution/labels do not consume OHLC extremes or aggressive-volume columns here;
+# factor inputs are already verified in the separate daily feature panel.
+MARKET_COLUMNS = {
+    "trade": ["instrument_id", "bar_open_ms", "close", "volume", "quote_volume"],
+    "mark": ["instrument_id", "bar_open_ms", "close"],
+    "funding": ["instrument_id", "event_timestamp_ms", "funding_rate", "funding_interval_hours"],
+}
+
 
 def ms(value):
     return int(pd.Timestamp(value).tz_localize("UTC").timestamp() * 1000)
@@ -199,6 +207,7 @@ def read_market(root, config, symbols):
     daily = root / config["daily_root"]
     collections = {"trade": [], "mark": [], "funding": []}
     bindings = {}
+    symbol_dtype = pd.CategoricalDtype(sorted(symbols))
     for symbol in sorted(symbols):
         index_path = daily / "index" / (symbol + ".json")
         index = load_json(index_path)
@@ -228,29 +237,22 @@ def read_market(root, config, symbols):
                 or meta["raw_sha256"] != binding["raw_sha256"]
             ):
                 raise ValueError("First-window canonical source changed:" + key)
-            columns = (
-                ["instrument_id", "event_timestamp_ms", "funding_rate", "funding_interval_hours"]
-                if kind == "funding"
-                else [
-                    "instrument_id",
-                    "bar_open_ms",
-                    "open",
-                    "high",
-                    "low",
-                    "close",
-                    "volume",
-                    "quote_volume",
-                    "taker_buy_volume",
-                    "taker_buy_quote_volume",
-                ]
-            )
-            part = pq.read_table(path, columns=columns).to_pandas()
+            part = pq.read_table(path, columns=MARKET_COLUMNS[kind]).to_pandas()
             if len(part) != meta["rows"] or (len(part) and set(part.instrument_id) != {symbol}):
                 raise ValueError("Canonical row/symbol mismatch:" + key)
+            part["instrument_id"] = part.instrument_id.astype(symbol_dtype)
             collections[kind].append(part)
             bindings[str(path)] = binding["parquet_sha256"]
             bindings[str(meta_path)] = binding["index_sha256"]
-    market = {kind: pd.concat(parts, ignore_index=True) for kind, parts in collections.items()}
+    market = {}
+    for kind in list(collections):
+        parts = collections.pop(kind)
+        print(
+            json.dumps({"stage": "market_merge", "kind": kind, "rows": sum(len(p) for p in parts)}),
+            flush=True,
+        )
+        market[kind] = pd.concat(parts, ignore_index=True)
+        del parts
     repair = root / config["repair_run"]
     assessment = load_json(repair / "assessment.json")
     overlay = repair / "deduplicated_observations.jsonl"
@@ -275,22 +277,73 @@ def read_market(root, config, symbols):
             }
         else:
             value = validate_bar(row["values"], t)
-        extra[row["kind"]].append({"instrument_id": row["symbol"], **value})
+        kind = row["kind"]
+        extra[kind].append(
+            {
+                "instrument_id": row["symbol"],
+                **{k: value[k] for k in MARKET_COLUMNS[kind] if k != "instrument_id"},
+            }
+        )
     for kind, parts in extra.items():
         if parts:
-            market[kind] = pd.concat([market[kind], pd.DataFrame(parts)], ignore_index=True)
+            added = pd.DataFrame(parts)
+            added["instrument_id"] = added.instrument_id.astype(symbol_dtype)
+            market[kind] = pd.concat([market[kind], added], ignore_index=True)
         key = "event_timestamp_ms" if kind == "funding" else "bar_open_ms"
         if market[kind].duplicated(["instrument_id", key]).any():
             raise ValueError("Duplicate original/recovered observation:" + kind)
-        market[kind] = market[kind].sort_values(["instrument_id", key]).reset_index(drop=True)
+        table = market.pop(kind)
+        market[kind] = table.sort_values(["instrument_id", key], ignore_index=True)
+        del table
     bindings[str(overlay)] = sha(overlay)
     return market, bindings
+
+
+class TradeBars:
+    """Compact exact timestamp lookup with a small source-verified repair overlay."""
+
+    def __init__(self, group=None):
+        self.stamps = np.array([], dtype=np.int64)
+        self.values = np.empty((0, 3), dtype=np.float64)
+        self.extra = {}
+        if group is not None:
+            self.stamps = group.bar_open_ms.to_numpy(dtype=np.int64, copy=True)
+            self.values = group[["close", "volume", "quote_volume"]].to_numpy(
+                dtype=np.float64, copy=True
+            )
+            if np.any(self.stamps[1:] <= self.stamps[:-1]):
+                order = np.argsort(self.stamps)
+                self.stamps, self.values = self.stamps[order], self.values[order]
+                if np.any(self.stamps[1:] == self.stamps[:-1]):
+                    raise ValueError("Duplicate trade timestamp")
+
+    def get(self, t, default=None):
+        if t in self.extra:
+            return self.extra[t]
+        i = int(np.searchsorted(self.stamps, t))
+        if i < len(self.stamps) and self.stamps[i] == t:
+            return tuple(float(v) for v in self.values[i])
+        return default
+
+    def __getitem__(self, t):
+        row = self.get(t)
+        if row is None:
+            raise KeyError(t)
+        return row
+
+    def __setitem__(self, t, row):
+        existing = self.get(t)
+        if existing is not None:
+            if existing != row:
+                raise ValueError("Conflicting trade timestamp")
+            return
+        self.extra[t] = row
 
 
 class WindowData:
     def __init__(self, market, notices):
         self.symbols = sorted(set(market["trade"].instrument_id) | {"BTCUSDT", "ETHUSDT"})
-        self.trades = {s: {} for s in self.symbols}
+        self.trades = {s: TradeBars() for s in self.symbols}
         self.marks = {
             s: (np.array([], dtype=np.int64), np.array([], dtype=float)) for s in self.symbols
         }
@@ -298,17 +351,14 @@ class WindowData:
         self.funding_meta = {s: [] for s in self.symbols}
         self.notices = notices
         self.exit_prices = {}
-        for symbol, group in market["trade"].groupby("instrument_id"):
-            self.trades[symbol] = {
-                int(row.bar_open_ms): (float(row.close), float(row.volume), float(row.quote_volume))
-                for row in group.itertuples()
-            }
-        for symbol, group in market["mark"].groupby("instrument_id"):
+        for symbol, group in market["trade"].groupby("instrument_id", observed=True):
+            self.trades[symbol] = TradeBars(group)
+        for symbol, group in market["mark"].groupby("instrument_id", observed=True):
             self.marks[symbol] = (
                 group.bar_open_ms.to_numpy(dtype=np.int64) + HOUR,
                 group.close.to_numpy(dtype=float),
             )
-        for symbol, group in market["funding"].groupby("instrument_id"):
+        for symbol, group in market["funding"].groupby("instrument_id", observed=True):
             self.funding_meta[symbol] = [
                 (
                     int(row.event_timestamp_ms),
