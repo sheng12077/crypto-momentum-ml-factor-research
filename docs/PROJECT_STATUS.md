@@ -1,5 +1,20 @@
 # Project status
 
+## 2023 benchmark preflight fix — 2026-11-22
+
+- Topic fix/spot-benchmark-required-keys; completed fix merged with no-ff.
+- Run e199229092439e24d200 stopped only on BTC/ETH spot calendar checks.
+  Both verified archives omit the same unused hourly bar (1679662800000).
+  Every required execution and daily valuation price is present.
+- Benchmark validation now requires the exact execution/valuation timestamps;
+  missing required prices still fail. Source checksums, identity, timestamp grid
+  and source-month bounds are checked. No filling or fabricated prices.
+- Ten targeted tests and changed-file lint pass; both cached 2023 benchmarks
+  produce 365 daily rows. No full preflight, training or simulation launched.
+- Only reporting validation changed: existing prepared data/model identity remains
+  reusable. User resumes with the same window --config config/dynamic_2023.json
+  --stage all command. Existing 17 legacy edits untouched; no push.
+
 ## 2023 user-run preparation completed — 2026-11-22
 
 - Experiment021registration2917c70;topicfeat/user-run-window-2023,merge completed
