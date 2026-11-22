@@ -689,6 +689,11 @@ Publisher SHA256: `{sha(Path(__file__))}`.
     readme.write_text(
         f"""# Crypto Cross-Sectional Factor Research
 
+[![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![NautilusTrader engine](https://img.shields.io/badge/Engine-NautilusTrader-334155)](src/momentum_data/backtest/engine.py)
+[![Checks verified locally](https://img.shields.io/badge/Checks-verified_locally-16876B)](docs/PACKAGE_MIGRATION_VERIFICATION.md)
+[![Retrospective research](https://img.shields.io/badge/Research-retrospective-64748B)](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md)
+
 A reproducible, medium-frequency crypto long/short research project using annual
 LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
 aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
