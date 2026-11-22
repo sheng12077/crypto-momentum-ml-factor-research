@@ -116,9 +116,15 @@ class Oracle:
         return float(prices[i]), int(stamps[i])
 
     def fill_price(self, symbol, t, last):
-        notice = self.notices.get(symbol)
-        if notice and t == notice["exit_ms"]:
-            return notice["exit_vwap"]
+        matches = [
+            notice
+            for key, notice in self.notices.items()
+            if notice.get("symbol", key) == symbol and t == notice["exit_ms"]
+        ]
+        if len(matches) > 1:
+            raise ValueError("Ambiguous independent notice exit")
+        if matches:
+            return matches[0]["exit_vwap"]
         if t != last - HOUR and (t % DAY != 2 * HOUR):
             raise ValueError("Unregistered fill time")
         v, q = self.trades[(symbol, t - HOUR)]

@@ -81,13 +81,31 @@ def prepare(root, config, path, ident):
                 raise ValueError("Risk exit has zero traded volume")
             notice.update(exit_vwap=row["quote_volume"] / row["volume"], exit_source=source)
             relaunch = metadata.get(item["symbol"], {}).get("onboardDate", 0)
+            if "relaunch_article_code" in item:
+                relaunch, relaunch_source = client.relaunch(item)
+                if relaunch <= notice["effective_ms"]:
+                    raise ValueError("Relaunch must follow cessation")
+                notice["relaunch_source"] = relaunch_source
             if relaunch > notice["effective_ms"]:
                 notice["valid_to_ms"] = int(relaunch)
-            notices[item["symbol"]] = notice
+            key = item["symbol"]
+            if key in notices:
+                key += "@" + item["effective_utc"]
+            if key in notices:
+                raise ValueError("Duplicate cessation assertion:" + key)
+            notices[key] = notice
         except Exception as exc:
             errors.append(
                 {"symbol": item["symbol"], "issue": "notice_or_exit_bar", "error": str(exc)}
             )
+    for symbol in {n["symbol"] for n in notices.values()}:
+        episodes = sorted(
+            [n for n in notices.values() if n["symbol"] == symbol],
+            key=lambda n: n["effective_ms"],
+        )
+        for earlier, later in zip(episodes, episodes[1:], strict=False):
+            if earlier.get("valid_to_ms", 2**63 - 1) > later["blocked_from_ms"]:
+                errors.append({"symbol": symbol, "issue": "overlapping_cessation_episodes"})
     write_json(path / "source_errors.json", errors)
     if errors:
         raise ValueError("All notice/exit errors saved to source_errors.json")
@@ -95,7 +113,8 @@ def prepare(root, config, path, ident):
         frame.apply(
             lambda row: (
                 episode_notice(notices, row.instrument_id, row.decision_ms) is None
-                or row.decision_ms < notices[row.instrument_id]["blocked_from_ms"]
+                or row.decision_ms
+                < episode_notice(notices, row.instrument_id, row.decision_ms)["blocked_from_ms"]
             ),
             axis=1,
         )
@@ -191,8 +210,12 @@ def training_rows(frame, data, cutoff):
     return train, rejected
 
 
-def ranked_schedule(frame, year, weeks=2, minimum=20):
+def ranked_schedule(frame, year, weeks=2, minimum=20, stop_exclusive=None):
     mondays = pd.date_range(f"{year}-01-01", f"{year}-12-31", freq="W-MON", tz="UTC")[::weeks]
+    if stop_exclusive is not None:
+        # Execution completes at decision + 2h; the final close is last NAV - 1h.
+        final_close = ms(stop_exclusive) - DAY - HOUR
+        mondays = [day for day in mondays if day.value // 1000000 + 2 * HOUR < final_close]
     schedule = {}
     for day in mondays:
         sample = frame[frame.feature_cutoff_ms.eq(int(day.timestamp() * 1000))].sort_values(
@@ -277,7 +300,11 @@ def fit(root, config, path, data):
     write_json(out / "label_rejections.json", rejected)
     schedules = {
         "lightgbm": ranked_schedule(
-            test, int(config["start"][:4]), config["rebalance_weeks"], config["minimum_candidates"]
+            test,
+            int(config["start"][:4]),
+            config["rebalance_weeks"],
+            config["minimum_candidates"],
+            config["stop_exclusive"],
         )
     }
     for kind in ["momentum60", "equal_groups"]:
@@ -286,6 +313,7 @@ def fit(root, config, path, data):
             int(config["start"][:4]),
             config["rebalance_weeks"],
             config["minimum_candidates"],
+            config["stop_exclusive"],
         )
     for seed in config["random_seeds"]:
         schedules[f"random_{seed}"] = ranked_schedule(
@@ -293,6 +321,7 @@ def fit(root, config, path, data):
             int(config["start"][:4]),
             config["rebalance_weeks"],
             config["minimum_candidates"],
+            config["stop_exclusive"],
         )
     write_json(out / "schedules.json", schedules)
     result = {
@@ -345,7 +374,7 @@ def inspect_schedule(data, schedule, start, last):
             s
             for s in previous
             if episode_notice(data.notices, s, t + HOUR) is None
-            or data.notices[s]["exit_ms"] > t + HOUR
+            or episode_notice(data.notices, s, t + HOUR)["exit_ms"] > t + HOUR
         }
         for symbol in previous | set(weights):
             if not data.trades[symbol].get(t) or data.trades[symbol][t][0] <= 0:
@@ -391,13 +420,13 @@ def inspect_schedule(data, schedule, start, last):
                 add(symbol, last_time, "funding_gap", "unverified_held_funding_tail")
         else:
             add(symbol, start, "funding_gap", "no_recorded_held_funding")
-        notice = data.notices.get(symbol)
-        if (
-            notice
-            and any(a < notice["exit_ms"] <= b for a, b in spans)
-            and symbol not in data.exit_prices
-        ):
-            add(symbol, notice["exit_bar_ms"], "risk_exit", "missing_post_notice_bar")
+        for key, notice in data.notices.items():
+            if (
+                notice.get("symbol", key) == symbol
+                and any(a < notice["exit_ms"] <= b for a, b in spans)
+                and key not in data.exit_prices
+            ):
+                add(symbol, notice["exit_bar_ms"], "risk_exit", "missing_post_notice_bar")
         if (
             any(a < last - HOUR <= b for a, b in spans)
             and data.vwap(symbol, last - 2 * HOUR) is None
@@ -626,6 +655,7 @@ def print_summary(path):
         "primary_replay_identical",
         "random_comparison",
         "return_excluding_best_month",
+        "candidate_comparison",
         "problem_count",
     ]
     compact = {k: result[k] for k in keys if k in result}
