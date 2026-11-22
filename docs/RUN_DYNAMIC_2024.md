@@ -49,3 +49,29 @@ prices when the user runs it. Historical publication-vintage limits remain.
 - [RNDR migration](https://www.binance.com/en/support/announcement/detail/d1f2ae8d99b24439a7a900caa9bb6b3b)
 - [MATIC migration](https://www.binance.com/en/support/announcement/detail/6a6de383727f4659a3050f7982e1620f)
 - [STPT/SNT/MBL/RAD/CVX cessation](https://www.binance.com/en/support/announcement/detail/a58cc13f78a34fbba11f00ff7144e9ee)
+
+### Preflight correction: six missing notices
+
+Run `e58811244cbeac121539` stopped before PnL with 12 execution-price failures
+across six unique contracts. Public recovery returned zero-volume flat bars,
+not executable liquidity. Their cessation notices were missing from the config:
+
+| Contract | Futures cessation (UTC) | Official source |
+| --- | --- | --- |
+| GALUSDT | 2024-07-11 09:00 | [GAL migration](https://www.binance.com/en/support/announcement/detail/27449abd481b473493b9c058350b4e2e) |
+| KLAYUSDT | 2024-10-22 09:00 | [KLAY migration](https://www.binance.com/en/support/announcement/detail/f75f933759ee49d0af1dfbce7e32144c) |
+| UNFIUSDT | 2024-10-30 09:00 | [UNFI cessation](https://www.binance.com/en/support/announcement/detail/043c8407bb904652a428573a50d07e07) |
+| BONDUSDT | 2024-12-16 09:00 | [BOND cessation](https://www.binance.com/en/support/announcement/detail/27eac260521b4f40ab331e1a345887a7) |
+| BLZUSDT | 2024-12-23 09:00 | [BLZ cessation](https://www.binance.com/en/support/announcement/detail/b140faee7cf9482cb10257308abda245) |
+| DARUSDT | 2024-12-26 09:00 | [DAR migration](https://www.binance.com/en/support/announcement/detail/21551cde98784f64b374f8d50ff2a438) |
+
+All six notice bodies/publication timestamps and positive-volume one-minute
+post-notice exit bars were verified using the existing public-source client.
+The existing five-minute notice handling rule is unchanged. No zero-volume bar
+is treated as a fill. Contracts retain their pre-announcement eligibility.
+
+Rerun the same `--stage all` command. The corrected config creates a distinct run
+directory and refits the model because notice filtering changes training inputs
+and trading candidates. The stopped run stays preserved; it is not a valid result.
+No strategy PnL was computed during this correction. Full plan preflight must
+still pass on the new schedules before financial simulations begin.

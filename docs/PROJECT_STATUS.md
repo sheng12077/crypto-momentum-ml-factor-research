@@ -1,5 +1,20 @@
 # Project status
 
+## 2024 missing cessation facts corrected — 2026-11-22
+
+- Topic fix/2024-cessation-coverage; corrected config and run documentation.
+- Stopped run e58811244cbeac121539: 12 execution VWAP failures, six unique
+  contracts (UNFI/BOND/KLAY/GAL/BLZ/DAR). Six recovered bars had zero volume;
+  missing cessation notices caused invalid post-cessation plans. No PnL computed.
+- Added six official source/date assertions, verified all six notice bodies,
+  publication clocks and positive-volume one-minute post-notice exit prices.
+  Existing five-minute exit/filter logic and model parameters unchanged.
+- Same command creates a new content-bound run and refits because candidate and
+  training filters change. Preserve stopped artifacts; do not reuse its model.
+- Thirteen small regression tests/lint pass. No full prepare, fit, preflight or
+  simulation launched. User runs config/dynamic_2024.json --stage all then summary.
+- Existing 17 user legacy edits untouched; no push/history rewrite.
+
 ## 2024 user-run preparation completed — 2026-11-22
 
 - Experiment 022 registration 6a16769 committed on main before implementation;
