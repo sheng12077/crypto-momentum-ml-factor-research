@@ -34,19 +34,30 @@ def spot_benchmark(root, config, symbol, start, last):
             if len(entries) != 1 or entries[0].filename != f"{symbol}-1h-{month}.csv":
                 raise ValueError("Spot archive identity mismatch")
             rows = csv.reader(io.StringIO(archive.read(entries[0]).decode("utf-8-sig")))
+            month_start = ms(f"{month}-01")
+            month_stop = int((pd.Period(month, freq="M") + 1).start_time.value // 1000000)
             for row in rows:
                 if not row or not row[0].isdigit():
                     continue
                 t = int(row[0])
                 t = t // 1000 if t >= 100000000000000 else t
+                if not month_start <= t < month_stop:
+                    raise ValueError("Spot timestamp outside source month")
                 if t in observed or t % HOUR:
                     raise ValueError("Spot duplicate/off-grid timestamp")
                 observed[t] = (float(row[4]), float(row[5]), float(row[7]))
-    if len(observed) != (ms(config["stop_exclusive"]) - start) // HOUR:
-        raise ValueError("Spot calendar incomplete")
     entry, final = start + HOUR, last - HOUR
+    required = {entry, final - HOUR} | {
+        t - HOUR for t in range(start + DAY, last + 1, DAY) if t <= final
+    }
+    missing = sorted(required - observed.keys())
+    if missing:
+        first = pd.Timestamp(missing[0], unit="ms", tz="UTC").isoformat()
+        raise ValueError(f"Spot required prices missing: {symbol}, count={len(missing)}, first={first}")
+    if any(not np.isfinite(observed[t][0]) or observed[t][0] <= 0 for t in required):
+        raise ValueError("Spot required price invalid")
     a, b = observed[entry], observed[final - HOUR]
-    if a[1] <= 0 or b[1] <= 0:
+    if any(not np.isfinite(v) or v <= 0 for row in (a, b) for v in row[1:]):
         raise ValueError("Spot execution volume unavailable")
     buy, sell = a[2] / a[1] * 1.0005, b[2] / b[1] * 0.9995
     units = 100000 / (buy * 1.001)
