@@ -1,276 +1,183 @@
-# Crypto Cross-Sectional Factor Research
-
-<!-- scope-correction:start -->
-> **Scope correction — 2026-11-22:** Existing reported performance uses a fixed
-> 37-identifier early cohort. The requested dynamic study across the acquired
-> 924-identifier catalog is incomplete. A full-input audit verified924daily files;
-> 750identifiers outside the old pool have at least one old price/Funding diagnostic
-> candidate day. These are diagnostic counts, not certified new trading eligibility.
-> See the [remediation specification](docs/REMEDIATION_PLAN.md). Publication and
-> deployment-readiness claims must remain restricted to the prototype's actual scope.
-<!-- scope-correction:end -->
+# Crypto Momentum & ML Factor Research
 
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](pyproject.toml)
-[![NautilusTrader engine](https://img.shields.io/badge/Engine-NautilusTrader-334155)](src/momentum_data/backtest/engine.py)
-[![Checks verified locally](https://img.shields.io/badge/Checks-verified_locally-16876B)](docs/PACKAGE_MIGRATION_VERIFICATION.md)
-[![Retrospective research](https://img.shields.io/badge/Research-retrospective-64748B)](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md)
+[![NautilusTrader](https://img.shields.io/badge/Engine-NautilusTrader-334155)](src/crypto_factor_research/execution.py)
+[![LightGBM](https://img.shields.io/badge/Model-LightGBM-298A08)](src/crypto_factor_research/first_window.py)
+[![Research](https://img.shields.io/badge/Status-Historical_research-64748B)](#results)
 
-A reproducible, medium-frequency crypto long/short research project using annual
-LightGBM forecasts and NautilusTrader execution/accounting. Momentum, funding and
-aggressive-buy/sell imbalance rank a conditional 37-asset USDT-perpetual cohort.
+Crypto perpetual-futures long/short research combining momentum, funding, and
+aggressive trade imbalance. The project compares LightGBM forecasts with simple
+factor scores, momentum sorting, and random portfolios using NautilusTrader and
+an independent accounting audit.
 
-**Current status: restricted-universe prototype; full-catalog inputs reconstructed, execution pending.**
-The new [full-catalog input report](docs/FULL_UNIVERSE_INPUTS.md) accounts for all 924
-identifiers, including 775 with provisional weekly candidate rows. Those inputs have
-not yet produced an expanded-universe strategy backtest. The [source-repair pass](docs/FULL_CATALOG_SOURCE_REPAIR.md)
-completed all 788 jobs and recovered 25,251 observations; unresolved funding rules,
-source omissions/conflicts and dated product scope still block execution readiness.
-The catalog includes noncrypto contracts; 775 is not a certified crypto-asset count.
-[Dated candidate-pool capacity](docs/DYNAMIC_UNIVERSE_CAPACITY.md) is measured separately
-from execution readiness; future holding-data problems never filter earlier entries.
-The uninterrupted 2022--October 2026 account is net profitable with lower historical
-volatility/drawdown than BTC/ETH holding, but monthly consistency is weak and results
-are substantially stronger in development years. Paper/live trading is not implemented
-or certified by these results.
+**Current release: dynamic-universe annual backtests for 2022–2026.** The project
+covers data engineering, chronological model evaluation, TreeSHAP explanations,
+execution simulation, and cost sensitivity. It is a research implementation;
+paper and live trading are not implemented.
 
-## Full period versus original OOS
+## Research question
 
-| Period | Role | Interpretation |
+Can a nonlinear combination of economically motivated signals improve portfolio
+selection relative to transparent rules, after trading costs and funding?
+
+| Signal group | Features | Interpretation |
 | --- | --- | --- |
-| 2022--2023 | Development / selection | Used to inform strategy and execution choices |
-| 2024 | Frozen validation | Revealed before the final holdout |
-| 2025--October 2026 | Original final OOS; now disclosed | Protocol015 separate account; frozen annual expanding fits |
-| 2022--October 2026 | Full retrospective reconstruction | Protocol016 registered after all annual results were observed |
+| Momentum | 20-, 60-, and 120-day returns | Trend persistence |
+| Funding | Seven-day funding signal | Leverage demand and holding cost |
+| Trade imbalance | Seven-day taker-quote imbalance | Aggressive buying versus selling |
 
-| Account / period | Return | CAGR | Sharpe (rf=0) | MDD |
-| --- | --- | --- | --- | --- |
-| Full path (2022--2026) | +84.06% | +13.45% | 0.645 | -26.77% |
-| Original OOS account (2025--2026) | +16.31% | +8.61% | 0.435 | -24.79% |
-| OOS-date slice of full path; carry-in diagnostic | +24.08% | +12.51% | 0.557 | -24.79% |
+Size and news signals are outside this version. The momentum horizons are model
+inputs, not a staged-entry or market-timing overlay.
 
-All primary rows include 5 bps adverse slippage plus 5 bps perpetual taker fees and
-Funding. The original OOS account starts with USDT 100,000 in cash on Jan 1, 2025;
-it does not inherit 2024 positions. The full-path diagnostic carries positions/capital
-from 2024 and is rebased at exactly the same Jan 1, 2025 NAV timestamp. It is **not**
-a substitute OOS result. The +84.06% whole-period result is also **not all OOS**.
-All comparisons end Oct 31, 2026 00:00 UTC; the last civil day is not included.
-Development years may contain chronological forward forecasts but were used for
-rule selection; that does not make them the clean final test.
+## Data and universe
 
-![Full path and original OOS equity](docs/assets/full_period_vs_oos.png)
+- Binance USDⓈ-M trade bars, mark prices, and observed funding history, with
+  dated contract identity, product-scope, and cessation evidence.
+- The acquired catalog contains **924 identifiers**. Eligibility is evaluated
+  at historical decision dates; catalog membership does not imply tradability.
+- Annual preparation loaded 211 identifiers for 2023, 312 for 2024, 538 for 2025,
+  and 663 for 2026, including training history. These counts are **not** the
+  number eligible simultaneously or held by the strategy. Each portfolio holds
+  at most five longs and five shorts.
+- Public-source recovery preserves original observations and records source
+  hashes. Future holding-data gaps are not used to filter earlier selections.
 
+This replaces the earlier fixed 37-identifier prototype as the headline study.
+Older continuous-account results remain historical documentation and should not
+be mixed with the dynamic-universe results below.
 
-Original OOS benchmarks and monthly results: [detailed period disclosure](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md#full-period-versus-original-oos).
+## Method
 
+1. Fit a LightGBM **regressor** on expanding historical training windows, starting
+   in 2021. Predict seven-day price returns and rank assets within each date.
+2. Admit training labels only after their holding period and availability buffer
+   have matured before the annual cutoff. The model is held fixed during each
+   evaluation year. TreeSHAP contributions are saved and checked for additivity.
+3. Rebalance every two weeks. With at least 20 candidates, target five longs and
+   five shorts at +10% / −10% NAV each: 100% gross, zero target net notional.
+   Actual exposure drifts between decisions; zero net notional is not zero beta.
+4. Compare against a 60-day momentum sort, an equal-weight combination of the
+   three factor-group ranks, 20 seeded random sorts, and matched BTC/ETH spot
+   holding benchmarks. Factor-score weights and portfolio weights are distinct.
+5. Simulate fills and funding in NautilusTrader, then independently reconstruct
+   positions, fees, funding, cash, and daily marked NAV from the ledgers.
 
-## Continuous performance (full retrospective account)
+Perpetual orders use a **5 bps taker fee without BNB discount**, plus adverse
+slippage scenarios of **5 / 10 / 20 bps per execution**. This is a current-cost
+assumption, not a reconstruction of every historical fee tier. Execution uses
+VWAP/mark proxies and fractional research quantities; no order-book queue or
+exchange liquidation engine is modeled.
 
-| Series | Total return | CAGR | Sharpe (rf=0) | MDD | Annual vol. | Calmar |
-| --- | --- | --- | --- | --- | --- | --- |
-| Strategy (5 bps slippage) | +84.06% | +13.45% | 0.645 | -26.77% | +24.13% | 0.503 |
-| Strategy (10 bps slippage) | +67.56% | +11.27% | 0.564 | -27.96% | +24.16% | 0.403 |
-| BTC spot buy-and-hold | +64.02% | +10.78% | 0.455 | -66.93% | +50.34% | 0.161 |
-| ETH spot buy-and-hold | -40.13% | -10.07% | 0.185 | -74.01% | +68.33% | -0.136 |
+## Results
 
-The account starts with USDT 100,000 on Jan 1 2022. Last valuation is **Oct 31 2026
-00:00 UTC**, not the end of that civil day. Positions and capital persist across years;
-there is one final liquidation and no yearly cash reset. Spot benchmarks buy once,
-hold fixed units and sell once. All periods are already inspected; this reconstruction
-is **not a fresh OOS test**. See [full results and limitations](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md).
+Net returns at **5 bps slippage**, including fees and funding:
 
-## Monthly net returns
+| Evaluation year | LightGBM | Equal factor scores | 60-day momentum | BTC spot | ETH spot |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2022 | **+21.76%** | −18.56% | −45.74% | −64.63% | −67.97% |
+| 2023 | +51.56% | +44.31% | +25.86% | **+154.51%** | +91.03% |
+| 2024 | −7.19% | **+116.62%** | −27.50% | +116.47% | +44.98% |
+| 2025 | +31.51% | **+63.93%** | −67.10% | −6.20% | −11.79% |
+| 2026, through Oct 31 00:00 UTC | −10.33% | −87.33% | **+351.61%** | −12.79% | −25.15% |
 
-![Continuous strategy monthly net returns](docs/assets/continuous_monthly_returns.png)
+2022–2023 are development windows, 2024 is validation, and 2025–2026 are the
+originally designated OOS dates. Each annual simulation starts with USDT 100,000,
+closes at its own boundary, and trains through the preceding year. These are
+**separate annual accounts**, not an uninterrupted strategy or buy-and-hold path.
+The final snapshot excludes trading later on October 31.
 
-- Positive months: **28/58 (48.28%)**; median month **-0.11%**.
-- Best month: **2022-06, +20.40%**; worst: **2026-10, -20.33%**.
-- Return excluding the best month: **+52.87%** (descriptive compounding check).
-- From 2024 onward: **+8.09%**, versus **+84.06%** over the full path.
+LightGBM risk metrics and cost sensitivity:
 
-Monthly values compound daily NAV changes grouped by UTC snapshot date, using the
-saved report's bucket convention. October 2026 is partial; November/December are
-unobserved. Green months do not establish a persistent edge or statistical significance.
+| Year | Sharpe, rf = 0 | Maximum drawdown | Return at 10 bps slippage | Return at 20 bps slippage |
+| --- | ---: | ---: | ---: | ---: |
+| 2022 | 0.79 | −18.48% | +19.28% | +14.46% |
+| 2023 | 1.42 | −21.07% | +48.11% | +41.42% |
+| 2024 | −0.01 | −37.75% | -9.40% | -13.66% |
+| 2025 | 0.75 | −33.08% | +28.54% | +22.80% |
+| 2026, partial | 0.09 | −45.03% | −11.99% | −15.21% |
 
-| Year | Strategy | BTC spot | ETH spot |
-| --- | --- | --- | --- |
-| 2022 | +44.31% | -64.53% | -67.89% |
-| 2023 | +18.00% | +153.74% | +90.97% |
-| 2024 | -13.59% | +120.20% | +46.70% |
-| 2025 | +40.58% | -4.64% | -11.55% |
-| 2026 (partial) | -11.02% | -13.20% | -24.77% |
+LightGBM made money in three of five windows and avoided the extreme annual
+swings of the simple controls. Its 2024 and 2026 losses, and 45% drawdown in 2026,
+do **not** establish a stable trading edge or deployment readiness. Simple
+controls also show why one strong year is insufficient evidence.
 
-2022--2023 informed development; 2024 was frozen validation; 2025--2026 were the
-original holdout, now revealed. The continuous reconstruction was registered after
-all results were observed. Annual slices include the cross-year daily return and
-therefore differ from separately liquidated, fresh-cash annual runs.
+![2026 monthly net returns: LightGBM and equal factor scores](docs/assets/dynamic_2026_monthly_returns.png)
 
-## Frozen strategy and simulation
+*2026 only; boundary months are partial. The funding assumption below applies.*
 
-- Five inputs across three groups: 20/60/120-day momentum, seven-day funding,
-  seven-day taker-quote imbalance. The momentum horizons are model features,
-  not a staged-entry position-control rule. No Size feature or buffer in this version.
-- Existing annual expanding-window model caches; strict matured-label cutoffs.
-  LightGBM parameters and forecasts are unchanged; annual SHAP is verified.
-- Top five long / bottom five short, equal +/-10% target NAV per asset; at least
-  20 eligible candidates. Target gross exposure 100%, target net notional zero;
-  actual exposures drift. This is not a guarantee of zero market beta.
-- Two-week rebalance, first-Monday anchor per year; actual quantities held between
-  decisions. Cross-year intervals can be 7/21 days. Signal cutoff 00:00 UTC,
-  sizing at 01UTC, prior-hour VWAP execution proxy at 02UTC.
-- Perpetual taker fee 5 bps, no BNB discount; adverse slippage 5/10 bps per fill.
-  Funding uses observed rates and a completed-hour mark proxy on pre-fill holdings.
-  BTC/ETH spot benchmarks use 10 bps taker + 5 bps slippage per side.
-- Required held-price/terminal checks, source-price/fee/funding reconstruction,
-  daily-ledger reconciliation and an exact primary financial replay. Historical
-  lots/margin/liquidation and order-book impact are not certified.
+### Accounting evidence and limitations
 
-The conditional cohort's historical publication vintage is unresolved. A matched
-momentum-only control has an unverified EOS terminal settlement and cannot support
-an alpha claim. Lower simulated MDD does not prove live safety or future returns.
+- **2026 funding assumption:** missing internal June 24 funding slots use the
+  mean of adjacent original rates, applied only to accounting after model fitting.
+  The following anchor is future information at the missing event time. These are
+  estimated costs, not proven settlements; they affect cash and later position
+  sizes. The LightGBM 5 bps case used 12 estimated payments totaling −17.67 USDT.
+- All 29 completed 2026 cases passed independent accounting checks, with a maximum
+  NAV/cash difference below 0.000001 USDT and an identical primary replay.
+  One of 20 random controls recorded nonpositive NAV and remains **failed**.
+  The report explicitly has partial control coverage; the full suite did not pass.
+  No full-period return or liquidation outcome is invented for that control.
+- Funding assumptions, proxy execution, fractional lots, changing contract rules,
+  and the absence of historical order books limit real-money interpretation.
 
-## Project structure
+[Published aggregate metrics and source-report hashes](docs/results/dynamic_annual_summary.json)
+contain the five annual snapshots. Market observations, model binaries, detailed
+ledgers, and generated working reports are excluded from Git.
+
+## Repository layout
 
 ```text
-src/momentum_data/
-    data/          # hourly stores, benchmarks and complete input checks
-    features/      # past-only factor definitions and history validation
-    models/        # frozen annual model/training/prediction/SHAP verification
-    portfolio/     # ranking and two-week portfolio schedule
-    backtest/      # Nautilus execution, Funding, independent ledger audit
-    reporting/     # metrics, publication and monthly heatmap
-    cli.py         # public commands
-scripts/           # three thin compatibility/demo entry points
-config/            # named frozen-run paths and execution assumptions
-notebooks/         # current English results reader
-research/legacy/   # preserved earlier research layout and frozen source bytes
-experiments/       # original preregistrations
+src/crypto_factor_research/  # dynamic universe, annual models, execution and audits
+src/momentum_data/          # shared components and preserved prototype engine
+config/                    # explicit annual windows and scenario settings
+scripts/                   # thin launchers and saved-result reporting
+experiments/               # preregistrations and acceptance criteria
+tests/                     # source, timing, portfolio and accounting checks
+docs/                      # methodology, runbooks and aggregate results
+research/legacy/           # earlier experiments and research history
 ```
 
-[Architecture and migration notes](docs/PROJECT_STRUCTURE.md) explain which paths
-are active, how frozen contracts survive relocation, and how historical tools are
-kept separate. The public package does not import legacy scripts. Archived model
-training/acquisition pipelines remain research evidence; the current CLI verifies
-and replays the existing frozen model caches, rather than promising a fresh-data bootstrap.
+## Installation and usage
 
-## Install and run without market data
-
-From the repository root on Linux/WSL with Python 3.13:
+Linux/WSL, Python 3.13:
 
 ```bash
 python -m pip install -r requirements/research-runtime-py313.txt
 python -m pip install -e ".[research,dev]"
-python -m momentum_data --help
+python -m crypto_factor_research --help
 python -m momentum_data smoke
 python -m pytest tests -q
 ```
 
-The smoke example creates a synthetic cross-year position and verifies its cash
-and Funding. It requires no API key, exchange connection or market dataset and
-makes no profitability claim. Runtime pins cover the current top-level packages,
-not a fully transitive environment lock. Historical lockfiles are retained separately.
+The synthetic smoke example needs no market data or API key. Historical research
+requires the ignored local data lake and prepared source evidence; cloning the
+repository alone does not reproduce historical results.
 
-## Reproduce saved results
-
-With the existing ignored local dataset and frozen caches available:
+With those local inputs present, an individual annual run is explicit:
 
 ```bash
-python -m momentum_data verify
-python -m momentum_data replay
-python -m momentum_data summary
-python -m momentum_data publish
+python -m crypto_factor_research window --config config/dynamic_2025.json --stage all
 ```
 
-`replay` runs both cost cases and the primary replay through the reorganized engine
-in a separate output directory; every financial SHA256 must equal the frozen result.
-It never overwrites the original case files. The new package also binds its own
-source/configuration contract. Local paths default to this checkout; set
-`MOMENTUM_PROJECT_ROOT` and, if needed, `MOMENTUM_DATA_ROOT` before importing the
-package to point at another research checkout/data root.
-
-The original convenience commands remain available:
+For the existing 2026 mean-funding run, audit and render saved results without
+training or simulating again:
 
 ```bash
-conda activate funding-strategy
-python scripts/run_continuous_reconstruction.py --stage all
-python scripts/run_continuous_reconstruction.py --stage summary
-python scripts/publish_continuous_results.py
+python scripts/report_saved_window.py \
+  --config config/dynamic_2026_mean_funding.json \
+  --run-dir data/processed/dynamic_2026_mean_funding/ff50164f4ed092093408 \
+  --allow-failed-random-controls
 ```
 
-The publisher reads verified outputs; it performs no refit, download or simulation.
-Full simulator runs require the ignored local research data and frozen caches; this
-repository alone does not supply a one-command fresh-data bootstrap. Never add keys
-or market datasets to Git, or delete contracts to bypass validation failures.
+See the [funding scenario runbook](docs/RUN_MEAN_FUNDING_OOS.md) for the assumption
+and strict-default batch behavior, and [project status](docs/PROJECT_STATUS.md)
+for the latest verified work. Default reporting continues to reject failed cases;
+the explicit partial-report flag cannot bypass candidate or replay failures.
 
-- [Results, annual/monthly detail and source provenance](docs/CONTINUOUS_RECONSTRUCTION_RESULTS.md)
-- [Simulation runbook, logs and resume behavior](docs/CONTINUOUS_RECONSTRUCTION_RUNBOOK.md)
-- [English saved-results notebook](notebooks/continuous_reconstruction_results.ipynb)
-- [Experiment 016 registration](experiments/016_continuous_2022_2026.md)
-- [Project status / handoff](docs/PROJECT_STATUS.md)
+## Selected references
 
-`experiments/` holds registrations; `scripts/` contains thin launchers; `src/`
-holds the independent package; `tests/` current accounting/interface checks; `docs/`
-methodology and conclusions. Source datasets and generated working reports remain
-ignored; this README and its figure publish aggregate results only.
+- Liu, Y., & Tsyvinski, A. (2021). [Risks and Returns of Cryptocurrency](https://doi.org/10.1093/rfs/hhaa113). *The Review of Financial Studies*.
+- Liu, Y., Tsyvinski, A., & Wu, X. (2022). [Common Risk Factors in Cryptocurrency](https://doi.org/10.1111/jofi.13119). *The Journal of Finance*.
 
-## Research archive
-
-- [Publication scope and committed-tree checks](docs/PUBLICATION_READINESS.md)
-- [Completed historical backtests: results, assumptions and commands](research/legacy/docs/FIRST_HISTORICAL_DEVELOPMENT.md)
-- [English historical-results notebook](research/legacy/notebooks/first_historical_results.ipynb)
-- [Development mark boundary recovery and resumable commands](research/legacy/docs/DEVELOPMENT_MARK_RECOVERY.md)
-- [Development warmup continuity and 2022 mark-gap audit](research/legacy/docs/DEVELOPMENT_CONTINUITY_AUDIT.md)
-- [Backtest analysis notebook and launch instructions](research/legacy/docs/BACKTEST_NOTEBOOK.md)
-- [Notebook source](research/legacy/notebooks/backtest_analysis.ipynb)
-- [Momentum and trend-following research landscape](research/legacy/docs/momentum_research_landscape.md)
-- [Candidate strategy families before Experiment 001](research/legacy/docs/candidate_strategy_families.md)
-- [Project status and handoff](docs/PROJECT_STATUS.md)
-- [Historical universe feasibility](research/legacy/docs/historical_universe_feasibility.md)
-- [WSL raw-data acquisition commands](research/legacy/docs/USDM_ACQUISITION.md)
-- [Post-acquisition quality audit](research/legacy/docs/POST_ACQUISITION_AUDIT.md)
-- [Mark-gap source reconciliation](research/legacy/docs/MARK_GAP_RECONCILIATION.md)
-- [Mark-gap recovery and versioned partial overlay](research/legacy/docs/MARK_GAP_RECOVERY.md)
-
-- [Research data layer and full-conversion command](research/legacy/docs/RESEARCH_DATA_LAYER.md)
-- [Partial lifecycle evidence and remaining gates](research/legacy/docs/LIFECYCLE_REVIEW.md)
-
-- [Research-input readiness and public cap pilots](research/legacy/docs/RESEARCH_INPUT_READINESS.md)
-
-- [Weekly market-cap coverage acquisition](research/legacy/docs/CMC_WEEKLY_COVERAGE.md)
-
-- [Weekly cap identity and coverage audit](research/legacy/docs/CMC_IDENTITY_AUDIT.md)
-
-- [Contract identity evidence and proposed episodes](research/legacy/docs/CONTRACT_IDENTITY_EVIDENCE.md)
-
-- [Identity follow-up and named exclusion decisions](research/legacy/docs/IDENTITY_FOLLOWUP_DECISIONS.md)
-
-- [Full-universe retention screen and candidate lists](research/legacy/docs/FULL_UNIVERSE_RETENTION_SCREEN.md)
-
-- [Daily episode-aware inputs and full-build command](research/legacy/docs/DAILY_RESEARCH_INPUTS.md)
-
-- [Approved chronological research split](research/legacy/docs/RESEARCH_SPLIT.md)
-
-- [Approved weekly baseline, buffer and sizing research sequence](research/legacy/docs/WEEKLY_RESEARCH_SEQUENCE.md)
-
-- [Weekly baseline timing, boundary checks and coverage command](research/legacy/docs/WEEKLY_BASELINE_STAGE0.md)
-
-- [Early history, funding inventory and raw backfill command](research/legacy/docs/HISTORY_EXTENSION.md)
-
-- [Completed early raw integrity, gap and funding audit](research/legacy/docs/EARLY_HISTORY_AUDIT.md)
-
-- [QTUM funding supplement and DEFI/LEND episode checks](research/legacy/docs/EARLY_CASES_REVIEW.md)
-
-- [Completed2020 observation release and daily panel](research/legacy/docs/EARLY_RESEARCH_RELEASE.md)
-
-- [Completed2020 Size inventory and named identity gaps](research/legacy/docs/EARLY_SIZE_INVENTORY.md)
-
-- [Early Size identity decisions and unresolved source gates](research/legacy/docs/EARLY_SIZE_IDENTITIES.md)
-
-- [IOTA alias recovery and UNI futures launch supplement](research/legacy/docs/EARLY_IDENTITY_FOLLOWUP.md)
-
-- [First remaining early identity batch and per-case decisions](research/legacy/docs/EARLY_IDENTITY_BATCH1.md)
-
-- [Second early identity batch and cumulative coverage](research/legacy/docs/EARLY_IDENTITY_BATCH2.md)
-
-- [Third early identity batch, token and migration checks](research/legacy/docs/EARLY_IDENTITY_BATCH3.md)
-
-- [One-command processing and reports for all81 early identifiers](research/legacy/docs/UNIFIED_EARLY_IDENTITY.md)
+These papers motivate cryptocurrency return predictability and factor research;
+the implementation here is an independent perpetual-futures experiment.

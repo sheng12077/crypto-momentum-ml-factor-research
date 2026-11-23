@@ -1,5 +1,24 @@
 # Project status
 
+## Public README refreshed for dynamic-universe results — 2026-11-23
+
+- User requested README completion and a new push; origin is
+  https://github.com/sheng12077/crypto-momentum-ml-factor-research.git.
+  Topic docs/dynamic-research-readme; see the latest merge for final commit.
+- README now leads with the active dynamic study, annual2022–2026 comparisons,
+  LightGBM risk/cost sensitivity, universe counts, methodology, TreeSHAP and audits.
+  Old37-cohort continuous results are no longer the headline. Two references only.
+- Publishes docs/results/dynamic_annual_summary.json (aggregate metrics and source
+  report hashes only) and the saved2026 monthly comparison figure. No raw market
+  data, trained models, detailed ledgers or working reports are included.
+- Annual cash resets,2026 funding assumption,29/30 completed-case coverage and
+  unavailable full random comparison are disclosed. No live-readiness claim.
+- README local links, saved-metric values, figure and active CLI help checked;
+  no historical fit/download/backtest run. Pending origin diff checked for dataset
+  and credential path patterns. Fetch confirms no remote-only commits.
+- Push is authorized by the current user request; never force-push. Preserve17
+  unrelated legacy working edits. Next research work requires a separate scope.
+
 ## Saved 2026 results reported with explicit control failure — 2026-11-23
 
 - Topic fix/report-failed-random-controls; see latest merge for final commit.
