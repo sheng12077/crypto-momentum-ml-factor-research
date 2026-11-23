@@ -98,9 +98,16 @@ def report(root, config, path):
         frame, bindings = spot_benchmark(root, config, symbol, start, last)
         bench[symbol] = frame
         source_bindings.update(bindings)
-    from .window_audit import attribution, audit_all
+    from .window_audit import attribution, audit_all, read_ledger
 
     audit = audit_all(config, path)
+    assumptions = (
+        load_json(path / "funding_assumptions.json") if config.get("funding_imputation") else None
+    )
+    estimated_keys = (
+        {(r["symbol"], r["timestamp_ms"]) for r in assumptions["records"]} if assumptions else set()
+    )
+    estimated_usage = []
     asset, side = attribution(path)
     out = path / "report"
     out.mkdir(exist_ok=True)
@@ -111,6 +118,21 @@ def report(root, config, path):
         name = f"{case['case']}_{case['bps']}bps"
         folder = path / "results" / name
         checked(folder, "case_manifest.json")
+        if assumptions:
+            ledger = read_ledger(folder, "funding")
+            selected = ledger.loc[
+                [
+                    (s, int(t) // 1000000) in estimated_keys
+                    for s, t in zip(ledger.instrument_id, ledger.timestamp_ns, strict=True)
+                ]
+            ]
+            estimated_usage.append(
+                {
+                    "case": name,
+                    "estimated_held_events": len(selected),
+                    "estimated_cashflow_usdt": float(selected.cashflow_usdt.sum()),
+                }
+            )
         daily = pd.read_csv(folder / "engine_daily.csv")
         for symbol, col in [("BTCUSDT", "btc_nav"), ("ETHUSDT", "eth_nav")]:
             if not daily.timestamp.equals(bench[symbol].timestamp):
@@ -131,6 +153,8 @@ def report(root, config, path):
             primary = daily
     metrics = pd.concat(all_metrics, ignore_index=True)
     metrics.to_csv(out / "all_case_metrics.csv", index=False)
+    if assumptions:
+        pd.DataFrame(estimated_usage).to_csv(out / "estimated_funding_usage.csv", index=False)
     comparison = metrics[
         metrics.series.eq("strategy_nav")
         & metrics["case"].str.startswith(("lightgbm_", "equal_groups_", "momentum60_"))
@@ -241,6 +265,11 @@ def report(root, config, path):
         + markdown_table(asset.reset_index().head(10))
         + "\n\nAsset contributions reconcile to account PnL; removing an asset would require a separate counterfactual replay.\n"
     )
+    if assumptions:
+        md += (
+            "\nFunding assumption: adjacent original-rate mean on 2026-06-24 UTC; "
+            "accounting only, uses a future anchor. These are estimated costs, not proven settlements.\n"
+        )
     (out / "results.md").write_text(md)
     result = {
         "success": True,
@@ -259,6 +288,25 @@ def report(root, config, path):
         "source_bindings": source_bindings,
         "output_hashes": {file.name: sha(file) for file in out.iterdir() if file.is_file()},
     }
+    if assumptions:
+        result["funding_imputation"] = {
+            "method": "adjacent_mean",
+            "use": "accounting_only",
+            "uses_future_anchor": True,
+            "estimated_events": assumptions["estimated_events"],
+            "primary_candidate_usage": [
+                row
+                for row in estimated_usage
+                if row["case"]
+                in {
+                    "lightgbm_5bps",
+                    "equal_groups_5bps",
+                }
+            ],
+        }
+        result["source_bindings"][str((path / "funding_assumptions.json").resolve())] = sha(
+            path / "funding_assumptions.json"
+        )
     write_json(path / "report_summary.json", result)
     cells = [
         {
@@ -291,6 +339,11 @@ def report(root, config, path):
             ],
         },
     ]
+    if assumptions:
+        cells[0]["source"].append(
+            "\n\nFunding costs use the adjacent-mean assumption on June 24; "
+            "the following original rate is future information. See report/estimated_funding_usage.csv."
+        )
     write_json(
         path / "results.ipynb",
         {

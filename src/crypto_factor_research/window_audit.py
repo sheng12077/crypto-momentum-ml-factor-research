@@ -115,6 +115,96 @@ class Oracle:
             raise ValueError("Independent held mark unavailable")
         return float(prices[i]), int(stamps[i])
 
+    def add_mean_assumptions(self, config, path):
+        """Independently verify the declared estimate against original adjacent rows."""
+        target = path / "funding_assumptions.json"
+        saved = load_json(target)
+        gate = load_json(path / "preflight.json")
+        if gate["source_bindings"].get(str(target.resolve())) != sha(target):
+            raise ValueError("Unbound funding assumptions")
+        original = path / "funding.parquet"
+        if sha(original) != saved["original_funding_sha256"]:
+            raise ValueError("Original funding changed after estimation")
+        policy = config["funding_imputation"]
+        start, stop = ms(policy["start_utc"]), ms(policy["stop_exclusive_utc"])
+        if (
+            policy["method"] != "adjacent_mean"
+            or policy["use"] != "accounting_only"
+            or saved["method"] != "adjacent_mean"
+            or saved["uses_future_anchor"] is not True
+            or saved["start_ms"] != start
+            or saved["stop_exclusive_ms"] != stop
+        ):
+            raise ValueError("Funding assumption policy mismatch")
+        records = saved["records"]
+        if len(records) != saved["estimated_events"]:
+            raise ValueError("Funding estimate count mismatch")
+        if not records:
+            return 0
+        stamps = sorted({r[k] for r in records for k in ["before_ms", "after_ms"]})
+        raw = pd.read_parquet(
+            original,
+            columns=[
+                "instrument_id",
+                "event_timestamp_ms",
+                "funding_rate",
+                "funding_interval_hours",
+            ],
+            filters=[("event_timestamp_ms", "in", stamps)],
+        )
+        anchors = {
+            (r.instrument_id, int(r.event_timestamp_ms)): (
+                float(r.funding_rate),
+                float(r.funding_interval_hours),
+            )
+            for r in raw.itertuples()
+        }
+        by_symbol = {
+            s: [int(t) for t, _ in self.funding[s]] for s in {r["symbol"] for r in records}
+        }
+        seen, groups = set(), {}
+        for record in records:
+            s, t, a, b = (record[k] for k in ["symbol", "timestamp_ms", "before_ms", "after_ms"])
+            left, right = anchors[(s, a)], anchors[(s, b)]
+            i = int(np.searchsorted(by_symbol[s], a))
+            if (
+                i + 1 >= len(by_symbol[s])
+                or by_symbol[s][i] != a
+                or by_symbol[s][i + 1] != b
+                or not np.isfinite(left + right).all()
+                or left[1] <= 0
+                or left[1] != right[1]
+                or record["interval_hours"] != left[1]
+                or record["before_rate"] != left[0]
+                or record["after_rate"] != right[0]
+                or not np.isfinite(record["rate"])
+                or abs(record["rate"] - (left[0] + right[0]) / 2) > 1e-15
+                or not a < t < b
+                or not start <= t < stop
+                or (s, t) in seen
+            ):
+                raise ValueError("Independent mean-funding anchor/rate mismatch")
+            seen.add((s, t))
+            groups.setdefault((s, a, b, left[1]), set()).add(t)
+        for (_s, a, b, hours), provided in groups.items():
+            step, base = int(round(hours * HOUR)), a // HOUR * HOUR
+            count = int(round((b - base) / step)) if step > 0 else 0
+            expected = {base + i * step for i in range(1, count)}
+            if (
+                step <= 0
+                or count <= 1
+                or a - base > 1000
+                or abs(b - (base + count * step)) > 1000
+                or provided != expected
+                or not all(start <= t < stop for t in expected)
+            ):
+                raise ValueError("Independent mean-funding schedule mismatch")
+        for r in records:
+            self.funding[r["symbol"]].append((r["timestamp_ms"], r["rate"]))
+        for s in by_symbol:
+            self.funding[s].sort()
+        return len(records)
+
     def fill_price(self, symbol, t, last):
         matches = [
             notice
@@ -285,6 +375,7 @@ def attribution(path):
 def audit_all(config, path):
     summary = load_json(path / "simulation_summary.json")
     oracle = Oracle(path, summary["cases"])
+    estimated = oracle.add_mean_assumptions(config, path) if config.get("funding_imputation") else 0
     start, last = ms(config["start"]), ms(config["stop_exclusive"]) - DAY
     results = [audit_case(path, case, oracle, start, last) for case in summary["cases"]]
     result = {
@@ -294,6 +385,7 @@ def audit_all(config, path):
             x["max_independent_nav_cash_error_usdt"] for x in results
         ),
         "audit_code_sha256": sha(Path(__file__)),
+        "assumed_funding_events_verified": estimated,
     }
     write_json(path / "independent_audit_summary.json", result)
     return result

@@ -1,0 +1,792 @@
+{
+  "capacity_run": "reports/tables/dynamic_universe_capacity/bdd1832d201a3a81105e",
+  "repair_run": "data/repairs/full_universe/9d8e79788ba25d039b37",
+  "daily_root": "data/canonical/binance_um_daily_research/v20261118_001",
+  "hourly_root": "data/canonical/binance_um_research/v20261117_001",
+  "spot_root": "data/interim/final_holdout/v20261122_003/spot_benchmarks/raw",
+  "output_root": "data/processed/dynamic_2026_mean_funding",
+  "public_cache": "data/repairs/first_window_public",
+  "train_start": "2021-01-01",
+  "train_stop": "2026-01-01",
+  "start": "2026-01-01",
+  "stop_exclusive": "2026-11-01",
+  "rebalance_weeks": 2,
+  "minimum_candidates": 20,
+  "positions_each_side": 5,
+  "slippage_bps": [
+    5,
+    10,
+    20
+  ],
+  "random_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "features": [
+    "momentum20",
+    "momentum60",
+    "momentum120",
+    "funding7",
+    "imbalance7"
+  ],
+  "model_parameters": {
+    "n_estimators": 100,
+    "learning_rate": 0.03,
+    "num_leaves": 7,
+    "max_depth": 3,
+    "min_child_samples": 100,
+    "reg_lambda": 10.0,
+    "subsample": 1.0,
+    "colsample_bytree": 1.0,
+    "random_state": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 1,
+    "verbosity": -1
+  },
+  "cessation_notices": [
+    {
+      "symbol": "BZRXUSDT",
+      "article_code": "dff27dc6bcbb432c902bcbea5e24ddfa",
+      "effective_utc": "2021-12-19T02:00:00Z"
+    },
+    {
+      "symbol": "BTTUSDT",
+      "article_code": "2722e6da4f5141dd9b2fb07b5b1f3f75",
+      "effective_utc": "2022-01-14T02:00:00Z"
+    },
+    {
+      "symbol": "KEEPUSDT",
+      "article_code": "96698a6a80f64cb1ae27f813032bfaa9",
+      "effective_utc": "2022-02-15T02:00:00Z"
+    },
+    {
+      "symbol": "YFIIUSDT",
+      "article_code": "4baf8d70485c46e38637bd063c58c4d8",
+      "effective_utc": "2022-04-12T09:00:00Z"
+    },
+    {
+      "symbol": "LUNAUSDT",
+      "article_code": "ef3ce76d5c2d45ee9b6dc3f281cde744",
+      "effective_utc": "2022-05-12T15:30:00Z"
+    },
+    {
+      "symbol": "AKROUSDT",
+      "article_code": "d1cb959677034c45b5149f1d998ae2b1",
+      "effective_utc": "2022-05-26T09:00:00Z"
+    },
+    {
+      "symbol": "DODOUSDT",
+      "article_code": "d1cb959677034c45b5149f1d998ae2b1",
+      "effective_utc": "2022-05-27T09:00:00Z"
+    },
+    {
+      "symbol": "SCUSDT",
+      "article_code": "6ce355dedc5d438abde7b5dc99b3a56d",
+      "effective_utc": "2022-06-17T09:00:00Z"
+    },
+    {
+      "symbol": "BTSUSDT",
+      "article_code": "90498d8e2fec42468ec3d659bdfbb78b",
+      "effective_utc": "2022-08-18T09:00:00Z"
+    },
+    {
+      "symbol": "FTTUSDT",
+      "article_code": "3b4c7c08479b48d48189191e37a7adca",
+      "effective_utc": "2022-11-14T04:00:00Z"
+    },
+    {
+      "symbol": "RAYUSDT",
+      "article_code": "9a6676662bd5417c92267953f3819dd0",
+      "effective_utc": "2022-11-15T04:00:00Z"
+    },
+    {
+      "symbol": "SRMUSDT",
+      "article_code": "9a6676662bd5417c92267953f3819dd0",
+      "effective_utc": "2022-11-15T04:30:00Z"
+    },
+    {
+      "symbol": "CVCUSDT",
+      "article_code": "3188e26f14a1464b91487abad452c04f",
+      "effective_utc": "2022-11-29T09:00:00Z"
+    },
+    {
+      "symbol": "BNXUSDT",
+      "article_code": "4d23ada51a2e4fa182835c77d51ba1a9",
+      "effective_utc": "2023-02-11T04:00:00Z"
+    },
+    {
+      "symbol": "HNTUSDT",
+      "article_code": "f1a8aa29692b4442a8f18be2076e14a0",
+      "effective_utc": "2023-03-20T09:00:00Z"
+    },
+    {
+      "symbol": "COCOSUSDT",
+      "article_code": "45852dc155b641bc9e1c23bc41d8ded6",
+      "effective_utc": "2023-05-25T09:00:00Z"
+    },
+    {
+      "symbol": "TOMOUSDT",
+      "article_code": "034eee2293964e26b915b1ec5c42972a",
+      "effective_utc": "2023-11-14T09:00:00Z"
+    },
+    {
+      "symbol": "STRAXUSDT",
+      "article_code": "2e6eb8e644664a6ca7b6659a226c41b0",
+      "effective_utc": "2024-03-15T09:00:00Z"
+    },
+    {
+      "symbol": "BLUEBIRDUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_utc": "2024-03-26T09:00:00Z"
+    },
+    {
+      "symbol": "FOOTBALLUSDT",
+      "article_code": "673183dd8eea4e3cba1596dcec7565d1",
+      "effective_utc": "2024-03-26T09:00:00Z"
+    },
+    {
+      "symbol": "ANTUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_utc": "2024-04-01T09:00:00Z"
+    },
+    {
+      "symbol": "CTKUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_utc": "2024-04-01T09:00:00Z"
+    },
+    {
+      "symbol": "DGBUSDT",
+      "article_code": "ce74360a3fd444b2b35da7186f8dd0ad",
+      "effective_utc": "2024-04-01T09:00:00Z"
+    },
+    {
+      "symbol": "MBLUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_utc": "2024-05-13T09:00:00Z"
+    },
+    {
+      "symbol": "SNTUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_utc": "2024-05-13T09:00:00Z"
+    },
+    {
+      "symbol": "STPTUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_utc": "2024-05-13T09:00:00Z"
+    },
+    {
+      "symbol": "CVXUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_utc": "2024-05-14T09:00:00Z"
+    },
+    {
+      "symbol": "RADUSDT",
+      "article_code": "a58cc13f78a34fbba11f00ff7144e9ee",
+      "effective_utc": "2024-05-14T09:00:00Z"
+    },
+    {
+      "symbol": "GLMRUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_utc": "2024-05-15T09:00:00Z"
+    },
+    {
+      "symbol": "IDEXUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_utc": "2024-05-15T09:00:00Z"
+    },
+    {
+      "symbol": "SLPUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_utc": "2024-05-15T09:00:00Z"
+    },
+    {
+      "symbol": "AUDIOUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_utc": "2024-05-16T09:00:00Z"
+    },
+    {
+      "symbol": "MDTUSDT",
+      "article_code": "cb525a5fbb954935afc77630fc5bd0cc",
+      "effective_utc": "2024-05-16T09:00:00Z"
+    },
+    {
+      "symbol": "WAVESUSDT",
+      "article_code": "f65faeeefe07417a8b6dd2900ba8da7e",
+      "effective_utc": "2024-06-11T09:00:00Z"
+    },
+    {
+      "symbol": "AGIXUSDT",
+      "article_code": "e485541c370240adba3929fded74f269",
+      "effective_utc": "2024-06-25T09:00:00Z"
+    },
+    {
+      "symbol": "OCEANUSDT",
+      "article_code": "e485541c370240adba3929fded74f269",
+      "effective_utc": "2024-06-25T09:00:00Z"
+    },
+    {
+      "symbol": "GALUSDT",
+      "article_code": "27449abd481b473493b9c058350b4e2e",
+      "effective_utc": "2024-07-11T09:00:00Z"
+    },
+    {
+      "symbol": "RNDRUSDT",
+      "article_code": "d1f2ae8d99b24439a7a900caa9bb6b3b",
+      "effective_utc": "2024-07-16T09:00:00Z"
+    },
+    {
+      "symbol": "MATICUSDT",
+      "article_code": "6a6de383727f4659a3050f7982e1620f",
+      "effective_utc": "2024-09-04T09:00:00Z"
+    },
+    {
+      "symbol": "KLAYUSDT",
+      "article_code": "f75f933759ee49d0af1dfbce7e32144c",
+      "effective_utc": "2024-10-22T09:00:00Z"
+    },
+    {
+      "symbol": "UNFIUSDT",
+      "article_code": "043c8407bb904652a428573a50d07e07",
+      "effective_utc": "2024-10-30T09:00:00Z"
+    },
+    {
+      "symbol": "KEYUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_utc": "2024-12-03T09:00:00Z"
+    },
+    {
+      "symbol": "RENUSDT",
+      "article_code": "131b75b63a71490393034f36de70c92c",
+      "effective_utc": "2024-12-03T09:00:00Z"
+    },
+    {
+      "symbol": "LOOMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_utc": "2024-12-09T09:00:00Z"
+    },
+    {
+      "symbol": "ORBSUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_utc": "2024-12-09T09:00:00Z"
+    },
+    {
+      "symbol": "XEMUSDT",
+      "article_code": "cfe97d52a8c840d3ba631835b637e9e7",
+      "effective_utc": "2024-12-09T09:00:00Z"
+    },
+    {
+      "symbol": "BONDUSDT",
+      "article_code": "27eac260521b4f40ab331e1a345887a7",
+      "effective_utc": "2024-12-16T09:00:00Z"
+    },
+    {
+      "symbol": "BLZUSDT",
+      "article_code": "b140faee7cf9482cb10257308abda245",
+      "effective_utc": "2024-12-23T09:00:00Z"
+    },
+    {
+      "symbol": "DARUSDT",
+      "article_code": "21551cde98784f64b374f8d50ff2a438",
+      "effective_utc": "2024-12-26T09:00:00Z"
+    },
+    {
+      "symbol": "FTMUSDT",
+      "article_code": "aec6fcbc84b749eeab6690e6bcac2f3d",
+      "effective_utc": "2025-01-06T09:00:00Z"
+    },
+    {
+      "symbol": "REEFUSDT",
+      "article_code": "572715f2d96e47769ebbb967c2a6e445",
+      "effective_utc": "2025-01-22T09:00:00Z"
+    },
+    {
+      "symbol": "LITUSDT",
+      "article_code": "2a9feaa556f74dcdaa2192366f0e247c",
+      "effective_utc": "2025-01-31T09:00:00Z"
+    },
+    {
+      "symbol": "OMGUSDT",
+      "article_code": "1e43c128806544018d3cc537a8add3f6",
+      "effective_utc": "2025-01-31T09:00:00Z"
+    },
+    {
+      "symbol": "AMBUSDT",
+      "article_code": "f3cc64a8758d4bb394e0830e5b31da97",
+      "effective_utc": "2025-02-21T09:00:00Z"
+    },
+    {
+      "symbol": "STMXUSDT",
+      "article_code": "f3cc64a8758d4bb394e0830e5b31da97",
+      "effective_utc": "2025-02-21T09:00:00Z"
+    },
+    {
+      "symbol": "BNXUSDT",
+      "article_code": "2f963977c7274e0583f16f2e26987b61",
+      "effective_utc": "2025-03-17T09:00:00Z"
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_utc": "2025-03-27T09:00:00Z",
+      "relaunch_article_code": "82f730b7ef444a38b323ab7a2e56b757",
+      "relaunch_utc": "2025-04-16T11:00:00Z"
+    },
+    {
+      "symbol": "COMBOUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_utc": "2025-03-27T09:00:00Z"
+    },
+    {
+      "symbol": "LINAUSDT",
+      "article_code": "db7ad1c7aa6248cda735102cdcdc4b8d",
+      "effective_utc": "2025-03-27T09:00:00Z"
+    },
+    {
+      "symbol": "BADGERUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_utc": "2025-04-14T09:00:00Z"
+    },
+    {
+      "symbol": "BALUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_utc": "2025-04-14T09:00:00Z"
+    },
+    {
+      "symbol": "NULSUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_utc": "2025-04-14T09:00:00Z"
+    },
+    {
+      "symbol": "TROYUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_utc": "2025-04-14T09:00:00Z"
+    },
+    {
+      "symbol": "VIDTUSDT",
+      "article_code": "fac9c3e401da4cc8b604566fd261d70c",
+      "effective_utc": "2025-04-14T09:00:00Z"
+    },
+    {
+      "symbol": "ALPACAUSDT",
+      "article_code": "0274f9d47da1437990bc13eb17b0ec99",
+      "effective_utc": "2025-04-30T09:00:00Z"
+    },
+    {
+      "symbol": "EOSUSDT",
+      "article_code": "1e89a9ca957c4b0ca7502e60b993e201",
+      "effective_utc": "2025-05-21T09:00:00Z"
+    },
+    {
+      "symbol": "PUMPUSDT",
+      "article_code": "38a74ee47cdc43ebbc672e1dc6968358",
+      "effective_utc": "2025-06-13T09:00:00Z"
+    },
+    {
+      "symbol": "LOKAUSDT",
+      "article_code": "551eeaf9861c47b8ad3482f45abf3f38",
+      "effective_utc": "2025-07-21T09:00:00Z"
+    },
+    {
+      "symbol": "DEFIUSDT",
+      "article_code": "21e399dcea734230a3c181daf5407b64",
+      "effective_utc": "2025-08-11T09:00:00Z"
+    },
+    {
+      "symbol": "MEMEFIUSDT",
+      "article_code": "21e399dcea734230a3c181daf5407b64",
+      "effective_utc": "2025-08-11T09:00:00Z"
+    },
+    {
+      "symbol": "LEVERUSDT",
+      "article_code": "d5fc5fdda5c74e3e8780050ed0841267",
+      "effective_utc": "2025-09-03T09:00:00Z"
+    },
+    {
+      "symbol": "BSWUSDT",
+      "article_code": "c95b56efd290471ba11c6cb850208d07",
+      "effective_utc": "2025-09-15T09:00:00Z"
+    },
+    {
+      "symbol": "OMNIUSDT",
+      "article_code": "13d0a79f79ef4406963dcd7f9d1de325",
+      "effective_utc": "2025-09-22T09:00:00Z"
+    },
+    {
+      "symbol": "ALPHAUSDT",
+      "article_code": "10fd115c29244067bd4566a70f77e327",
+      "effective_utc": "2025-09-23T09:00:00Z"
+    },
+    {
+      "symbol": "NEIROETHUSDT",
+      "article_code": "77d088eda9b040dc9f73bb7e57ae8e26",
+      "effective_utc": "2025-09-26T09:00:00Z"
+    },
+    {
+      "symbol": "UXLINKUSDT",
+      "article_code": "5a4fddd83a25401cabc2ae6271b532a2",
+      "effective_utc": "2025-09-26T09:00:00Z"
+    },
+    {
+      "symbol": "BAKEUSDT",
+      "article_code": "82df1b55a0d84c288fa396d5a5cead48",
+      "effective_utc": "2025-10-03T09:00:00Z"
+    },
+    {
+      "symbol": "HIFIUSDT",
+      "article_code": "82df1b55a0d84c288fa396d5a5cead48",
+      "effective_utc": "2025-10-03T09:00:00Z"
+    },
+    {
+      "symbol": "SLERFUSDT",
+      "article_code": "c045753243994cfcba6a22563389e910",
+      "effective_utc": "2025-10-20T09:00:00Z"
+    },
+    {
+      "symbol": "KDAUSDT",
+      "article_code": "ebe57975b8c34e928c7d3fdacfcef32a",
+      "effective_utc": "2025-11-06T09:00:00Z"
+    },
+    {
+      "symbol": "1000XUSDT",
+      "article_code": "869c1c15564048e29ae6139578637cd4",
+      "effective_utc": "2025-11-14T09:00:00Z"
+    },
+    {
+      "symbol": "MYROUSDT",
+      "article_code": "869c1c15564048e29ae6139578637cd4",
+      "effective_utc": "2025-11-14T09:00:00Z"
+    },
+    {
+      "symbol": "FLMUSDT",
+      "article_code": "6392491d998b4cbaa6d4beee0fd898c6",
+      "effective_utc": "2025-11-21T09:00:00Z"
+    },
+    {
+      "symbol": "PERPUSDT",
+      "article_code": "6392491d998b4cbaa6d4beee0fd898c6",
+      "effective_utc": "2025-11-21T09:00:00Z"
+    },
+    {
+      "symbol": "XCNUSDT",
+      "article_code": "6392491d998b4cbaa6d4beee0fd898c6",
+      "effective_utc": "2025-11-21T09:00:00Z"
+    },
+    {
+      "symbol": "PORT3USDT",
+      "article_code": "aa3cc74779bf456e8b100304905b9cc2",
+      "effective_utc": "2025-11-23T06:30:00Z"
+    },
+    {
+      "symbol": "PONKEUSDT",
+      "article_code": "53998d26b57f47beb97811ec9f5e582b",
+      "effective_utc": "2025-11-28T09:00:00Z"
+    },
+    {
+      "symbol": "QUICKUSDT",
+      "article_code": "53998d26b57f47beb97811ec9f5e582b",
+      "effective_utc": "2025-11-28T09:00:00Z"
+    },
+    {
+      "symbol": "SWELLUSDT",
+      "article_code": "53998d26b57f47beb97811ec9f5e582b",
+      "effective_utc": "2025-11-28T09:00:00Z"
+    },
+    {
+      "symbol": "MILKUSDT",
+      "article_code": "746056ce732d43dda12c1e5ae1b7a059",
+      "effective_utc": "2025-12-05T09:00:00Z"
+    },
+    {
+      "symbol": "SXPUSDT",
+      "article_code": "746056ce732d43dda12c1e5ae1b7a059",
+      "effective_utc": "2025-12-05T09:00:00Z"
+    },
+    {
+      "symbol": "OBOLUSDT",
+      "article_code": "746056ce732d43dda12c1e5ae1b7a059",
+      "effective_utc": "2025-12-05T09:30:00Z"
+    },
+    {
+      "symbol": "TOKENUSDT",
+      "article_code": "746056ce732d43dda12c1e5ae1b7a059",
+      "effective_utc": "2025-12-05T09:30:00Z"
+    },
+    {
+      "symbol": "FISUSDT",
+      "article_code": "7621c0ff8a924305b6e8fe78ce2c7fcd",
+      "effective_utc": "2025-12-10T09:00:00Z"
+    },
+    {
+      "symbol": "REIUSDT",
+      "article_code": "7621c0ff8a924305b6e8fe78ce2c7fcd",
+      "effective_utc": "2025-12-10T09:00:00Z"
+    },
+    {
+      "symbol": "SKATEUSDT",
+      "article_code": "7621c0ff8a924305b6e8fe78ce2c7fcd",
+      "effective_utc": "2025-12-10T09:00:00Z"
+    },
+    {
+      "symbol": "VOXELUSDT",
+      "article_code": "7621c0ff8a924305b6e8fe78ce2c7fcd",
+      "effective_utc": "2025-12-10T09:00:00Z"
+    },
+    {
+      "symbol": "AIAUSDT",
+      "article_code": "20eee4109e06448992f0557bf798bb36",
+      "effective_utc": "2025-12-11T12:15:00Z"
+    },
+    {
+      "symbol": "BIDUSDT",
+      "article_code": "5798be852fb5449bb438dde4166126dc",
+      "effective_utc": "2026-01-21T09:00:00Z"
+    },
+    {
+      "symbol": "DMCUSDT",
+      "article_code": "5798be852fb5449bb438dde4166126dc",
+      "effective_utc": "2026-01-21T09:00:00Z"
+    },
+    {
+      "symbol": "TANSSIUSDT",
+      "article_code": "5798be852fb5449bb438dde4166126dc",
+      "effective_utc": "2026-01-21T09:00:00Z"
+    },
+    {
+      "symbol": "ZRCUSDT",
+      "article_code": "5798be852fb5449bb438dde4166126dc",
+      "effective_utc": "2026-01-21T09:00:00Z"
+    },
+    {
+      "symbol": "42USDT",
+      "article_code": "79211335d1de4f7589ad2d8780580970",
+      "effective_utc": "2026-01-30T09:00:00Z"
+    },
+    {
+      "symbol": "COMMONUSDT",
+      "article_code": "79211335d1de4f7589ad2d8780580970",
+      "effective_utc": "2026-01-30T09:00:00Z"
+    },
+    {
+      "symbol": "CUDISUSDT",
+      "article_code": "79211335d1de4f7589ad2d8780580970",
+      "effective_utc": "2026-01-30T09:00:00Z"
+    },
+    {
+      "symbol": "EPTUSDT",
+      "article_code": "79211335d1de4f7589ad2d8780580970",
+      "effective_utc": "2026-01-30T09:00:00Z"
+    },
+    {
+      "symbol": "GHSTUSDT",
+      "article_code": "87a9bdf137f348668a85575ee02b8a27",
+      "effective_utc": "2026-02-06T09:00:00Z"
+    },
+    {
+      "symbol": "NKNUSDT",
+      "article_code": "87a9bdf137f348668a85575ee02b8a27",
+      "effective_utc": "2026-02-06T09:00:00Z"
+    },
+    {
+      "symbol": "RVVUSDT",
+      "article_code": "9ac36fb4f2ad4bf2b3b27f9c9224739c",
+      "effective_utc": "2026-02-10T09:00:00Z"
+    },
+    {
+      "symbol": "YALAUSDT",
+      "article_code": "9ac36fb4f2ad4bf2b3b27f9c9224739c",
+      "effective_utc": "2026-02-10T09:00:00Z"
+    },
+    {
+      "symbol": "1000WHYUSDT",
+      "article_code": "f6ebc17e4dbd451b873d9ef25c801237",
+      "effective_utc": "2026-03-17T09:00:00Z"
+    },
+    {
+      "symbol": "BDXNUSDT",
+      "article_code": "f6ebc17e4dbd451b873d9ef25c801237",
+      "effective_utc": "2026-03-17T09:00:00Z"
+    },
+    {
+      "symbol": "VFYUSDT",
+      "article_code": "f6ebc17e4dbd451b873d9ef25c801237",
+      "effective_utc": "2026-03-17T09:00:00Z"
+    },
+    {
+      "symbol": "HIPPOUSDT",
+      "article_code": "97b4f3a7d02a486c8d412ada2281b907",
+      "effective_utc": "2026-04-08T09:00:00Z"
+    },
+    {
+      "symbol": "OLUSDT",
+      "article_code": "97b4f3a7d02a486c8d412ada2281b907",
+      "effective_utc": "2026-04-08T09:00:00Z"
+    },
+    {
+      "symbol": "PUFFERUSDT",
+      "article_code": "97b4f3a7d02a486c8d412ada2281b907",
+      "effective_utc": "2026-04-08T09:00:00Z"
+    },
+    {
+      "symbol": "RLSUSDT",
+      "article_code": "97b4f3a7d02a486c8d412ada2281b907",
+      "effective_utc": "2026-04-08T09:00:00Z"
+    },
+    {
+      "symbol": "FIOUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "FUNUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "OXTUSDT",
+      "article_code": "d26a627649ee44fca27e07672add9ac2",
+      "effective_utc": "2026-04-15T09:00:00Z"
+    },
+    {
+      "symbol": "DEGOUSDT",
+      "article_code": "d067b373496c44a4ab8d28f3e90b66ad",
+      "effective_utc": "2026-04-21T09:00:00Z"
+    },
+    {
+      "symbol": "TRUUSDT",
+      "article_code": "d067b373496c44a4ab8d28f3e90b66ad",
+      "effective_utc": "2026-04-21T09:00:00Z"
+    },
+    {
+      "symbol": "B3USDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-28T09:00:00Z"
+    },
+    {
+      "symbol": "BOBUSDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-28T09:00:00Z"
+    },
+    {
+      "symbol": "DEGENUSDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-28T09:00:00Z"
+    },
+    {
+      "symbol": "AIUSDT",
+      "article_code": "ba5d61807b474b0ca9f40250e7fa782c",
+      "effective_utc": "2026-04-28T10:00:00Z"
+    },
+    {
+      "symbol": "VINEUSDT",
+      "article_code": "ba5d61807b474b0ca9f40250e7fa782c",
+      "effective_utc": "2026-04-28T10:00:00Z"
+    },
+    {
+      "symbol": "DAMUSDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-29T09:00:00Z"
+    },
+    {
+      "symbol": "IRUSDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-29T09:00:00Z"
+    },
+    {
+      "symbol": "ZKJUSDT",
+      "article_code": "1d2b6970facd470dbba6a674e1595bd4",
+      "effective_utc": "2026-04-29T09:00:00Z"
+    },
+    {
+      "symbol": "ATAUSDT",
+      "article_code": "a42f51022cb649aea0b4cb808205fd76",
+      "effective_utc": "2026-05-19T09:00:00Z"
+    },
+    {
+      "symbol": "COSUSDT",
+      "article_code": "24aced8c698649d9a552a47eeead5e34",
+      "effective_utc": "2026-06-11T09:00:00Z"
+    },
+    {
+      "symbol": "HIGHUSDT",
+      "article_code": "24aced8c698649d9a552a47eeead5e34",
+      "effective_utc": "2026-06-11T09:00:00Z"
+    },
+    {
+      "symbol": "IPUSDT",
+      "article_code": "5702f93568604ea7bfd2f4233f054bd1",
+      "effective_utc": "2026-06-28T09:00:00Z"
+    },
+    {
+      "symbol": "AERGOUSDT",
+      "article_code": "f0e3fc835b9545759e4279c64b200389",
+      "effective_utc": "2026-07-24T06:30:00Z"
+    },
+    {
+      "symbol": "VANRYUSDT",
+      "article_code": "64cf7544b98e4f2ca7f54ba11fd72d9d",
+      "effective_utc": "2026-08-07T09:00:00Z"
+    },
+    {
+      "symbol": "STORJUSDT",
+      "article_code": "d72915ed7a60473b92f0818d959a227a",
+      "effective_utc": "2026-08-26T09:00:00Z"
+    },
+    {
+      "symbol": "STGUSDT",
+      "article_code": "0c1e8975f48d42c4b856c113926c5fdd",
+      "effective_utc": "2026-09-24T09:00:00Z"
+    },
+    {
+      "symbol": "1000000BOBUSDT",
+      "article_code": "2f1a743334f044abbd82e34093c7b771",
+      "effective_utc": "2026-10-05T09:00:00Z"
+    },
+    {
+      "symbol": "PROMPTUSDT",
+      "article_code": "2f1a743334f044abbd82e34093c7b771",
+      "effective_utc": "2026-10-05T09:00:00Z"
+    },
+    {
+      "symbol": "PUMPBTCUSDT",
+      "article_code": "2f1a743334f044abbd82e34093c7b771",
+      "effective_utc": "2026-10-05T09:00:00Z"
+    },
+    {
+      "symbol": "MITOUSDT",
+      "article_code": "c30e6891afa54651ba950f8af144f861",
+      "effective_utc": "2026-10-23T09:00:00Z"
+    },
+    {
+      "symbol": "PTBUSDT",
+      "article_code": "c30e6891afa54651ba950f8af144f861",
+      "effective_utc": "2026-10-23T09:00:00Z"
+    }
+  ],
+  "registration": "experiments/024_mean_funding_oos.md",
+  "funding_imputation": {
+    "method": "adjacent_mean",
+    "start_utc": "2026-06-24",
+    "stop_exclusive_utc": "2026-06-25",
+    "use": "accounting_only",
+    "uses_future_anchor": true
+  }
+}

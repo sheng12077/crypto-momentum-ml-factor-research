@@ -25,6 +25,7 @@ def main():
             "capacity-audit",
             "first-window",
             "window",
+            "window-mean",
             "funding-breaks",
         ],
     )
@@ -52,14 +53,19 @@ def main():
         if not result["success"]:
             raise SystemExit(1)
         return
-    if args.command in {"first-window", "window"}:
-        if args.command == "window" and args.config == Path("config/full_universe_inputs.json"):
+    if args.command in {"first-window", "window", "window-mean"}:
+        if args.command in {"window", "window-mean"} and args.config == Path(
+            "config/full_universe_inputs.json"
+        ):
             parser.error("window requires --config")
         import contextlib
         import sys
         from datetime import UTC, datetime
 
-        from .first_window import main_stage
+        if args.command == "window-mean":
+            from .mean_funding_window import main_stage
+        else:
+            from .first_window import main_stage
 
         class Tee:
             def __init__(self, original, log):

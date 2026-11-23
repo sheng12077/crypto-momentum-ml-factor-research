@@ -1,5 +1,29 @@
 # Project status
 
+## User-authorized average-funding OOS scenario prepared — 2026-11-23
+
+- Experiment024 registration2c38466 precedes implementation; topic
+  feat/mean-funding-oos. User explicitly authorized adjacent average to see OOS.
+- Read docs/RUN_MEAN_FUNDING_OOS.md. Run:
+  python scripts/run_dynamic_final_windows.py --funding-assumption adjacent-mean
+  Same flag with --stage summary after completion. Strict default retained.
+- 2025 strict config/model cache81b2ebf6067810b2146a verified compatible/passed.
+  New2026 config dynamic_2026_mean_funding.json/output dynamic_2026_mean_funding.
+  Shared original financial identity code unchanged; no unnecessary 2025 refit.
+- New mean_funding_window orchestrates existing engine: fit on original data,
+  then accounting-only adjacent mean for stable-interval Jun24 internal slots.
+  Raw funding stays unchanged; source-bound funding_assumptions.json separate.
+- Bounded source recipe check:400 nominal events/397 contracts, covering145/145
+  known brackets. Not a full new preflight or proof of actual settlements.
+- Independent audit reconstructs assumed rates/times from original adjacent rows
+  before checking funding/NAV. Future-anchor use and paid-estimate usage appear
+  in report, notebook, summary and estimated_funding_usage.csv. Not a live signal.
+- 51 targeted tests/lint and launcher help pass, including tiny actual Nautilus
+  mean-funding payments and independent audit. Full historical runs belong to user;
+  no full prepare/fit/OOS simulation launched by agent.
+- Preserve all unrelated data gates; no tails/other-day filling or additional
+  scenarios. Both yearly preflights still required. User legacy edits untouched.
+
 ## Alternative funding sources investigated — 2026-11-23
 
 - User completed c946056e6180c28e76cb evidence audit: all145 REST brackets have

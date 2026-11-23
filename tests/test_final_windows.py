@@ -158,7 +158,10 @@ def test_relaunch_requires_correct_contract_and_advance_publication(tmp_path, mo
         client.relaunch(item)
 
 
-def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(tmp_path, monkeypatch):
+@pytest.mark.parametrize("mean_scenario", [False, True])
+def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(
+    tmp_path, monkeypatch, mean_scenario
+):
     from crypto_factor_research import window_audit, window_report
 
     path = tmp_path / "run"
@@ -175,6 +178,8 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(tmp_path, monkeyp
         )
     )
     times = [f"2025-01-{d:02}T00:00:00Z" for d in [1, 2, 3]]
+    if mean_scenario:
+        times = [f"2026-06-{d:02}T00:00:00Z" for d in [23, 24, 25]]
     benchmark = pd.DataFrame({"timestamp": times, "nav": [100000.0, 101000.0, 100500.0]})
     monkeypatch.setattr(window_report, "spot_benchmark", lambda *args: (benchmark.copy(), {}))
     monkeypatch.setattr(window_audit, "audit_all", lambda *args: {"success": True})
@@ -194,12 +199,42 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(tmp_path, monkeyp
                 "traded_notional_usdt": [0.0, 2000.0, 2000.0],
             }
         ).to_csv(folder / "engine_daily.csv", index=False)
+        if mean_scenario:
+            payments = (
+                []
+                if name == "equal_groups"
+                else [
+                    {
+                        "instrument_id": "A",
+                        "timestamp_ns": (ms("2026-06-24") + 4 * HOUR) * 1000000,
+                        "cashflow_usdt": -12.5,
+                    }
+                ]
+            )
+            pd.DataFrame(
+                payments, columns=["instrument_id", "timestamp_ns", "cashflow_usdt"]
+            ).to_csv(folder / "funding.csv", index=False)
     config = {
         "start": "2025-01-01",
         "stop_exclusive": "2025-01-04",
         "train_start": "2021-01-01",
         "train_stop": "2025-01-01",
     }
+    if mean_scenario:
+        config.update(
+            start="2026-06-23",
+            stop_exclusive="2026-06-26",
+            train_stop="2026-06-23",
+            funding_imputation={"method": "adjacent_mean"},
+        )
+        (path / "funding_assumptions.json").write_text(
+            json.dumps(
+                {
+                    "estimated_events": 1,
+                    "records": [{"symbol": "A", "timestamp_ms": ms("2026-06-24") + 4 * HOUR}],
+                }
+            )
+        )
     result = window_report.report(tmp_path, config, path)
     assert {x["case"] for x in result["candidate_comparison"]} == {
         "lightgbm_5bps",
@@ -210,6 +245,13 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(tmp_path, monkeyp
     assert "equal_groups_5bps" in monthly and "lightgbm_5bps" in monthly
     assert (path / "report/equity.png").is_file()
     assert (path / "report/monthly_returns.png").is_file()
+    if mean_scenario:
+        info = result["funding_imputation"]
+        assert info["uses_future_anchor"] and info["estimated_events"] == 1
+        usage = {r["case"]: r for r in info["primary_candidate_usage"]}
+        assert usage["lightgbm_5bps"]["estimated_cashflow_usdt"] == -12.5
+        assert usage["equal_groups_5bps"]["estimated_held_events"] == 0
+        assert "Funding assumption" in (path / "report/results.md").read_text()
 
 
 def test_repeated_contract_exits_reach_events_and_independent_price_oracle():
