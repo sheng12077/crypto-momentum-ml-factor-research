@@ -97,13 +97,40 @@ LightGBM risk metrics and cost sensitivity:
 | 2026, partial | 0.09 | −45.03% | −11.99% | −15.21% |
 
 LightGBM made money in three of five windows and avoided the extreme annual
-swings of the simple controls. Its 2024 and 2026 losses, and 45% drawdown in 2026,
-do **not** establish a stable trading edge or deployment readiness. Simple
-controls also show why one strong year is insufficient evidence.
+swings of the simple controls. Its advantages and weaknesses vary by year:
 
-![2026 monthly net returns: LightGBM and equal factor scores](docs/assets/dynamic_2026_monthly_returns.png)
+- **Down-market performance:** 2022 returned +21.76% with an 18.48% drawdown,
+  versus BTC's −64.63% return and 66.93% drawdown. In 2025 it also earned a
+  positive return while both spot benchmarks fell.
+- **Opportunity cost:** 2023's +51.56% return lagged BTC's +154.51%; in 2024
+  the strategy lost money despite both spot benchmarks rising. The ML ranking
+  did not consistently outperform simpler exposure.
+- **Remaining risk:** 2026 lost less than BTC/ETH, but its 45.03% drawdown
+  exceeded BTC's 39.53%. The monthly breakdown below shows substantial return
+  concentration. These results do **not** establish a stable edge or deployment
+  readiness.
 
-*2026 only; boundary months are partial. The funding assumption below applies.*
+<!-- dynamic-monthly:start -->
+### Monthly net returns
+
+![LightGBM monthly net returns, 2022–2026](docs/assets/dynamic_monthly_returns.png)
+
+| Year | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2022 | +10.41% | -7.77% | +15.40% | +1.44% | -3.73% | -1.01% | +0.96% | +6.51% | -1.78% | -0.92% | -0.54% | +2.98% |
+| 2023 | +43.30% | -6.28% | +3.98% | -5.90% | -1.05% | +4.41% | -4.72% | +2.95% | +20.33% | +9.48% | +7.49% | -19.63% |
+| 2024 | -3.79% | -10.04% | -6.91% | -13.04% | +4.29% | -8.67% | +9.08% | +9.62% | +12.39% | -5.61% | -9.38% | +21.00% |
+| 2025 | -9.06% | +15.01% | +0.92% | +12.77% | -18.76% | +1.26% | -4.98% | +5.57% | +13.85% | +10.74% | +11.00% | -4.33% |
+| 2026 | -13.11% | +6.89% | -1.99% | +41.78% | +0.15% | -8.69% | -11.81% | +6.76% | -20.45% | +1.43% | — | — |
+
+Positive months: **31/58 (53.4%)**; median month: **+0.94%**. Best: **2023-01, +43.30%**; worst: **2026-09, -20.45%**.
+
+Monthly returns compound daily NAV changes within UTC snapshot-date buckets. Each year starts a separate account; annual boundary liquidation and re-entry costs are included. October 2026 is partial; November/December are unavailable, not zero returns. These cells reconcile to the annual results, but do not form an uninterrupted capital simulation.
+
+2026 illustrates return concentration: excluding its best month, the remaining months compound to **−36.75%**, versus **−10.33%** for the reported year. This is a descriptive check, not a counterfactual trading strategy.
+
+[Detailed results: annual risk, monthly concentration, costs and controls](docs/DYNAMIC_RESULTS.md).
+<!-- dynamic-monthly:end -->
 
 ### Accounting evidence and limitations
 

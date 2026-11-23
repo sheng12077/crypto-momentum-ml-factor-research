@@ -1,5 +1,25 @@
 # Project status
 
+## Full monthly disclosure and result interpretation — 2026-11-23
+
+- User requests all monthly returns and fuller interpretation; user will push
+  manually. Do not initiate push. Topic docs/monthly-performance-analysis; final
+  commit is recorded in the latest merge.
+- README adds2022–2026 monthly heatmap/table,31/58 positive months, median+0.94%,
+  and annual strengths/weaknesses. Nov/Dec2026 remain unavailable, not zero.
+- docs/DYNAMIC_RESULTS.md expands annual risk, benchmark comparisons, monthly
+  concentration, costs/turnover and descriptive random-control comparisons.
+  Keeps annual cash resets, partial2026 control coverage and funding assumption.
+- Public aggregate snapshot includes monthly returns, their source hashes,
+  costs/random counts and best-month exclusion. All15 strategy/BTC/ETH monthly
+  series reconcile to corresponding saved annual returns within1e-8; every
+  year's best-month exclusion matches its saved report. No new backtest/fit.
+- scripts/publish_dynamic_results.py rebuilds figure, README monthly section and
+  detailed results entirely from the public aggregate JSON. No private data needed.
+- Checks: publication script executed, figure inspected, lint/local links/source
+  bindings verified and repeated publication produces identical outputs.
+- Existing17 user legacy edits preserved. Next: user reviews and pushes main.
+
 ## Public README refreshed for dynamic-universe results — 2026-11-23
 
 - User requested README completion and a new push; origin is
