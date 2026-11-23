@@ -1,5 +1,21 @@
 # Project status
 
+## Strategy rationale and evidence assessment in README — 2026-11-23
+
+- Topic docs/strategy-economic-rationale; see latest merge for final commit.
+- README now explains momentum persistence/reversal, funding crowding versus
+  cashflows, and the exact taker-imbalance definition. Mechanisms are hypotheses;
+  imbalance is not capital inflow and funding is not risk-free arbitrage.
+- Explains regression-to-ranking, conditional tree effects, SHAP limitations,
+  five equal-weight longs/shorts, relative PnL examples and residual beta risk.
+  Discloses seven-day price-only labels versus two-week holding/rebalance horizon.
+- Adds explicit effectiveness assessment grounded in annual/monthly results and
+  slippage stress: mixed evidence, no uniform ML superiority or deployment claim.
+  No new references, experiments, factor claims or trading-rule changes.
+- Verified against factor/model/portfolio source; aggregate publisher preserves
+  the new prose and figures/results remain unchanged. README links/diff checked.
+- User pushes manually; do not push. Preserve17 unrelated legacy edits.
+
 ## Results consolidated into README — 2026-11-23
 
 - User explicitly wants all result interpretation on the repository landing page.

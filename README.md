@@ -29,6 +29,59 @@ selection relative to transparent rules, after trading costs and funding?
 Size and news signals are outside this version. The momentum horizons are model
 inputs, not a staged-entry or market-timing overlay.
 
+## Economic logic
+
+The strategy seeks **relative return differences between perpetual contracts**.
+At each decision date, it buys the highest-ranked contracts and shorts the
+lowest-ranked contracts. Its economic hypothesis is that past price adjustment,
+leveraged positioning, and aggressive trading contain complementary information
+about which assets will outperform others. These are hypotheses tested by the
+backtests, not established explanations for every profitable trade.
+
+### Momentum: has information been fully reflected in prices?
+
+The 20-, 60-, and 120-day features are trailing simple returns, calculated from
+completed daily trade closes within the same contract episode. The rationale is
+that investor underreaction, gradual capital allocation, or persistent demand
+can allow a price trend to continue. Multiple horizons describe both recent
+direction and the longer trend; they are correlated views of one mechanism,
+not three independent sources of diversification.
+
+Momentum can fail when a crowded trend reverses or prices overshoot. A high
+trailing return is therefore an input to the forecast, not an unconditional
+instruction to buy. This version does not convert bull/bear states into staged
+one-third position changes.
+
+### Funding: is directional demand crowded or expensive to hold?
+
+`funding7` sums the funding rates observable over the preceding seven-day
+window, subject to coverage checks and an assumed one-hour availability lag.
+Positive funding generally means longs pay shorts; negative funding reverses
+the payment direction. Elevated positive funding can indicate expensive,
+crowded long demand, while deeply negative funding can indicate pressure on
+the short side. Neither extreme guarantees a subsequent reversal: strong
+directional demand can persist.
+
+Funding has **two distinct roles** here. Its historical value is a predictive
+feature; actual held funding events also change account cash. The transparent
+equal-factor control prefers lower funding ranks, while LightGBM can learn a
+conditional relationship rather than enforcing that sign. This is a directional
+long/short portfolio, not a spot–perpetual funding-arbitrage strategy, and its
+net funding receipt is not guaranteed.
+
+### Trade imbalance: which side is demanding immediate execution?
+
+`imbalance7 = 2 × (seven-day taker-buy quote volume / seven-day total quote volume) − 1`.
+It is volume-weighted across the window and ranges from −1 to +1. A positive
+value means more executed quote volume was initiated by aggressive buyers.
+Persistent order execution or gradual information incorporation could make that
+pressure informative beyond the price trend alone.
+
+Every trade still has a buyer and a seller. This signal measures **trade
+aggressor imbalance**, not net capital entering an asset, wallet flows, or
+order-book depth. Aggressive buying may also be exhausted demand near a price
+peak, so a positive imbalance is not automatically bullish.
+
 ## Data and universe
 
 - Binance USDⓈ-M trade bars, mark prices, and observed funding history, with
@@ -62,11 +115,75 @@ be mixed with the dynamic-universe results below.
 5. Simulate fills and funding in NautilusTrader, then independently reconstruct
    positions, fees, funding, cash, and daily marked NAV from the ledgers.
 
+### How the model combines the signals
+
+LightGBM maps the five input features to a predicted seven-day **price return**.
+The portfolio uses the forecast ordering rather than treating the forecast as a
+precise expected profit. The tree model can represent conditional relationships:
+for example, strong momentum with moderate funding may be treated differently
+from strong momentum with extreme funding. This is a modeling capability, not a
+claim that this particular interaction has been proven to drive the results.
+
+There are no fixed learned percentages such as "40% momentum, 30% funding."
+TreeSHAP explains each forecast relative to the model's expected output;
+importance describes model reliance, not causal economic impact. Correlated
+momentum horizons can share or redistribute that importance.
+
+The training label excludes future fees and funding; these costs are charged
+in the simulation. Consequently, a good price forecast need not produce a good
+net trade. The seven-day prediction target also differs from the two-week
+rebalance interval, which can weaken the link between forecast quality and
+realized holding-period performance.
+
+### What makes the portfolio earn or lose money?
+
+With USDT 100,000 NAV, each of five longs targets USDT 10,000 notional and each
+of five shorts targets USDT 10,000. The portfolio therefore has **50% long plus
+50% short exposure**, before subsequent drift. All ten positions receive the
+same absolute target weight; a higher model score does not receive more capital.
+
+To first order, before costs and funding:
+
+`portfolio return ≈ 0.5 × long-basket return − 0.5 × short-basket return`.
+
+For example, if the long basket falls 3% and the short basket falls 6%, the
+portfolio earns approximately 1.5% before costs. If longs rise 2% but shorts
+rise 5%, it loses approximately 1.5%. **Relative performance matters more than
+market direction**, although unequal betas and concentrated coin exposures can
+still create market risk. The strategy takes both sides based on ranks even
+when all forecasts have the same sign; it does not require positive forecasts
+for longs or negative forecasts for shorts.
+
 Perpetual orders use a **5 bps taker fee without BNB discount**, plus adverse
 slippage scenarios of **5 / 10 / 20 bps per execution**. This is a current-cost
 assumption, not a reconstruction of every historical fee tier. Execution uses
 VWAP/mark proxies and fractional research quantities; no order-book queue or
 exchange liquidation engine is modeled.
+
+## Does the strategy work?
+
+**The evidence is mixed: the model has useful historical results, but has not
+demonstrated a dependable trading edge.** LightGBM was profitable in three of
+five annual windows. It performed well in the 2022 selloff and earned +31.51%
+in 2025 while both spot benchmarks declined. In the designated OOS windows,
+2025 remained profitable at 20 bps slippage (+22.80%), whereas 2026 lost money
+at every tested cost level (−10.33% at 5 bps; −15.21% at 20 bps).
+
+The weaknesses matter as much as those successes. The model lost money in 2024
+despite a strong spot market, and its 2026 maximum drawdown was 45.03%. Only
+53.4% of the 58 observed months were positive. Excluding the best month leaves
+2023 at +5.77% and 2026 at −36.75%, showing substantial return concentration.
+The equal-score control outperformed ML in 2024 and 2025, while pure momentum
+outperformed it in 2026; the nonlinear model is not uniformly superior.
+
+**The project's demonstrated strength is its research and verification process:**
+a dated universe, transparent matched controls, chronological forecasts, cost
+stress tests, and independent accounting. Those checks make the measured outcomes
+more reviewable; they do not establish that each factor adds incremental alpha,
+that ML causally improves returns, or that future returns will be positive.
+Factor ablations and attribution would be needed to isolate incremental effects.
+The current results support a research project, not a claim of readiness for
+automated real-money trading. The tables below show the supporting evidence.
 
 ## Results
 
