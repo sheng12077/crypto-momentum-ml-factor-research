@@ -134,36 +134,18 @@ def publish(root=ROOT):
         "not zero returns. These cells reconcile to the annual results, but do not form "
         "an uninterrupted capital simulation."
     )
-    block = (
-        "<!-- dynamic-monthly:start -->\n### Monthly net returns\n\n"
-        "![LightGBM monthly net returns, 2022–2026](docs/assets/dynamic_monthly_returns.png)\n\n"
-        + monthly_table
-        + "\n\n"
-        + stats
-        + "\n\n"
-        + notes
-        + "\n\n"
-        "2026 illustrates return concentration: excluding its best month, the remaining "
-        "months compound to **−36.75%**, versus **−10.33%** for the reported year. "
-        "This is a descriptive check, not a counterfactual trading strategy.\n\n"
-        "[Detailed results: annual risk, monthly concentration, costs and controls](docs/DYNAMIC_RESULTS.md).\n"
-        "<!-- dynamic-monthly:end -->"
-    )
     readme_path = root / "README.md"
     readme = readme_path.read_text()
-    start, end = "<!-- dynamic-monthly:start -->", "<!-- dynamic-monthly:end -->"
-    if start in readme:
-        a, b = readme.index(start), readme.index(end) + len(end)
-        readme = readme[:a] + block + readme[b:]
-    else:
-        old = (
-            "![2026 monthly net returns: LightGBM and equal factor scores](docs/assets/dynamic_2026_monthly_returns.png)\n\n"
-            "*2026 only; boundary months are partial. The funding assumption below applies.*"
-        )
-        if old not in readme:
-            raise ValueError("README monthly insertion point missing")
-        readme = readme.replace(old, block)
-    readme_path.write_text(readme)
+    # Preserve the already verified cost scenarios while consolidating prose.
+    stress_section = readme.split("### Slippage stress\n", 1)[1].split("## Repository layout", 1)[0]
+    stress_lines = [line for line in stress_section.splitlines() if line.startswith("| 202")]
+    stress_rows = []
+    for line in stress_lines:
+        cells = [v.strip() for v in line.strip("|").split("|")]
+        if len(cells) == 3 and cells[0].startswith("202"):
+            stress_rows.append([cells[0], cells[-2], cells[-1]])
+    if len(stress_rows) != 5:
+        raise ValueError("Expected five saved slippage stress rows")
 
     risk = table(
         [
@@ -281,11 +263,47 @@ def publish(root=ROOT):
         "deployment-readiness claim. Earlier years use their saved engine revision; "
         "2025–2026 use the exact filled-quantity adapter, recorded in run provenance.\n\n"
         "Aggregate values and original report/monthly-source hashes are in "
-        "[the public snapshot](results/dynamic_annual_summary.json). Rebuild this "
-        "document and the figure without private data using "
+        "[the public snapshot](docs/results/dynamic_annual_summary.json). Rebuild this "
+        "README and the figure without private data using "
         "`python scripts/publish_dynamic_results.py`. No model fit or simulation occurs.\n"
     )
-    (root / "docs/DYNAMIC_RESULTS.md").write_text(doc)
+    comparison = table(
+        [
+            "Evaluation year",
+            "LightGBM",
+            "Equal factor scores",
+            "60-day momentum",
+            "BTC spot",
+            "ETH spot",
+        ],
+        [
+            [
+                y["year"] + (", through Oct 31 00:00 UTC" if y["year"] == "2026" else ""),
+                *[
+                    pct(metric(y, case=c)["total_return"])
+                    for c in ["lightgbm_5bps", "equal_groups_5bps", "momentum60_5bps"]
+                ],
+                pct(metric(y, series="btc_nav")["total_return"]),
+                pct(metric(y, series="eth_nav")["total_return"]),
+            ]
+            for y in years
+        ],
+    )
+    # All result tables and interpretation live on the repository landing page.
+    doc = doc.removeprefix("# Dynamic-universe results\n\n")
+    doc = doc.replace("\n## ", "\n### ").replace("(assets/", "(docs/assets/")
+    results = (
+        "## Results\n\nNet returns at **5 bps slippage**, including fees and funding:\n\n"
+        + comparison
+        + "\n\n"
+        + doc
+        + "\n### Slippage stress\n\n"
+        + table(["Year", "Return at 10 bps slippage", "Return at 20 bps slippage"], stress_rows)
+        + "\n\nSlippage is adverse on each execution, in addition to the 5 bps taker fee. "
+        "These cost scenarios keep the same portfolio rules and annual training windows.\n\n"
+    )
+    start, stop = readme.index("## Results\n"), readme.index("## Repository layout\n")
+    readme_path.write_text(readme[:start] + results + readme[stop:])
     print(
         json.dumps(
             {
