@@ -10,15 +10,29 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIGS = ["config/dynamic_2025.json", "config/dynamic_2026.json"]
 
 
-def run_batch(stage="all", root=ROOT, runner=None):
+def run_batch(stage="all", root=ROOT, runner=None, funding_assumption="strict"):
     runner = runner or subprocess.run
+    if funding_assumption not in {"strict", "adjacent-mean"}:
+        raise ValueError("Unknown funding assumption")
+    configs = (
+        CONFIGS
+        if funding_assumption == "strict"
+        else [
+            CONFIGS[0],
+            "config/dynamic_2026_mean_funding.json",
+        ]
+    )
     plan = (
-        [(config, "preflight") for config in CONFIGS] + [(config, "all") for config in CONFIGS]
+        [(config, "preflight") for config in configs] + [(config, "all") for config in configs]
         if stage == "all"
-        else [(config, stage) for config in CONFIGS]
+        else [(config, stage) for config in configs]
     )
     status = {"success": False, "requested_stage": stage, "completed_steps": []}
-    output = root / "data/processed/dynamic_final_windows/batch_status.json"
+    label = (
+        "dynamic_final_windows" if funding_assumption == "strict" else "dynamic_final_windows_mean"
+    )
+    output = root / "data/processed" / label / "batch_status.json"
+    status["funding_assumption"] = funding_assumption
     output.parent.mkdir(parents=True, exist_ok=True)
 
     def save():
@@ -31,7 +45,7 @@ def run_batch(stage="all", root=ROOT, runner=None):
             sys.executable,
             "-m",
             "crypto_factor_research",
-            "window",
+            "window-mean" if config.endswith("2026_mean_funding.json") else "window",
             "--config",
             config,
             "--stage",
@@ -60,8 +74,11 @@ def run_batch(stage="all", root=ROOT, runner=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", choices=["all", "preflight", "summary"], default="all")
+    parser.add_argument(
+        "--funding-assumption", choices=["strict", "adjacent-mean"], default="strict"
+    )
     args = parser.parse_args()
-    result = run_batch(args.stage)
+    result = run_batch(args.stage, funding_assumption=args.funding_assumption)
     print(json.dumps(result), flush=True)
     return 0 if result["success"] else 1
 
