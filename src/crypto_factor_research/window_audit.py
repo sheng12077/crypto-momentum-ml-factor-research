@@ -422,15 +422,18 @@ def attribution(path):
     return asset.sort_values("net_pnl_usdt", ascending=False), pd.DataFrame(sides).T
 
 
-def audit_all(config, path):
+def audit_all(config, path, cases=None):
     summary = load_json(path / "simulation_summary.json")
-    oracle = Oracle(path, summary["cases"])
+    cases = summary["cases"] if cases is None else cases
+    oracle = Oracle(path, cases)
     estimated = oracle.add_mean_assumptions(config, path) if config.get("funding_imputation") else 0
     start, last = ms(config["start"]), ms(config["stop_exclusive"]) - DAY
-    results = [audit_case(path, case, oracle, start, last) for case in summary["cases"]]
+    results = [audit_case(path, case, oracle, start, last) for case in cases]
     result = {
         "success": all(x["success"] for x in results),
         "cases": len(results),
+        "registered_cases": summary["registered_cases"],
+        "scope": "all registered cases" if len(cases) == summary["registered_cases"] else "completed cases only",
         "maximum_nav_cash_error_usdt": max(
             x["max_independent_nav_cash_error_usdt"] for x in results
         ),

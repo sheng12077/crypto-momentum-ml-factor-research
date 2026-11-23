@@ -78,7 +78,27 @@ def spot_benchmark(root, config, symbol, start, last):
     return pd.DataFrame(rows), bindings
 
 
-def report(root, config, path):
+def select_report_cases(summary, allow_failed_random_controls=False):
+    cases = summary["cases"]
+    failed = [case for case in cases if not case.get("success")]
+    if not summary.get("primary_replay_identical"):
+        raise ValueError("Primary replay must match before reporting")
+    if failed and (
+        not allow_failed_random_controls
+        or any(not case["case"].startswith("random_") for case in failed)
+    ):
+        raise ValueError("Some registered financial cases failed; no successful report")
+    if not failed and not summary.get("success"):
+        raise ValueError("Simulation summary is unsuccessful without case evidence")
+    if len(cases) != summary["registered_cases"]:
+        raise ValueError("Incomplete registered case inventory")
+    keys = [(case["case"], case["bps"]) for case in cases]
+    if len(keys) != len(set(keys)):
+        raise ValueError("Duplicate registered cases")
+    return [case for case in cases if case.get("success")], failed
+
+
+def report(root, config, path, allow_failed_random_controls=False):
     import matplotlib
 
     from momentum_data.reporting.analysis import performance_tables
@@ -90,8 +110,7 @@ def report(root, config, path):
 
     root, path = Path(root), Path(path)
     summary = load_json(path / "simulation_summary.json")
-    if not summary["success"]:
-        raise ValueError("Some registered financial cases failed; no successful report")
+    cases, failed_cases = select_report_cases(summary, allow_failed_random_controls)
     start, last = ms(config["start"]), ms(config["stop_exclusive"]) - DAY
     bench, source_bindings = {}, {}
     for symbol in ["BTCUSDT", "ETHUSDT"]:
@@ -100,7 +119,7 @@ def report(root, config, path):
         source_bindings.update(bindings)
     from .window_audit import attribution, audit_all, read_ledger
 
-    audit = audit_all(config, path)
+    audit = audit_all(config, path, cases=cases)
     assumptions = (
         load_json(path / "funding_assumptions.json") if config.get("funding_imputation") else None
     )
@@ -111,10 +130,11 @@ def report(root, config, path):
     asset, side = attribution(path)
     out = path / "report"
     out.mkdir(exist_ok=True)
+    write_json(out / "failed_cases.json", failed_cases)
     asset.to_csv(out / "asset_attribution.csv")
     side.to_csv(out / "side_attribution.csv")
     all_metrics, monthlies, candidate_daily = [], {}, {}
-    for case in summary["cases"]:
+    for case in cases:
         name = f"{case['case']}_{case['bps']}bps"
         folder = path / "results" / name
         checked(folder, "case_manifest.json")
@@ -176,7 +196,11 @@ def report(root, config, path):
     other = float((1 + monthly.strategy_nav.drop(monthly.strategy_nav.idxmax())).prod() - 1)
     strategy_metric = primary_metrics[primary_metrics.series.eq("strategy_nav")].iloc[0]
     random_comparison = {
-        "registered_seeds": len(groups),
+        "registered_seeds": sum(c["case"].startswith("random_") for c in summary["cases"]),
+        "completed_seeds": len(groups),
+        "failed_seeds": len(failed_cases),
+        "distribution_scope": "completed controls only",
+        "full_random_comparison_available": not failed_cases,
         "random_returns_strictly_above_model": int(
             groups.total_return.gt(strategy_metric.total_return).sum()
         ),
@@ -244,7 +268,7 @@ def report(root, config, path):
         + markdown_table(primary_metrics[columns])
         + "\n\n## Matched candidate comparison\n\n"
         + markdown_table(comparison[columns])
-        + "\n\nAll registered cases and random controls are retained in CSV.\n\nReturn excluding the best month: "
+        + "\n\nCompleted cases are retained in CSV; failed cases are retained in failed_cases.json.\n\nReturn excluding the best month: "
         + f"{other:.2%}"
         + ".\n\nExecution uses VWAP/mark proxies,fractional research lots and a current-cost fee assumption. It is not tick-level liquidation or historical fee reconstruction.\n"
     )
@@ -252,8 +276,12 @@ def report(root, config, path):
         "\nRandom controls beating the model return: "
         + str(random_comparison["random_returns_strictly_above_model"])
         + " / "
+        + str(random_comparison["completed_seeds"])
+        + " completed controls. Registered: "
         + str(random_comparison["registered_seeds"])
-        + ". This is a limited descriptive benchmark, not proof of alpha.\n"
+        + ". Failed: "
+        + str(random_comparison["failed_seeds"])
+        + ". Failed controls have no assigned full-period return or Sharpe; comparisons are incomplete when any failed.\n"
     )
     md += (
         "\n"
@@ -270,13 +298,27 @@ def report(root, config, path):
             "\nFunding assumption: adjacent original-rate mean on 2026-06-24 UTC; "
             "accounting only, uses a future anchor. These are estimated costs, not proven settlements.\n"
         )
+    if failed_cases:
+        md += (
+            "\n## Partial control coverage\n\n"
+            "Candidate results below passed independent accounting checks, but the full "
+            "registered suite did not pass. Failed controls are not silently discarded "
+            "or assigned a fabricated -100% return. Their failure evidence is unaudited "
+            "and does not establish an exchange liquidation price or time.\n\n"
+            + markdown_table(pd.DataFrame(failed_cases)[["case", "bps", "error"]])
+            + "\n"
+        )
     (out / "results.md").write_text(md)
     result = {
         "success": True,
         "independent_audit": audit,
         "window": window_label(config),
         "fresh_OOS": False,
-        "registered_cases_completed": summary["completed_cases"],
+        "registered_cases_completed": len(cases),
+        "registered_cases_attempted": summary["completed_cases"],
+        "all_registered_cases_passed": not failed_cases,
+        "partial_report": bool(failed_cases),
+        "failed_cases": failed_cases,
         "primary_replay_identical": summary["primary_replay_identical"],
         "primary_metrics": primary_metrics.replace({np.nan: None}).to_dict("records"),
         "candidate_comparison": comparison[columns].replace({np.nan: None}).to_dict("records"),
@@ -339,6 +381,11 @@ def report(root, config, path):
             ],
         },
     ]
+    if failed_cases:
+        cells[0]["source"].append(
+            "\n\nPARTIAL CONTROL COVERAGE: failed random controls remain in report/failed_cases.json. "
+            "Random-control metrics describe completed cases only; the full registered suite did not pass."
+        )
     if assumptions:
         cells[0]["source"].append(
             "\n\nFunding costs use the adjacent-mean assumption on June 24; "

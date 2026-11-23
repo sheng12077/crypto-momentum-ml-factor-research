@@ -78,7 +78,28 @@ Reports/notebook/compact summary explicitly label the scenario. Additional
 and cashflow; the summary directly includes the two candidates at 5bps. Candidate
 performance CSVs and paired equity/monthly plots are retained as before.
 
-## Preparation checks
+## Reporting a completed window with a failed random control
+
+The 2026 saved run `ff50164f4ed092093408` completed 29 cases with an identical
+primary replay. Random control `random_1012` recorded a nonpositive marked NAV;
+the original batch remains unsuccessful. A read-only financial reporting command
+audits completed cases and discloses failed controls without assigning fabricated
+full-period returns or liquidation outcomes:
+
+```bash
+python scripts/report_saved_window.py \
+  --config config/dynamic_2026_mean_funding.json \
+  --run-dir data/processed/dynamic_2026_mean_funding/ff50164f4ed092093408 \
+  --allow-failed-random-controls
+```
+
+This command performs no preparation, fitting or simulation. Candidate failures
+and replay mismatches still block reporting. `partial_report`, failure details,
+the registered/completed random-control counts, and audit scope remain explicit.
+The random-control distribution covers completed controls only; the full random
+comparison is unavailable. Original simulation summaries and ledgers stay intact.
+
+## Execution checks
 
 The active dynamic engine uses exact filled-quantity deltas and a separate
 fill-by-fill realized-PnL ledger. Vendor floating-point quantity remnants may be
