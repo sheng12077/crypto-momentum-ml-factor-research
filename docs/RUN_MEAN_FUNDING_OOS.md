@@ -80,6 +80,14 @@ performance CSVs and paired equity/monthly plots are retained as before.
 
 ## Preparation checks
 
+The active dynamic engine uses exact filled-quantity deltas and a separate
+fill-by-fill realized-PnL ledger. Vendor floating-point quantity remnants may be
+normalized only after exact filled exposure is zero, below 0.000001 USDT, without
+cash changes. The correction journal is independently audited; the existing
+0.01 USDT cash/NAV reconciliation threshold is unchanged. Frozen legacy engine
+bytes stay intact. This execution revision creates new content-bound run
+directories; old partial outputs are retained and raw source caches reused.
+
 Small regressions cover original-rate preservation, date/interval boundaries,
 multiple missing slots, fit-before-overlay order, batch selection, a tiny actual
 Nautilus case with independent funding/NAV reconciliation, rejection of a rehashed

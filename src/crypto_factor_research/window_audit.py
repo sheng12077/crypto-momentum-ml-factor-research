@@ -1,6 +1,8 @@
 """Independent fills/funding/source-price and marked-NAV reconstruction."""
 
+import csv
 import json
+from decimal import Decimal
 from pathlib import Path
 
 import numpy as np
@@ -226,6 +228,8 @@ class Oracle:
 def audit_case(path, case, oracle, start, last):
     folder = path / "results" / f"{case['case']}_{case['bps']}bps"
     fills, funding = read_ledger(folder, "fills"), read_ledger(folder, "funding")
+    exact = load_json(folder / "engine_summary.json").get("exact_execution", False)
+    exact_rows = list(csv.DictReader((folder / "fills.csv").open())) if exact else None
     recorded = {(row.instrument_id, int(row.timestamp_ns)): row for row in funding.itertuples()}
     if len(recorded) != len(funding):
         raise ValueError("Duplicate recorded funding")
@@ -245,7 +249,14 @@ def audit_case(path, case, oracle, start, last):
             (int(row.timestamp_ns), float(row.quantity) * (1 if row.side == "BUY" else -1))
             for row in subset.itertuples()
         ]
-        cursor, position = 0, 0.0
+        if exact:
+            quantities = [
+                (int(r["timestamp_ns"]), Decimal(r["quantity"]) * (1 if r["side"] == "BUY" else -1))
+                for r in exact_rows
+                if r["instrument_id"] == symbol
+            ]
+            quantities.sort(key=lambda row: row[0])
+        cursor, position = 0, Decimal(0) if exact else 0.0
         for t, rate in events:
             if not start <= t <= last:
                 continue
@@ -253,7 +264,7 @@ def audit_case(path, case, oracle, start, last):
             while cursor < len(quantities) and quantities[cursor][0] < ns:
                 position += quantities[cursor][1]
                 cursor += 1
-            if abs(position) < 1e-7:
+            if not exact and abs(position) < 1e-7:
                 position = 0.0
             key = symbol, ns
             if not position:
@@ -265,11 +276,11 @@ def audit_case(path, case, oracle, start, last):
             row = recorded[key]
             price, available = oracle.mark(symbol, int(t))
             if (
-                abs(row.signed_quantity - position) > 1e-7
+                abs(row.signed_quantity - float(position)) > 1e-7
                 or abs(row.rate - rate) > 1e-12
                 or abs(row.mark_proxy - price) > 1e-8
                 or row.mark_available_ms != available
-                or abs(-position * price * rate - row.cashflow_usdt) > 1.1e-6
+                or abs(-float(position) * price * rate - row.cashflow_usdt) > 1.1e-6
             ):
                 raise ValueError("Independent funding quantity/source/amount mismatch")
             matched.add(key)
@@ -321,8 +332,47 @@ def audit_case(path, case, oracle, start, last):
         "daily_snapshots": len(daily),
         "max_independent_nav_cash_error_usdt": maximum,
     }
+    if exact:
+        result["verified_native_quantity_normalizations"] = audit_quantity_normalizations(
+            folder,
+            exact_rows,
+        )
     write_json(folder / "independent_audit.json", result)
     return result
+
+
+def audit_quantity_normalizations(folder, fills):
+    """A native-float correction may not erase any exact filled exposure or cash."""
+    rows = list(csv.DictReader((folder / "quantity_normalizations.csv").open()))
+    checks = {}
+    for row in rows:
+        count = int(row["fills_seen"])
+        if not 0 < count <= len(fills):
+            raise ValueError("Invalid normalization fill boundary")
+        checks.setdefault(count, []).append(row)
+    positions, last_prices = {}, {}
+    for i, fill in enumerate(fills, 1):
+        s = fill["instrument_id"]
+        q = Decimal(fill["quantity"]) * (1 if fill["side"] == "BUY" else -1)
+        positions[s] = positions.get(s, Decimal(0)) + q
+        last_prices[s] = Decimal(fill["price"])
+        for row in checks.get(i, []):
+            asset = row["instrument_id"]
+            residual = Decimal(row["native_signed_quantity"])
+            notional = Decimal(row["notional_usdt"])
+            if (
+                positions.get(asset, Decimal(0)) != 0
+                or Decimal(row["exact_signed_quantity"]) != 0
+                or Decimal(row["cash_adjustment_usdt"]) != 0
+                or notional > Decimal("0.000001")
+                or notional < 0
+                or abs(notional - abs(residual) * last_prices[asset]) > Decimal("0.000000000001")
+                or int(row["timestamp_ns"]) < int(fill["timestamp_ns"])
+            ):
+                raise ValueError("Native correction is not numerically flat/cash neutral")
+    if any(positions.values()):
+        raise ValueError("Independent exact fill-ledger positions not flat")
+    return len(rows)
 
 
 def attribution(path):
