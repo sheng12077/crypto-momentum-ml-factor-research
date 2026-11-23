@@ -1,5 +1,17 @@
 # Project status
 
+## Results consolidated into README — 2026-11-23
+
+- User explicitly wants all result interpretation on the repository landing page.
+  Topic docs/consolidate-readme-results; see latest merge for final commit.
+- Full annual risk, monthly heatmap/table, concentration, matched controls,
+  funding/fees/turnover, cost stress and interpretation now live in README.
+  Removed docs/DYNAMIC_RESULTS.md and its reader-facing link. Publisher now
+  generates README directly and never recreates a separate results document.
+- Checked repeatable publication, monthly/annual reconciliation, local links and
+  changed-script lint. No data acquisition, model fitting or backtest executed.
+- User will push manually; do not push. Preserve17 unrelated legacy edits.
+
 ## Full monthly disclosure and result interpretation — 2026-11-23
 
 - User requests all monthly returns and fuller interpretation; user will push

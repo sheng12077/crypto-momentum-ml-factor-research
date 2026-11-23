@@ -73,47 +73,36 @@ exchange liquidation engine is modeled.
 Net returns at **5 bps slippage**, including fees and funding:
 
 | Evaluation year | LightGBM | Equal factor scores | 60-day momentum | BTC spot | ETH spot |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| 2022 | **+21.76%** | −18.56% | −45.74% | −64.63% | −67.97% |
-| 2023 | +51.56% | +44.31% | +25.86% | **+154.51%** | +91.03% |
-| 2024 | −7.19% | **+116.62%** | −27.50% | +116.47% | +44.98% |
-| 2025 | +31.51% | **+63.93%** | −67.10% | −6.20% | −11.79% |
-| 2026, through Oct 31 00:00 UTC | −10.33% | −87.33% | **+351.61%** | −12.79% | −25.15% |
+| --- | --- | --- | --- | --- | --- |
+| 2022 | +21.76% | -18.56% | -45.74% | -64.63% | -67.97% |
+| 2023 | +51.56% | +44.31% | +25.86% | +154.51% | +91.03% |
+| 2024 | -7.19% | +116.62% | -27.50% | +116.47% | +44.98% |
+| 2025 | +31.51% | +63.93% | -67.10% | -6.20% | -11.79% |
+| 2026, through Oct 31 00:00 UTC | -10.33% | -87.33% | +351.61% | -12.79% | -25.15% |
 
-2022–2023 are development windows, 2024 is validation, and 2025–2026 are the
-originally designated OOS dates. Each annual simulation starts with USDT 100,000,
-closes at its own boundary, and trains through the preceding year. These are
-**separate annual accounts**, not an uninterrupted strategy or buy-and-hold path.
-The final snapshot excludes trading later on October 31.
+LightGBM primary case: 5 bps adverse slippage, plus fees and funding. Each year starts with USDT 100,000 and an annual model fit on earlier years. 2022–2023 are development, 2024 validation, and 2025–2026 designated OOS windows.
 
-LightGBM risk metrics and cost sensitivity:
+### Annual performance and risk
 
-| Year | Sharpe, rf = 0 | Maximum drawdown | Return at 10 bps slippage | Return at 20 bps slippage |
-| --- | ---: | ---: | ---: | ---: |
-| 2022 | 0.79 | −18.48% | +19.28% | +14.46% |
-| 2023 | 1.42 | −21.07% | +48.11% | +41.42% |
-| 2024 | −0.01 | −37.75% | -9.40% | -13.66% |
-| 2025 | 0.75 | −33.08% | +28.54% | +22.80% |
-| 2026, partial | 0.09 | −45.03% | −11.99% | −15.21% |
+| Year | Return | Sharpe rf=0 | MDD | Annual volatility | Calmar | BTC return / MDD | ETH return / MDD |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2022 | +21.76% | 0.79 | -18.48% | +31.18% | 1.18 | -64.63% / -66.93% | -67.97% / -74.01% |
+| 2023 | +51.56% | 1.42 | -21.07% | +33.38% | 2.46 | +154.51% / -20.00% | +91.03% / -27.33% |
+| 2024 | -7.19% | -0.01 | -37.75% | +37.97% | -0.19 | +116.47% / -26.15% | +44.98% / -45.26% |
+| 2025 | +31.51% | 0.75 | -33.08% | +61.10% | 0.96 | -6.20% / -32.02% | -11.79% / -60.04% |
+| 2026 | -10.33% | 0.09 | -45.03% | +61.00% | -0.27 | -12.79% / -39.53% | -25.15% / -53.27% |
 
-LightGBM made money in three of five windows and avoided the extreme annual
-swings of the simple controls. Its advantages and weaknesses vary by year:
+- **2022:** positive return during the crypto drawdown, with substantially smaller drawdown than both spot benchmarks.
+- **2023:** profitable with a 1.42 Sharpe, but lower return and Sharpe than BTC; long/short exposure did not capture the full bull-market gain.
+- **2024:** negative return despite rising BTC and ETH; ML portfolio selection did not translate into a profitable year.
+- **2025:** positive return while both spot benchmarks fell, but drawdown remained slightly larger than BTC.
+- **2026:** lost less than both spot benchmarks, yet drawdown exceeded BTC and returns depended heavily on the best month.
 
-- **Down-market performance:** 2022 returned +21.76% with an 18.48% drawdown,
-  versus BTC's −64.63% return and 66.93% drawdown. In 2025 it also earned a
-  positive return while both spot benchmarks fell.
-- **Opportunity cost:** 2023's +51.56% return lagged BTC's +154.51%; in 2024
-  the strategy lost money despite both spot benchmarks rising. The ML ranking
-  did not consistently outperform simpler exposure.
-- **Remaining risk:** 2026 lost less than BTC/ETH, but its 45.03% drawdown
-  exceeded BTC's 39.53%. The monthly breakdown below shows substantial return
-  concentration. These results do **not** establish a stable edge or deployment
-  readiness.
+These are observed outcomes, not causal attribution or proof of regime robustness. Dollar-neutral targets do not establish zero market beta. No aggregate Sharpe or drawdown is inferred by averaging annual metrics.
 
-<!-- dynamic-monthly:start -->
-### Monthly net returns
+### Monthly consistency and concentration
 
-![LightGBM monthly net returns, 2022–2026](docs/assets/dynamic_monthly_returns.png)
+![Monthly returns](docs/assets/dynamic_monthly_returns.png)
 
 | Year | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -127,29 +116,61 @@ Positive months: **31/58 (53.4%)**; median month: **+0.94%**. Best: **2023-01, +
 
 Monthly returns compound daily NAV changes within UTC snapshot-date buckets. Each year starts a separate account; annual boundary liquidation and re-entry costs are included. October 2026 is partial; November/December are unavailable, not zero returns. These cells reconcile to the annual results, but do not form an uninterrupted capital simulation.
 
-2026 illustrates return concentration: excluding its best month, the remaining months compound to **−36.75%**, versus **−10.33%** for the reported year. This is a descriptive check, not a counterfactual trading strategy.
+| Year | Positive months | Best month | Worst month | Return excluding best month |
+| --- | --- | --- | --- | --- |
+| 2022 | 6/12 | 2022-03 (+15.40%) | 2022-02 (-7.77%) | +5.52% |
+| 2023 | 7/12 | 2023-01 (+43.30%) | 2023-12 (-19.63%) | +5.77% |
+| 2024 | 5/12 | 2024-12 (+21.00%) | 2024-04 (-13.04%) | -23.30% |
+| 2025 | 8/12 | 2025-02 (+15.01%) | 2025-05 (-18.76%) | +14.35% |
+| 2026 | 5/10 | 2026-04 (+41.78%) | 2026-09 (-20.45%) | -36.75% |
 
-[Detailed results: annual risk, monthly concentration, costs and controls](docs/DYNAMIC_RESULTS.md).
-<!-- dynamic-monthly:end -->
+Excluding the best month compounds the remaining observed monthly returns. It does not rerun the portfolio without that month's trades and is not evidence of what a modified strategy would have earned.
 
-### Accounting evidence and limitations
+### Matched controls
 
-- **2026 funding assumption:** missing internal June 24 funding slots use the
-  mean of adjacent original rates, applied only to accounting after model fitting.
-  The following anchor is future information at the missing event time. These are
-  estimated costs, not proven settlements; they affect cash and later position
-  sizes. The LightGBM 5 bps case used 12 estimated payments totaling −17.67 USDT.
-- All 29 completed 2026 cases passed independent accounting checks, with a maximum
-  NAV/cash difference below 0.000001 USDT and an identical primary replay.
-  One of 20 random controls recorded nonpositive NAV and remains **failed**.
-  The report explicitly has partial control coverage; the full suite did not pass.
-  No full-period return or liquidation outcome is invented for that control.
-- Funding assumptions, proxy execution, fractional lots, changing contract rules,
-  and the absence of historical order books limit real-money interpretation.
+| Year | Equal score return / MDD | Momentum return / MDD | Random returns above ML | Random Sharpes above ML |
+| --- | --- | --- | --- | --- |
+| 2022 | -18.56% / -33.16% | -45.74% / -47.96% | 1/20 | 2/20 |
+| 2023 | +44.31% / -29.43% | +25.86% / -33.99% | 1/20 | 1/20 |
+| 2024 | +116.62% / -31.23% | -27.50% / -42.21% | 12/20 | 11/20 |
+| 2025 | +63.93% / -64.11% | -67.10% / -81.31% | 6/20 | 8/20 |
+| 2026 | -87.33% / -97.64% | +351.61% / -66.96% | 10/19 | 9/19 |
 
-[Published aggregate metrics and source-report hashes](docs/results/dynamic_annual_summary.json)
-contain the five annual snapshots. Market observations, model binaries, detailed
-ledgers, and generated working reports are excluded from Git.
+Random counts are descriptive, not p-values: only 20 seeds were registered, and selection decisions were informed by development results. In 2026 only 19 controls completed; random_1012 had nonpositive marked NAV and remains failed. The denominator above is 19 for that year; the full 20-control comparison is unavailable. No terminal return is assigned to the failed control.
+
+The equal-score and momentum controls have severe annual swings and drawdowns; their strongest years alone do not establish a reliable strategy. Positive Sharpe can coexist with a negative compound return under extreme volatility because Sharpe uses arithmetic daily returns.
+
+### Costs and turnover
+
+| Year | Commissions, USDT | Net funding, USDT | Traded notional / mean daily NAV |
+| --- | --- | --- | --- |
+| 2022 | 2,377.99 | +2,201.08 | 41.21× |
+| 2023 | 3,370.44 | +9,263.51 | 46.66× |
+| 2024 | 1,977.04 | +950.69 | 47.91× |
+| 2025 | 2,510.93 | -2,579.39 | 46.42× |
+| 2026 | 1,920.70 | -1,046.32 | 36.50× |
+
+Funding is positive for a net receipt and negative for a net payment. Commissions and funding are included in NAV. Slippage is embedded in fills, not included in the commission column; the README separately shows 10/20 bps stress results. The turnover statistic is total absolute traded notional divided by mean daily NAV; it is not halved or annualized for partial 2026.
+
+### Scope and reproducibility
+
+2026 June 24 missing funding events use the adjacent original-rate mean. The later anchor is future information for accounting; this is not proven settlement or a deployable real-time assumption. The primary case used 12 estimated payments totaling −17.67 USDT. All 29 completed 2026 cases passed independent accounting checks; the full 30-case suite remains unsuccessful.
+
+VWAP/mark proxy fills, fractional research lots, current fee assumptions and absence of an exchange liquidation engine limit real-money interpretation. The results support a reproducible research project, not a stable-profit or deployment-readiness claim. Earlier years use their saved engine revision; 2025–2026 use the exact filled-quantity adapter, recorded in run provenance.
+
+Aggregate values and original report/monthly-source hashes are in [the public snapshot](docs/results/dynamic_annual_summary.json). Rebuild this README and the figure without private data using `python scripts/publish_dynamic_results.py`. No model fit or simulation occurs.
+
+### Slippage stress
+
+| Year | Return at 10 bps slippage | Return at 20 bps slippage |
+| --- | --- | --- |
+| 2022 | +19.28% | +14.46% |
+| 2023 | +48.11% | +41.42% |
+| 2024 | -9.40% | -13.66% |
+| 2025 | +28.54% | +22.80% |
+| 2026, partial | −11.99% | −15.21% |
+
+Slippage is adverse on each execution, in addition to the 5 bps taker fee. These cost scenarios keep the same portfolio rules and annual training windows.
 
 ## Repository layout
 
