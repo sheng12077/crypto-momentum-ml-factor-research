@@ -1,5 +1,31 @@
 # Project status
 
+## Dynamic execution precision fix — 2026-11-23
+
+- Topic fix/exact-portfolio-quantities; see the latest merge for the final commit.
+- Both user-run preflights passed. In 2025 run81b2ebf6067810b2146a,
+  28/30 cases passed and primary replay matched. equal_groups_20bps failed cash
+  reconciliation; random_1002_5bps failed final flatness with negligible exposure.
+- Installed Nautilus stores signed quantities as doubles. Large low-price base
+  quantities reproduce one-lot residuals. Active execution.py now sends exact
+  Decimal fill-ledger deltas and reconciles realized PnL from every fill/fee,
+  rather than aggregating native closed-position lifecycle records.
+- Native residuals are normalized only when the exact filled ledger is already
+  zero and residual notional is at most 0.000001 USDT. No cash adjustment; each
+  correction is journaled and independently checked against preceding fills.
+  Actual filled exposure cannot be waived. The 0.01 USDT cash/NAV gate remains.
+- Frozen momentum_data/backtest/engine.py bytes are unchanged. Active execution
+  source is bound into run identities; existing partial outputs remain intact.
+  New identities require fresh preparation/model/case outputs; raw caches remain
+  reusable. Earlier cache-compatibility notes below predate this fix.
+- 54 focused tests pass, including actual tiny Nautilus large-quantity flips,
+  partial rebalances, exact flatness, independent reconciliation and repeatability.
+  Full failed historical cases have NOT been rerun by the agent.
+- User resumes: python scripts/run_dynamic_final_windows.py --funding-assumption
+  adjacent-mean; after completion use the same command with --stage summary.
+  Require all registered cases, matching replay, independent audit and report.
+  Preserve the 17 unrelated user legacy edits. No push/history rewrite.
+
 ## User-authorized average-funding OOS scenario prepared — 2026-11-23
 
 - Experiment024 registration2c38466 precedes implementation; topic

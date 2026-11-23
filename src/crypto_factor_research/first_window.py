@@ -30,6 +30,7 @@ def identity(root, config_path, config):
         Path(__file__),
         Path(__file__).with_name("window_data.py"),
         Path(__file__).with_name("repair.py"),
+        Path(__file__).with_name("execution.py"),
         Path(engine.__file__),
     ]
     return {
@@ -511,7 +512,7 @@ def preflight(root, config, path, data):
 
 
 def run_cases(root, config, path, data):
-    from momentum_data.backtest.engine import simulate
+    from .execution import simulate
 
     audit = checked(path, "preflight.json")
     if not audit["success"]:
@@ -549,6 +550,7 @@ def run_cases(root, config, path, data):
                     schedules["lightgbm" if name == "primary_replay" else name],
                     folder,
                     bps=bps,
+                    exact_execution=True,
                 )
                 write_json(
                     folder / "case_manifest.json",
