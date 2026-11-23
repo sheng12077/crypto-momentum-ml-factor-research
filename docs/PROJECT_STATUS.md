@@ -1,5 +1,31 @@
 # Project status
 
+## Saved 2026 results reported with explicit control failure — 2026-11-23
+
+- Topic fix/report-failed-random-controls; see latest merge for final commit.
+- User batch completed 2025 run925c87a4ccd97b93fff9 and both preflights.
+  2026 mean runff50164f4ed092093408 attempted30 cases;29 succeeded and the primary
+  replay matched. Only random_1012 failed: a transient nonpositive marked NAV
+  (cash104482.53650177, unrealized-107787.4214679). This is not a missing-data
+  finding. Later NAV recovery in its INVALID ledger does not validate the path.
+- Existing all-case batch remains unsuccessful. Do NOT rerun it just to report.
+  scripts/report_saved_window.py explicitly permits a partial report only when
+  failed cases are random controls; candidate failures/replay mismatches still
+  block. Default report behavior remains strict. Simulation identities unchanged.
+- Agent ran saved-ledger reporting only, no prepare/fit/simulation. Actual29-case
+  independent audit passed; maximum NAV/cash error1.1504016583785415e-7 USDT;
+  400 mean-funding assumptions verified. Generated report/results.md, tables,
+  figures, results.ipynb and report_summary.json under the existing2026 run.
+- partial_report=true, all_registered_cases_passed=false. All20 registered
+  controls retained in counts:19 completed,1 failed. Distribution/comparison only
+  covers19; full random comparison unavailable. Failed record retained in JSON,
+  report and notebook; no invented liquidation outcome or assigned -100% return.
+- 33 focused tests/lint pass, covering opt-in, candidate/replay gates, preserved
+  failure inventory, random denominators, normal and partial report generation.
+- User needs no further execution for these reports. Read current results next;
+  future liquidation-path modeling is separate work. All17 unrelated legacy edits
+  preserved. No push/history rewrite.
+
 ## Dynamic execution precision fix — 2026-11-23
 
 - Topic fix/exact-portfolio-quantities; see the latest merge for the final commit.

@@ -172,8 +172,9 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(
             {
                 "success": True,
                 "completed_cases": 4,
+                "registered_cases": 4,
                 "primary_replay_identical": True,
-                "cases": [{"case": name, "bps": 5} for name in cases],
+                "cases": [{"case": name, "bps": 5, "success": True} for name in cases],
             }
         )
     )
@@ -182,7 +183,7 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(
         times = [f"2026-06-{d:02}T00:00:00Z" for d in [23, 24, 25]]
     benchmark = pd.DataFrame({"timestamp": times, "nav": [100000.0, 101000.0, 100500.0]})
     monkeypatch.setattr(window_report, "spot_benchmark", lambda *args: (benchmark.copy(), {}))
-    monkeypatch.setattr(window_audit, "audit_all", lambda *args: {"success": True})
+    monkeypatch.setattr(window_audit, "audit_all", lambda *args, **kwargs: {"success": True})
     asset = pd.DataFrame({"net_pnl_usdt": [1.0]}, index=pd.Index(["A"], name="instrument_id"))
     side = pd.DataFrame({"net_pnl_usdt": [1.0, 0.0]}, index=["long", "short"])
     monkeypatch.setattr(window_audit, "attribution", lambda *args: (asset, side))
@@ -252,6 +253,23 @@ def test_dual_candidate_report_outputs_with_tiny_saved_ledgers(
         assert usage["lightgbm_5bps"]["estimated_cashflow_usdt"] == -12.5
         assert usage["equal_groups_5bps"]["estimated_held_events"] == 0
         assert "Funding assumption" in (path / "report/results.md").read_text()
+
+    # A failed control remains in the denominator and outputs; no simulated retry.
+    saved = json.loads((path / "simulation_summary.json").read_text())
+    saved["cases"].append({"case": "random_1001", "bps": 5, "success": False,
+                           "error": "Nonpositive NAV"})
+    saved.update(success=False, registered_cases=5, completed_cases=5)
+    (path / "simulation_summary.json").write_text(json.dumps(saved))
+    partial = window_report.report(tmp_path, config, path, allow_failed_random_controls=True)
+    assert partial["partial_report"] and not partial["all_registered_cases_passed"]
+    assert partial["registered_cases_completed"] == 4
+    assert partial["random_comparison"]["registered_seeds"] == 2
+    assert partial["random_comparison"]["completed_seeds"] == 1
+    assert partial["random_comparison"]["failed_seeds"] == 1
+    assert not partial["random_comparison"]["full_random_comparison_available"]
+    assert json.loads((path / "report/failed_cases.json").read_text()) == saved["cases"][-1:]
+    assert json.loads((path / "simulation_summary.json").read_text()) == saved
+    assert "PARTIAL CONTROL COVERAGE" in (path / "results.ipynb").read_text()
 
 
 def test_repeated_contract_exits_reach_events_and_independent_price_oracle():
