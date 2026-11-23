@@ -72,7 +72,94 @@
           "daily_observations": 364.0,
           "case": "equal_groups_5bps"
         }
-      ]
+      ],
+      "monthly_source_sha256": "f7c222e888cb6efde1b810fdf9963cec2bb9d287eb0991d7c6f30447f482c4c2",
+      "monthly_returns": [
+        {
+          "month": "2022-01",
+          "strategy_nav": 0.10409038612509969,
+          "btc_nav": -0.19097829724975623,
+          "eth_nav": -0.3037716762514957
+        },
+        {
+          "month": "2022-02",
+          "strategy_nav": -0.07771287287495521,
+          "btc_nav": -0.004822637596562984,
+          "eth_nav": 0.005807785738445981
+        },
+        {
+          "month": "2022-03",
+          "strategy_nav": 0.15395840948748507,
+          "btc_nav": 0.2485185974083708,
+          "eth_nav": 0.293871499050363
+        },
+        {
+          "month": "2022-04",
+          "strategy_nav": 0.014426940540142708,
+          "btc_nav": -0.17999238973238496,
+          "eth_nav": -0.16795489383570705
+        },
+        {
+          "month": "2022-05",
+          "strategy_nav": -0.03732110990452808,
+          "btc_nav": -0.17778708786973585,
+          "eth_nav": -0.290490676681588
+        },
+        {
+          "month": "2022-06",
+          "strategy_nav": -0.010082961744692476,
+          "btc_nav": -0.3658892514137735,
+          "eth_nav": -0.4495592311309903
+        },
+        {
+          "month": "2022-07",
+          "strategy_nav": 0.009614702552556587,
+          "btc_nav": 0.17494897632113737,
+          "eth_nav": 0.542432808282056
+        },
+        {
+          "month": "2022-08",
+          "strategy_nav": 0.0651082265548022,
+          "btc_nav": -0.16206773021433818,
+          "eth_nav": -0.10159693576900453
+        },
+        {
+          "month": "2022-09",
+          "strategy_nav": -0.017768123367133515,
+          "btc_nav": -0.011112143051112966,
+          "eth_nav": -0.1238956047199572
+        },
+        {
+          "month": "2022-10",
+          "strategy_nav": -0.009202731034724021,
+          "btc_nav": 0.05287851727610615,
+          "eth_nav": 0.1907164782511055
+        },
+        {
+          "month": "2022-11",
+          "strategy_nav": -0.005371113611391309,
+          "btc_nav": -0.20288227161049288,
+          "eth_nav": -0.2351236135912077
+        },
+        {
+          "month": "2022-12",
+          "strategy_nav": 0.029761938231551488,
+          "btc_nav": 0.007250515047562578,
+          "eth_nav": -0.0160615855375138
+        }
+      ],
+      "costs": {
+        "net_funding_cashflow_usdt": 2201.0814864899994,
+        "one_way_turnover_over_mean_daily_nav": 41.21002799101215,
+        "total_commissions_usdt": 2377.9879103,
+        "traded_notional_usdt": 4755975.820412832
+      },
+      "random_comparison": {
+        "random_returns_strictly_above_model": 1,
+        "random_sharpes_strictly_above_model": 2,
+        "registered_seeds": 20
+      },
+      "return_excluding_best_month": 0.05515905844326374
     },
     {
       "year": "2023",
@@ -142,7 +229,94 @@
           "daily_observations": 364.0,
           "case": "equal_groups_5bps"
         }
-      ]
+      ],
+      "monthly_source_sha256": "94e906b64fab46c0bce48951180cfbab4491606368598320a250453737d9a4de",
+      "monthly_returns": [
+        {
+          "month": "2023-01",
+          "strategy_nav": 0.4330142913825994,
+          "btc_nav": 0.3780581255784423,
+          "eth_nav": 0.30845187412794695
+        },
+        {
+          "month": "2023-02",
+          "strategy_nav": -0.06278731599975218,
+          "btc_nav": 0.029174433708707204,
+          "eth_nav": 0.04293832205337744
+        },
+        {
+          "month": "2023-03",
+          "strategy_nav": 0.039792414791485875,
+          "btc_nav": 0.19310499832071182,
+          "eth_nav": 0.09805013927576534
+        },
+        {
+          "month": "2023-04",
+          "strategy_nav": -0.05899993553503413,
+          "btc_nav": 0.0428820205697551,
+          "eth_nav": 0.0636648992813389
+        },
+        {
+          "month": "2023-05",
+          "strategy_nav": -0.01047599002658961,
+          "btc_nav": -0.05254965284489299,
+          "eth_nav": -0.003779222140685601
+        },
+        {
+          "month": "2023-06",
+          "strategy_nav": 0.04408890106252006,
+          "btc_nav": 0.09940312843029653,
+          "eth_nav": -0.02557100689785774
+        },
+        {
+          "month": "2023-07",
+          "strategy_nav": -0.047212057330647705,
+          "btc_nav": -0.038302891125685634,
+          "eth_nav": 0.005291605246248388
+        },
+        {
+          "month": "2023-08",
+          "strategy_nav": 0.029509916624081756,
+          "btc_nav": -0.06765800043645886,
+          "eth_nav": -0.08409111661358126
+        },
+        {
+          "month": "2023-09",
+          "strategy_nav": 0.20333275805213957,
+          "btc_nav": -0.014396708570223016,
+          "eth_nav": -0.022155369070447573
+        },
+        {
+          "month": "2023-10",
+          "strategy_nav": 0.09481613942853051,
+          "btc_nav": 0.2812569684572328,
+          "eth_nav": 0.08491409037752273
+        },
+        {
+          "month": "2023-11",
+          "strategy_nav": 0.07494098104375269,
+          "btc_nav": 0.09804021670365559,
+          "eth_nav": 0.1214843231769338
+        },
+        {
+          "month": "2023-12",
+          "strategy_nav": -0.19634578213052944,
+          "btc_nav": 0.11367569630211527,
+          "eth_nav": 0.12707433627284037
+        }
+      ],
+      "costs": {
+        "net_funding_cashflow_usdt": 9263.5095237,
+        "one_way_turnover_over_mean_daily_nav": 46.65911469964514,
+        "total_commissions_usdt": 3370.44173089,
+        "traded_notional_usdt": 6740883.461714416
+      },
+      "random_comparison": {
+        "random_returns_strictly_above_model": 1,
+        "random_sharpes_strictly_above_model": 1,
+        "registered_seeds": 20
+      },
+      "return_excluding_best_month": 0.05765940932653302
     },
     {
       "year": "2024",
@@ -212,7 +386,94 @@
           "daily_observations": 365.0,
           "case": "equal_groups_5bps"
         }
-      ]
+      ],
+      "monthly_source_sha256": "8cbd6ab2abf51d03dfac4e14154fc5af45bd04cc0594cb7e1f405e8eb71152ba",
+      "monthly_returns": [
+        {
+          "month": "2024-01",
+          "strategy_nav": -0.03791930250670039,
+          "btc_nav": 0.006118422635772003,
+          "eth_nav": 0.016575127624226305
+        },
+        {
+          "month": "2024-02",
+          "strategy_nav": -0.10044811606645165,
+          "btc_nav": 0.45390080831650814,
+          "eth_nav": 0.44391189111442175
+        },
+        {
+          "month": "2024-03",
+          "strategy_nav": -0.06913738503509792,
+          "btc_nav": 0.11452570072126389,
+          "eth_nav": 0.03622121722680394
+        },
+        {
+          "month": "2024-04",
+          "strategy_nav": -0.13040012276966095,
+          "btc_nav": -0.08215005623566274,
+          "eth_nav": -0.08241291176504151
+        },
+        {
+          "month": "2024-05",
+          "strategy_nav": 0.04288160061530433,
+          "btc_nav": 0.07024347853317892,
+          "eth_nav": 0.16513042748381102
+        },
+        {
+          "month": "2024-06",
+          "strategy_nav": -0.08665175469229314,
+          "btc_nav": -0.10775795413664235,
+          "eth_nav": -0.09848422187299088
+        },
+        {
+          "month": "2024-07",
+          "strategy_nav": 0.090835218440811,
+          "btc_nav": 0.08528616412633006,
+          "eth_nav": -0.029474961524802
+        },
+        {
+          "month": "2024-08",
+          "strategy_nav": 0.09615294171662536,
+          "btc_nav": -0.10672644588142877,
+          "eth_nav": -0.22969251740510677
+        },
+        {
+          "month": "2024-09",
+          "strategy_nav": 0.12388658330634827,
+          "btc_nav": 0.10956669196378743,
+          "eth_nav": 0.052106096595407436
+        },
+        {
+          "month": "2024-10",
+          "strategy_nav": -0.05609153082931817,
+          "btc_nav": 0.10278236901582827,
+          "eth_nav": 0.0005907541333978195
+        },
+        {
+          "month": "2024-11",
+          "strategy_nav": -0.09383442814113951,
+          "btc_nav": 0.3471608302137794,
+          "eth_nav": 0.3508662412238317
+        },
+        {
+          "month": "2024-12",
+          "strategy_nav": 0.20996017240154075,
+          "btc_nav": -0.052025818420439074,
+          "eth_nav": -0.06976012355706962
+        }
+      ],
+      "costs": {
+        "net_funding_cashflow_usdt": 950.6942821700001,
+        "one_way_turnover_over_mean_daily_nav": 47.91199201940727,
+        "total_commissions_usdt": 1977.04048531,
+        "traded_notional_usdt": 3954080.970310797
+      },
+      "random_comparison": {
+        "random_returns_strictly_above_model": 12,
+        "random_sharpes_strictly_above_model": 11,
+        "registered_seeds": 20
+      },
+      "return_excluding_best_month": -0.23298401761829934
     },
     {
       "year": "2025",
@@ -283,7 +544,94 @@
           "daily_observations": 364.0,
           "case": "equal_groups_5bps"
         }
-      ]
+      ],
+      "monthly_source_sha256": "5ad3445d1b117be8c44e1ed6dc5b2d3e5af654fc4b00cee818e601d79ca1bb72",
+      "monthly_returns": [
+        {
+          "month": "2025-01",
+          "strategy_nav": -0.09056645459379997,
+          "btc_nav": 0.11316465603342274,
+          "eth_nav": -0.03359646274580297
+        },
+        {
+          "month": "2025-02",
+          "strategy_nav": 0.15007417021464686,
+          "btc_nav": -0.19111724709027444,
+          "eth_nav": -0.2893616104009683
+        },
+        {
+          "month": "2025-03",
+          "strategy_nav": 0.009157359018772349,
+          "btc_nav": -0.0273713713534095,
+          "eth_nav": -0.21665540013519802
+        },
+        {
+          "month": "2025-04",
+          "strategy_nav": 0.12771752042448914,
+          "btc_nav": 0.14403242432727525,
+          "eth_nav": -0.005493046566430904
+        },
+        {
+          "month": "2025-05",
+          "strategy_nav": -0.1875532123441226,
+          "btc_nav": 0.1032143880941454,
+          "eth_nav": 0.40801308258380975
+        },
+        {
+          "month": "2025-06",
+          "strategy_nav": 0.012589080056378377,
+          "btc_nav": 0.04203904237399181,
+          "eth_nav": -0.012345240070476327
+        },
+        {
+          "month": "2025-07",
+          "strategy_nav": -0.04981723429746143,
+          "btc_nav": 0.08751973685485614,
+          "eth_nav": 0.5239451379750324
+        },
+        {
+          "month": "2025-08",
+          "strategy_nav": 0.05570469922414567,
+          "btc_nav": -0.07657796186873245,
+          "eth_nav": 0.14795275590551182
+        },
+        {
+          "month": "2025-09",
+          "strategy_nav": 0.1385414855786864,
+          "btc_nav": 0.050503724946430184,
+          "eth_nav": -0.03626906280723419
+        },
+        {
+          "month": "2025-10",
+          "strategy_nav": 0.10737769374222839,
+          "btc_nav": -0.052392418081187775,
+          "eth_nav": -0.09726528859544403
+        },
+        {
+          "month": "2025-11",
+          "strategy_nav": 0.10997834944518048,
+          "btc_nav": -0.1617427453922936,
+          "eth_nav": -0.21443119610837058
+        },
+        {
+          "month": "2025-12",
+          "strategy_nav": -0.04334226092088589,
+          "btc_nav": -0.028181982184031007,
+          "eth_nav": -0.008340530327106799
+        }
+      ],
+      "costs": {
+        "net_funding_cashflow_usdt": -2579.3864316400004,
+        "one_way_turnover_over_mean_daily_nav": 46.416797918647404,
+        "total_commissions_usdt": 2510.9268847,
+        "traded_notional_usdt": 5021853.769385076
+      },
+      "random_comparison": {
+        "random_returns_strictly_above_model": 6,
+        "random_sharpes_strictly_above_model": 8,
+        "registered_seeds": 20
+      },
+      "return_excluding_best_month": 0.1434671325757686
     },
     {
       "year": "2026",
@@ -356,7 +704,86 @@
           "daily_observations": 303.0,
           "case": "equal_groups_5bps"
         }
-      ]
+      ],
+      "monthly_source_sha256": "a7929089b6236c50b8d317b4ab3b1e4e3127b473171d90211cb2306406af496b",
+      "monthly_returns": [
+        {
+          "month": "2026-01",
+          "strategy_nav": -0.13105231981339982,
+          "btc_nav": -0.04322190932572689,
+          "eth_nav": -0.0941657281229662
+        },
+        {
+          "month": "2026-02",
+          "strategy_nav": 0.0689129661201704,
+          "btc_nav": -0.21823264972705514,
+          "eth_nav": -0.28719278416771976
+        },
+        {
+          "month": "2026-03",
+          "strategy_nav": -0.01989024441388798,
+          "btc_nav": 0.01404646276648247,
+          "eth_nav": 0.05007669029556894
+        },
+        {
+          "month": "2026-04",
+          "strategy_nav": 0.4177694850820224,
+          "btc_nav": 0.13447580346352028,
+          "eth_nav": 0.11173068572105449
+        },
+        {
+          "month": "2026-05",
+          "strategy_nav": 0.0014774772244583456,
+          "btc_nav": -0.025014779625230243,
+          "eth_nav": -0.10229482000976575
+        },
+        {
+          "month": "2026-06",
+          "strategy_nav": -0.08689259528492199,
+          "btc_nav": -0.18439851562671306,
+          "eth_nav": -0.20241391586400592
+        },
+        {
+          "month": "2026-07",
+          "strategy_nav": -0.1181442190305656,
+          "btc_nav": 0.07500488298995456,
+          "eth_nav": 0.189229233697235
+        },
+        {
+          "month": "2026-08",
+          "strategy_nav": 0.06763441761096733,
+          "btc_nav": 0.1991660391583705,
+          "eth_nav": 0.2599006417106726
+        },
+        {
+          "month": "2026-09",
+          "strategy_nav": -0.2044643518133935,
+          "btc_nav": 0.07700187945727488,
+          "eth_nav": 0.10803184270629851
+        },
+        {
+          "month": "2026-10",
+          "strategy_nav": 0.014325094148592843,
+          "btc_nav": -0.08201704831454637,
+          "eth_nav": -0.16460838281327816
+        }
+      ],
+      "costs": {
+        "net_funding_cashflow_usdt": -1046.3240536899993,
+        "one_way_turnover_over_mean_daily_nav": 36.503811606350396,
+        "total_commissions_usdt": 1920.7002041,
+        "traded_notional_usdt": 3841400.4081766484
+      },
+      "random_comparison": {
+        "completed_seeds": 19,
+        "distribution_scope": "completed controls only",
+        "failed_seeds": 1,
+        "full_random_comparison_available": false,
+        "random_returns_strictly_above_model": 10,
+        "random_sharpes_strictly_above_model": 9,
+        "registered_seeds": 20
+      },
+      "return_excluding_best_month": -0.3675434657044231
     }
   ]
 }
