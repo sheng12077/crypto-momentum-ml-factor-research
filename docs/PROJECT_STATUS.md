@@ -1,5 +1,23 @@
 # Project status
 
+## Alternative funding sources investigated — 2026-11-23
+
+- User completed c946056e6180c28e76cb evidence audit: all145 REST brackets have
+  same observed gap; no new funding records, no resolution of payable costs.
+- Read docs/ALTERNATE_FUNDING_SOURCES.md. Supplied Postman calls the same fapi
+  endpoint. Binance website POST history was separately paginated for VVVUSDT:
+  Jun24 00→08 UTC, missing04, anchors still say4h; four source pages preserved
+  under data/repairs/funding_website_probes_20261123. No strategy mutation/PnL.
+- Amberdata documents applied-vs-predicted rates but requires authorized access;
+  sample not obtained. Tardis metadata includes VVV and independent live-feed
+  recording; actual June24 data not accessed. CoinGlass OHLC close is predicted,
+  not settled. Coin Metrics community probe did not provide VVV records.
+- No verified replacement or specific official June24 exception found. Next:
+  user may request one applied-rate/live-feed sample before paying; request text
+  in source note. Do not silently waive the gate or buy data without confirmation.
+- Documentation-only research segment; no external messages sent. User legacy
+  edits preserved; no push/history rewrite.
+
 ## 2026 source gate: lifecycle corrected, funding still unresolved — 2026-11-23
 
 - Topic fix/2026-preflight-evidence. Latest batch passes 2025 preflight; 2026
